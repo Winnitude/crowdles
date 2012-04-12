@@ -5,17 +5,18 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
+gem 'omniauth-facebook' 
 gem 'jquery-rails'
 gem "bson_ext", ">= 1.6.1"
 gem "mongoid", ">= 2.4.7"
 gem "devise", ">= 2.1.0.rc"
-
+gem 'omniauth', ">= 0.1.6"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
-
+gem "oauth2","0.5.2"
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
-
+gem "oa-oauth",'0.3.2'
 # Use unicorn as the app server
 # gem 'unicorn'
 
