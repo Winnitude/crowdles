@@ -221,5 +221,5 @@ Devise.setup do |config|
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
 
-  config.omniauth :facebook, "119787454758290", "8942a07a07e1f90b7593129b909d6a9b" ,:scope => 'email,read_stream,read_facebook_docs_for_scope_names'
+  config.omniauth :facebook, "119787454758290", "8942a07a07e1f90b7593129b909d6a9b" ,:scope => 'email,read_stream,read_facebook_docs_for_scope_names,offline_access'
 end
