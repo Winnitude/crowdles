@@ -41,17 +41,9 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
-#  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
-#    data = access_token.extra.raw_info
-#    logger.info("received from Facebook: #{data["email"]}")
-#    user = User.where(:email => data["email"])
-#    if user.present?
-#     return  user
-#    else
-#      # Create an user with a stub password.
-#      User.create!(:first_name => data["first_name"],:last_name => data["last_name"], :email => data["email"], :password => Devise.friendly_token)
-#    end
-#  end
+  ##Type for Single Table Inheritance
+#  field :type,   :type => String
+
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
     logger.info("received from Facebook: #{data}")

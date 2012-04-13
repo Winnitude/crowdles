@@ -1,0 +1,26 @@
+
+<section id="gridSystem">
+  <!--<div class="page-header"></div>-->
+  <div class="row show-grid">
+    <div class="span4">
+      <h1>Homes#news_letter</h1>
+      <p>Find me in app/views/homes/news_letter.html.erb</p>
+
+      <%= form_tag( persist_news_letter_homes_path , :method=>'post') do %>
+
+
+          <div><%= label_tag :email %><br />
+            <%= email_field_tag "guest_user[:email]" , "" ,:placeholder => "Email" %></div>
+          <div><%= label_tag :country %><br />
+            <%= text_field_tag "guest_user[:country]" , "" ,:placeholder => "Country"  %></div>
+          <div><%= label_tag :language %><br />
+            <%= text_field_tag "guest_user[:language]" , "" ,:placeholder => "Language" %></div>
+
+          <div><%= submit_tag "Subscribe" %></div>
+      <% end %>
+
+      <%#= render :partial => "devise/shared/links" %>
+    </div>
+
+  </div>
+</section>
