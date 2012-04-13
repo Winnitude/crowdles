@@ -13,3 +13,14 @@ nbproject/*
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+log/*.log
+nbproject
+tmp/*
+db/schema.rb
+.project
+.idea
+*.swp
+*.swo
+.rvmrc
+Gemfile.lock
+
