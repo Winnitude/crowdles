@@ -3,3 +3,10 @@
 
 en:
   hello: "Hello world"
+
+  guest_user:
+    success: 'You are successfully subscribed'
+    failure: 'Could not subscribed because "%{reason}".'
+
+
+

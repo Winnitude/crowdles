@@ -1,5 +1,4 @@
 CrowdFunding::Application.routes.draw do
-  get "home/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -32,7 +31,17 @@ CrowdFunding::Application.routes.draw do
   #     resources :comments, :sales
   #     resource :seller
   #   end
-devise_for :users 
+  resources :homes do
+    collection do
+      get 'news_letter'
+      post 'persist_news_letter'
+    end
+
+  end
+  devise_for :users,
+             :controllers => {:omniauth_callbacks => "omniauth_callbacks" }   do
+    get "/logout", :to => "devise/sessions#destroy"
+  end
   # Sample resource route with more complex sub-resources
   #   resources :products do
   #     resources :comments
@@ -50,7 +59,7 @@ devise_for :users
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => "home#index"
+  root :to => "homes#index"
 
   # See how all your routes lay out with "rake routes"
 

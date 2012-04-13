@@ -2,7 +2,7 @@ class User
   include Mongoid::Document
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable,:confirmable ,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   ## Database authenticatable
@@ -15,9 +15,9 @@ class User
 
   ## Rememberable
   field :remember_created_at, :type => Time
-  field :first_name, :type => String
-  field :last_name, :type => String
-  field:country, :type => String
+  field :first_name, :type => String , :null => false, :default => ""
+  field :last_name, :type => String  , :null => false, :default => ""
+  field :country, :type => String   , :null => false, :default => ""
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0
   field :current_sign_in_at, :type => Time
@@ -28,11 +28,11 @@ class User
   ## Encryptable
   # field :password_salt, :type => String
 
-  ## Confirmable
-  # field :confirmation_token,   :type => String
-  # field :confirmed_at,         :type => Time
-  # field :confirmation_sent_at, :type => Time
-  # field :unconfirmed_email,    :type => String # Only if using reconfirmable
+  # Confirmable
+  field :confirmation_token,   :type => String
+  field :confirmed_at,         :type => Time
+  field :confirmation_sent_at, :type => Time
+  field :unconfirmed_email,    :type => String # Only if using reconfirmable
 
   ## Lockable
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
@@ -41,4 +41,18 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+  ##Type for Single Table Inheritance
+#  field :type,   :type => String
+
+  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
+    data = access_token.extra.raw_info
+    logger.info("received from Facebook: #{data}")
+    user = User.first(:conditions => { :email => data["email"] })
+    if !user.nil?
+      user
+    else # Create an user with a stub password.
+      User.create!(:email => data["email"], :password => Devise.friendly_token[0,20])
+    end
+  end
+
 end
