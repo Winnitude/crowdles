@@ -10,11 +10,11 @@
 
 
           <div><%= label_tag :email %><br />
-            <%= email_field_tag "guest_user[:email]" , "" ,:placeholder => "Email" %></div>
+            <%= email_field_tag "guest_user[email]" , "" ,:placeholder => "Email" %></div>
           <div><%= label_tag :country %><br />
-            <%= text_field_tag "guest_user[:country]" , "" ,:placeholder => "Country"  %></div>
+            <%= text_field_tag "guest_user[country]" , "" ,:placeholder => "Country"  %></div>
           <div><%= label_tag :language %><br />
-            <%= text_field_tag "guest_user[:language]" , "" ,:placeholder => "Language" %></div>
+            <%= text_field_tag "guest_user[language]" , "" ,:placeholder => "Language" %></div>
 
           <div><%= submit_tag "Subscribe" %></div>
       <% end %>

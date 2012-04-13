@@ -20,7 +20,7 @@ gem "oa-oauth",'0.3.2'
 gem "twitter-bootstrap-rails"
 # Use unicorn as the app server
 # gem 'unicorn'
-
+gem 'hominid'
 # Deploy with Capistrano
 # gem 'capistrano'
 
