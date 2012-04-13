@@ -5,7 +5,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-gem 'omniauth-facebook' 
+gem 'omniauth-facebook'
 gem 'jquery-rails'
 gem "bson_ext", ">= 1.6.1"
 gem "mongoid", ">= 2.4.7"
@@ -17,6 +17,7 @@ gem "oauth2","0.5.2"
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 gem "oa-oauth",'0.3.2'
+gem "twitter-bootstrap-rails"
 # Use unicorn as the app server
 # gem 'unicorn'
 

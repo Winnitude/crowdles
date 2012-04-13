@@ -222,6 +222,5 @@ Devise.setup do |config|
   # end
 
 
-    config.omniauth :facebook, "119787454758290", "8942a07a07e1f90b7593129b909d6a9b" ,:scope => 'email,read_stream,read_facebook_docs_for_scope_names', :strategy_class =>  "OmniAuth::Strategies::Facebook"
-
+    config.omniauth :facebook, "119787454758290", "8942a07a07e1f90b7593129b909d6a9b" ,{:scope => 'email,user_photos,user_photos,publish_stream,offline_access'}
 end
