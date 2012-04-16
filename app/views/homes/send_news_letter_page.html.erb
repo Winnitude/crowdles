@@ -7,11 +7,30 @@
 
       <%= form_tag( send_news_letter_homes_path) do %>
 
-        <%= select_tag "lists" ,options_for_select(@lists_name)%>
-<div id="wait"></div>
+          <%= label_tag :select_list %>
+          <%= select_tag "lists" ,options_for_select(@lists_name)%>
+          <div id="wait"></div>
           <div id="camp">
             <%= render :partial => 'get_campaigns' %>
           </div>
+
+          <%= label_tag :template_name %>
+          <%= text_field_tag :template_name %>
+
+          <%= label_tag :template_content %>
+          <%= text_area_tag :template_content %>
+
+          <%= label_tag :subject %>
+          <%= text_field_tag :subject %>
+
+          <%= label_tag :from_email %>
+          <%= text_field_tag :from_email %>
+
+          <%= label_tag :from_name %>
+          <%= text_field_tag :from_name %>
+
+          <%= label_tag :to_name %>
+          <%= text_field_tag :to_name %>
 
           <div><%= submit_tag "Subscribe"  %></div>
       <% end %>

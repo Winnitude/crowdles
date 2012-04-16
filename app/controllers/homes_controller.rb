@@ -24,9 +24,33 @@ class HomesController < ApplicationController
     end
   end
   def send_news_letter
-    camp= @hominid.find_campaigns_by_title(params[:campaign])
-    logger.info camp
-    #@hominid.campaign_send_now(camp.first['id'])
+#    camp= @hominid.find_campaigns_by_title(params[:campaign])
+#    logger.info camp
+#    @hominid.campaign_send_now(camp.first['id'])
+
+    html_content = params[:template_content]
+    template= @hominid.template_add(params[:template_name],html_content)
+    content = Hash.new
+    content['html'] = ""
+    content['text'] = "hi"
+
+    type = 'regular'
+    opts = 	Hash.new
+    opts['list_id'] = @hominid.find_list_id_by_name(params[:lists])
+
+    opts['subject'] = params[:subject]
+    opts['from_email'] = params[:from_email]
+    opts['from_name'] = params[:from_name]
+    opts['to_name'] = params[:to_name]
+    opts['template_id']= template
+
+    kk = @hominid.campaign_create(type,opts,content)
+    @hominid.campaign_send_now(kk)
+
+
+
+
+
   end
 
   def get_campaigns
