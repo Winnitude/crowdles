@@ -99,7 +99,7 @@ Devise.setup do |config|
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed new email is stored in
   # unconfirmed email column, and copied to email column on successful confirmation.
-  config.reconfirmable = true
+  config.reconfirmable = false
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [ :email ]
@@ -206,6 +206,9 @@ Devise.setup do |config|
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
+  config.warden do |manager|
+    manager.failure_app = CustomFailure
+  end
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
@@ -216,11 +219,11 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
-  # config.warden do |manager|
-  #   manager.intercept_401 = false
-  #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
-  # end
+  config.warden do |manager|
+    manager.intercept_401 = false
+    manager.failure_app = CustomFailure
+  end
 
 
-    config.omniauth :facebook, "119787454758290", "8942a07a07e1f90b7593129b909d6a9b" ,{:scope => 'email,user_photos,user_photos,publish_stream,offline_access'}
+  config.omniauth :facebook, "119787454758290", "8942a07a07e1f90b7593129b909d6a9b" ,{:scope => 'email,user_photos,user_photos,publish_stream,offline_access'}
 end
