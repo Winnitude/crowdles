@@ -11,6 +11,7 @@ gem "bson_ext", ">= 1.6.1"
 gem "mongoid", ">= 2.4.7"
 gem "devise", ">= 2.1.0.rc"
 gem 'omniauth', ">= 0.1.6"
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem "oauth2","0.5.2"
