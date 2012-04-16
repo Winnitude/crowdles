@@ -27,7 +27,6 @@ class HomesController < ApplicationController
 #    camp= @hominid.find_campaigns_by_title(params[:campaign])
 #    logger.info camp
 #    @hominid.campaign_send_now(camp.first['id'])
-
     html_content = params[:template_content]
     template= @hominid.template_add(params[:template_name],html_content)
     content = Hash.new
@@ -44,29 +43,24 @@ class HomesController < ApplicationController
     opts['to_name'] = params[:to_name]
     opts['template_id']= template
 
-    kk = @hominid.campaign_create(type,opts,content)
-    @hominid.campaign_send_now(kk)
-
-
-
-
-
+    campaign = @hominid.campaign_create(type,opts,content)
+    @hominid.campaign_send_now(campaign)
   end
 
-  def get_campaigns
-    campaigns = @hominid.find_campaigns_by_list_name(params[:list])
-    index = 0
-    @campaigns_title = Array.new
-    campaigns.each do |i|
-      if i['status'] == "save"
-        @campaigns_title[index] = i['title']
-        index = index + 1
-      end
-    end
-    respond_to do |format|
-      format.js{ render :layout => false}
-    end
-  end
+#  def get_campaigns #######now no need of this method
+#    campaigns = @hominid.find_campaigns_by_list_name(params[:list])
+#    index = 0
+#    @campaigns_title = Array.new
+#    campaigns.each do |i|
+#      if i['status'] == "save"
+#        @campaigns_title[index] = i['title']
+#        index = index + 1
+#      end
+#    end
+#    respond_to do |format|
+#      format.js{ render :layout => false}
+#    end
+#  end
 
   def get_hominid
     @hominid= Hominid::API.new('bac75b91f1ef97391dfbbb0ab281a6a6-us4')
