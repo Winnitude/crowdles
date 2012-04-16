@@ -35,6 +35,9 @@ CrowdFunding::Application.routes.draw do
     collection do
       get 'news_letter'
       post 'persist_news_letter'
+      get 'send_news_letter_page'
+      post 'send_news_letter'
+      get  'get_campaigns'
     end
 
   end

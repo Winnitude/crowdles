@@ -1,0 +1,3 @@
+<% if @campaigns_title.present? %>
+  $("#camp").html("<%= escape_javascript(render(:partial => 'get_campaigns' )) %>");
+<% end %>

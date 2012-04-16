@@ -13,3 +13,23 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+
+jQuery(function(){
+
+//    alert("hello")
+//    $("#lists").click(function(){
+////        alert("hello")
+//        $('#wait').html("plz wait")
+//        var value=$("#lists").val()
+//        alert(value)
+//        $.get("/homes/get_campaigns",{"list":value
+//
+//        },function(){ $('#wait').html("")})
+//    });
+
+});
+
+
+      
