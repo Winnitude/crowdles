@@ -1,8 +1,5 @@
 class User
   include Mongoid::Document
-  embeds_one :profile
-  attr_accessible :profile, :email,:password
-  accepts_nested_attributes_for :profile
   #######################User Login functionality with devise integration############################
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -10,7 +7,6 @@ class User
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   ## Database authenticatable
-  field :email,              :type => String, :null => false, :default => ""
   field :encrypted_password, :type => String, :null => false, :default => ""
 
   ## Recoverable
@@ -19,7 +15,6 @@ class User
 
   ## Rememberable
   field :remember_created_at, :type => Time
-  field :country, :type => String   , :null => false, :default => ""
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0
   field :current_sign_in_at, :type => Time
@@ -60,6 +55,7 @@ class User
                        :profile => {:first_name => data["first_name"],:last_name => data["last_name"]}})
       user.confirm!
       user.save!
+      UserMailer.welcome_email(user).deliver if !user.nil?
       User.where(:email => data.email).first
     end
   end
@@ -91,11 +87,46 @@ class User
       !password.nil? || !password_confirmation.nil?
     end
   end
-
   #######################User Login functionality ENDS############################
+  field :first_name, :type => String , :null => false, :default => ""
+  field :last_name, :type => String  , :null => false, :default => ""
+  validates_with FullNameValidator
+  before_validation :strip_names
 
+  def full_name
+    [first_name, last_name].join(' ')
+  end
 
+  def to_s
+    full_name
+  end
 
+  field :email,              :type => String
+  validates :email,
+            :uniqueness => true,
+            :email => true
 
+  field :country,            :type => String
+  validates :country,
+            :presence => true
+  field :terms_of_service,   :type => Boolean
+  validates :terms_of_service,
+            :acceptance => true
 
+  embeds_one :profile
+  accepts_nested_attributes_for :profile
+  attr_accessible :profile,:name, :email, :password, :password_confirmation, :remember_me
+
+  protected
+
+  def strip_names
+    strip_it! self.first_name
+    strip_it! self.last_name
+  end
+
+  def strip_it! field
+    field.strip! if !field.blank?
+  end
 end
+
+

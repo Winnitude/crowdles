@@ -44,6 +44,8 @@ CrowdFunding::Application.routes.draw do
   as :user do
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
+
+
   devise_for :users, :scope => "user",
              :controllers => {:omniauth_callbacks => "omniauth_callbacks" ,
                               :sessions => "sessions" ,
@@ -53,6 +55,8 @@ CrowdFunding::Application.routes.draw do
     get "/login", :to => "sessions#new"
     get "/logout", :to => "sessions#destroy"
   end
+
+  resources :users
 
 
   # Sample resource route with more complex sub-resources

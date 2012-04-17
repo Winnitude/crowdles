@@ -22,6 +22,7 @@ gem "twitter-bootstrap-rails"
 # Use unicorn as the app server
 # gem 'unicorn'
 gem 'hominid'
+gem 'activevalidators'
 # Deploy with Capistrano
 # gem 'capistrano'
 
