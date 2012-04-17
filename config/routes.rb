@@ -50,7 +50,8 @@ CrowdFunding::Application.routes.draw do
                               :confirmations => 'confirmations'#,
 #                              :registrations => 'registrations'
              }   do
-    get "/logout", :to => "devise/sessions#destroy"
+    get "/login", :to => "sessions#new"
+    get "/logout", :to => "sessions#destroy"
   end
 
 

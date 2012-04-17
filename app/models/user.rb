@@ -1,5 +1,9 @@
 class User
   include Mongoid::Document
+  embeds_one :profile
+  attr_accessible :profile, :email,:password
+  accepts_nested_attributes_for :profile
+  #######################User Login functionality with devise integration############################
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,:confirmable ,
@@ -15,8 +19,6 @@ class User
 
   ## Rememberable
   field :remember_created_at, :type => Time
-  field :first_name, :type => String , :null => false, :default => ""
-  field :last_name, :type => String  , :null => false, :default => ""
   field :country, :type => String   , :null => false, :default => ""
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0
@@ -48,12 +50,17 @@ class User
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
-    logger.info("received from Facebook: #{data}")
-    user = User.first(:conditions => { :email => data["email"] })
+    logger.info("received from Facebook: #{data[:first_name]}")
+    user = User.where(:email => data.email).first
     if !user.nil?
       user
     else # Create an user with a stub password.
-      User.create!(:email => data["email"], :password => Devise.friendly_token[0,20])
+      user = User.new({:email => data["email"],
+                       :password => Devise.friendly_token[0,20],
+                       :profile => {:first_name => data["first_name"],:last_name => data["last_name"]}})
+      user.confirm!
+      user.save!
+      User.where(:email => data.email).first
     end
   end
 
@@ -84,5 +91,11 @@ class User
       !password.nil? || !password_confirmation.nil?
     end
   end
+
+  #######################User Login functionality ENDS############################
+
+
+
+
 
 end

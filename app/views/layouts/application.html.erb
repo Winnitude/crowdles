@@ -46,7 +46,7 @@
       <div class="span9">
         <div id="user_nav">
           <% if user_signed_in? %>
-              Signed in as <%= current_user.first_name %>.
+              Signed in as <%= current_user.profile.first_name %>.
           <% end %>
         </div>
 
