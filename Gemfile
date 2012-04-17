@@ -26,6 +26,7 @@ gem "heroku"
 group :production do
   gem 'thin'
 end
+gem "mongo_mapper"
 # Deploy with Capistrano
 # gem 'capistrano'
 
