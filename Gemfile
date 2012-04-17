@@ -16,7 +16,7 @@ gem 'omniauth', ">= 0.1.6"
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem "oauth2","0.5.2"
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'
+# gem 'jbuilder'bundle instak
 gem "oa-oauth",'0.3.2'
 gem "twitter-bootstrap-rails"
 # Use unicorn as the app server
