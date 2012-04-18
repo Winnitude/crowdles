@@ -1,44 +1,38 @@
 
-
-<%= form_for(resource, :as => resource_name, :url => user_registration_path(resource_name),:html => { :class => "form-horizontal"}) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => user_registration_path,:html => { :class => "form-horizontal"}) do |f| %>
     <fieldset>
       <%= devise_error_messages! %>
       <legend>Legend text</legend>
       <div class="control-group">
-
         <label class="control-label" for="input01">Email</label>
         <div class="controls">
           <%= f.email_field :email,:class=>"input" %>
           <!--<input type="text" class="input-xlarge" id="input01">-->
           <p class="help-block"></p>
         </div>
-
+      </div>
+      <div class="control-group">
         <label class="control-label" for="input01">Country</label>
         <div class="controls">
           <%= f.text_field :country,:class=>"input" %>
           <!--<input type="text" class="input-xlarge" id="input01">-->
           <p class="help-block"></p>
         </div>
-
-
+      </div>
+      <div class="control-group">
         <div class="controls">
           <label class="checkbox inline" >
             <%= f.check_box :terms_of_service%>Accept terms
             <!--<input type="text" class="input-xlarge" id="input01">-->
-
           </label>
         </div>
       </div>
-      <div class="control-group">
-        <div class="form-actions">
-          <%= f.submit "Sign up",:class =>"btn btn-primary"  %>
-          <button class="btn">Cancel</button>
-          <!--<input type="text" class="input-xlarge" id="input01">-->
-        </div>
+
+      <div class="form-actions">
+        <%= f.submit "Sign up",:class =>"btn btn-primary"  %>
+        <a class="btn" href="/">Cancel</a>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
       </div>
-
-
-
       <!--<div></div>-->
     </fieldset>
 <% end %>

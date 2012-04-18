@@ -88,45 +88,28 @@ class User
     end
   end
   #######################User Login functionality ENDS############################
-  field :first_name, :type => String , :null => false, :default => ""
-  field :last_name, :type => String  , :null => false, :default => ""
-  validates_with FullNameValidator
-  before_validation :strip_names
 
-  def full_name
-    [first_name, last_name].join(' ')
-  end
-
-  def to_s
-    full_name
-  end
 
   field :email,              :type => String
   validates :email,
             :uniqueness => true,
             :email => true
-
+#
   field :country,            :type => String
   validates :country,
             :presence => true
+
   field :terms_of_service,   :type => Boolean
   validates :terms_of_service,
-            :acceptance => true
+            :acceptance => {:accept => true},
+            :on => :create
 
   embeds_one :profile
   accepts_nested_attributes_for :profile
-  attr_accessible :profile,:name, :email, :password, :password_confirmation, :remember_me
 
-  protected
+  attr_accessible :profile, :email, :password, :password_confirmation, :remember_me ,:country, :terms_of_service
 
-  def strip_names
-    strip_it! self.first_name
-    strip_it! self.last_name
-  end
 
-  def strip_it! field
-    field.strip! if !field.blank?
-  end
 end
 
 

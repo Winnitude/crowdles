@@ -4,8 +4,6 @@ class RegistrationsController < Devise::RegistrationsController
     super
   end
   def create
-
-
   end
   private
 

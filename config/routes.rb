@@ -56,8 +56,6 @@ CrowdFunding::Application.routes.draw do
     get "/logout", :to => "sessions#destroy"
   end
 
-  resources :users
-
 
   # Sample resource route with more complex sub-resources
   #   resources :products do
