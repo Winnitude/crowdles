@@ -42,7 +42,7 @@ CrowdFunding::Application.routes.draw do
 
   end
   as :user do
-      match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
+    match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
 
 
@@ -50,13 +50,21 @@ CrowdFunding::Application.routes.draw do
              :controllers => {:omniauth_callbacks => "omniauth_callbacks" ,
                               :sessions => "sessions" ,
                               :confirmations => 'confirmations'#,
-#                              :registrations => 'registrations'
+                              #                              :registrations => 'registrations'
              }   do
     get "/login", :to => "sessions#new"
     get "/logout", :to => "sessions#destroy"
   end
 
+  resources :people do
+    member do
 
+    end
+    collection do
+      get 'provider_terms_of_service'
+      put 'update_provider_terms_of_service'
+    end
+  end
   # Sample resource route with more complex sub-resources
   #   resources :products do
   #     resources :comments
