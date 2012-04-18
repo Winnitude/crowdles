@@ -1,25 +1,42 @@
 
-<section id="gridSystem">
-  <!--<div class="page-header"></div>-->
-  <div class="row show-grid">
-    <div class="span4">
-      <h1>Homes#news_letter</h1>
-      <p>Find me in app/views/homes/news_letter.html.erb</p>
 
-      <%= form_tag( persist_news_letter_homes_path , :method=>'post') do %>
-          <div><%= label_tag :email %><br />
-            <%= text_field_tag "guest_user[email]" , "" ,:placeholder => "Email" %></div>
-          <div><%= label_tag :country %><br />
-            <%= text_field_tag "guest_user[country]" , "" ,:placeholder => "Country"  %></div>
-          <div><%= label_tag :language %><br />
-            <%= text_field_tag "guest_user[:language]" , "" ,:placeholder => "Language" %></div>
-          <div><%= submit_tag "Subscribe" %></div>
-      <% end %>
-      <%#= render :partial => "devise/shared/links" %>
-    </div>
 
-  </div>
-</section>
+<%= form_tag( persist_news_letter_homes_path , :method=>'post' , :class => "form-horizontal") do %>
+    <%#= devise_error_messages! %>
+    <fieldset>
+      <%#= devise_error_messages! %>
+      <legend><h2>Sign Up</h2></legend>
+      <div class="control-group">
+        <label class="control-label" for="input01">Email</label>
+        <div class="controls">
+          <%= text_field_tag "guest_user[email]" , "" ,:placeholder => "Email" %></div>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input01">Country</label>
+        <div class="controls">
+          <%= text_field_tag "guest_user[country]" , "" ,:placeholder => "Country"  %></div>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input01">Language</label>
+        <div class="controls">
+          <%= text_field_tag "guest_user[:language]" , "" ,:placeholder => "Language" %></div>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+      <div class="form-actions">
+        <%= submit_tag "Subscribe",:class =>"btn btn-primary"  %>
+
+        <a class="btn" href="/">Cancel</a>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+      </div>
+      <!--<div></div>-->
+    </fieldset>
+<% end %>
+<%#= render :partial => "devise/shared/links" %>
 
 
 <script type="text/javascript">
