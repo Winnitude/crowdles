@@ -22,5 +22,5 @@ db/schema.rb
 *.swp
 *.swo
 .rvmrc
-Gemfile.lock
+#Gemfile.lock
 
