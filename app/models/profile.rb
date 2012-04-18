@@ -4,8 +4,15 @@ class Profile
   embedded_in :user, :inverse_of => :profile
 
 
-  field :first_name, :type => String , :null => false, :default => ""
-  field :last_name, :type => String  , :null => false, :default => ""
+  field :first_name,     :type => String , :null => false, :default => ""
+  field :last_name,      :type => String  , :null => false, :default => ""
+  field :title,          :type => String  , :null => false, :default => ""
+  field :gender,         :type => String  , :null => false, :default => ""
+  field :birth_date,     :type => Date, :null => false, :default => ""
+  field :city,           :type => String  , :null => false, :default => ""
+  field :state,          :type => String  , :null => false, :default => ""
+  field :mobile_number,  :type => String  , :null => false, :default => ""
+  field :biography,      :type => String  , :null => false, :default => ""
   validates_with FullNameValidator
   before_validation :strip_names
 

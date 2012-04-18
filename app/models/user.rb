@@ -116,7 +116,7 @@ class User
 
   attr_accessible :profile, :email, :password, :password_confirmation,
                   :remember_me ,:country, :terms_of_service,:is_provider,
-                  :is_provider_terms_of_service
+                  :is_provider_terms_of_service ,:profile_attributes
 
   def should_not_provider?
     is_provider == false
