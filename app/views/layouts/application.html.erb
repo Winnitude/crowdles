@@ -28,12 +28,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="#">CrowdFunding</a>
+      <a class="brand" href="/">CrowdFunding</a>
       <div class="container nav-collapse">
         <ul class="nav">
-          <li><%= link_to "Link1", "/path1"  %></li>
-          <li><%= link_to "Link2", "/path2"  %></li>
-          <li><%= link_to "Link3", "/path3"  %></li>
+          <li>
+            <% if user_signed_in? %>
+                <a href="/"><%= current_user.profile.full_name rescue nil %></a>
+            <% end %>
+          </li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
@@ -45,14 +47,11 @@
     <div class="row">
       <div class="span9">
         <div id="user_nav">
-          <% if user_signed_in? %>
-              Signed in as <%= current_user.first_name %>.
+          <% flash.each do |name, msg| %>
+              <%= content_tag :div, msg, :id => "flash_#{name}" %>
           <% end %>
         </div>
 
-        <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, :id => "flash_#{name}" %>
-        <% end %>
         <%= yield %>
       </div>
       <div class="span3">

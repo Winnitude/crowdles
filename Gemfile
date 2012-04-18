@@ -22,6 +22,7 @@ gem "twitter-bootstrap-rails"
 # Use unicorn as the app server
 # gem 'unicorn'
 gem 'hominid'
+gem 'activevalidators'
 gem "heroku"
 group :production do
   gem 'thin'
@@ -30,7 +31,6 @@ end
 gem "mongo_mapper"
 
 #gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git', :branch => 'rails-3-1'
-# Deploy with Capistrano
 # gem 'capistrano'
 
 # To use debugger

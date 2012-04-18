@@ -44,13 +44,16 @@ CrowdFunding::Application.routes.draw do
   as :user do
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
+
+
   devise_for :users, :scope => "user",
              :controllers => {:omniauth_callbacks => "omniauth_callbacks" ,
                               :sessions => "sessions" ,
                               :confirmations => 'confirmations'#,
 #                              :registrations => 'registrations'
              }   do
-    get "/logout", :to => "devise/sessions#destroy"
+    get "/login", :to => "sessions#new"
+    get "/logout", :to => "sessions#destroy"
   end
 
 

@@ -219,10 +219,6 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
-  config.warden do |manager|
-    manager.intercept_401 = false
-    manager.failure_app = CustomFailure
-  end
 
 
   config.omniauth :facebook, "119787454758290", "8942a07a07e1f90b7593129b909d6a9b" ,{:scope => 'email,user_photos,user_photos,publish_stream,offline_access'}
