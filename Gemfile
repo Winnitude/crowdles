@@ -25,7 +25,7 @@ gem 'hominid'
 gem "heroku"
 group :production do
   gem 'thin'
-  gem "rubyracer"
+  gem "therubyracer"
 end
 gem "mongo_mapper"
 
