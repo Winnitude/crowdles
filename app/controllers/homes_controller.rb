@@ -24,28 +24,35 @@ class HomesController < ApplicationController
     end
   end
   def send_news_letter
-#    camp= @hominid.find_campaigns_by_title(params[:campaign])
-#    logger.info camp
-#    @hominid.campaign_send_now(camp.first['id'])
-    html_content = params[:template_content]
-    template= @hominid.template_add(params[:template_name],html_content)
     content = Hash.new
     content['html'] = ""
     content['text'] = "hi"
 
     type = 'regular'
     opts = 	Hash.new
-    opts['list_id'] = @hominid.find_list_id_by_name(params[:lists])
-
     opts['subject'] = params[:subject]
     opts['from_email'] = params[:from_email]
     opts['from_name'] = params[:from_name]
     opts['to_name'] = params[:to_name]
-    opts['template_id']= template
-
-    campaign = @hominid.campaign_create(type,opts,content)
-    @hominid.campaign_send_now(campaign)
-  end
+    begin
+      opts['list_id'] = @hominid.find_list_id_by_name(params[:lists])
+      logger.info  opts['list_id'].inspect
+      template= @hominid.template_add(params[:template_name],params[:template_content])
+      logger.info  template.inspect
+      opts['template_id']= template
+      campaign = @hominid.campaign_create(type,opts,content)
+      @hominid.campaign_send_now(campaign)
+    rescue
+      template = nil
+    end
+    logger.info  opts['list_id'].inspect
+    logger.info  template.inspect
+    if template == nil
+      @status = "Campaign not send because you have given invalid name to Template your template name should be unique and should be almost 50 characters long"
+    else
+       @status = "Send SuccessFully"
+    end
+ end
 
 #  def get_campaigns #######now no need of this method
 #    campaigns = @hominid.find_campaigns_by_list_name(params[:list])
