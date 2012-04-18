@@ -27,6 +27,8 @@ group :production do
   gem 'thin'
 end
 gem "mongo_mapper"
+gem "rubyracer"
+
 #gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git', :branch => 'rails-3-1'
 # Deploy with Capistrano
 # gem 'capistrano'
