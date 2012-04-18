@@ -16,14 +16,21 @@ gem 'omniauth', ">= 0.1.6"
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem "oauth2","0.5.2"
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'
+# gem 'jbuilder'bundle instak
 gem "oa-oauth",'0.3.2'
 gem "twitter-bootstrap-rails"
 # Use unicorn as the app server
 # gem 'unicorn'
 gem 'hominid'
 gem 'activevalidators'
-# Deploy with Capistrano
+gem "heroku"
+group :production do
+  gem 'thin'
+  gem "therubyracer"
+end
+gem "mongo_mapper"
+
+#gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git', :branch => 'rails-3-1'
 # gem 'capistrano'
 
 # To use debugger
