@@ -39,8 +39,24 @@
     </div>
 
   </div>
-
-
-
+  <script type="text/javascript">
+      jQuery(function(){
+          var lists = new LiveValidation("lists",{validMessage:" ",onlyOnSubmit:true});
+          lists.add(Validate.Presence);
+          var template_name = new LiveValidation("template_name",{validMessage:" ",onlyOnSubmit:true});
+          template_name.add(Validate.Presence,{failureMessage:"Can't be empty"});
+          var template_content = new LiveValidation("template_content",{validMessage:" ",onlyOnSubmit:true});
+          template_content.add(Validate.Presence,{failureMessage:"Can't be empty"})
+          var subject = new LiveValidation("subject",{validMessage:" ",onlyOnSubmit:true});
+          subject.add(Validate.Presence,{failureMessage:"Can't be empty"})
+          var from_email = new LiveValidation("from_email",{validMessage:" ",onlyOnSubmit:true});
+          from_email.add(Validate.Presence,{failureMessage:"Can't be empty"})
+          from_email.add(Validate.Email)
+          var to_email = new LiveValidation("from_name",{validMessage:"",onlyOnSubmit:true});
+          to_email.add(Validate.Presence,{failureMessage:"Can't be empty"})
+          var to_name = new LiveValidation("to_name",{validMessage:" ",onlyOnSubmit:true});
+          to_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+      });
+  </script>
 </section>
 
