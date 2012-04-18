@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource) || root_path
   end
 
+  def should_be_user
+    redirect_to "/" unless current_user
+  end
+
   private
 
 end

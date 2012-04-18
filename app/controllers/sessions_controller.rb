@@ -13,8 +13,17 @@ class SessionsController <  Devise::SessionsController
   # POST /resource/sign_in
   def create
     self.resource = warden.authenticate!(auth_options)
-    set_flash_message(:notice, :signed_in) if is_navigational_format?
-    sign_in_and_redirect(resource_name ,resource)
+    logger.info "#########################session"
+    logger.info "#########################{resource.inspect}"
+    logger.info "#########################{resource_name.inspect}"
+    if resource.is_provider_terms_of_service
+      set_flash_message(:notice, :signed_in) if is_navigational_format?
+      sign_in_and_redirect(resource_name ,resource)
+    else
+      set_flash_message(:notice, :is_provider_terms_of_service)
+      sign_in(resource_name ,resource)
+      redirect_to provider_terms_of_service_people_path
+    end
   end
 
   # DELETE /resource/sign_out

@@ -1,17 +1,41 @@
-<h2>Sign in</h2>
+<%= form_for(resource, :as => resource_name, :url => user_session_path,:html => {:class => "form-horizontal"}) do |f| %>
+    <fieldset>
+      <%= devise_error_messages! %>
+      <legend><h2>Sign in</h2></legend>
+      <div class="control-group">
+        <label class="control-label" for="input01">Email</label>
+        <div class="controls">
+          <%= f.email_field :email,:class=>"input" %>
+          <!--<input type="text" class="input-xlarge" id="input01">-->
+          <p class="help-block"></p>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input01">Password</label>
+        <div class="controls">
+          <%= f.text_field :password,:class=>"input" %>
+          <!--<input type="text" class="input-xlarge" id="input01">-->
+          <p class="help-block"></p>
+        </div>
+      </div>
 
-<%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+      <% if devise_mapping.rememberable? -%>
+          <div class="control-group">
+            <div class="controls">
+              <label class="checkbox inline" >
+                <%= f.check_box :remember_me%>remember_me
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+              </label>
+            </div>
+          </div>
+      <% end -%>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit "Sign in" %></div>
+      <div class="form-actions">
+        <%= f.submit "Sign In",:class =>"btn btn-primary"  %>
+        <a class="btn" href="/">Cancel</a>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+      </div>
+    </fieldset>
 <% end %>
 
 <%#= render :partial => "devise/shared/links" %>
