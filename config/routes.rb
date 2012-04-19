@@ -57,9 +57,9 @@ CrowdFunding::Application.routes.draw do
   end
 
   resources :people do
-    member do
-
-    end
+#    member do
+#
+#    end
     collection do
       get 'provider_terms_of_service'
       put 'update_provider_terms_of_service'
