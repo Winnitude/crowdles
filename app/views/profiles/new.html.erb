@@ -93,10 +93,21 @@
     <script type="text/javascript">
 
         jQuery(function(){
-//            var title = new LiveValidation('title');
-//            title.add( Validate.Presence );
-//            var description = new LiveValidation('description');
-//            description.add( Validate.Presence );
+            var profile_title = new LiveValidation('profile_title',{validMessage:" ",onlyOnSubmit:true});
+            profile_title.add( Validate.Presence );
+
+           var profile_first_name = new LiveValidation("profile_first_name",{validMessage:" ",onlyOnSubmit:true});
+            profile_first_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            var profile_last_name = new LiveValidation("profile_last_name",{validMessage:" ",onlyOnSubmit:true});
+            profile_last_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            var profile_city = new LiveValidation("profile_city",{validMessage:" ",onlyOnSubmit:true});
+            profile_city.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            var profile_state = new LiveValidation("profile_state",{validMessage:" ",onlyOnSubmit:true});
+            profile_state.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            var profile_mobile_number = new LiveValidation("profile_mobile_number",{validMessage:" ",onlyOnSubmit:true});
+            profile_mobile_number.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            var profile_biography = new LiveValidation("profile_biography",{validMessage:" ",onlyOnSubmit:true});
+            profile_biography.add(Validate.Presence,{failureMessage:"Can't be empty"})
             $('#dob').datepicker({
                 changeMonth: true,
                 changeYear: true,
