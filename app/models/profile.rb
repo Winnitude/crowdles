@@ -2,7 +2,8 @@ class Profile
   include Mongoid::Document
   attr_accessible :first_name, :last_name, :full_name,:title, :birth_date, :gender, :city, :state, :mobile_number, :biography
 
-  embedded_in :user, :inverse_of => :profile
+#  embedded_in :user, :inverse_of => :profile
+  belongs_to :user
 
 
   field :first_name,     :type => String , :null => false, :default => ""
@@ -14,6 +15,7 @@ class Profile
   field :state,          :type => String  , :null => false, :default => ""
   field :mobile_number,  :type => String  , :null => false, :default => ""
   field :biography,      :type => String  , :null => false, :default => ""
+  field :user_id,        :type => Integer, :required => true
   validates_with FullNameValidator
   before_validation :strip_names
 
@@ -29,7 +31,7 @@ class Profile
 #    self.first_name.capitalize+" "+self.last_name.capitalize
 #  end
 
-   protected
+  protected
 
   def strip_names
     strip_it! self.first_name

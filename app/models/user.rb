@@ -111,12 +111,15 @@ class User
             :if => :should_not_provider?
 
 
-  embeds_one :profile
+#  embeds_one :profile
+#  accepts_nested_attributes_for :profile
+  has_one :profile,:dependent => :destroy# it should be first
   accepts_nested_attributes_for :profile
+#  before_create :build_profile
 
   attr_accessible :profile, :email, :password, :password_confirmation,
                   :remember_me ,:country, :terms_of_service,:is_provider,
-                  :is_provider_terms_of_service ,:profile_attributes
+                  :is_provider_terms_of_service
 
   def should_not_provider?
     is_provider == false
