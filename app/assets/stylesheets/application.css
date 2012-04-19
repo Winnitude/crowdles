@@ -11,4 +11,5 @@
  *= require_self
  *= require bootstrap.min
  *= require datepicker
+ *= require custom_bootstrap
 */
