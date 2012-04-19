@@ -37,7 +37,7 @@ class PeopleController < ApplicationController
   def update_provider_terms_of_service
     logger.info "inside ################# provider_terms_of_service"
     if @user.update_attributes(params[:user])
-      UserMailer.welcome_email(@user).deliver if !user.nil?
+      UserMailer.welcome_email(@user).deliver if !@user.nil?
       redirect_to "/", :notice => "Updated Successfully."
     else
       redirect_to "/", :notice => "Unsuccessful"

@@ -11,14 +11,14 @@ class Profile
   field :last_name,      :type => String  , :null => false, :default => ""
   field :title,          :type => String  , :null => false, :default => ""
   field :gender,         :type => String  , :null => false, :default => ""
-  field :birth_date,     :type => Date, :null => false, :default => ""
+  field :birth_date,     :type => Date,     :null => false, :default => ""
   field :city,           :type => String  , :null => false, :default => ""
   field :state,          :type => String  , :null => false, :default => ""
   field :mobile_number,  :type => String  , :null => false, :default => ""
   field :biography,      :type => String  , :null => false, :default => ""
-  field :user_id,        :type => Integer, :required => true
-  validates_with FullNameValidator
-  before_validation :strip_names
+  field :user_id,        :type => Integer,  :required => true
+#  validates_with FullNameValidator
+#  before_validation :strip_names
 
   def full_name
     [first_name, last_name].join(' ')
@@ -32,15 +32,15 @@ class Profile
 #    self.first_name.capitalize+" "+self.last_name.capitalize
 #  end
 
-  protected
+#  protected
 
-  def strip_names
-    strip_it! self.first_name
-    strip_it! self.last_name
-  end
-
-  def strip_it! field
-    field.strip! if !field.blank?
-  end
+#  def strip_names
+#    strip_it! self.first_name
+#    strip_it! self.last_name
+#  end
+#
+#  def strip_it! field
+#    field.strip! if !field.blank?
+#  end
 
 end

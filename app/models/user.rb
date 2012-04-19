@@ -1,5 +1,14 @@
 class User
   include Mongoid::Document
+  #  embeds_one :profile
+#  accepts_nested_attributes_for :profile
+  has_one :profile,:dependent => :destroy,:autosave=> true# it should be first
+  accepts_nested_attributes_for :profile
+#  before_create :build_profile
+
+  attr_accessible :profile_attributes, :email, :password, :password_confirmation,
+                  :remember_me ,:country, :terms_of_service,:is_provider,
+                  :is_provider_terms_of_service,:profile
   #######################User Login functionality with devise integration############################
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -56,7 +65,11 @@ class User
       user = User.new({:email => data["email"],
                        :password => Devise.friendly_token[0,20],
                        :is_provider => true,
-                       :profile => {:first_name => data["first_name"],:last_name => data["last_name"]}})
+                       :profile_attributes => {:first_name => data["first_name"],:last_name => data["last_name"]}
+                      }
+      )
+      logger.info("received ####################")
+      logger.info("received #################### #{user.profile.inspect}")
       user.confirm!
       user.save!
 #      UserMailer.welcome_email(user).deliver if !user.nil?
@@ -111,15 +124,7 @@ class User
             :if => :should_not_provider?
 
 
-#  embeds_one :profile
-#  accepts_nested_attributes_for :profile
-  has_one :profile,:dependent => :destroy# it should be first
-  accepts_nested_attributes_for :profile
-#  before_create :build_profile
 
-  attr_accessible :profile, :email, :password, :password_confirmation,
-                  :remember_me ,:country, :terms_of_service,:is_provider,
-                  :is_provider_terms_of_service
 
   def should_not_provider?
     is_provider == false
