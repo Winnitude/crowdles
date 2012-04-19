@@ -8,14 +8,20 @@ class ProfilesController < ApplicationController
   def create
     profile = @user.build_profile(params[:profile])
     logger.info "##########################{profile.inspect}"
-    profile.save
+     if profile.save
+       redirect_to root_path ,:notice => "profile created successfully"
+     else
+       render :new
+     end
   end
   def edit
     @profile = current_user.profile
   end
   def update
     @profile = current_user.profile
-    @profile.update_attributes(params[:profile])
+   if @profile.update_attributes(params[:profile])
+     redirect_to root_path ,:notice => "profile updated successfully"
+   end
   end
 
   protected

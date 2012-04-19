@@ -28,7 +28,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">Birth Date</label>
       <div class="controls">
-        <%=f.text_field :birth_date ,:id => "dob"%>
+        <%=f.date_select  :birth_date,:class=>"input-small"  %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -77,14 +77,7 @@
         <p class="help-block"></p>
       </div>
     </div>
-    <div class="control-group">
-      <div class="controls">
-        <label class="checkbox inline" >
-          <%= check_box_tag :terms_of_service%>Accept terms
-          <!--<input type="text" class="input-xlarge" id="input01">-->
-        </label>
-      </div>
-    </div>
+
 
     <div class="form-actions">
       <%= f.submit "Create Profile",:class =>"btn btn-primary"  %>

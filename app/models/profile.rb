@@ -1,5 +1,6 @@
 class Profile
   include Mongoid::Document
+  include Mongoid::MultiParameterAttributes
   attr_accessible :first_name, :last_name, :full_name,:title, :birth_date, :gender, :city, :state, :mobile_number, :biography
 
 #  embedded_in :user, :inverse_of => :profile
