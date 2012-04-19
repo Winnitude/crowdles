@@ -5,7 +5,7 @@
     <% if user_signed_in? %>
         <li><%= link_to "Sign out", logout_path %></li>
         <li><%= link_to "send_news_letter", send_news_letter_page_homes_path %></li>
-        <li><%= link_to "Settings" , edit_user_registration_path  %></li>
+        <li><%= link_to "Change Password" , edit_user_registration_path  %></li>
     <% else %>
         <li><%= link_to "Subscribe for News Letter", news_letter_homes_path %></li>
         <li><%= link_to "Sign up", new_user_registration_path %></li>
@@ -14,6 +14,5 @@
         <li><%= link_to "Forgot your password?", new_user_password_path %></li>
         <!--<li><%#= link_to "Didn't receive confirmation instructions?", new_user_confirmation_path %></li>-->
     <% end %>
-
   </ul>
 </div><!--/.well -->

@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_filter :should_be_user
   before_filter :get_user
 #  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   def new
