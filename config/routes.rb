@@ -65,6 +65,9 @@ CrowdFunding::Application.routes.draw do
       put 'update_provider_terms_of_service'
     end
   end
+
+  resources :profiles
+  
   # Sample resource route with more complex sub-resources
   #   resources :products do
   #     resources :comments

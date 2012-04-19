@@ -1,0 +1,116 @@
+<h1>Create Profile</h1>
+<%=form_for @profile, :html => { :class => "form-horizontal"} do |f| %>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Profile Title</label>
+      <div class="controls">
+        <%=f.text_field :title,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">First Name</label>
+      <div class="controls">
+        <%= f.text_field :first_name,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Last Name</label>
+      <div class="controls">
+        <%= f.text_field :last_name,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Birth Date</label>
+      <div class="controls">
+        <%=f.text_field :birth_date ,:id => "dob"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Gender</label>
+      <div class="controls">
+        <%= f.select :gender ,options_for_select([['Male'],['Female']]) %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">City</label>
+      <div class="controls">
+        <%= f.text_field :city,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">State</label>
+      <div class="controls">
+        <%= f.text_field :state,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Mobile Number</label>
+      <div class="controls">
+        <%= f.text_field :mobile_number,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Biography</label>
+      <div class="controls">
+        <%= f.text_area :biography,:class=>"input" ,:rows => 6%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <label class="checkbox inline" >
+          <%= check_box_tag :terms_of_service%>Accept terms
+          <!--<input type="text" class="input-xlarge" id="input01">-->
+        </label>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Create Profile",:class =>"btn btn-primary"  %>
+      <a class="btn" href="/">Cancel</a>
+      <!--<input type="text" class="input-xlarge" id="input01">-->
+    </div>
+    <!--<div></div>-->
+
+
+
+<% end %>
+<%= content_for :head do  %>
+    <script type="text/javascript">
+
+        jQuery(function(){
+//            var title = new LiveValidation('title');
+//            title.add( Validate.Presence );
+//            var description = new LiveValidation('description');
+//            description.add( Validate.Presence );
+            $('#dob').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: 'c-100:c'
+
+
+            });
+        });
+    </script>
+<% end %>

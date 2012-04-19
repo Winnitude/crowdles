@@ -38,11 +38,11 @@
                 <a href="/"><%= current_user.profile.full_name rescue nil %></a>
               </li>
               <li>
-                <!--<%# if current_user.profile.present? %>-->
-                    <!--<a href="<%#= edit_person_path %>">Show Profile</a>-->
-                <!--<%#else %>-->
-                    <!--<a href="<%#= new_person_path %>">Profile</a>-->
-                <!--<%# end %>-->
+                <% if current_user.profile.present? %>
+                    <a href="<%= edit_profile_path(current_user.profile) %>">Edit Profile</a>
+                <%else %>
+                    <a href="<%= new_profile_path %>">Create Profile</a>
+                <% end %>
               </li>
           <% end %>
         </ul>
