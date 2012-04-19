@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   def new
     @profile = current_user.build_profile
+    @profile.inspect
   end
   def create
     profile = current_user.build_profile(params[:profile])
