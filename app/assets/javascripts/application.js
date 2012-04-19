@@ -30,6 +30,11 @@ jQuery(function(){
 //
 //        },function(){ $('#wait').html("")})
 //    });
+//    $(".close").on('click' , function(){
+//        $(this).fadeOut;
+////        alert(value)
+//    });
+    $(".close").on('click', function(){ $(this).parent().hide()});
 
 
 });

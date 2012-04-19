@@ -39,9 +39,9 @@
               </li>
               <li>
                 <!--<%# if current_user.profile.present? %>-->
-                    <!--<a href="<%#= edit_person_path %>">Show Profile</a>-->
+                <!--<a href="<%#= edit_person_path %>">Show Profile</a>-->
                 <!--<%#else %>-->
-                    <!--<a href="<%#= new_person_path %>">Profile</a>-->
+                <!--<a href="<%#= new_person_path %>">Profile</a>-->
                 <!--<%# end %>-->
               </li>
           <% end %>
@@ -56,8 +56,13 @@
     <div class="row">
       <div class="span9">
         <div id="user_nav">
-          <% flash.each do |name, msg| %>
-              <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          <% [:notice, :error, :alert].each do |level| %>
+              <% unless flash[level].blank? %>
+                  <div class="<%= flash_class(level) %> fade in">
+                    <a href="#" data-dismiss="alert" class="close">×</a>
+                    <%= content_tag :p, flash[level] %>
+                  </div>
+              <% end %>
           <% end %>
         </div>
 

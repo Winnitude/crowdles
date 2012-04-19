@@ -1,9 +1,9 @@
-Welcome to example.com, <%= @user.profile.full_name rescue nil %>
+Welcome to CrowdFunding, <%= @user.profile.full_name rescue nil %>
 ===============================================
 
-You have successfully signed up to example.com,
+You have successfully signed up to CrowdFunding,
 your username is: <%= @user.email rescue nil%>.
 
-To login to the site, just follow this link: <%= @url %>.
+To login to the site, just follow this link: <%= @url rescue nil%>.
 
 Thanks for joining and have a great day!

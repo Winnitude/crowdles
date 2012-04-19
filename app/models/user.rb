@@ -59,7 +59,7 @@ class User
                        :profile => {:first_name => data["first_name"],:last_name => data["last_name"]}})
       user.confirm!
       user.save!
-      UserMailer.welcome_email(user).deliver if !user.nil?
+#      UserMailer.welcome_email(user).deliver if !user.nil?
       User.where(:email => data.email).first
     end
   end

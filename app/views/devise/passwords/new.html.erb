@@ -1,6 +1,6 @@
 <%= form_for(resource, :as => resource_name, :url => user_password_path, :html => { :method => :post,:class=> "form-horizontal" }) do |f| %>
     <fieldset>
-      <%= devise_error_messages! %>
+      <%= render "shared/form_errors", :object => resource %>
       <legend><h2>Forgot your password?</h2></legend>
       <div class="control-group">
         <label class="control-label" for="input01">Email</label>

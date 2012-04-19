@@ -5,6 +5,10 @@ class ConfirmationsController < Devise::PasswordsController
   skip_before_filter :require_no_authentication
   skip_before_filter :authenticate_user!
 
+  def new
+#    super
+  end
+
   # PUT /resource/confirmation
   def update
     with_unconfirmed_confirmable do
@@ -36,6 +40,7 @@ class ConfirmationsController < Devise::PasswordsController
       end
     end
     if !@confirmable.errors.empty?
+      set_flash_message(:error, :invalid)
       render 'devise/confirmations/new' #Change this if you doens't have the views on default path
     end
   end

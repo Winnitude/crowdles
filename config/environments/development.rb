@@ -29,3 +29,5 @@ CrowdFunding::Application.configure do
   config.assets.debug = true
   config.action_mailer.default_url_options = { :host => 'local.crowfund.com' }
 end
+LOCAL_HOST = "local.crowfund.com"
+
