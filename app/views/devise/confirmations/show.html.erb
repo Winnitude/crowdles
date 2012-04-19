@@ -1,15 +1,28 @@
-# app/views/confirmations/show.html.erb
-<h2>Account Activation</h2>
-<%= form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:method => 'put'}, :id => 'activation-form' do |f| %>
-  <%= devise_error_messages! %>
-  <fieldset>
-    <legend>Account Activation<% if resource.email %> for <%= resource.email %><% end %></legend>
 
-  <% if @requires_password %>
-      <p><%= f.label :password,'Choose a Password:' %> <%= f.password_field :password %></p>
-      <p><%= f.label :password_confirmation,'Password Confirmation:' %> <%= f.password_field :password_confirmation %></p>
-  <% end %>
-  <%= hidden_field_tag :confirmation_token,@confirmation_token %>
-  <p><%= f.submit "Activate" %></p>
-  </fieldset>
+<%= form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:method => 'put',:class=> "form-horizontal"}, :id => 'activation-form' do |f| %>
+    <%= render "shared/form_errors" , :object=>resource %>
+    <fieldset>
+      <legend>Account Activation<% if resource.email %> for <%= resource.email %><% end %></legend>
+      <% if @requires_password %>
+          <div class="control-group">
+            <label class="control-label" for="input01">Choose a Password:</label>
+            <div class="controls">
+              <%= f.password_field :password,:class=>"input" %>
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="input01">Password Confirmation:</label>
+            <div class="controls">
+              <%= f.password_field :password_confirmation,:class=>"input" %>
+              <p class="help-block"></p>
+            </div>
+          </div>
+      <% end %>
+      <%= hidden_field_tag :confirmation_token,@confirmation_token %>
+      <div class="form-actions">
+        <%= f.submit "Activate",:class =>"btn btn-primary"  %>
+        <a class="btn" href="/">Cancel</a>
+      </div>
+    </fieldset>
 <% end %>

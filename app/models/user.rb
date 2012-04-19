@@ -68,8 +68,6 @@ class User
                        :profile_attributes => {:first_name => data["first_name"],:last_name => data["last_name"]}
                       }
       )
-      logger.info("received ####################")
-      logger.info("received #################### #{user.profile.inspect}")
       user.confirm!
       user.save!
 #      UserMailer.welcome_email(user).deliver if !user.nil?

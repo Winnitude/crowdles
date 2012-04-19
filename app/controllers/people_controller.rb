@@ -1,19 +1,6 @@
 class PeopleController < ApplicationController
   before_filter :should_be_user
   before_filter :get_user
-
-  def new
-#    @profile = @user.build_profile
-  end
-
-  def create
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html  { redirect_to root_path, :notice => 'Profile was updated Successfully.' }
-      end
-    end
-  end
-
   def show
 
   end

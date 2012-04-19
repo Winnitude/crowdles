@@ -1,19 +1,35 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= form_for(resource, :as => resource_name, :url => user_registration_path, :html => { :method => :put,:class=> "form-horizontal" }) do |f| %>
+    <fieldset>
+      <%= render "shared/form_errors", :object => resource %>
+      <legend><h2>Edit <%= resource_name.to_s.humanize %></h2></legend>
+      <div class="control-group">
+        <label class="control-label" for="input01">New password</label>
+        <div class="controls">
+          <%= f.password_field :password,:class=>"input" %>
+          <p class="help-block"></p>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input01">Confirm new password</label>
+        <div class="controls">
+          <%= f.password_field :password_confirmation,:class=>"input" %>
+          <p class="help-block"></p>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input01">Current Password</label>
+        <div class="controls">
+          <%= f.password_field :current_password,:class=>"input" %>
+          <p class="help-block"></p>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= f.submit "Update",:class =>"btn btn-primary"  %>
+        <a class="btn" href="/">Cancel</a>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+      </div>
+    </fieldset>
 
-<%= form_for(resource, :as => resource_name, :url => user_registration_path, :html => { :method => :put }) do |f| %>
-    <%#= devise_error_messages! %>
-     <%= render "shared/form_errors", :object => resource %>
-
-    <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, :autocomplete => "off" %></div>
-
-    <div><%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %></div>
-
-    <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password %></div>
-
-    <div><%= f.submit "Update" %></div>
 <% end %>
 
 <h3>Cancel my account</h3>

@@ -1,27 +1,29 @@
 <%= form_for(resource, :as => resource_name, :url => user_password_path, :html => { :method => :put,:class=> "form-horizontal" }) do |f| %>
-    <%= devise_error_messages! %>
-    <%= f.hidden_field :reset_password_token %>
-    <legend><h2>Change your password</h2></legend>
-    <div class="control-group">
-      <label class="control-label" for="input01">New password</label>
-      <div class="controls">
-        <%= f.password_field :password,:class=>"input" %>
-        <!--<input type="text" class="input-xlarge" id="input01">-->
-        <p class="help-block"></p>
+    <fieldset>
+      <%= render "shared/form_errors", :object => resource %>
+      <%= f.hidden_field :reset_password_token %>
+      <legend><h2>Change your password</h2></legend>
+      <div class="control-group">
+        <label class="control-label" for="input01">New password</label>
+        <div class="controls">
+          <%= f.password_field :password,:class=>"input" %>
+          <!--<input type="text" class="input-xlarge" id="input01">-->
+          <p class="help-block"></p>
+        </div>
       </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="input01">Confirm new password</label>
-      <div class="controls">
-        <%= f.password_field :password_confirmation,:class=>"input" %>
-        <!--<input type="text" class="input-xlarge" id="input01">-->
-        <p class="help-block"></p>
+      <div class="control-group">
+        <label class="control-label" for="input01">Confirm new password</label>
+        <div class="controls">
+          <%= f.password_field :password_confirmation,:class=>"input" %>
+          <!--<input type="text" class="input-xlarge" id="input01">-->
+          <p class="help-block"></p>
+        </div>
       </div>
-    </div>
-    <div class="form-actions">
-      <%= f.submit "Change my password",:class =>"btn btn-primary"  %>
-      <a class="btn" href="/">Cancel</a>
-      <!--<input type="text" class="input-xlarge" id="input01">-->
-    </div>
+      <div class="form-actions">
+        <%= f.submit "Change my password",:class =>"btn btn-primary"  %>
+        <a class="btn" href="/">Cancel</a>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+      </div>
+    </fieldset>
 <% end %>
 
