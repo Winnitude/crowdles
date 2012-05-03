@@ -24,9 +24,10 @@ gem "twitter-bootstrap-rails"
 gem 'hominid'
 gem 'activevalidators'
 gem "heroku"
+gem "therubyracer"
 group :production do
   gem 'thin'
-  gem "therubyracer"
+#  gem "therubyracer"
 end
 gem "mongo_mapper"
 
