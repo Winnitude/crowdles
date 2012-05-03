@@ -25,6 +25,8 @@ class ProfilesController < ApplicationController
    end
   end
 
+  
+
   protected
   def get_user
     @user = current_user

@@ -1,7 +1,7 @@
 class Profile
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
-  attr_accessible :first_name, :last_name, :full_name,:title, :birth_date, :gender, :city, :state, :mobile_number, :biography
+  attr_accessible :first_name, :last_name, :full_name,:title, :birth_date, :gender, :city, :state, :mobile_number, :biography , :image
 
 #  embedded_in :user, :inverse_of => :profile
   belongs_to :user
@@ -17,6 +17,7 @@ class Profile
   field :mobile_number,  :type => String  , :null => false, :default => ""
   field :biography,      :type => String  , :null => false, :default => ""
   field :user_id,        :type => Integer,  :required => true
+  mount_uploader :image, ImageUploader
 #  validates_with FullNameValidator
 #  before_validation :strip_names
 

@@ -16,7 +16,7 @@ gem 'omniauth', ">= 0.1.6"
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem "oauth2","0.5.2"
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'bundle instak
+# gem 'jbuilder'bundle instakbundle
 gem "oa-oauth",'0.3.2'
 gem "twitter-bootstrap-rails"
 # Use unicorn as the app server
@@ -30,7 +30,9 @@ group :production do
 #  gem "therubyracer"
 end
 gem "mongo_mapper"
-
+#gem 'carrierwave', :git => "git://github.com/jnicklas/carrierwave.git"
+gem 'mini_magick'
+gem "carrierwave-mongoid"
 #gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git', :branch => 'rails-3-1'
 # gem 'capistrano'
 
