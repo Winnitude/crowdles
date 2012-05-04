@@ -8,8 +8,6 @@
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
-      Video Thumbnail:
-      <%= f.file_field :image %>
     </div>
     <div class="control-group">
       <label class="control-label" for="input01">First Name</label>
@@ -35,6 +33,77 @@
         <p class="help-block"></p>
       </div>
     </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Image</label>
+      <div class="controls">
+        <%=f.file_field :image,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Video</label>
+      <div class="controls">
+        <%=f.file_field :video,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+          <label class="control-label" for="input01">Blog</label>
+          <div class="controls">
+            <%=f.text_field :blog,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+
+
+        <div class="control-group">
+          <label class="control-label" for="input01">web</label>
+          <div class="controls">
+            <%=f.text_field :web,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Facebook link</label>
+          <div class="controls">
+            <%=f.text_field :social_fb,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Twitter</label>
+          <div class="controls">
+            <%=f.text_field :social_twitter,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Linkedin</label>
+          <div class="controls">
+            <%=f.text_field :social_linkedin,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Myspace</label>
+          <div class="controls">
+            <%=f.text_field :social_myspace,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
 
     <div class="control-group">
       <label class="control-label" for="input01">Gender</label>
@@ -44,13 +113,36 @@
         <p class="help-block"></p>
       </div>
     </div>
-
+    <div class="control-group">
+      <label class="control-label" for="input01">Street</label>
+      <div class="controls">
+        <%= f.text_field :street,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Street Number</label>
+      <div class="controls">
+        <%= f.text_field :street_number,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
 
 
     <div class="control-group">
       <label class="control-label" for="input01">City</label>
       <div class="controls">
         <%= f.text_field :city,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Zip Code</label>
+      <div class="controls">
+        <%= f.text_field :zip_code,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -64,6 +156,14 @@
       </div>
     </div>
     <div class="control-group">
+      <label class="control-label" for="input01">Additional Address Info</label>
+      <div class="controls">
+        <%= f.text_field :additional_address_info,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
       <label class="control-label" for="input01">Mobile Number</label>
       <div class="controls">
         <%= f.text_field :mobile_number,:class=>"input" %>
@@ -71,6 +171,16 @@
         <p class="help-block"></p>
       </div>
     </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Telephone Number</label>
+      <div class="controls">
+        <%= f.text_field :telephone_number,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
     <div class="control-group">
       <label class="control-label" for="input01">Biography</label>
       <div class="controls">

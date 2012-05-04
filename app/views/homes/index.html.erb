@@ -1,2 +1,38 @@
-<h1>Homes#index</h1>
-<%= image_tag current_user.profile.image.url() ,:height => "300",:width => "200"%>
+<div class="span6 videoPlayer">
+  <ul class="thumbnails">
+    <li> <div class="thumbnail">
+      <% if current_user.present? && current_user.profile.present? %>
+          <% if current_user.profile.video_url.present? %>
+              <div id="container">Loading the player ...</div>
+          <%end%>
+          <% if current_user.profile.image_url.present? %>
+              <div id="image"><%= image_tag current_user.profile.image_url %></div>
+          <%end%>
+
+      <%end%>
+
+      <script type="text/javascript">
+          $(document).ready(function(){
+
+          });
+          jwplayer("container").setup({
+              autostart: false,
+              controlbar: "none",
+              file: "<%= current_user.profile.video_url%>",
+              duration: 1000,
+              flashplayer: "/jwplayer/player.swf",
+              volume: 80,
+              width: 640,
+              height: 480,
+              'controlbar': 'bottom',
+
+              events: {
+                  onComplete: function(event) {
+//                      $("#chkDoYouAgree").show();
+                  }
+              }
+          });
+      </script>
+    </div> </li>
+  </ul>
+</div>

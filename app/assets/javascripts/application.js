@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-datepicker
 //= require bootstrap-dropdown
+//= require jwplayer
 
 /*//= require_tree .*/
 

@@ -1,7 +1,7 @@
 class Profile
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
-  attr_accessible :first_name, :last_name, :full_name,:title, :birth_date, :gender, :city, :state, :mobile_number, :biography , :image
+  attr_accessible :first_name, :last_name, :full_name,:title, :birth_date, :gender, :city, :state, :mobile_number, :biography , :image , :video, :web,:blog ,:social_fb,:social_twitter,:social_linkedin,:social_myspace, :zip_code,:street,:street_number,:additional_addesss_info, :telephone_number
 
 #  embedded_in :user, :inverse_of => :profile
   belongs_to :user
@@ -17,7 +17,19 @@ class Profile
   field :mobile_number,  :type => String  , :null => false, :default => ""
   field :biography,      :type => String  , :null => false, :default => ""
   field :user_id,        :type => Integer,  :required => true
+  field :web,            :type => String, :default => ""
+  field :blog,           :type => String, :default => ""
+  field :social_fb,      :type => String, :default => ""
+  field :social_twitter, :type => String, :default => ""
+  field :social_linkedin,:type => String, :default => ""
+  field :social_myspace, :type => String, :default => ""
+  field :zip_code,       :type => String, :default => ""
+  field :street,         :type => String, :default => ""
+  field :street_number,  :type => String, :default => ""
+  field :additional_address_info,   :type => String, :default => ""
+  field :telephone_number,          :type => String, :default => ""
   mount_uploader :image, ImageUploader
+  mount_uploader :video, ImageUploader
 #  validates_with FullNameValidator
 #  before_validation :strip_names
 
