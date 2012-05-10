@@ -18,7 +18,7 @@
           jwplayer("container").setup({
               autostart: false,
               controlbar: "none",
-              file: "<%= current_user.profile.video_url%>",
+              file: "<%=  current_user.present? && current_user.profile.present? && current_user.profile.video_url.present? ? current_user.profile.video_url : nil%>",
               duration: 1000,
               flashplayer: "/jwplayer/player.swf",
               volume: 80,

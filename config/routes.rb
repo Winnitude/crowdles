@@ -49,7 +49,8 @@ CrowdFunding::Application.routes.draw do
   devise_for :users, :scope => "user",
              :controllers => {:omniauth_callbacks => "omniauth_callbacks" ,
                               :sessions => "sessions" ,
-                              :confirmations => 'confirmations'#,
+                              :confirmations => 'confirmations',
+                              :passwords => 'passwords'
                               #                              :registrations => 'registrations'
              }   do
     get "/login", :to => "sessions#new"
