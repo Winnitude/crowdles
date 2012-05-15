@@ -43,8 +43,21 @@
                 <%else %>
                     <a href="<%= new_profile_path %>">Create Profile</a>
                 <% end %>
+
               </li>
-          <% end %>
+              <li>
+                <a href="<%= new_idea_path %>">Propose Idea</a>
+              </li>
+              <li>
+                <a href="<%= ideas_path %>">My Ideas</a>
+              </li>
+              <li>
+                <a href="<%= show_good_idea_ideas_path %>">My Good Ideas</a>
+              </li>
+              <li>
+                <a href="<%= my_own_project_ideas_path %>">My Own Projects</a>
+              </li>
+        <% end %>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

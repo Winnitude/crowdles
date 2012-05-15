@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     redirect_to "/" unless current_user
   end
 
-  private
+
+  protected
+  def get_user
+    @user = current_user
+  end
 
 end

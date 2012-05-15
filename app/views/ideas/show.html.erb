@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+
+  </tr>
+
+
+  <% idea = @idea%>
+
+        <%= idea.title %>
+        <%= idea.sub_title %>
+        <%= idea.introduction %>
+        <%= idea.amount %>
+        <%= idea.currency %>
+        <%= idea.affiliation_key %>
+        <%= idea.type %>
+        <%= image_tag idea.big_image_url %>
+        <%= image_tag idea.small_image_url %>
+
+
+<br />
+
+<%= link_to 'Edit', edit_idea_path(@idea) %> |
+<%= link_to 'Back', ideas_path %>

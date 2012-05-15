@@ -5,7 +5,9 @@ class User
   has_one :profile,:dependent => :destroy,:autosave=> true# it should be first
   accepts_nested_attributes_for :profile
 #  before_create :build_profile
-
+ # embeds_many :ideas
+   has_many :ideas
+  accepts_nested_attributes_for :idea
   attr_accessible :profile_attributes, :email, :password, :password_confirmation,
                   :remember_me ,:country, :terms_of_service,:is_provider,
                   :is_provider_terms_of_service,:profile

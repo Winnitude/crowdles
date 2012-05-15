@@ -1,0 +1,250 @@
+<%= form_for @idea, :html => { :class => "form-horizontal",:multipart => true  } do |f|%>
+
+
+  <% if @idea.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
+
+      <ul>
+      <% @idea.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01"> Title <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :title,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Sub Title <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%= f.text_field :sub_title,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Introduction<span style="color:red"> *</span></label>
+      <div class="controls">
+        <%= f.text_area :introduction,:class=>"input" ,:rows => 5 %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Amount<span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :amount,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Currency<span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :currency,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Affiliation Key</label>
+      <div class="controls">
+        <%=f.text_field :affiliation_key,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">category<span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :category,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Sub Category<span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :sub_category,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Private<span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :is_private,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Pro<span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :is_pro,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">General Description</label>
+      <div class="controls">
+        <%=f.text_field :general_description,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Aims Description</label>
+      <div class="controls">
+        <%=f.text_field  :aims_description,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Why Support Description</label>
+      <div class="controls">
+        <%= f.text_field :why_support_description ,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Funding Usage Description</label>
+      <div class="controls">
+        <%= f.text_field :funding_usage_description,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">People Behind Description</label>
+      <div class="controls">
+        <%= f.text_field :people_behind_description,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Rewards</label>
+      <div class="controls">
+        <%= f.text_field :rewards,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Big Image<span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.file_field :big_image,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Small Image<span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.file_field :small_image,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Aims Image</label>
+      <div class="controls">
+        <%=f.file_field :aims_image,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Why Support Image</label>
+      <div class="controls">
+        <%=f.file_field :why_support_image,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Funding Usage Image</label>
+      <div class="controls">
+        <%=f.file_field :funding_usage_image,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">People Behind Image</label>
+      <div class="controls">
+        <%=f.file_field :people_behind_image,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+    <div class="form-actions">
+      <%= f.submit :class =>"btn btn-primary"  %>
+      <!--<input type="text" class="input-xlarge"  id="input01">-->
+    </div>
+<% end %>
+<%= content_for :head do  %>
+    <script type="text/javascript">
+
+        jQuery(function(){
+            var idea_title = new LiveValidation('idea_title',{validMessage:" ",onlyOnSubmit:true});
+            idea_title.add( Validate.Presence,{failureMessage:" Can't be empty"} );
+            var idea_sub_title = new LiveValidation("idea_sub_title",{validMessage:" ",onlyOnSubmit:true});
+            idea_sub_title.add(Validate.Presence,{failureMessage:" Can't be empty"})
+
+            var idea_introduction = new LiveValidation("idea_introduction",{validMessage:" ",onlyOnSubmit:true});
+            idea_introduction.add(Validate.Presence,{failureMessage:" Can't be empty"})
+            var idea_amount = new LiveValidation("idea_amount",{validMessage:" ",onlyOnSubmit:true});
+            idea_amount.add(Validate.Presence,{failureMessage:" Can't be empty"})
+            idea_amount.add(Validate.Numericality,{failureMessage:" Must be a number"})
+            var idea_currency = new LiveValidation("idea_currency",{validMessage:" ",onlyOnSubmit:true});
+            idea_currency.add(Validate.Presence,{failureMessage:" Can't be empty"})
+            var idea_category = new LiveValidation("idea_category",{validMessage:" ",onlyOnSubmit:true});
+            idea_category.add(Validate.Presence,{failureMessage:" Can't be empty"})
+            var idea_sub_category = new LiveValidation("idea_sub_category",{validMessage:" ",onlyOnSubmit:true});
+            idea_sub_category.add(Validate.Presence,{failureMessage:" Can't be empty"})
+            var idea_is_private = new LiveValidation("idea_is_private",{validMessage:" ",onlyOnSubmit:true});
+            idea_is_private.add(Validate.Presence,{failureMessage:" Can't be empty"})
+            var idea_is_pro = new LiveValidation("idea_is_pro",{validMessage:" ",onlyOnSubmit:true});
+            idea_is_pro.add(Validate.Presence,{failureMessage:" Can't be empty"})
+            var idea_big_image = new LiveValidation("idea_big_image",{validMessage:" ",onlyOnSubmit:true});
+            idea_big_image.add(Validate.Presence,{failureMessage:" Can't be empty"})
+            var idea_small_image = new LiveValidation("idea_small_image",{validMessage:" ",onlyOnSubmit:true});
+            idea_small_image.add(Validate.Presence,{failureMessage:" Can't be empty"})
+        });
+    </script>
+<% end %>

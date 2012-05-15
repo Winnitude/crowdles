@@ -1,5 +1,11 @@
 CrowdFunding::Application.routes.draw do
 
+  resources :ideas do
+    collection do
+      get 'show_good_idea'
+      get 'my_own_project'
+      end
+    end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

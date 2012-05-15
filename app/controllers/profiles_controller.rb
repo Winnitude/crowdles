@@ -27,10 +27,6 @@ class ProfilesController < ApplicationController
 
   
 
-  protected
-  def get_user
-    @user = current_user
-  end
 #  def record_not_found
 #    flash[:error] = 'The team you requested could not be found.'
 #  end
