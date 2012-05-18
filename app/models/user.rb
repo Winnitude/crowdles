@@ -131,6 +131,9 @@ class User
     is_provider == false
   end
 
+  def update_user_from_loca_admin params_user
+     self.update_attributes(params_user)
+  end
 end
 
 

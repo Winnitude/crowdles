@@ -23,7 +23,8 @@ class UsersController < ApplicationController
 
   def update_user_info
     @user = User.find(params[:id])
-    @user.update_attributes(params[:user])
+    @user.update_user_from_loca_admin params[:user]
+    #@user.update_attributes(params[:user])
     redirect_to user_management_path
   end
 
