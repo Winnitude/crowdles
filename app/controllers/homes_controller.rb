@@ -3,7 +3,7 @@ class HomesController < ApplicationController
 
   def index
     if current_user.present? and current_user.sign_in_count == 1
-      if current_user.profile.present?
+      if current_user.profile.present? and params[:action] !="create" and params[:action] !="edit"
         redirect_to edit_profile_path(current_user.profile)
       else
         redirect_to new_profile_path
