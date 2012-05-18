@@ -5,6 +5,9 @@ class User
   has_one :profile,:dependent => :destroy,:autosave=> true# it should be first
   accepts_nested_attributes_for :profile
 #  before_create :build_profile
+ # embeds_many :ideas
+   has_many :ideas
+  accepts_nested_attributes_for :idea
 
   attr_accessible :profile_attributes, :email, :password, :password_confirmation,
                   :remember_me ,:country, :terms_of_service,:is_provider,
@@ -33,7 +36,7 @@ class User
   field :suspended,                       :type => Boolean ,:null => false, :default => false
   field :is_provider_terms_of_service,    :type => Boolean ,:null => false, :default => false
   field :is_provider,                     :type => Boolean ,:null => false, :default => false
-
+  field :role,                            :type=> String
 
   ## Encryptable
   # field :password_salt, :type => String
@@ -128,6 +131,9 @@ class User
     is_provider == false
   end
 
+  def update_user_from_loca_admin params_user
+     self.update_attributes(params_user)
+  end
 end
 
 

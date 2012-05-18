@@ -1,5 +1,11 @@
 CrowdFunding::Application.routes.draw do
 
+  resources :ideas do
+    collection do
+      get 'show_good_idea'
+      get 'my_own_project'
+      end
+    end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -43,6 +49,12 @@ CrowdFunding::Application.routes.draw do
   end
   as :user do
     match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
+    match '/user/management'   =>'users#user_management',:via => :get
+    match '/user/information/:id'   =>'users#show_user_to_local_admin',:via => :get ,:as=>:show_user_to_local_admin
+    match '/user/edit/:id'   =>'users#edit_user_info',:via => :get ,:as=>:edit_user_info
+    match '/user/update/:id'   =>'users#update_user_info',:via => :post ,:as=>:update_user_info
+    match '/user/suspend/:id'   =>'users#suspend_user',:via => :get    ,:as=>:suspend_user
+
   end
 
 
@@ -55,6 +67,7 @@ CrowdFunding::Application.routes.draw do
              }   do
     get "/login", :to => "sessions#new"
     get "/logout", :to => "sessions#destroy"
+
   end
 
   resources :people do
@@ -68,6 +81,13 @@ CrowdFunding::Application.routes.draw do
   end
 
   resources :profiles
+
+
+  as :local_admins do
+    match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get
+    match '/local_admins/change_admin_role/:id'   =>'local_admins#change_admin_role',:via => :get    ,:as=>:change_admin_role
+  end
+
 
   # Sample resource route with more complex sub-resources
   #   resources :products do

@@ -1,10 +1,10 @@
-<h1>Edit Profile</h1>
-<%=form_for @profile, :html => { :class => "form-horizontal", :multipart => true } do |f| %>
+<%= user.fields_for :profile, :html => { :class => "form-horizontal",:multipart => true} do |f| %>
 
     <div class="control-group">
       <label class="control-label" for="input01">Profile Title</label>
+      <%profile= profile.nil? ? Profile.new : profile%>
       <div class="controls">
-        <%=f.text_field :title,:class=>"input"%>
+        <%=f.text_field :title, :value =>profile.title,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -12,7 +12,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">First Name</label>
       <div class="controls">
-        <%= f.text_field :first_name,:class=>"input" %>
+        <%= f.text_field :first_name, :value =>profile.first_name,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -20,16 +20,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">Last Name</label>
       <div class="controls">
-        <%= f.text_field :last_name,:class=>"input" %>
-        <!--<input type="text" class="input-xlarge" id="input01">-->
-        <p class="help-block"></p>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="input01">Birth Date (YYYY-MM-DD)</label>
-      <div class="controls">
-        <%= f.datepicker 'birth_date'%>
-
+        <%= f.text_field :last_name, :value =>profile.last_name,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -37,7 +28,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">Image</label>
       <div class="controls">
-        <%=f.file_field :image,:class=>"input"%>
+        <%=f.file_field :image, :value =>profile.image_url,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -51,73 +42,85 @@
         <p class="help-block"></p>
       </div>
     </div>
-
     <div class="control-group">
-          <label class="control-label" for="input01">Blog</label>
-          <div class="controls">
-            <%=f.text_field :blog,:class=>"input"%>
-            <!--<input type="text" class="input-xlarge" id="input01">-->
-            <p class="help-block"></p>
-          </div>
-        </div>
-
-
-
-        <div class="control-group">
-          <label class="control-label" for="input01">web</label>
-          <div class="controls">
-            <%=f.text_field :web,:class=>"input"%>
-            <!--<input type="text" class="input-xlarge" id="input01">-->
-            <p class="help-block"></p>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label" for="input01">Facebook link</label>
-          <div class="controls">
-            <%=f.text_field :social_fb,:class=>"input"%>
-            <!--<input type="text" class="input-xlarge" id="input01">-->
-            <p class="help-block"></p>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="input01">Twitter</label>
-          <div class="controls">
-            <%=f.text_field :social_twitter,:class=>"input"%>
-            <!--<input type="text" class="input-xlarge" id="input01">-->
-            <p class="help-block"></p>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label" for="input01">Linkedin</label>
-          <div class="controls">
-            <%=f.text_field :social_linkedin,:class=>"input"%>
-            <!--<input type="text" class="input-xlarge" id="input01">-->
-            <p class="help-block"></p>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="input01">Myspace</label>
-          <div class="controls">
-            <%=f.text_field :social_myspace,:class=>"input"%>
-            <!--<input type="text" class="input-xlarge" id="input01">-->
-            <p class="help-block"></p>
-          </div>
-        </div>
-
-    <div class="control-group">
-      <label class="control-label" for="input01">Gender</label>
+      <label class="control-label" for="input01">Blog</label>
       <div class="controls">
-        <%= f.select :gender ,options_for_select([['Male'],['Female']]) %>
+        <%=f.text_field :blog, :value =>profile.blog,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">web</label>
+      <div class="controls">
+        <%=f.text_field :web, :value =>profile.web,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Facebook link</label>
+      <div class="controls">
+        <%=f.text_field :social_fb, :value =>profile.social_fb,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
     </div>
     <div class="control-group">
+      <label class="control-label" for="input01">Twitter</label>
+      <div class="controls">
+        <%=f.text_field :social_twitter, :value =>profile.social_twitter,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Linkedin</label>
+      <div class="controls">
+        <%=f.text_field :social_linkedin, :value =>profile.social_linkedin,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Myspace</label>
+      <div class="controls">
+        <%=f.text_field :social_myspace, :value =>profile.social_myspace,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Birth Date</label>
+      <div class="controls">
+        <%=f.date_select  :birth_date, :value =>profile.birth_date, :html_options => {:class=>"input-small shadow_slect" } %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Gender</label>
+      <div class="controls">
+        <%= f.select :gender ,options_for_select([['Male'],['Female']]), :value =>profile.gender %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+    <div class="control-group">
       <label class="control-label" for="input01">Street</label>
       <div class="controls">
-        <%= f.text_field :street,:class=>"input" %>
+        <%= f.text_field :street, :value =>profile.street,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -125,17 +128,15 @@
     <div class="control-group">
       <label class="control-label" for="input01">Street Number</label>
       <div class="controls">
-        <%= f.text_field :street_number,:class=>"input" %>
+        <%= f.text_field :street_number, :value =>profile.street_number,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
     </div>
-
-
     <div class="control-group">
       <label class="control-label" for="input01">City</label>
       <div class="controls">
-        <%= f.text_field :city,:class=>"input" %>
+        <%= f.text_field :city, :value =>profile.city,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -143,7 +144,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">Zip Code</label>
       <div class="controls">
-        <%= f.text_field :zip_code,:class=>"input" %>
+        <%= f.text_field :zip_code, :value =>profile.zip_code,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -151,7 +152,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">State</label>
       <div class="controls">
-        <%= f.text_field :state,:class=>"input" %>
+        <%= f.text_field :state, :value =>profile.state,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -159,7 +160,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">Additional Address Info</label>
       <div class="controls">
-        <%= f.text_field :additional_address_info,:class=>"input" %>
+        <%= f.text_field :additional_address_info, :value =>profile.additional_address_info,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -167,7 +168,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">Mobile Number</label>
       <div class="controls">
-        <%= f.text_field :mobile_number,:class=>"input" %>
+        <%= f.text_field :mobile_number, :value =>profile.mobile_number,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -175,35 +176,22 @@
     <div class="control-group">
       <label class="control-label" for="input01">Telephone Number</label>
       <div class="controls">
-        <%= f.text_field :telephone_number,:class=>"input" %>
+        <%= f.text_field :telephone_number, :value =>profile.telephone_number,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
     </div>
-
-
     <div class="control-group">
       <label class="control-label" for="input01">Biography</label>
       <div class="controls">
-        <%= f.text_area :biography,:class=>"input" ,:rows => 6%>
+        <%= f.text_area :biography, :value =>profile.biography,:class=>"input" ,:rows => 6%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
     </div>
-    <!--<div class="control-group">-->
-    <!--<div class="controls">-->
-    <!--<label class="checkbox inline" >-->
-    <%#= f.check_box :terms_of_service%>
-    <!--</label>-->
-    <!--</div>-->
-    <!--</div>-->
 
-    <div class="form-actions">
-      <%= f.submit :class =>"btn btn-primary"  %>
-      <a class="btn" href="/">Cancel</a>
-      <!--<input type="text" class="input-xlarge" id="input01">-->
-    </div>
-    <!--<div></div>-->
+
+
 
 
 
@@ -212,22 +200,22 @@
     <script type="text/javascript">
 
         jQuery(function(){
-            var profile_title = new LiveValidation('profile_title',{validMessage:" ",onlyOnSubmit:true});
-            profile_title.add( Validate.Presence );
+            var profile_title = new LiveValidation('user_profile_title',{validMessage:" ",onlyOnSubmit:true});
+            profile_title.add( Validate.Presence,{failureMessage:"Can't be empty"} );
 
-            var profile_first_name = new LiveValidation("profile_first_name",{validMessage:" ",onlyOnSubmit:true});
+            var profile_first_name = new LiveValidation("user_profile_first_name",{validMessage:" ",onlyOnSubmit:true});
             profile_first_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            var profile_last_name = new LiveValidation("profile_last_name",{validMessage:" ",onlyOnSubmit:true});
+            var profile_last_name = new LiveValidation("user_profile_last_name",{validMessage:" ",onlyOnSubmit:true});
             profile_last_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            var profile_city = new LiveValidation("profile_city",{validMessage:" ",onlyOnSubmit:true});
+            var profile_city = new LiveValidation("user_profile_city",{validMessage:" ",onlyOnSubmit:true});
             profile_city.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            var profile_state = new LiveValidation("profile_state",{validMessage:" ",onlyOnSubmit:true});
+            var profile_state = new LiveValidation("user_profile_state",{validMessage:" ",onlyOnSubmit:true});
             profile_state.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            var profile_mobile_number = new LiveValidation("profile_mobile_number",{validMessage:" ",onlyOnSubmit:true});
+            var profile_mobile_number = new LiveValidation("user_profile_mobile_number",{validMessage:" ",onlyOnSubmit:true});
             profile_mobile_number.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            var profile_biography = new LiveValidation("profile_biography",{validMessage:" ",onlyOnSubmit:true});
+            var profile_biography = new LiveValidation("user_profile_biography",{validMessage:" ",onlyOnSubmit:true});
             profile_biography.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            $('#dobd').datepicker({
+            $('#dob').datepicker({
                 changeMonth: true,
                 changeYear: true,
                 yearRange: 'c-100:c'
@@ -235,7 +223,5 @@
 
             });
         });
-
-
     </script>
 <% end %>

@@ -11,20 +11,25 @@ gem "bson_ext", ">= 1.6.1"
 gem "mongoid", ">= 2.4.7"
 gem "devise", "2.1.0.rc"
 gem 'omniauth', ">= 0.1.6"
-
+gem 'rb-readline'
+gem 'geoip'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem "oauth2","0.5.2"
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'bundle instakbundle
 gem "oa-oauth",'0.3.2'
 gem "twitter-bootstrap-rails"
 # Use unicorn as the app server
 # gem 'unicorn'
+gem "cancan"
 gem 'hominid'
 gem 'activevalidators'
 gem "heroku"
 gem "therubyracer"
+gem 'debugger'
+gem 'jquery_datepicker'
 group :production do
   gem 'thin'
 #  gem "therubyracer"
