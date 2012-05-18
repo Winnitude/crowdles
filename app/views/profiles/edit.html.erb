@@ -26,9 +26,10 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">Birth Date</label>
+      <label class="control-label" for="input01">Birth Date (YYYY-MM-DD)</label>
       <div class="controls">
-        <%= f.datepicker 'birth_date' %>
+        <%= f.datepicker 'birth_date'%>
+
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -226,7 +227,7 @@
             profile_mobile_number.add(Validate.Presence,{failureMessage:"Can't be empty"})
             var profile_biography = new LiveValidation("profile_biography",{validMessage:" ",onlyOnSubmit:true});
             profile_biography.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            $('#dob').datepicker({
+            $('#dobd').datepicker({
                 changeMonth: true,
                 changeYear: true,
                 yearRange: 'c-100:c'
@@ -234,5 +235,7 @@
 
             });
         });
+
+
     </script>
 <% end %>
