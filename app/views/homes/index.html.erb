@@ -6,7 +6,8 @@
               <div id="container">Loading the player ...</div>
           <%end%>
           <% if current_user.profile.image_url.present? %>
-              <div id="image"><%= image_tag current_user.profile.image_url %></div>
+
+              <div id="image"><%= image_tag current_user.profile.image_url , :width => 320, :height=> 320 %></div>
           <%end%>
 
       <%end%>
@@ -22,8 +23,8 @@
               duration: 1000,
               flashplayer: "/jwplayer/player.swf",
               volume: 80,
-              width: 640,
-              height: 480,
+              width: 320,
+              height: 240,
               'controlbar': 'bottom',
 
               events: {

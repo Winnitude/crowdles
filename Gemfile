@@ -35,6 +35,7 @@ gem 'mini_magick'
 gem "carrierwave-mongoid"
 #gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git', :branch => 'rails-3-1'
 # gem 'capistrano'
-
+gem "fog", "~> 1.3.1"
+#gem "rmagick"
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
