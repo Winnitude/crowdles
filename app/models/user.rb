@@ -107,7 +107,7 @@ class User
 
   field :email,              :type => String
   validates :email,
-            :uniqueness => true,
+            #:uniqueness => true,
             :email => true
 #
   field :country,            :type => String
