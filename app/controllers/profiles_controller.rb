@@ -22,7 +22,6 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = current_user.profile
-    params[:profile][:birth_date] = format_birth_date(params[:profile][:birth_date])
    if @profile.update_attributes(params[:profile])
      redirect_to root_path ,:notice => "profile updated successfully"
    end
