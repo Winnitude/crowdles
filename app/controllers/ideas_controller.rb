@@ -5,7 +5,7 @@ class IdeasController < ApplicationController
   before_filter :get_user
 
   def index
-    @ideas = Idea.all.to_a
+    @ideas = @user.ideas.to_a
   end
 
   # GET /ideas/1

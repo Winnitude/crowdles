@@ -1,0 +1,24 @@
+<div class="control-group">
+  <label class="control-label" for="input01">Email</label>
+  <div class="controls">
+    <%=user.text_field :email,:class=>"input"%>
+    <!--<input type="text" class="input-xlarge" id="input01">-->
+    <p class="help-block"></p>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="input01">Ip Address</label>
+  <div class="controls">
+    <%= user.text_field :last_sign_in_ip,:class=>"input" %>
+    <!--<input type="text" class="input-xlarge" id="input01">-->
+    <p class="help-block"></p>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="input01">Country</label>
+  <div class="controls">
+    <%= user.text_field :country,:class=>"input" %>
+    <!--<input type="text" class="input-xlarge" id="input01">-->
+    <p class="help-block"></p>
+  </div>
+</div>

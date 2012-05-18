@@ -8,6 +8,7 @@ class User
  # embeds_many :ideas
    has_many :ideas
   accepts_nested_attributes_for :idea
+
   attr_accessible :profile_attributes, :email, :password, :password_confirmation,
                   :remember_me ,:country, :terms_of_service,:is_provider,
                   :is_provider_terms_of_service,:profile
@@ -35,7 +36,7 @@ class User
   field :suspended,                       :type => Boolean ,:null => false, :default => false
   field :is_provider_terms_of_service,    :type => Boolean ,:null => false, :default => false
   field :is_provider,                     :type => Boolean ,:null => false, :default => false
-
+  field :role,                            :type=> String
 
   ## Encryptable
   # field :password_salt, :type => String

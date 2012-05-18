@@ -1,0 +1,2 @@
+module LocalAdminsHelper
+end

@@ -1,5 +1,6 @@
 class HomesController < ApplicationController
   before_filter :get_hominid ,:only => [:persist_news_letter, :send_news_letter_page, :get_campaigns, :send_news_letter]
+
   def index
   
   end

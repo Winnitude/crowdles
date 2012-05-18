@@ -1,7 +1,6 @@
 <h1>Listing ideas</h1>
-
-<table border="1">
-  <tr>
+<table border="1" class="table">
+  <thead> <tr>
     <th>Title</th>
     <th>Sub Title</th>
     <th>Introduction</th>
@@ -10,11 +9,11 @@
     <th>Affiliation Key</th>
     <th>Status</th>
 
-
+    <th>Action</th>
   </tr>
+  </thead>
 
-
-<% @ideas.each do |idea| %>
+  <% @ideas.each do |idea| %>
 
   <tr>
     <td><%= idea.title %></td>
@@ -25,11 +24,17 @@
     <td><%= idea.affiliation_key %></td>
     <td><%= idea.type %></td>
     <!--<td><%= image_tag idea.big_image_url %></td>-->
+
   <td> <%= link_to 'Show', idea_path(idea) %>
+
+    <% if can? :update, @idea %>
     <%= link_to 'Edit', edit_idea_path(idea) %>
-    <%= link_to 'Destroy', idea, confirm: 'Are you sure?', method: :delete %></td>
+     <%end%>
+    <% if can? :delete, @idea %>
+    <%= link_to 'Destroy', idea, confirm: 'Are you sure?', method: :delete %><%end%></td>
   </tr>
 <% end %>
+
 </table>
 
 <br />
