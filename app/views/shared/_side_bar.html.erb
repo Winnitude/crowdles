@@ -5,7 +5,7 @@
     <% if user_signed_in? %>
         <li><%= link_to "Sign out", logout_path %></li>
 
-        <li><%= link_to "send_news_letter", send_news_letter_page_homes_path %></li>
+        <li><%#= link_to "send_news_letter", send_news_letter_page_homes_path %></li>
 
         <% if current_user.is_provider == false %>
             <li><%= link_to "Change Password" , edit_user_registration_path  %></li>
