@@ -4,8 +4,8 @@ CrowdFunding::Application.routes.draw do
     collection do
       get 'show_good_idea'
       get 'my_own_project'
-      end
     end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -44,6 +44,8 @@ CrowdFunding::Application.routes.draw do
       get 'send_news_letter_page'
       post 'send_news_letter'
       get  'get_campaigns'
+      get  'show_error_msg'
+      get  'resend_varification_mail'
     end
 
   end
@@ -62,8 +64,8 @@ CrowdFunding::Application.routes.draw do
              :controllers => {:omniauth_callbacks => "omniauth_callbacks" ,
                               :sessions => "sessions" ,
                               :confirmations => 'confirmations',
-                              :passwords => 'passwords'
-                              #                              :registrations => 'registrations'
+                              :passwords => 'passwords',
+                              :registrations => 'registrations'
              }   do
     get "/login", :to => "sessions#new"
     get "/logout", :to => "sessions#destroy"

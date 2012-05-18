@@ -2,7 +2,13 @@ class HomesController < ApplicationController
   before_filter :get_hominid ,:only => [:persist_news_letter, :send_news_letter_page, :get_campaigns, :send_news_letter]
 
   def index
-  
+    if current_user.present? and current_user.sign_in_count == 1
+      if current_user.profile.present?
+        redirect_to edit_profile_path(current_user.profile)
+      else
+        redirect_to new_profile_path
+      end
+    end
   end
 
   def news_letter
@@ -74,5 +80,16 @@ class HomesController < ApplicationController
   def get_hominid
     @hominid= Hominid::API.new('bac75b91f1ef97391dfbbb0ab281a6a6-us4')
   end
+
+  def show_error_msg
+    @user = User.where(:id=>params[:id]).to_a.first
+  end
+
+  def resend_varification_mail
+    @user = User.where(:_id=>params[:token]).to_a.first
+    @user.send_confirmation_instructions
+    redirect_to root_path, :notice=>"Confirmation message send again."
+  end
+
 end
 
