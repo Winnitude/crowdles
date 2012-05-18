@@ -6,15 +6,17 @@
 
   <% idea = @idea%>
 
-        <%= idea.title %>
-        <%= idea.sub_title %>
-        <%= idea.introduction %>
-        <%= idea.amount %>
-        <%= idea.currency %>
-        <%= idea.affiliation_key %>
-        <%= idea.type %>
-        <%= image_tag idea.big_image_url %>
-        <%= image_tag idea.small_image_url %>
+<strong> Title: </strong>  <%= idea.title %>   <br>
+<strong> Sub Title</strong>    <%= idea.sub_title %>                <br>
+
+<strong> Introduction </strong>   <%= idea.introduction %>         <br>
+<strong> Amount </strong>  <%= idea.amount %>   <br>
+<strong> Currency </strong>   <%= idea.currency %><br>
+<strong> Affiliation Key </strong>  <%= idea.affiliation_key %>   <br>
+<strong> Type </strong>    <%= idea.type %> <br>
+<strong> Big Image </strong>   <%= image_tag idea.big_image_url %> <br>
+<strong> Small Image </strong>  <%= image_tag idea.small_image_url %>  <br>
+
 
 
 <br />

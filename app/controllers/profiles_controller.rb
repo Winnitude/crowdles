@@ -39,6 +39,12 @@ class ProfilesController < ApplicationController
 
   def format_birth_date birthdate
     birthdate_array= birthdate.split("/")
-    birthdate_array[1] +"-#{birthdate_array[0]}"+"-#{birthdate_array[2]}"
+    if birthdate_array.size== 1
+      birthdate_array= birthdate.split("-")
+      return birthdate_array[2] +"-#{birthdate_array[1]}"+"-#{birthdate_array[0]}"
+    else
+      return birthdate_array[1] +"-#{birthdate_array[0]}"+"-#{birthdate_array[2]}"
+    end
+
   end
 end
