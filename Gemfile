@@ -29,6 +29,7 @@ gem 'activevalidators'
 gem "heroku"
 gem "therubyracer"
 gem 'debugger'
+gem 'jquery_datepicker'
 group :production do
   gem 'thin'
 #  gem "therubyracer"
