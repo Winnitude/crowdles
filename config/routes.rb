@@ -88,9 +88,16 @@ CrowdFunding::Application.routes.draw do
   as :local_admins do
     match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get
     match '/local_admins/change_admin_role/:id'   =>'local_admins#change_admin_role',:via => :get    ,:as=>:change_admin_role
+    match '/local_admins/new_local_admin'   =>'local_admins#new_local_admin',:via => :get
+    match '/local_admins/create_local_admin'   =>'local_admins#create_local_admin',:via => :post
   end
 
 
+  resource :global_admins  do
+    #collection do
+    #  get :new_local_admin
+    #end
+  end
   # Sample resource route with more complex sub-resources
   #   resources :products do
   #     resources :comments

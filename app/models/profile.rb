@@ -1,7 +1,8 @@
 class Profile
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
-  attr_accessible :first_name, :last_name, :full_name,:title, :birth_date, :gender, :city, :state, :mobile_number, :biography , :image , :video, :web,:blog ,:social_fb,:social_twitter,:social_linkedin,:social_myspace, :zip_code,:street,:street_number,:additional_addesss_info, :telephone_number
+  attr_accessible :first_name, :last_name, :full_name,:title, :birth_date, :gender, :city, :state, :mobile_number, :biography , :image , :video, :web,:blog ,:social_fb,:social_twitter,:social_linkedin,:social_myspace, :zip_code,:street,:street_number,:additional_address_info, :telephone_number,:company_name,:address,:billing_profile_id,:platform_billing_profile_id,:mail_chimp_integration_key,:freshbooks_integration_key
+
 
 #  embedded_in :user, :inverse_of => :profile
   belongs_to :user
@@ -30,6 +31,12 @@ class Profile
   field :telephone_number,          :type => String, :default => ""
   mount_uploader :image, ImageUploader
   mount_uploader :video, ImageUploader
+  field :company_name,         :type => String
+  field :address,         :type => String
+  field :billing_profile_id, :type=> String
+  field :platform_billing_profile_id, :type=> String
+  field :mail_chimp_integration_key, :type=> String
+  field :freshbooks_integration_key, :type=> String
 #  validates_with FullNameValidator
 #  before_validation :strip_names
 

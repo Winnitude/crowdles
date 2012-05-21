@@ -11,7 +11,7 @@ class User
 
   attr_accessible :profile_attributes, :email, :password, :password_confirmation,
                   :remember_me ,:country, :terms_of_service,:is_provider,
-                  :is_provider_terms_of_service,:profile
+                  :is_provider_terms_of_service,:profile,:role,:is_master,:la_country,:la_language,:la_web_domain,:la_platform_home ,:la_name,:la_status
   #######################User Login functionality with devise integration############################
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -36,8 +36,14 @@ class User
   field :suspended,                       :type => Boolean ,:null => false, :default => false
   field :is_provider_terms_of_service,    :type => Boolean ,:null => false, :default => false
   field :is_provider,                     :type => Boolean ,:null => false, :default => false
-  field :role,                            :type=> String
-
+  field :role,                            :type => String
+  field :is_master,                       :type => Boolean    ###LA
+  field :la_country,                      :type => String     ###LA
+  field :la_language,                     :type => String     ###LA
+  field :la_web_domain,                   :type => String     ###LA
+  field :la_platform_home,                :type => String     ###LA
+  field :la_status,                       :type => String
+  field :la_name,                          :type => String     ###la
   ## Encryptable
   # field :password_salt, :type => String
 
@@ -134,6 +140,20 @@ class User
   def update_user_from_loca_admin params_user
      self.update_attributes(params_user)
   end
+
+  ################for LA creation#############3
+  def set_la_attributes
+    value = ""; 8.times{value  << (65 + rand(25)).chr}
+    logger.info value.inspect
+    self.password = value
+    self.password_confirmation
+    self.role = "Local Admin"
+    self.is_provider_terms_of_service= true
+    self.terms_of_service = true
+    self.skip_confirmation!
+    value
+  end
+
 end
 
 
