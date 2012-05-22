@@ -33,6 +33,10 @@
       <a class="brand" href="/">CrowdFunding</a>
       <div class="container nav-collapse">
         <ul class="nav">
+
+          <li>
+            <a href="/"><%= current_user.role unless current_user.nil? %></a>
+          </li>
           <% if user_signed_in? %>
               <% if cannot? :show, User %>
               <li>
@@ -59,12 +63,22 @@
                 <a href="<%= my_own_project_ideas_path %>">My Own Projects</a>
               </li>
                   <% end%>
-              <% if can? :show, User %>
+              <% if  !current_user.nil? and current_user.role == "Local Admin" %>
               <li>
                 <a href="<%= user_management_path %>">User Management</a>
               </li>
+                <%end  %>
+              <% if can? :show_local_admin, "Global Admin" %>
               <li>
                 <a href="<%= local_admins_show_local_admin_path %>">Admin Management</a>
+              </li>
+              <%end  %>
+              <% if !current_user.nil? and current_user.role == "Main Local Admin" %>
+              <li>
+                <a href="<%= main_local_admin_users_from_not_any_country_path %>">User From not any country</a>
+              </li>
+              <li>
+                <a href="<%= main_local_admin_ideas_belonging_to_users_path %>">All Ideas</a>
               </li>
              <%end  %>
         <% end %>

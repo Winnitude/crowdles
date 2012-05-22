@@ -1,0 +1,40 @@
+<h1>Listing ideas</h1>
+<table border="1" class="table">
+  <thead> <tr>
+    <th>Title</th>
+    <th>Sub Title</th>
+    <th>Introduction</th>
+    <th>Amount</th>
+    <th>Currency</th>
+    <th>Affiliation Key</th>
+    <th>Status</th>
+
+    <th>Action</th>
+  </tr>
+  </thead>
+
+  <% @user_from_not_any_countries.each do |users_not_beloning_to_any_country| %>
+
+      <% users_not_beloning_to_any_country.ideas.each do |idea| %>
+          <tr>
+            <td><%= idea.title %></td>
+            <td><%= idea.sub_title %></td>
+            <td><%= idea.introduction %></td>
+            <td><%= idea.amount %></td>
+            <td><%= idea.currency %></td>
+            <td><%= idea.affiliation_key %></td>
+            <td><%= idea.type %></td>
+            <!--<td><%= image_tag idea.big_image_url %></td>-->
+
+            <td> <%= link_to 'Show', idea_path(idea) %>
+
+                  <%= link_to 'Edit', edit_idea_path(idea) %>
+                  <%= link_to 'Change Status', change_idea_status_by_mla_path(idea), confirm: 'Are you sure?', method: :get %></td>
+          </tr>
+      <% end %>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'Back', root_path %>

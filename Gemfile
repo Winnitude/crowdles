@@ -13,6 +13,7 @@ gem "devise", "2.1.0.rc"
 gem 'omniauth', ">= 0.1.6"
 gem 'rb-readline'
 gem 'geoip'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem "oauth2","0.5.2"

@@ -22,15 +22,14 @@ class UsersController < ApplicationController
   end
 
   def update_user_info
+    params[:user][:profile][:birth_date] = format_birth_date(params[:user][:profile][:birth_date])
     @user = User.find(params[:id])
     @user.update_user_from_loca_admin params[:user]
     #@user.update_attributes(params[:user])
     redirect_to user_management_path
   end
 
+
   private
-  def toggle_user user
-    user.suspended = user.suspended ? false : true
-    user.save
-  end
+
 end
