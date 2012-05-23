@@ -29,4 +29,29 @@ class ApplicationController < ActionController::Base
     @user = current_user
   end
 
+  def format_birth_date birthdate
+    birthdate_array= birthdate.split("/")
+    if birthdate_array.size== 1
+      birthdate_array= birthdate.split("-")
+      return birthdate_array[2] +"-#{birthdate_array[1]}"+"-#{birthdate_array[0]}"
+    else
+      return birthdate_array[1] +"-#{birthdate_array[0]}"+"-#{birthdate_array[2]}"
+    end
+
+  end
+
+  def toggle_user user
+    user.suspended = user.suspended ? false : true
+    user.save
+  end
+
+  def change_idea_status idea_obj
+    idea_obj.type = (idea_obj.type == "Idea")? "Good idea" : (idea_obj.type == "Good idea")? "Project" : "Project"
+    idea_obj.save
+  end
+
+  def canceled_user user
+    user.canceled = user.canceled ? false : true
+    user.save
+  end
 end

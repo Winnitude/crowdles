@@ -44,6 +44,7 @@ class User
   field :la_platform_home,                :type => String     ###LA
   field :la_status,                       :type => String
   field :la_name,                          :type => String     ###la
+  field :canceled,                       :type => Boolean ,:null => false, :default => false
   ## Encryptable
   # field :password_salt, :type => String
 
