@@ -4,11 +4,17 @@ class Ability
   def initialize(user)
 
     if user.role == "Local Admin"
-      can :manage, :all
+      can [:create , :read, :index,:delete], User
     end
+
 
     if user.role == "Global Admin"
       can :manage, :all
+    end
+
+    if user.role == "Main Local Admin"
+      can [:create , :read, :index,:delete], User
+      can [:create , :read, :index,:delete,:ideas_belonging_to_users], Idea
     end
 
     if user.role == "User"

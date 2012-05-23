@@ -1,0 +1,30 @@
+<h2>Listing all the Worker</h2>
+<table border="1" class="table">
+  <thead>
+  <tr>
+    <th><strong> Email <strong></th>
+    <th><strong> Ip Address <strong></th>
+    <th><strong> Title <strong></th>
+    <th><strong> First Name <strong></th>
+    <th><strong> Last Name <strong></th>
+    <th><strong> Country <strong></th>
+    <th><strong> User Role<strong></th>
+    <th><strong> Action<strong></th>
+  </tr>
+  <thead>
+  <% @workers.each do |worker| %>
+      <%profile= worker.profile.nil? ? Profile.new : worker.profile%>
+      <tr>
+        <td><%= worker.email %></td>
+        <td><%= worker.last_sign_in_ip %></td>
+        <td><%= profile.title %></td>
+        <td><%= profile.first_name %></td>
+        <td><%= profile.last_name %></td>
+        <td><%= fetch_county_name(worker) %></td>
+        <td> <%= worker.role %>     </td>
+        <td>  <%= link_to "Change to AGO",chenge_worker_role_path(worker.id), confirm: 'Are you sure? you want to change the role to AGO', method: :get %> </td>
+
+      </tr>
+
+  <% end %>
+  </table>
