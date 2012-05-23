@@ -9,6 +9,7 @@ CrowdFunding::Application.routes.draw do
 
       resources :admin_group_owners do
         get "view_all_workers" ,:on => :collection
+        get "all_my_admin_group_workers" ,:on => :collection
       end
       as :local_admins do
         match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get
@@ -84,6 +85,7 @@ CrowdFunding::Application.routes.draw do
     match '/user/suspend/:id'   =>'users#suspend_user',:via => :get    ,:as=>:suspend_user
     match '/user/to_worker/:id'   =>'users#to_worker',:via => :get  , :as => :to_worker
     match '/user/to_admin_group_worker/:id'   =>'users#to_admin_group_worker',:via => :get  , :as => :to_AGW
+    match '/user/to_business_group_owner/:id'   =>'users#to_business_group_owner',:via => :get  , :as => :to_BGO
 
   end
 

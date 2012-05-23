@@ -8,6 +8,6 @@ class UserMailer < ActionMailer::Base
 
   def notification_for_switching_to_worker(user)
      @user = user
-     mail(:to => user.email, :subject => "Advanced to worker")
+     mail(:to => user.email, :subject => "Role Changed")
   end
 end

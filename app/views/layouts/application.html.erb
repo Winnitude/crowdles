@@ -75,9 +75,12 @@
 
               <%end  %>
           <% end %>
-          <%if current_user.role == "Admin Group Owner" %>
+          <%if current_user.present? && current_user.role == "Admin Group Owner" %>
               <li>
                 <a href="<%= view_all_workers_admin_group_owners_path %>">all workers</a>
+              </li>
+              <li>
+                <a href="<%= all_my_admin_group_workers_admin_group_owners_path %>">all  Admin Group workers</a>
               </li>
           <%end  %>
         </ul>

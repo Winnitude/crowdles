@@ -48,10 +48,18 @@ class UsersController < ApplicationController
     @user.change_role_to_AGW(current_user)
     @user.save
     logger.info "user##########{@user.role}###############id#{@user.agw_ago_id}"
-    #UserMailer.notification_for_switching_to_worker(@user).deliver
+    UserMailer.notification_for_switching_to_worker(@user).deliver
     redirect_to  view_all_workers_admin_group_owners_path, :notice => "Successfully Changed To AGW"
   end
 
+  def  to_business_group_owner
+    @user = User.find params[:id]
+    @user.change_role_to_BGO(current_user)
+    @user.save
+    logger.info "user##########{@user.role}###############id#{@user.bgo_ago_id}"
+    UserMailer.notification_for_switching_to_worker(@user).deliver
+    redirect_to  all_my_admin_group_workers_admin_group_owners_path, :notice => "Successfully Changed To BGO"
+  end
 
   private
   def toggle_user user

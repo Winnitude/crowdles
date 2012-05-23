@@ -167,6 +167,11 @@ class User
     self.agw_ago_id = admin_group_owner.id
   end
 
+  def change_role_to_BGO(admin_group_owner)
+    self.role = "Business Group Owner"
+    self.bgo_ago_id = admin_group_owner.id
+  end
+
 end
 
 

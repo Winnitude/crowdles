@@ -2,7 +2,7 @@
 
 <table>
   <%=form_for @local_admin ,:url=>local_admins_create_local_admin_path do |f| %>
-      <%= fields_for @la.build_profile do |p| %>
+      <%= fields_for @local_admin.build_profile do |p| %>
           <tr>
             <td><%= f.label :email %></td>
             <td><%= f.text_field :email %></td>
