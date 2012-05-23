@@ -1,5 +1,6 @@
 class LocalAdminsController < ApplicationController
   before_filter :should_be_GA ,:only=>[:new_local_admin,:create_local_admin]
+  before_filter :get_user
 
   def show_local_admin
       @local_admins = User.where(:role => "Local Admin").to_a
@@ -34,14 +35,14 @@ class LocalAdminsController < ApplicationController
   end
 
   def canceled_user_account_from_la
-    @user = User.find(params[:id])
-    canceled_user @user
+    @selected_user = User.find(params[:id])
+    canceled_user @selected_user
     redirect_to :back
   end
 
   def suspend_user_from_la
-    @user = User.find(params[:id])
-    toggle_user @user
+    @selected_user = User.find(params[:id])
+    toggle_user @selected_user
     redirect_to :back
   end
 
@@ -78,19 +79,20 @@ class LocalAdminsController < ApplicationController
 
   def listing_all_the_agos
     @AGOS = User.where(:role=>"Admin Group Owner").to_a
+    @already_having_mago = User.where(:mago_la_id=>@user.id).to_a
   end
 
   def chenge_worker_role
-    @user = User.find(params[:id])
-    change_to_AGO @user
-    LaMailer.changed_role(@user).deliver
+    @selected_user = User.find(params[:id])
+    change_to_AGO @selected_user
+    LaMailer.changed_role(@selected_user).deliver
     redirect_to :back
   end
 
   def change_ago_to_mago
-    @user = User.find(params[:id])
-    change_to_MAGO @user
-    LaMailer.changed_role(@user).deliver
+    @selected_user = User.find(params[:id])
+    change_to_MAGO @selected_user
+    LaMailer.changed_role(@selected_user).deliver
     redirect_to :back
   end
 
@@ -113,6 +115,7 @@ class LocalAdminsController < ApplicationController
 
   def change_to_MAGO user
     user.role = "Main Admin Group Owner"
+    user.mago_la_id = @user.id
     user.save
   end
 

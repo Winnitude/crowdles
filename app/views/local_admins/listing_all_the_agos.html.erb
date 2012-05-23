@@ -1,4 +1,4 @@
-
+<h2>Listing all the AGO</h2>
 <table border="1" class="table">
   <thead>
   <tr>
@@ -22,7 +22,12 @@
         <td><%= profile.last_name %></td>
         <td><%= fatch_county_name(ago) %></td>
         <td> <%= ago.role %>     </td>
-        <td>  <%= link_to "Change to MAGO",change_ago_to_mago_path(ago.id), confirm: 'Are you sure? you want to change the role to MAGO', method: :get %> </td>
+        <td> <% if @already_having_mago.blank? %>
+                <%= link_to "Change to MAGO",change_ago_to_mago_path(ago.id), confirm: 'Are you sure? you want to change the role to MAGO', method: :get %>
+             <% else %>
+                <%= link_to "Change to MAGO","", confirm: 'This country is already having MAGO', method: :get %>
+             <%end%>
+       </td>
 
       </tr>
 
