@@ -11,7 +11,9 @@ class User
 
   attr_accessible :profile_attributes, :email, :password, :password_confirmation,
                   :remember_me ,:country, :terms_of_service,:is_provider,
-                  :is_provider_terms_of_service,:profile,:role,:is_master,:la_country,:la_language,:la_web_domain,:la_platform_home ,:la_name,:la_status
+                  :is_provider_terms_of_service,:profile,:role,:is_master,
+                  :la_country,:la_language,:la_web_domain,:la_platform_home ,:la_name,:la_status,
+                  :agw_ago_id, :bgo_ago_id
   #######################User Login functionality with devise integration############################
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -44,6 +46,8 @@ class User
   field :la_platform_home,                :type => String     ###LA
   field :la_status,                       :type => String
   field :la_name,                          :type => String     ###la
+  field :agw_ago_id,                        :type=> String      ##for agw type this will represent its AGO
+  field :bgo_ago_id,                        :type=> String      ##for bgo type this will represent its AGO
   ## Encryptable
   # field :password_salt, :type => String
 
@@ -156,6 +160,11 @@ class User
     self.terms_of_service = true
     self.skip_confirmation!
     value
+  end
+
+  def change_role_to_AGW(admin_group_owner)
+    self.role = "Admin Group Worker"
+    self.agw_ago_id = admin_group_owner.id
   end
 
 end

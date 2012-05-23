@@ -72,8 +72,14 @@
                   <li>
                     <a href="<%= all_users_globally_local_admins_path %>">upgrade users to worker</a>
                   </li>
+
               <%end  %>
           <% end %>
+          <%if current_user.role == "Admin Group Owner" %>
+              <li>
+                <a href="<%= view_all_workers_admin_group_owners_path %>">all workers</a>
+              </li>
+          <%end  %>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

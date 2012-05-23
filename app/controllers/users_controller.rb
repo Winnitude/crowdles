@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :should_be_user
   before_filter :get_user
   before_filter :should_be_local_admin, :only => [:user_management , :to_worker ,:show_user_to_local_admin]
+  before_filter :should_be_AGO ,:only => [:to_admin_group_worker]
 
   def user_management
     @users = User.where(:country=>fetch_county_name(@user))
@@ -42,6 +43,15 @@ class UsersController < ApplicationController
     redirect_to  all_users_globally_local_admins_path, :notice => "Successfully Changed To Worker"
   end
 
+  def to_admin_group_worker
+    @user = User.find params[:id]
+    @user.change_role_to_AGW(current_user)
+    @user.save
+    logger.info "user##########{@user.role}###############id#{@user.agw_ago_id}"
+    #UserMailer.notification_for_switching_to_worker(@user).deliver
+    redirect_to  view_all_workers_admin_group_owners_path, :notice => "Successfully Changed To AGW"
+  end
+
 
   private
   def toggle_user user
@@ -50,5 +60,9 @@ class UsersController < ApplicationController
   end
   def should_be_local_admin
     redirect_to root_path ,:notice => "Sorry you are not allowed to perform this activity"  unless current_user.role == "Local Admin"
+  end
+
+  def should_be_AGO
+    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action"   if current_user.role != "Admin Group Owner"
   end
 end

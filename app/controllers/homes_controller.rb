@@ -3,6 +3,7 @@ class HomesController < ApplicationController
 
   def index
 
+    logger.info("roleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee #{current_user.role}" )    if current_user != nil
   end
 
   def news_letter

@@ -6,6 +6,10 @@ CrowdFunding::Application.routes.draw do
       resource :local_admins do
         get "all_users_globally"
       end
+
+      resources :admin_group_owners do
+        get "view_all_workers" ,:on => :collection
+      end
       as :local_admins do
         match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get
         match '/local_admins/change_admin_role/:id'   =>'local_admins#change_admin_role',:via => :get    ,:as=>:change_admin_role
@@ -79,6 +83,7 @@ CrowdFunding::Application.routes.draw do
     match '/user/update/:id'   =>'users#update_user_info',:via => :post ,:as=>:update_user_info
     match '/user/suspend/:id'   =>'users#suspend_user',:via => :get    ,:as=>:suspend_user
     match '/user/to_worker/:id'   =>'users#to_worker',:via => :get  , :as => :to_worker
+    match '/user/to_admin_group_worker/:id'   =>'users#to_admin_group_worker',:via => :get  , :as => :to_AGW
 
   end
 
