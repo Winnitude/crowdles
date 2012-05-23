@@ -12,7 +12,7 @@ CrowdFunding::Application.routes.draw do
         get "all_my_admin_group_workers" ,:on => :collection
       end
       as :local_admins do
-        match '/local_admins/show_local_admin'   =>'Admin::local_admins#show_local_admin',:via => :get
+        match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get
         match '/local_admins/change_admin_role/:id'   =>'local_admins#change_admin_role',:via => :get    ,:as=>:change_admin_role
         match '/local_admins/new_local_admin'   =>'local_admins#new_local_admin',:via => :get
         match '/local_admins/create_local_admin'   =>'local_admins#create_local_admin',:via => :post
@@ -123,24 +123,24 @@ CrowdFunding::Application.routes.draw do
   resources :profiles
 
 
-  as :local_admins do
-    match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get
-    match '/local_admins/change_admin_role/:id'   =>'local_admins#change_admin_role',:via => :get    ,:as=>:change_admin_role
-    match '/local_admins/new_local_admin'   =>'local_admins#new_local_admin',:via => :get
-    match '/local_admins/create_local_admin'   =>'local_admins#create_local_admin',:via => :post
-    match '/local_admins/ideas_belonging_to_country_users'   =>'local_admins#ideas_belonging_to_country_users',:via => :get
-    match '/local_admins/change_idea_status_by_la/:id'   =>'local_admins#change_idea_status_by_la',:via => :get    ,:as=>:change_idea_status_by_la
-    match '/local_admins/listing_good_ideas'   =>'local_admins#listing_good_ideas',:via => :get
-    match '/local_admins/listing_projects'   =>'local_admins#listing_projects',:via => :get
-    match '/local_admins/edit/:id'   =>'local_admins#edit_user_info_from_la',:via => :get ,:as=>:edit_user_info_from_la
-    match '/local_admins/update/:id'   =>'local_admins#update_user_info_from_la',:via => :post ,:as=>:update_user_info_from_la
-    match '/local_admins/suspend/:id'   =>'local_admins#suspend_user_info_from_la',:via => :get    ,:as=>:suspend_user_info_from_la
-    match '/local_admins/canceled_user_account/:id'   =>'local_admins#canceled_user_account_from_la',:via => :get    ,:as=>:canceled_user_account_from_la
-    # match '/local_admins/listing_all_the_workers'   =>'local_admins#listing_all_the_workers',:via => :get
-    match '/local_admins/listing_all_the_agos'   =>'local_admins#listing_all_the_agos',:via => :get
-    match '/local_admins/chenge_worker_role/:id'   =>'local_admins#chenge_worker_role',:via => :get    ,:as=>:chenge_worker_role
-    match '/local_admins/change_ago_to_mago/:id'   =>'local_admins#change_ago_to_mago',:via => :get    ,:as=>:change_ago_to_mago
-  end
+  #as :local_admins do
+  #  match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get
+  #  match '/local_admins/change_admin_role/:id'   =>'local_admins#change_admin_role',:via => :get    ,:as=>:change_admin_role
+  #  match '/local_admins/new_local_admin'   =>'local_admins#new_local_admin',:via => :get
+  #  match '/local_admins/create_local_admin'   =>'local_admins#create_local_admin',:via => :post
+  #  match '/local_admins/ideas_belonging_to_country_users'   =>'local_admins#ideas_belonging_to_country_users',:via => :get
+  #  match '/local_admins/change_idea_status_by_la/:id'   =>'local_admins#change_idea_status_by_la',:via => :get    ,:as=>:change_idea_status_by_la
+  #  match '/local_admins/listing_good_ideas'   =>'local_admins#listing_good_ideas',:via => :get
+  #  match '/local_admins/listing_projects'   =>'local_admins#listing_projects',:via => :get
+  #  match '/local_admins/edit/:id'   =>'local_admins#edit_user_info_from_la',:via => :get ,:as=>:edit_user_info_from_la
+  #  match '/local_admins/update/:id'   =>'local_admins#update_user_info_from_la',:via => :post ,:as=>:update_user_info_from_la
+  #  match '/local_admins/suspend/:id'   =>'local_admins#suspend_user_info_from_la',:via => :get    ,:as=>:suspend_user_info_from_la
+  #  match '/local_admins/canceled_user_account/:id'   =>'local_admins#canceled_user_account_from_la',:via => :get    ,:as=>:canceled_user_account_from_la
+  #  # match '/local_admins/listing_all_the_workers'   =>'local_admins#listing_all_the_workers',:via => :get
+  #  match '/local_admins/listing_all_the_agos'   =>'local_admins#listing_all_the_agos',:via => :get
+  #  match '/local_admins/chenge_worker_role/:id'   =>'local_admins#chenge_worker_role',:via => :get    ,:as=>:chenge_worker_role
+  #  match '/local_admins/change_ago_to_mago/:id'   =>'local_admins#change_ago_to_mago',:via => :get    ,:as=>:change_ago_to_mago
+  #end
 
   as :main_local_admin do
     match '/main_local_admin/users_from_not_any_country'   =>'main_local_admin#users_from_not_any_country',:via => :get
