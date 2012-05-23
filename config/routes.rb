@@ -1,5 +1,21 @@
 CrowdFunding::Application.routes.draw do
 
+
+  constraints(:subdomain => ADMIN_SUBDOMAIN) do
+    scope :module => "admin" do
+      resource :local_admins do
+        get "all_users_globally"
+      end
+      as :local_admins do
+        match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get
+        match '/local_admins/change_admin_role/:id'   =>'local_admins#change_admin_role',:via => :get    ,:as=>:change_admin_role
+        match '/local_admins/new_local_admin'   =>'local_admins#new_local_admin',:via => :get
+        match '/local_admins/create_local_admin'   =>'local_admins#create_local_admin',:via => :post
+      end
+    end
+  end
+
+
   resources :ideas do
     collection do
       get 'show_good_idea'
@@ -49,6 +65,12 @@ CrowdFunding::Application.routes.draw do
     end
 
   end
+
+  #resource :users do
+  #  member do
+  #    get "to_worker"
+  #  end
+  #end
   as :user do
     match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
     match '/user/management'   =>'users#user_management',:via => :get
@@ -56,6 +78,7 @@ CrowdFunding::Application.routes.draw do
     match '/user/edit/:id'   =>'users#edit_user_info',:via => :get ,:as=>:edit_user_info
     match '/user/update/:id'   =>'users#update_user_info',:via => :post ,:as=>:update_user_info
     match '/user/suspend/:id'   =>'users#suspend_user',:via => :get    ,:as=>:suspend_user
+    match '/user/to_worker/:id'   =>'users#to_worker',:via => :get  , :as => :to_worker
 
   end
 

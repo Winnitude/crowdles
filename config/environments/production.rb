@@ -63,3 +63,6 @@ CrowdFunding::Application.configure do
   config.action_mailer.default_url_options = { :host => 'crowd-funding.heroku.com' }
 end
 LOCAL_HOST = "crowd-funding.heroku.com"
+#ADMIN_HOST = "admin.crowfund.com"
+#ADMIN_SUBDOMAIN = "admin"
+

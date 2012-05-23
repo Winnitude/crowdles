@@ -36,7 +36,7 @@ class User
   field :suspended,                       :type => Boolean ,:null => false, :default => false
   field :is_provider_terms_of_service,    :type => Boolean ,:null => false, :default => false
   field :is_provider,                     :type => Boolean ,:null => false, :default => false
-  field :role,                            :type => String
+  field :role,                            :type => String,  :null => false, :default => "User"
   field :is_master,                       :type => Boolean    ###LA
   field :la_country,                      :type => String     ###LA
   field :la_language,                     :type => String     ###LA
@@ -135,6 +135,10 @@ class User
 
   def should_not_provider?
     is_provider == false
+  end
+
+  def create_worker
+   self.role = "Worker"
   end
 
   def update_user_from_loca_admin params_user

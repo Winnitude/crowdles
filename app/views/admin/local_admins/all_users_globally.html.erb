@@ -1,0 +1,43 @@
+<h1>Upgrade Users to Worker</h1>
+<% if @users.present? %>
+    <!--<table>-->
+      <!--<tr>-->
+        <!--<td>Email</td>-->
+        <!--<td>Country</td>-->
+        <!--<td>Action</td>-->
+      <!--</tr>-->
+      <!--<% @users.each do |user| %>-->
+          <!--<tr>-->
+            <!--<td>-->
+              <!--<%= user.email %>-->
+            <!--</td>-->
+            <!--<td>-->
+              <!--<%= user.country %>-->
+            <!--</td>-->
+            <!--<td>-->
+              <!--<%= user.email %>-->
+            <!--</td>-->
+          <!--</tr>-->
+      <!--<% end %>-->
+    <!--</table>-->
+<% end %>
+
+
+<table border="1" class="table">
+<thead> <tr>
+  <th>Email</th>
+  <th>Country</th>
+  <th>Action</th>
+</tr>
+</thead>
+
+<% @users.each do |user| %>
+
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.country %></td>
+      <td> <%= link_to 'Change to worker',to_worker_path(user)%></td>
+    </tr>
+<% end %>
+
+</table>

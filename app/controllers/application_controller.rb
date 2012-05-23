@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def fatch_county_name user
+  def fetch_county_name user
     @geoip ||= GeoIP.new("#{Rails.root}/db/GeoIP.dat")
     remote_ip = user.last_sign_in_ip
     if remote_ip != "127.0.0.1" #todo: check for other local addresses or set default value

@@ -2,9 +2,14 @@ class UsersController < ApplicationController
 
   before_filter :should_be_user
   before_filter :get_user
+  before_filter :should_be_local_admin, :only => [:user_management , :to_worker ,:show_user_to_local_admin]
 
   def user_management
-    @users = User.where(:country=>fatch_county_name(@user))
+    @users = User.where(:country=>fetch_county_name(@user))
+  end
+
+  def all_users
+    @users = User.all
   end
 
   def show_user_to_local_admin
@@ -28,9 +33,22 @@ class UsersController < ApplicationController
     redirect_to user_management_path
   end
 
+  def to_worker
+    @user = User.find params[:id]
+    @user.create_worker
+    @user.save
+    logger.info "user##########{@user.role}"
+    UserMailer.notification_for_switching_to_worker(@user).deliver
+    redirect_to  all_users_globally_local_admins_path, :notice => "Successfully Changed To Worker"
+  end
+
+
   private
   def toggle_user user
     user.suspended = user.suspended ? false : true
     user.save
+  end
+  def should_be_local_admin
+    redirect_to root_path ,:notice => "Sorry you are not allowed to perform this activity"  unless current_user.role == "Local Admin"
   end
 end
