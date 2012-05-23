@@ -48,6 +48,8 @@ class User
   field :la_name,                          :type => String     ###la
   field :agw_ago_id,                        :type=> String      ##for agw type this will represent its AGO
   field :bgo_ago_id,                        :type=> String      ##for bgo type this will represent its AGO
+  field :mago_la_id,                          :type => String     ###la's id for mago'
+  field :canceled,                       :type => Boolean ,:null => false, :default => false
   ## Encryptable
   # field :password_salt, :type => String
 

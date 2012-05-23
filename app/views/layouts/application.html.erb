@@ -33,56 +33,23 @@
       <a class="brand" href="/">CrowdFunding</a>
       <div class="container nav-collapse">
         <ul class="nav">
+
           <% if user_signed_in? %>
-              <% if cannot? :show, User %>
-                  <li>
-                    <a href="/"><%= current_user.profile.full_name rescue nil %></a>
-                  </li>
-                  <li>
-                    <% if current_user.profile.present? %>
-                        <a href="<%= edit_profile_path(current_user.profile) %>">Edit Profile</a>
-                    <%else %>
-                        <a href="<%= new_profile_path %>">Create Profile</a>
-                    <% end %>
-
-                  </li>
-                  <li>
-                    <a href="<%= new_idea_path %>">Propose Idea</a>
-                  </li>
-                  <li>
-                    <a href="<%= ideas_path %>">My Ideas</a>
-                  </li>
-                  <li>
-                    <a href="<%= show_good_idea_ideas_path %>">My Good Ideas</a>
-                  </li>
-                  <li>
-                    <a href="<%= my_own_project_ideas_path %>">My Own Projects</a>
-                  </li>
-              <% end%>
-              <% if can? :show, User %>
-                  <li>
-                    <a href="<%= user_management_path %>">User Management</a>
-                  </li>
-                  <li>
-                    <a href="<%= local_admins_show_local_admin_path %>">Admin Management</a>
-                  </li>
-                  <li>
-                    <a href="<%= local_admins_new_local_admin_path %>">New LocalAdmin</a>
-                  </li>
-                  <li>
-                    <a href="<%= all_users_globally_local_admins_path %>">upgrade users to worker</a>
-                  </li>
-
-              <%end  %>
-          <% end %>
-          <%if current_user.present? && current_user.role == "Admin Group Owner" %>
-              <li>
-                <a href="<%= view_all_workers_admin_group_owners_path %>">all workers</a>
-              </li>
-              <li>
-                <a href="<%= all_my_admin_group_workers_admin_group_owners_path %>">all  Admin Group workers</a>
-              </li>
-          <%end  %>
+              <% if !current_user.nil?  %>
+                 <% if current_user.role == "Global Admin" %>
+                      <%= render :partial => 'shared/global_admin_layout'%>
+                 <% end %>
+                 <% if current_user.role == "Main Local Admin" %>
+                      <%= render :partial => 'shared/main_local_admin_layout'%>
+                 <% end %>
+                 <% if current_user.role == "Local Admin" %>
+                      <%= render :partial => 'shared/local_admin_layout'%>
+                 <% end %>
+                 <% if current_user.role == "User" || current_user.role.blank? %>
+                      <%= render :partial => 'shared/user_layout' ,:locals => {:current_user => current_user}%>
+                 <% end %>
+             <%end  %>
+        <% end %>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
