@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :should_be_AGO ,:only => [:to_admin_group_worker]
 
   def user_management
-    @users = User.where(:country=>fetch_county_name(@user))
+    @users = User.where(:country=>fetch_county_name(@user)).where(:role => "User")
   end
 
   def all_users

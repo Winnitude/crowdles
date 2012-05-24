@@ -36,19 +36,19 @@
 
           <% if user_signed_in? %>
               <% if !current_user.nil?  %>
-                  <% if current_user.role == "Global Admin" %>
+                  <% if current_user.role == "Global Admin" && request.url.index(ADMIN_HOST).present? %>
                       <%= render :partial => 'shared/global_admin_layout'%>
                   <% end %>
-                  <% if current_user.role == "Main Local Admin" %>
+                  <% if current_user.role == "Main Local Admin" && request.url.index(ADMIN_HOST).present? %>
                       <%= render :partial => 'shared/main_local_admin_layout'%>
                   <% end %>
-                  <% if current_user.role == "Local Admin" %>
+                  <% if current_user.role == "Local Admin" && request.url.index(ADMIN_HOST).present?%>
                       <%= render :partial => 'shared/local_admin_layout'%>
                   <% end %>
                   <% if current_user.role == "User" || current_user.role.blank? %>
                       <%= render :partial => 'shared/user_layout' ,:locals => {:current_user => current_user}%>
                   <% end %>
-                  <% if current_user.role == "Admin Group Owner" %>
+                  <% if current_user.role == "Admin Group Owner" && request.url.index(ADMIN_HOST).present?%>
                       <%= render :partial => 'shared/admin_group_owner_layout'%>
                   <% end %>
               <%end  %>
