@@ -25,6 +25,20 @@ CrowdFunding::Application.routes.draw do
         match '/local_admins/chenge_worker_role/:id'   =>'local_admins#chenge_worker_role',:via => :get    ,:as=>:chenge_worker_role
         match '/local_admins/change_ago_to_mago/:id'   =>'local_admins#change_ago_to_mago',:via => :get    ,:as=>:change_ago_to_mago
       end
+
+      as :main_local_admin do
+        match '/main_local_admin/users_from_not_any_country'   =>'main_local_admin#users_from_not_any_country',:via => :get
+        match '/main_local_admin/information/:id'   =>'main_local_admin#show_user_to_main_local_admin',:via => :get ,:as=>:show_user_to_main_local_admin
+        match '/main_local_admin/edit/:id'   =>'main_local_admin#edit_user_info',:via => :get ,:as=>:edit_user_info
+        match '/main_local_admin/update/:id'   =>'main_local_admin#update_user_info',:via => :post ,:as=>:update_user_info
+        match '/main_local_admin/suspend/:id'   =>'main_local_admin#suspend_user',:via => :get    ,:as=>:suspend_user
+        match '/main_local_admin/ideas_belonging_to_users'   =>'main_local_admin#ideas_belonging_to_users',:via => :get
+        match '/main_local_admin/change_idea_status_by_mla/:id'   =>'main_local_admin#change_idea_status_by_mla',:via => :get    ,:as=>:change_idea_status_by_mla
+        match '/main_local_admin/listing_good_ideas'   =>'main_local_admin#listing_good_ideas',:via => :get
+        match '/main_local_admin/listing_projects'   =>'main_local_admin#listing_projects',:via => :get
+        match '/main_local_admin/canceled_user_account/:id'   =>'main_local_admin#canceled_user_account',:via => :get    ,:as=>:canceled_user_account
+
+      end
     end
   end
 
@@ -142,19 +156,19 @@ CrowdFunding::Application.routes.draw do
   #  match '/local_admins/change_ago_to_mago/:id'   =>'local_admins#change_ago_to_mago',:via => :get    ,:as=>:change_ago_to_mago
   #end
 
-  as :main_local_admin do
-    match '/main_local_admin/users_from_not_any_country'   =>'main_local_admin#users_from_not_any_country',:via => :get
-    match '/main_local_admin/information/:id'   =>'main_local_admin#show_user_to_main_local_admin',:via => :get ,:as=>:show_user_to_main_local_admin
-    match '/main_local_admin/edit/:id'   =>'main_local_admin#edit_user_info',:via => :get ,:as=>:edit_user_info
-    match '/main_local_admin/update/:id'   =>'main_local_admin#update_user_info',:via => :post ,:as=>:update_user_info
-    match '/main_local_admin/suspend/:id'   =>'main_local_admin#suspend_user',:via => :get    ,:as=>:suspend_user
-    match '/main_local_admin/ideas_belonging_to_users'   =>'main_local_admin#ideas_belonging_to_users',:via => :get
-    match '/main_local_admin/change_idea_status_by_mla/:id'   =>'main_local_admin#change_idea_status_by_mla',:via => :get    ,:as=>:change_idea_status_by_mla
-    match '/main_local_admin/listing_good_ideas'   =>'main_local_admin#listing_good_ideas',:via => :get
-    match '/main_local_admin/listing_projects'   =>'main_local_admin#listing_projects',:via => :get
-    match '/main_local_admin/canceled_user_account/:id'   =>'main_local_admin#canceled_user_account',:via => :get    ,:as=>:canceled_user_account
-
-  end
+  #as :main_local_admin do
+  #  match '/main_local_admin/users_from_not_any_country'   =>'main_local_admin#users_from_not_any_country',:via => :get
+  #  match '/main_local_admin/information/:id'   =>'main_local_admin#show_user_to_main_local_admin',:via => :get ,:as=>:show_user_to_main_local_admin
+  #  match '/main_local_admin/edit/:id'   =>'main_local_admin#edit_user_info',:via => :get ,:as=>:edit_user_info
+  #  match '/main_local_admin/update/:id'   =>'main_local_admin#update_user_info',:via => :post ,:as=>:update_user_info
+  #  match '/main_local_admin/suspend/:id'   =>'main_local_admin#suspend_user',:via => :get    ,:as=>:suspend_user
+  #  match '/main_local_admin/ideas_belonging_to_users'   =>'main_local_admin#ideas_belonging_to_users',:via => :get
+  #  match '/main_local_admin/change_idea_status_by_mla/:id'   =>'main_local_admin#change_idea_status_by_mla',:via => :get    ,:as=>:change_idea_status_by_mla
+  #  match '/main_local_admin/listing_good_ideas'   =>'main_local_admin#listing_good_ideas',:via => :get
+  #  match '/main_local_admin/listing_projects'   =>'main_local_admin#listing_projects',:via => :get
+  #  match '/main_local_admin/canceled_user_account/:id'   =>'main_local_admin#canceled_user_account',:via => :get    ,:as=>:canceled_user_account
+  #
+  #end
 
 
   resource :global_admins  do
