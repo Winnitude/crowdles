@@ -1,5 +1,5 @@
 <h2>User Details</h2>
-<%= form_for :user, :url => update_user_info_path, :html => { :class => "form-horizontal"} do |user| %>
+<%= form_for :user, :url => update_user_info_by_mla_path, :html => { :class => "form-horizontal"} do |user| %>
     <%= render :partial => 'users/user_info',:locals => {:user => user} %>
     <%= render :partial => 'users/profile',:locals => {:user => user,:profile=> @user.profile} %>
 
