@@ -3,9 +3,9 @@ class HomesController < ApplicationController
 
   def index
 
-    logger.info("roleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee #{current_user.role}" )    if current_user != nil
+    logger.info("roleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee #{current_user.role} ccccccccccc#{current_user.country}" )    if current_user != nil
     logger.info  current_user.inspect  if current_user.present?
-    if current_user.present? && current_user.sign_in_count == 1
+    if current_user.present? && current_user.sign_in_count == 1    ####need to change the logic
       if current_user.profile.present?
         current_user.sign_in_count = 2
         current_user.save
