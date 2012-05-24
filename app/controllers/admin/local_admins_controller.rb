@@ -41,13 +41,13 @@ class Admin::LocalAdminsController < ApplicationController
   def canceled_user_account_from_la
     @selected_user = User.find(params[:id])
     canceled_user @selected_user
-    redirect_to :back
+    redirect_to :back , :notice => "Successfully Update user"
   end
 
   def suspend_user_by_la
     @selected_user = User.find(params[:id])
     toggle_user @selected_user
-    redirect_to :back
+    redirect_to :back , :notice => "Successfully Update user"
   end
 
   def update_user_info_from_la
@@ -55,7 +55,7 @@ class Admin::LocalAdminsController < ApplicationController
     @user = User.find(params[:id])
     @user.update_user_from_loca_admin params[:user]
     #@user.update_attributes(params[:user])
-    redirect_to user_management_path
+    redirect_to user_management_path, :notice => "Successfully Updated user information"
   end
 
   def listing_all_the_workers
@@ -71,14 +71,14 @@ class Admin::LocalAdminsController < ApplicationController
     @selected_user = User.find(params[:id])
     change_to_AGO @selected_user
     LaMailer.changed_role(@selected_user).deliver
-    redirect_to :back
+    redirect_to :back, :notice => "Successfully Changed To AGO"
   end
 
   def change_ago_to_mago
     @selected_user = User.find(params[:id])
     change_to_MAGO @selected_user
     LaMailer.changed_role(@selected_user).deliver
-    redirect_to :back
+    redirect_to :back , :notice => "Successfully Changed To MAGO"
   end
 
   private
