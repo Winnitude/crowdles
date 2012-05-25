@@ -3,7 +3,7 @@ CrowdFunding::Application.routes.draw do
 
   constraints(:subdomain => ADMIN_SUBDOMAIN) do
     scope :module => "admin" do
-      resource :local_admins do
+      resources :local_admins do
         get "all_users_globally"
       end
 

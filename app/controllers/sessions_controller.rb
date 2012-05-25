@@ -19,7 +19,7 @@ class SessionsController <  Devise::SessionsController
     if resource.is_provider_terms_of_service
       if (resource.role == "User" && request.url.index(ADMIN_HOST).present?)
 
-        redirect_to logout_path
+        redirect_to logout_path(:error=> "error")
 
       else
         set_flash_message(:notice, :signed_in) if is_navigational_format?
