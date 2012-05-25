@@ -67,11 +67,19 @@ class Admin::LocalAdminsController < ApplicationController
     @already_having_mago = User.where(:mago_la_id=>@user.id).to_a
   end
 
+  def show_worker_for_change_role
+    @selected_user = User.find(params[:id])
+    @admin_group = AdminGroup.new
+  end
+
+
   def chenge_worker_role
     @selected_user = User.find(params[:id])
+    @admin_group = @selected_user.build_admin_group(params[:admin_group])
+    @admin_group.save
     change_to_AGO @selected_user
     LaMailer.changed_role(@selected_user).deliver
-    redirect_to :back, :notice => "Successfully Changed To AGO"
+    redirect_to listing_all_the_workers_local_admins_path, :notice => "Successfully Changed To AGO"
   end
 
   def change_ago_to_mago
