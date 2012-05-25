@@ -11,7 +11,7 @@ class Admin::MainLocalAdminController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def suspend_user
+  def suspend_user_by_mla
     @user = User.find(params[:id])
     toggle_user @user
     redirect_to :back
@@ -24,11 +24,11 @@ class Admin::MainLocalAdminController < ApplicationController
   end
 
 
-  def edit_user_info
+  def edit_user_info_mla
     @user = User.find(params[:id])
   end
 
-  def update_user_info
+  def update_user_info_by_mla
     params[:user][:profile][:birth_date] = format_birth_date(params[:user][:profile][:birth_date])
     @user = User.find(params[:id])
     @user.update_user_from_loca_admin params[:user]

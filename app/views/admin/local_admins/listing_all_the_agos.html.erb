@@ -11,7 +11,7 @@
     <th><strong> User Role<strong></th>
     <th><strong> Action<strong></th>
   </tr>
-  <thead>
+  </thead>
   <% @AGOS.each do |ago| %>
       <%profile= ago.profile.nil? ? Profile.new : ago.profile%>
       <tr>

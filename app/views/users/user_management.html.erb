@@ -11,7 +11,7 @@
     <th><strong> User Role<strong></th>
     <th><strong> Action<strong></th>
   </tr>
-  <thead>
+  </thead>
   <% @users.each do |user| %>
       <%profile= user.profile.nil? ? Profile.new : user.profile%>
       <tr>

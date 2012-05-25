@@ -1,7 +1,7 @@
 <h2>User Details</h2>
 <%= form_for :user, :url => update_user_info_from_la_path, :html => { :class => "form-horizontal"} do |user| %>
-    <%= render :partial => 'users/user_info',:locals => {:user => user} %>
-    <%= render :partial => 'users/profile',:locals => {:user => user,:profile=> @user.profile} %>
+    <%= render :partial => 'admin/local_admins/user_info',:locals => {:user => user} %>
+    <%= render :partial => 'admin/local_admins/profile',:locals => {:user => user,:profile=> @user.profile} %>
 
     <div class="form-actions">
       <%= user.submit "Update User",:class =>"btn btn-primary"  %>
