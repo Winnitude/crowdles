@@ -5,6 +5,8 @@ CrowdFunding::Application.routes.draw do
     scope :module => "admin" do
       resources :local_admins do
         get "all_users_globally" , :on => :collection
+        get "listing_all_the_workers" , :on => :collection
+        get "listing_all_the_agos" , :on => :collection
       end
 
       resources :admin_group_owners do
@@ -20,8 +22,6 @@ CrowdFunding::Application.routes.draw do
         match '/local_admins/canceled_user_account/:id'   =>'local_admins#canceled_user_account_from_la',:via => :get    ,:as=>:canceled_user_account_from_la
         match '/local_admins/update/:id'   =>'local_admins#update_user_info_from_la',:via => :post ,:as=>:update_user_info_from_la
         match '/local_admins/suspend/:id'   =>'local_admins#suspend_user_by_la',:via => :get    ,:as=>:suspend_user_by_la
-        match '/local_admins/listing_all_the_workers'   =>'local_admins#listing_all_the_workers',:via => :get
-        match '/local_admins/listing_all_the_agos'   =>'local_admins#listing_all_the_agos',:via => :get
         match '/local_admins/chenge_worker_role/:id'   =>'local_admins#chenge_worker_role',:via => :get    ,:as=>:chenge_worker_role
         match '/local_admins/change_ago_to_mago/:id'   =>'local_admins#change_ago_to_mago',:via => :get    ,:as=>:change_ago_to_mago
       end
