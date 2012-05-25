@@ -1,12 +1,18 @@
 class User
   include Mongoid::Document
   #  embeds_one :profile
-#  accepts_nested_attributes_for :profile
+  #  accepts_nested_attributes_for :profile
   has_one :profile,:dependent => :destroy,:autosave=> true# it should be first
   accepts_nested_attributes_for :profile
-#  before_create :build_profile
- # embeds_many :ideas
-   has_many :ideas
+  #  before_create :build_profile
+  # embeds_many :ideas
+  has_many :ideas
+  has_many :admin_groups
+  belongs_to :admin_group_worker
+  has_one :business_group
+
+
+
   accepts_nested_attributes_for :idea
 
   attr_accessible :profile_attributes, :email, :password, :password_confirmation,
@@ -50,6 +56,9 @@ class User
   field :bgo_ago_id,                        :type=> String      ##for bgo type this will represent its AGO
   field :mago_la_id,                          :type => String     ###la's id for mago'
   field :canceled,                       :type => Boolean ,:null => false, :default => false
+
+  #field :admin_group_worker_id,                       :type => String ### for admin group worker
+
   ## Encryptable
   # field :password_salt, :type => String
 
@@ -67,7 +76,8 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
   ##Type for Single Table Inheritance
-#  field :type,   :type => String
+  #  field :type,   :type => String
+
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
@@ -124,7 +134,7 @@ class User
   validates :email,
             #:uniqueness => true,
             :email => true
-#
+  #
   field :country,            :type => String
   validates :country,
             :presence => true,
@@ -144,11 +154,11 @@ class User
   end
 
   def create_worker
-   self.role = "Worker"
+    self.role = "Worker"
   end
 
   def update_user_from_loca_admin params_user
-     self.update_attributes(params_user)
+    self.update_attributes(params_user)
   end
 
   ################for LA creation#############3
