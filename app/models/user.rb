@@ -7,7 +7,7 @@ class User
   #  before_create :build_profile
   # embeds_many :ideas
   has_many :ideas
-  has_many :admin_groups
+  has_one :admin_group
   belongs_to :admin_group_worker
   has_one :business_group
 
