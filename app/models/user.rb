@@ -8,7 +8,7 @@ class User
   # embeds_many :ideas
   has_many :ideas
   has_one :admin_group
-  belongs_to :admin_group_worker
+  has_one :admin_group_worker
   has_one :business_group
 
 
@@ -176,12 +176,16 @@ class User
 
   def change_role_to_AGW(admin_group_owner)
     self.role = "Admin Group Worker"
-    self.agw_ago_id = admin_group_owner.id
+    #self.agw_ago_id = admin_group_owner.id
   end
 
   def change_role_to_BGO(admin_group_owner)
     self.role = "Business Group Owner"
     self.bgo_ago_id = admin_group_owner.id
+  end
+
+  def get_admin_group
+    admin_group= AdminGroup.where(:admin_group_owner_id => self._id).to_a.first  if self.role == "Admin Group Owner"
   end
 
 end
