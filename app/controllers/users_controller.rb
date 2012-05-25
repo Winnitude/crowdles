@@ -50,22 +50,33 @@ class UsersController < ApplicationController
     redirect_to  all_users_globally_local_admins_path, :notice => "Successfully Changed To Worker"
   end
 
-  def to_admin_group_worker
+  def to_admin_group_worker #TODO need to be refactored
     @user = User.find params[:id]
-    @user.change_role_to_AGW(current_user)
-    @user.save
-    logger.info "user##########{@user.role}###############id#{@user.agw_ago_id}"
-    UserMailer.notification_for_switching_to_worker(@user).deliver
+    #@user.change_role_to_AGW(current_user)
+    #admin_group_worker =current_user.admin_group.admin_group_workers.new
+    admin_group = current_user.get_admin_group
+    admin_group_worker = admin_group.admin_group_workers.new
+    admin_group_worker.user= @user
+    @user.role = "Admin Group Worker"
+    @user.save && admin_group.save && admin_group_worker.save
+
+    logger.info "#############################{admin_group_worker.inspect}"
+    logger.info "#########################################################{admin_group.inspect}"
+    logger.info "#######user###################################{@user.inspect}"
+
+    #@user.save
+    #logger.info "user##########{@user.role}###############id#{@user.agw_ago_id}"
+    #UserMailer.notification_for_switching_to_worker(@user).deliver
     redirect_to  view_all_workers_admin_group_owners_path, :notice => "Successfully Changed To AGW"
   end
 
   def  to_business_group_owner
     @user = User.find params[:id]
-    @user.change_role_to_BGO(current_user)
-    @user.save
-    logger.info "user##########{@user.role}###############id#{@user.bgo_ago_id}"
-    UserMailer.notification_for_switching_to_worker(@user).deliver
-    redirect_to  all_my_admin_group_workers_admin_group_owners_path, :notice => "Successfully Changed To BGO"
+    #@user.change_role_to_BGO(current_user)
+    #@user.save
+    #logger.info "user##########{@user.role}###############id#{@user.bgo_ago_id}"
+    #UserMailer.notification_for_switching_to_worker(@user).deliver
+    #redirect_to  all_my_admin_group_workers_admin_group_owners_path, :notice => "Successfully Changed To BGO"
   end
 
   private

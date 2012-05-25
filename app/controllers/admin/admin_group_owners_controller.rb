@@ -6,9 +6,12 @@ class Admin::AdminGroupOwnersController < ApplicationController
   end
 
   def all_my_admin_group_workers
-    @admin_group_workers = User.where(:role=> "Admin Group Worker").where(:agw_ago_id => current_user._id)
-    logger.info @admin_group_workers.to_a.inspect
-    logger.info @admin_group_workers.length.inspect
+    #@admin_group_workers = User.where(:role=> "Admin Group Worker").where(:agw_ago_id => current_user._id)
+    #logger.info @admin_group_workers.to_a.inspect
+    #logger.info @admin_group_workers.length.inspect
+    admin_group = current_user.get_admin_group
+    @admin_group_workers = admin_group.admin_group_workers.to_a.map{|i| i.user if i.user.present?}
+
   end
 
 
