@@ -1,0 +1,2 @@
+module Admin::MainAdminGroupOwnersHelper
+end

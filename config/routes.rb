@@ -13,9 +13,13 @@ CrowdFunding::Application.routes.draw do
       resources :business_groups do
         get "related_ideas", :on => :collection
       end
+      resources :main_admin_group_owners do
+        get "related_ideas", :on => :collection
+      end
       resources :admin_group_owners do
         get "view_all_workers" ,:on => :collection
         get "all_my_admin_group_workers" ,:on => :collection
+        get "related_ideas", :on => :collection
       end
       as :local_admins do
         #match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get

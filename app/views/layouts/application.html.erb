@@ -54,6 +54,9 @@
                   <% if current_user.role == "Business Group Owner" && request.url.index(ADMIN_HOST).present?%>
                       <%= render :partial => 'shared/business_group_owner_layout'%>
                   <% end %>
+                  <% if current_user.role == "Main Admin Group Owner" && request.url.index(ADMIN_HOST).present?%>
+                      <%= render :partial => 'shared/main_admin_group_owner_layout'%>
+                  <% end %>
               <%end  %>
           <% end %>
         </ul>
