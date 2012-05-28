@@ -12,9 +12,9 @@
   <% @admin_group_workers.each do |worker| %>
 
       <tr>
-        <td><%= worker.email %></td>
-        <td><%= worker.country %></td>
-        <td> <%= link_to 'Change to BGO',to_BGO_path(worker)%></td>
+        <td><%= worker.user.email %></td>
+        <td><%= worker.user.country %></td>
+        <td> <%= link_to 'Change to BGO',to_BGO_path(worker.user)%></td>
       </tr>
   <% end %>
 

@@ -188,6 +188,10 @@ class User
     admin_group= AdminGroup.where(:admin_group_owner_id => self._id).to_a.first  if self.role == "Admin Group Owner"
   end
 
+  def get_business_group
+    business_group= BusinessGroup.where(:business_group_owner_id => self._id).to_a.first  if self.role == "Business Group Owner"
+  end
+
 end
 
 
