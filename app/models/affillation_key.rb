@@ -5,4 +5,17 @@ class AffillationKey
 
   field :key,                 :type => String
 
+  def generate_affillation_key
+    Digest::SHA1.hexdigest(Time.now.to_s)[0,15]
+  end
+
+  def save_affillation_key ak_key,admin_group_id
+    self.key = ak_key
+    self.admin_group_id = admin_group_id
+    self.save
+  end
+
+  def remove_affillation_key
+    self.delete
+  end
 end
