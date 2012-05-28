@@ -23,7 +23,7 @@
         <td><%= fetch_county_name(ago) %></td>
         <td> <%= ago.role %>     </td>
         <td> <% if @already_having_mago.blank? %>
-                <%= link_to "Change to MAGO",change_ago_to_mago_path(ago.id), confirm: 'Are you sure? you want to change the role to MAGO', method: :get %>
+                <%= link_to "Change to MAGO",show_AGO_for_change_role_path(ago.id)%>
              <% else %>
                 <%= link_to "Change to MAGO","", confirm: 'This country is already having MAGO', method: :get %>
              <%end%>

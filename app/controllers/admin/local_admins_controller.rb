@@ -76,17 +76,27 @@ class Admin::LocalAdminsController < ApplicationController
   def chenge_worker_role
     @selected_user = User.find(params[:id])
     @admin_group = @selected_user.build_admin_group(params[:admin_group])
-    @admin_group.save
+    @admin_group.save_affillation_key_for_admin_group_owner
     change_to_AGO @selected_user
     LaMailer.changed_role(@selected_user).deliver
     redirect_to listing_all_the_workers_local_admins_path, :notice => "Successfully Changed To AGO"
   end
 
+  def show_AGO_for_change_role
+    @selected_user = User.find(params[:id])
+    @admin_group = AdminGroup.new
+  end
+
   def change_ago_to_mago
     @selected_user = User.find(params[:id])
+    @admin_group = @selected_user.get_admin_group
+    @admin_group.is_master = true
+    affillation_key = @admin_group.affillation_key
+    affillation_key.remove_affillation_key if !affillation_key.blank?
+    @admin_group.save
     change_to_MAGO @selected_user
     LaMailer.changed_role(@selected_user).deliver
-    redirect_to :back , :notice => "Successfully Changed To MAGO"
+    redirect_to listing_all_the_agos_local_admins_path , :notice => "Successfully Changed To MAGO"
   end
 
   private
