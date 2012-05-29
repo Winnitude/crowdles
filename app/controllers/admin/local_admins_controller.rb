@@ -82,12 +82,12 @@ class Admin::LocalAdminsController < ApplicationController
     redirect_to listing_all_the_workers_local_admins_path, :notice => "Successfully Changed To AGO"
   end
 
-  def show_AGO_for_change_role
+  def show_AGO_for_change_role    #TODO need to move this to main local admin controller
     @selected_user = User.find(params[:id])
     @admin_group = AdminGroup.new
   end
 
-  def change_ago_to_mago
+  def change_ago_to_mago   #TODO need to move this to main local admin controller
     @selected_user = User.find(params[:id])
     @admin_group = @selected_user.get_admin_group
     @admin_group.is_master = true
@@ -100,22 +100,22 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   private
-  def toggle_admin user
+  def toggle_admin user   #TODO need to move to user model
     user.role = user.role == "Local Admin" ? "Main Local Admin" : "Local Admin"
     user.save
   end
-  def  should_be_GA
+  def  should_be_GA       #TODO need to move to user model
     if current_user.role != "Global Admin"
       redirect_to root_path, :notice => "sorry you are not able to perform this activity"
     end
   end
 
-  def change_to_AGO user
+  def change_to_AGO user   #TODO need to move to user model
     user.role = "Admin Group Owner"
     user.save
   end
 
-  def change_to_MAGO user
+  def change_to_MAGO user  #TODO need to move to user model
     user.role = "Main Admin Group Owner"
     user.mago_la_id = @user.id
     user.save
