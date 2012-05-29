@@ -59,6 +59,10 @@ CrowdFunding::Application.routes.draw do
       get 'show_good_idea'
       get 'my_own_project'
     end
+    member do
+      get :make_it_good
+      get :decline
+    end
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.

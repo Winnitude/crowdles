@@ -73,4 +73,20 @@ class IdeasController < ApplicationController
   def my_own_project
     @ideas =@user.ideas.where(:type=>"Project").to_a
   end
+
+  def make_it_good
+    @idea = Idea.find(params[:id])
+    logger.info "inside make it good#########################{@idea.inspect}"
+    @idea.type = "GoodIdea"
+    @idea.save
+    redirect_to related_ideas_admin_group_owners_path, :notice => "Updated successfully"
+  end
+  #NOTE this action means for AGO so that he may decline the idea so the mgo can view it
+  def decline
+    @idea = Idea.find(params[:id])
+    logger.info "decline#########################{@idea.inspect}"
+    @idea.affiliation_key = ""
+    @idea.save
+    redirect_to related_ideas_admin_group_owners_path, :notice => "Updated successfully"
+  end
 end
