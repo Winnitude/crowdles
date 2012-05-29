@@ -14,7 +14,8 @@
       <tr>
         <td><%= worker.email %></td>
         <td><%= worker.country %></td>
-        <td> <%= link_to 'Change to AGW',to_AGW_path(worker)%></td>
+        <td> <%= link_to 'Change to AGW',to_AGW_path(worker)%>
+          <%= link_to "Change to CW",change_worker_to_consultant_worker_consultant_worker_path(worker.id) %></td>
       </tr>
   <% end %>
 

@@ -2,7 +2,7 @@ class AdminGroup
   include Mongoid::Document
 
   belongs_to :user, :foreign_key => :admin_group_owner_id,    :class_name => "User"
-  has_and_belongs_to_many :consultant_workers
+  has_many :admin_group_consultant_workers
 
 
   has_many :admin_group_workers
@@ -13,6 +13,7 @@ class AdminGroup
   field :affillation_key_id,                 :type => String
   field :is_master,                 :type => Boolean
   field :admin_group_owner_id,                 :type => String
+  field :admin_group_consultant_worker_id, :type => String
 
   def save_affillation_key_for_admin_group_owner
     @affillation_key = AffillationKey.new
