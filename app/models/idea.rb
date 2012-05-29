@@ -1,7 +1,7 @@
 class Idea
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
-  attr_accessible :title, :sub_title, :introduction, :amount, :currency, :affiliation_key, :category, :is_private ,:is_pro, :general_description, :aims_description, :why_support_description, :funding_usage_description ,:people_behind_description, :rewards, :employee_type, :big_image, :small_image, :general_image, :aims_image, :why_support_image, :funding_usage_image, :people_behind_image,:type
+  attr_accessible :title, :sub_title, :introduction, :amount, :currency, :affiliation_key, :category, :is_private ,:is_pro, :general_description, :aims_description, :why_support_description, :funding_usage_description ,:people_behind_description, :rewards, :employee_type, :big_image, :small_image, :general_image, :aims_image, :why_support_image, :funding_usage_image, :people_behind_image,:type,:sub_category,:is_private
   # Relations
   #embedded_in :user , :inverse_of => :comments
    belongs_to :user
@@ -15,7 +15,7 @@ class Idea
   field :category,  :type => String  , :null => false, :default => ""
   field :sub_category,      :type => String  , :null => false, :default => ""
   field :user_id,        :type => Integer,  :required => true
-  field :is_private,            :type => Boolean, :default => ""
+  field :is_private,            :type => String, :default => ""
   field :is_pro,           :type => String, :default => "N"
   field :general_description,      :type => String, :default => ""
   field :aims_description,:type => String, :default => ""

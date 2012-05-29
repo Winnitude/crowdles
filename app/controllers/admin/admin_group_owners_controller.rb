@@ -16,14 +16,14 @@ class Admin::AdminGroupOwnersController < ApplicationController
 
   def related_ideas
   admin_group = current_user.get_admin_group
-    logger.info admin_group.affillation_key.to_a.inspect
-    @ideas = Idea.all.to_a.select{|i| i.affiliation_key == admin_group.affillation_key.key}
+    #logger.info admin_group.affillation_key.to_a.inspect
+    @ideas = Idea.all.to_a.select{|i|  i.affiliation_key == admin_group.affillation_key.key unless admin_group.nil?}
     logger.info @ideas.inspect
   end
 
   private
 
   def should_be_AGO
-    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action"   if current_user.role != "Admin Group Owner"
+    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action" if current_user.role != "Admin Group Owner"
   end
 end

@@ -9,7 +9,7 @@ class Admin::LocalAdminsController < ApplicationController
   def change_admin_role
     @user = User.find(params[:id])
     toggle_admin @user
-    redirect_to local_admins_show_local_admin_path
+    redirect_to show_local_admin_local_admins_path
   end
 
   def new_local_admin
@@ -72,7 +72,7 @@ class Admin::LocalAdminsController < ApplicationController
     @admin_group = AdminGroup.new
   end
 
-
+  #NOTE change worker to admin group owner
   def chenge_worker_role
     @selected_user = User.find(params[:id])
     @admin_group = @selected_user.build_admin_group(params[:admin_group])
@@ -87,6 +87,7 @@ class Admin::LocalAdminsController < ApplicationController
     @admin_group = AdminGroup.new
   end
 
+  #NOTE change admin group owner to Main admin group owner
   def change_ago_to_mago   #TODO need to move this to main local admin controller
     @selected_user = User.find(params[:id])
     @admin_group = @selected_user.get_admin_group
