@@ -10,10 +10,16 @@ class Admin::AdminGroupOwnersController < ApplicationController
     #logger.info @admin_group_workers.to_a.inspect
     #logger.info @admin_group_workers.length.inspect
     admin_group = current_user.get_admin_group
-    @admin_group_workers = admin_group.admin_group_workers.to_a.map{|i| i.user if i.user.present?}
-
+    @admin_group_workers = admin_group.admin_group_workers.to_a.select{|i| i.user if i.user.present? && i.user.role == "Admin Group Worker" }
+    logger.info @admin_group_workers.inspect
   end
 
+  def related_ideas
+  admin_group = current_user.get_admin_group
+    logger.info admin_group.affillation_key.to_a.inspect
+    @ideas = Idea.all.to_a.select{|i| i.affiliation_key == admin_group.affillation_key.key}
+    logger.info @ideas.inspect
+  end
 
   private
 

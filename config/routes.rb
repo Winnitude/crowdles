@@ -7,11 +7,19 @@ CrowdFunding::Application.routes.draw do
         get "all_users_globally" , :on => :collection
         get "listing_all_the_workers" , :on => :collection
         get "listing_all_the_agos" , :on => :collection
+        get "show_local_admin"  ,:on => :collection
+        get "new_local_admin"  ,:on => :collection
       end
-
+      resources :business_groups do
+        get "related_ideas", :on => :collection
+      end
+      resources :main_admin_group_owners do
+        get "related_ideas", :on => :collection
+      end
       resources :admin_group_owners do
         get "view_all_workers" ,:on => :collection
         get "all_my_admin_group_workers" ,:on => :collection
+        get "related_ideas", :on => :collection
       end
 
       resources :consultant_workers do
@@ -19,9 +27,9 @@ CrowdFunding::Application.routes.draw do
       end
 
       as :local_admins do
-        match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get
+        #match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get
         match '/local_admins/change_admin_role/:id'   =>'local_admins#change_admin_role',:via => :get    ,:as=>:change_admin_role
-        match '/local_admins/new_local_admin'   =>'local_admins#new_local_admin',:via => :get
+        #match '/local_admins/new_local_admin'   =>'local_admins#new_local_admin',:via => :get
         match '/local_admins/create_local_admin'   =>'local_admins#create_local_admin',:via => :post
         match '/local_admins/edit/:id'   =>'local_admins#edit_user_info_from_la',:via => :get ,:as=>:edit_user_info_from_la
         match '/local_admins/canceled_user_account/:id'   =>'local_admins#canceled_user_account_from_la',:via => :get    ,:as=>:canceled_user_account_from_la

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :should_be_user
   before_filter :get_user
   before_filter :should_be_local_admin, :only => [:user_management , :to_worker ,:show_user_to_local_admin]
-  before_filter :should_be_AGO ,:only => [:to_admin_group_worker]
+  before_filter :should_be_AGO ,:only => [:to_admin_group_worker,:to_business_group_owner]
 
   def user_management
     @users = User.where(:country=>fetch_county_name(@user)).where(:role => "User")
@@ -60,9 +60,9 @@ class UsersController < ApplicationController
     @user.role = "Admin Group Worker"
     @user.save && admin_group.save && admin_group_worker.save
 
-    logger.info "#############################{admin_group_worker.inspect}"
-    logger.info "#########################################################{admin_group.inspect}"
-    logger.info "#######user###################################{@user.inspect}"
+    #logger.info "#############################{admin_group_worker.inspect}"
+    #logger.info "#########################################################{admin_group.inspect}"
+    #logger.info "#######user###################################{@user.inspect}"
 
     #@user.save
     #logger.info "user##########{@user.role}###############id#{@user.agw_ago_id}"
@@ -72,10 +72,14 @@ class UsersController < ApplicationController
 
   def  to_business_group_owner
     @user = User.find params[:id]
+    @business_group = BusinessGroup.new
     #@user.change_role_to_BGO(current_user)
+
     #@user.save
     #logger.info "user##########{@user.role}###############id#{@user.bgo_ago_id}"
     #UserMailer.notification_for_switching_to_worker(@user).deliver
+
+
     #redirect_to  all_my_admin_group_workers_admin_group_owners_path, :notice => "Successfully Changed To BGO"
   end
 

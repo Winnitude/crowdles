@@ -32,4 +32,9 @@ class Idea
   mount_uploader :why_support_image, ImageUploader
   mount_uploader :funding_usage_image, ImageUploader
   mount_uploader :people_behind_image, ImageUploader
+
+  def self.get_MAGO_ideas(mago)
+    ideas = Idea.all.to_a.select{|i| (i.affiliation_key == "" || !(AffillationKey.all.map{|i| i.key}.include?(i.affiliation_key))) &&  i.user.present? && i.user.country == mago.country}
+
+  end
 end
