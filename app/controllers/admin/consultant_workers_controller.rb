@@ -1,7 +1,7 @@
 class Admin::ConsultantWorkersController < ApplicationController
   before_filter :get_user
 
-
+  #NOTE: this will change worker to consultant worker
   def change_worker_to_consultant_worker
     #@selected_user = User.find(params[:id])
     #admin_group = current_user.get_admin_group

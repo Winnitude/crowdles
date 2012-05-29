@@ -16,6 +16,7 @@ class Admin::LocalAdminsController < ApplicationController
     @local_admin= User.new
   end
 
+  #NOTE this will create local admin
   def create_local_admin
     @local_admin = User.new params[:user]
     value = @local_admin.set_la_attributes
@@ -38,18 +39,21 @@ class Admin::LocalAdminsController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  #NOTE this will canceled users account
   def canceled_user_account_from_la
     @selected_user = User.find(params[:id])
     canceled_user @selected_user
     redirect_to :back , :notice => "Successfully Update user"
   end
 
+  #NOTE this will call toggle user and suspend user
   def suspend_user_by_la
     @selected_user = User.find(params[:id])
     toggle_user @selected_user
     redirect_to :back , :notice => "Successfully Update user"
   end
 
+  #NOTE this upadate user info by local admin
   def update_user_info_from_la
     params[:user][:profile][:birth_date] = format_birth_date(params[:user][:profile][:birth_date])
     @user = User.find(params[:id])
