@@ -11,9 +11,11 @@ class Admin::BusinessGroupsController < ApplicationController
    affillation_key.key = Digest::SHA1.hexdigest(Time.now.to_s)[0,15] #todo must move to after_create filter AK model
    if bussiness_group.save  && user.save && affillation_key.save
      logger.info bussiness_group.inspect
+     UserMailer.notification_for_switching_to_worker(user).deliver
      redirect_to root_path ,:notice=>" successfully created "
+
    else
-     redirect_to request.referer ,:notice=>"not created "
+     redirect_to :back ,:notice=>"not created "
    end
   end
 

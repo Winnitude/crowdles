@@ -27,6 +27,8 @@
         <td><%= good_idea.type %></td>
         <!--<td><%= image_tag good_idea.big_image_url %></td>-->
         <td> <%= link_to 'Show', idea_path(good_idea) %>
+          <%= link_to 'Make it good',make_it_good_idea_path(good_idea) if good_idea.type !="GoodIdea" %>
+        </td>
 
 
       </tr>
