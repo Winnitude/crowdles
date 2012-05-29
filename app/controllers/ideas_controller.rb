@@ -79,7 +79,7 @@ class IdeasController < ApplicationController
     logger.info "inside make it good#########################{@idea.inspect}"
     @idea.type = "GoodIdea"
     @idea.save
-    redirect_to related_ideas_admin_group_owners_path, :notice => "Updated successfully"
+    redirect_to :back, :notice => "Updated successfully"
   end
   #NOTE this action means for AGO so that he may decline the idea so the mgo can view it
   def decline
