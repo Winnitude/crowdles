@@ -33,6 +33,7 @@
       <a class="brand" href="/">CrowdFunding</a>
       <div class="container nav-collapse">
         <ul class="nav">
+         <li class="brand"> <%=current_user.role if current_user.present? %>   </li>
 
           <% if user_signed_in? %>
               <% if !current_user.nil?  %>

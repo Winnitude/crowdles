@@ -25,7 +25,7 @@ class Admin::LocalAdminsController < ApplicationController
       LaMailer.welcome_email(@local_admin,@profile,value).deliver
       redirect_to root_path ,:notice => "Successfully created"
     else
-      render :json => @local_admin.errors
+     redirect_to :back  ,:notice=>"failure"
     end
   end
 
