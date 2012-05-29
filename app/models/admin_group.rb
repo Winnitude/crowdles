@@ -18,7 +18,7 @@ class AdminGroup
   def save_affillation_key_for_admin_group_owner
     @affillation_key = AffillationKey.new
     @affillation_key.save_affillation_key(@affillation_key.generate_affillation_key,self.id)
-    self.affillation_key_id = @affillation_key.id
+   # self.affillation_key_id = @affillation_key.id
     self.save
   end
 
