@@ -2,6 +2,10 @@ development:
   host: localhost
   database: crowd_funding_development
 
+staging:
+  host: localhost
+  database: crowd_funding_staging
+
 test:
   host: localhost
   database: crowd_funding_test
