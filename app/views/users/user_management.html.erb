@@ -22,10 +22,10 @@
         <td><%= profile.last_name %></td>
         <td><%= fetch_county_name(user) %></td>
         <td> <%= user.role %>     </td>
-        <td> <%= link_to 'Show', show_user_to_local_admin_path(user.id) %>
-            <%= link_to 'Edit',edit_user_info_from_la_path(user.id) %>
+        <td> <%= link_to 'Show', show_user_to_local_admin_path(user.id) %> |
+            <%= link_to 'Edit',edit_user_info_from_la_path(user.id) %>  |
             <% link_url_tag = user.suspended ? "Activate" : "Dactivate"  %>
-            <%= link_to link_url_tag,suspend_user_by_la_path(user.id), confirm: 'Are you sure?', method: :get %>
+            <%= link_to link_url_tag,suspend_user_by_la_path(user.id), confirm: 'Are you sure?', method: :get %> |
           <% link_url_tag_account = user.canceled ? "ReOpen" : "Canceled"  %>
           <%= link_to link_url_tag_account,canceled_user_account_from_la_path(user.id), confirm: 'Are you sure?', method: :get %></td> </td>
 

@@ -20,10 +20,10 @@
         <td><%= profile.first_name %></td>
         <td><%= profile.last_name %></td>
         <td><%= fetch_county_name(user_from_not_any_country) %></td>
-        <td> <%= link_to 'Show', show_user_to_main_local_admin_path(user_from_not_any_country.id) %>
-          <%= link_to 'Edit',edit_user_info_mla_path(user_from_not_any_country.id) %>
+        <td> <%= link_to 'Show', show_user_to_main_local_admin_path(user_from_not_any_country.id) %> |
+          <%= link_to 'Edit',edit_user_info_mla_path(user_from_not_any_country.id) %> |
           <% link_url_tag = user_from_not_any_country.suspended ? "Activate" : "Dactivate"  %>
-          <%= link_to link_url_tag,suspend_user_by_mla_path(user_from_not_any_country.id), confirm: 'Are you sure?', method: :get %>
+          <%= link_to link_url_tag,suspend_user_by_mla_path(user_from_not_any_country.id), confirm: 'Are you sure?', method: :get %> |
           <% link_url_tag_account = user_from_not_any_country.canceled ? "ReOpen" : "Canceled"  %>
          <%= link_to link_url_tag_account,canceled_user_account_path(user_from_not_any_country.id), confirm: 'Are you sure?', method: :get %></td>
 
