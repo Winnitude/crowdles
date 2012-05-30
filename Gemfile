@@ -14,6 +14,8 @@ gem 'omniauth', ">= 0.1.6"
 gem 'rb-readline'
 gem 'geoip'
 
+gem 'ey_config'
+gem 'mongo'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem "oauth2","0.5.2"
