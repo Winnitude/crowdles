@@ -12,6 +12,7 @@ CrowdFunding::Application.routes.draw do
       end
       resources :business_groups do
         get "related_ideas", :on => :collection
+        get "my_keys", :on=> :collection
       end
       resources :main_admin_group_owners do
         get "related_ideas", :on => :collection
@@ -20,6 +21,7 @@ CrowdFunding::Application.routes.draw do
         get "view_all_workers" ,:on => :collection
         get "all_my_admin_group_workers" ,:on => :collection
         get "related_ideas", :on => :collection
+        get "my_keys", :on=> :collection
       end
 
       resources :consultant_workers do

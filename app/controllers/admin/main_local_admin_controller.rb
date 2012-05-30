@@ -60,7 +60,7 @@ class Admin::MainLocalAdminController < ApplicationController
     #country = User.where(:role=>"Local Admin").map(&:country)
    # users_not_beloning_to_any_countries = User.all.select{|u| country.exclude?(u.country)}
     #@user_from_not_any_countries = users_not_beloning_to_any_countries.select{|user| ["Global Admin","Main Local Admin"].exclude?(user.role)}
-    @user_from_not_any_countries = User.all.select{|user| ADMIN_ARRAY.exclude?(user.role)}
+    @user_from_not_any_countries = User.all.select{|user|  user.role == "User"}
   end
 
 
