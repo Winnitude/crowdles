@@ -27,9 +27,9 @@ CrowdFunding::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  config.action_mailer.default_url_options = { :host => 'local.crowfund.com' }
+  config.action_mailer.default_url_options = { :host => 'crowd.weboapps.com' }
 end
-LOCAL_HOST = "local.crowfund.com"
-ADMIN_HOST = "admin.crowfund.com"
-ADMIN_SUBDOMAIN = "admin"
+LOCAL_HOST = "stagecrowdles.weboapps.com"
+ADMIN_HOST = "admincrowdles.weboapps.com"
+ADMIN_SUBDOMAIN = "admincrowdles"
 

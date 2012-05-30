@@ -22,5 +22,6 @@ db/schema.rb
 *.swp
 *.swo
 .rvmrc
+/public/uploads
 #Gemfile.lock
 
