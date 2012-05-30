@@ -11,6 +11,7 @@
 
     <th>Action</th>
     <th>Make It Good</th>
+    <th>Reject</th>
   </tr>
   </thead>
 
@@ -33,8 +34,14 @@
           <%end%>
           <% if can? :delete, @idea %>
               <%= link_to 'Destroy', idea, confirm: 'Are you sure?', method: :delete %><%end%></td>
-        <td><%= link_to 'Make it good',make_it_good_idea_path(idea) if idea.type !="GoodIdea" %>
+        <td><%= link_to 'Make it good',make_it_good_idea_path(idea) if idea.type !="GoodIdea" && idea.type != "RejectedIdea" %>
           <%= "Already Good" if idea.type =="GoodIdea" %>
+          <%= "Rejected" if idea.type =="RejectedIdea" %>
+        </td>
+
+        <td><%= link_to 'Make it Reject',reject_idea_path(idea) if idea.type !="RejectedIdea" %>
+          <%= "Already Rejected" if idea.type =="RejectedIdea" %>
+
         </td>
       </tr>
   <% end %>

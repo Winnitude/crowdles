@@ -77,6 +77,7 @@ CrowdFunding::Application.routes.draw do
     member do
       get :make_it_good
       get :decline
+      get :reject
     end
   end
   # The priority is based upon order of creation:
