@@ -6,4 +6,8 @@ class Admin::GlobalAdminsController < ApplicationController
     logger.info @is_any_main_local_admin.inspect
   end
 
+  def ideas
+    @ideas = Idea.all
+  end
+
 end

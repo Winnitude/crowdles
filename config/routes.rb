@@ -11,6 +11,7 @@ CrowdFunding::Application.routes.draw do
         get "new_local_admin"  ,:on => :collection
         get "edit_local_admin",  :on => :member
         put "update_local_admin", :on => :member
+        get "show_admin"       , :on => :member
       end
       resources :business_groups do
         get "related_ideas", :on => :collection
@@ -32,6 +33,7 @@ CrowdFunding::Application.routes.draw do
 
       resources :global_admins do
         get "all_admins" ,:on => :collection
+        get "ideas" ,    :on=> :collection
       end
 
       as :local_admins do

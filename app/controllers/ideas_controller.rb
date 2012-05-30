@@ -61,7 +61,7 @@ class IdeasController < ApplicationController
   def destroy
     @idea = Idea.find(params[:id])
     @idea.destroy
-    redirect_to ideas_url
+    redirect_to :back ,:notice => "deleted"
   end
 
   # GET Method

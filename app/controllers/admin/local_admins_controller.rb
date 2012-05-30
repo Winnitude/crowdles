@@ -119,6 +119,11 @@ class Admin::LocalAdminsController < ApplicationController
     redirect_to listing_all_the_agos_local_admins_path , :notice => "Successfully Changed To MAGO"
   end
 
+  def show_admin
+    @admin = User.find(params[:id])
+    @profile = @admin.profile
+  end
+
   private
   def toggle_admin user   #TODO need to move to user model
     user.role = user.role == "Local Admin" ? "Main Local Admin" : "Local Admin"

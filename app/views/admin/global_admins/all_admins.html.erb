@@ -25,7 +25,7 @@
               <%= "Already MLA"%>
           <%end%>
         </td>
-        <td> <%= link_to 'Show', show_user_to_local_admin_path(admin.id) %>
+        <td> <%= link_to 'Show', show_admin_local_admin_path(admin.id) %>
           <%= link_to 'Edit',edit_local_admin_local_admin_path(admin.id) %>
           <% link_url_tag = admin.suspended ? "Activate" : "Dactivate"  %>
           <%= link_to link_url_tag,suspend_user_path(admin.id) %>
