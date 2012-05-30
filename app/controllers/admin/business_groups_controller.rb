@@ -26,6 +26,11 @@ class Admin::BusinessGroupsController < ApplicationController
     logger.info @ideas.inspect
   end
 
+  def my_keys
+    business_group = current_user.get_business_group
+    @key = business_group.affillation_key.key
+  end
+
   private
 
   def should_be_admin_group_owner

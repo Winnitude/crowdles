@@ -26,6 +26,11 @@ class Admin::AdminGroupOwnersController < ApplicationController
     @ideas = Idea.all.to_a.select{|i| all_related_keys.include?(i.affiliation_key)}
   end
 
+  def my_keys
+    admin_group = current_user.get_admin_group
+    @all_related_keys = admin_group.all_related_keys_concern_type
+  end
+
   private
 
   def should_be_AGO
