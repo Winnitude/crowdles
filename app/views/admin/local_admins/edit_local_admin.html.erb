@@ -1,12 +1,12 @@
-<h1>Create Local Admin</h1>
+<h1>Edit Admin</h1>
 
 <table>
-  <%=form_for @local_admin ,:url=>local_admins_create_local_admin_path do |f| %>
-      <%= fields_for @local_admin.build_profile do |p| %>
+  <%=form_for @admin ,:url=>update_local_admin_local_admin_path do |f| %>
+      <%= fields_for @admin.profile do |p| %>
 
           <tr>
             <td><%= f.label :email %></td>
-            <td><%= f.text_field :email %></td>
+            <td><%= f.text_field :email, :disabled => true %></td>
           </tr>
           <tr>
             <td><%= p.label :first_name %></td>
@@ -50,9 +50,9 @@
             <td><%= p.text_field :telephone_number %></td>
           </tr>
           <!--<tr>-->
-            <!--<td>Master</td>-->
-            <!--<td> <%#=f.radio_button :is_master, true %> Is Master     </td>-->
-            <!--<td> <%#=f.radio_button :is_master, false %> Not Is Master   </td>-->
+          <!--<td>Master</td>-->
+          <!--<td> <%#=f.radio_button :is_master, true %> Is Master     </td>-->
+          <!--<td> <%#=f.radio_button :is_master, false %> Not Is Master   </td>-->
           <!--</tr>-->
           <tr>
             <td><%= f.label :la_country," Assigned To Country" %></td>
@@ -72,11 +72,11 @@
             <td><%= f.text_field :la_platform_home %></td>
           </tr>
 
-          <% #a= ["new","active","blocked","suspended","unpaid","inactive"] %>
-          <tr>
-            <td><%#= f.label :la_Status,"Status" %></td>
-            <td><%#= f.select :la_status , options_for_select(a ) %></td>
-          </tr>
+          <%# a= ["new","active","blocked","suspended","unpaid","inactive"] %>
+          <!--<tr>-->
+            <!--<td><%#= f.label :la_Status,"Status" %></td>-->
+            <!--<td><%#= f.select :la_status , options_for_select(a ) %></td>-->
+          <!--</tr>-->
           <tr>
             <td><%= p.label :billing_profile_id %></td>
             <td><%= p.text_field :billing_profile_id %></td>
@@ -96,7 +96,7 @@
             <td><%= p.text_field :freshbooks_integration_key %></td>
           </tr>
           <tr>
-            <td><%= f.submit"Create LocalAdmin" ,:class => "btn-small btn" %></td>
+            <td><%= f.submit"Update" ,:class => "btn-small btn" %></td>
           </tr>
           </table>
       <% end %>
