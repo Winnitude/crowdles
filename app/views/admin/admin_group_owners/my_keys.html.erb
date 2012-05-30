@@ -14,7 +14,7 @@
       <tr>
         <td><%= key.key %></td>
         <td> <%if key.admin_group_consultant_worker.present?%>
-              <%="Concultant Worker" %>
+              <%="Consultant Worker" %>
               <%email=key.admin_group_consultant_worker.consultant_worker.user.email %>
           <% else %>
               <%= "Admin Group Owner" %>
