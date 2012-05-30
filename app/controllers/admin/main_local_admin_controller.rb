@@ -1,9 +1,9 @@
 class Admin::MainLocalAdminController < ApplicationController
 
-  before_filter :users_not_beloning_to_any_countries
-  ADMIN_ARRAY = ["Global Admin","Main Local Admin","Local Admin"]
+  before_filter :get_all_users
 
-  def users_from_not_any_country
+
+  def all_users
 
   end
 
@@ -33,7 +33,7 @@ class Admin::MainLocalAdminController < ApplicationController
     @user = User.find(params[:id])
     @user.update_user_from_loca_admin params[:user]
     #@user.update_attributes(params[:user])
-    redirect_to main_local_admin_users_from_not_any_country_path
+    redirect_to main_local_admin_all_users_path
   end
 
   def  ideas_belonging_to_users
@@ -56,11 +56,11 @@ class Admin::MainLocalAdminController < ApplicationController
 
   private
 
-  def users_not_beloning_to_any_countries
+  def get_all_users
     #country = User.where(:role=>"Local Admin").map(&:country)
    # users_not_beloning_to_any_countries = User.all.select{|u| country.exclude?(u.country)}
     #@user_from_not_any_countries = users_not_beloning_to_any_countries.select{|user| ["Global Admin","Main Local Admin"].exclude?(user.role)}
-    @user_from_not_any_countries = User.all.select{|user| ADMIN_ARRAY.exclude?(user.role)}
+    @user_from_not_any_countries = User.all.select{|user| user.role=="User"}
   end
 
 
