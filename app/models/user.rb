@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  #after_create :assign_role_to_user
   #  embeds_one :profile
   #  accepts_nested_attributes_for :profile
   has_one :profile,:dependent => :destroy,:autosave=> true# it should be first
@@ -12,7 +13,7 @@ class User
   has_one :business_group
   has_one :consultant_worker
   has_many :user_roles
-
+  after_create :assign_role_to_user
 
 
   accepts_nested_attributes_for :idea
@@ -157,7 +158,7 @@ class User
 
   def create_worker
    # self.role = "Worker"
-    RolesManager.add_role("Worker", self)
+    RolesManagement::RolesManager.add_role("Worker", self)
   end
 
   def update_user_from_loca_admin params_user
@@ -190,17 +191,21 @@ class User
   end
 
   def get_admin_group
-    admin_group= AdminGroup.where(:admin_group_owner_id => self._id).to_a.first  if RolesManager.is_role_present?("Admin Group Owner", self)
+    admin_group= AdminGroup.where(:admin_group_owner_id => self._id).to_a.first  if RolesManagement::RolesManager.is_role_present?("Admin Group Owner", self)
   end
 
   def get_business_group
-    business_group= BusinessGroup.where(:business_group_owner_id => self._id).to_a.first  if RolesManager.is_role_present?("Business Group Owner", self)
+    business_group= BusinessGroup.where(:business_group_owner_id => self._id).to_a.first  if RolesManagement::RolesManager.is_role_present?("Business Group Owner", self)
   end
 
   def self.get_all_user_for_selected_role user_role
     role= Role.where(:role => user_role).first
     all_users_role = UserRole.all.select{|i| i.role == role if i.role.present?}
-    @users=all_users_role.collect{|i| i.user}
+    return all_users_role.collect{|i| i.user}
+  end
+
+  def assign_role_to_user
+      RolesManagement::RolesManager.add_role("User",self)
   end
 end
 

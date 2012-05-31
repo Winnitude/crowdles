@@ -102,7 +102,7 @@ class Admin::LocalAdminsController < ApplicationController
     @admin_group = @selected_user.build_admin_group(params[:admin_group])
     @admin_group.save_affillation_key_for_admin_group_owner
     change_to_AGO @selected_user
-    LaMailer.changed_role(@selected_user).deliver
+    LaMailer.changed_role(@selected_user,"Admin Group Owner").deliver
     redirect_to listing_all_the_workers_local_admins_path, :notice => "Successfully Changed To AGO"
   end
 
@@ -120,7 +120,7 @@ class Admin::LocalAdminsController < ApplicationController
     affillation_key.remove_affillation_key if !affillation_key.blank?
     @admin_group.save
     change_to_MAGO @selected_user
-    LaMailer.changed_role(@selected_user).deliver
+    LaMailer.changed_role(@selected_user,"Main Admin Group Owner").deliver
     redirect_to listing_all_the_agos_local_admins_path , :notice => "Successfully Changed To MAGO"
   end
 

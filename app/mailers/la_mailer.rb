@@ -8,8 +8,9 @@ class LaMailer < ActionMailer::Base
     mail(:to => @la.email, :subject => "Welcome to Crowd Funding Site")
   end
 
-  def changed_role(user)
+  def changed_role(user,role)
     @user = user
+    @role = role
     mail(:to => @user.email, :subject => "Your role has been chnaged")
   end
 end

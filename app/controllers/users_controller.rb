@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     @user.create_worker
     @user.save
     #logger.info "user##########{@user.role}"
-    UserMailer.notification_for_switching_to_worker(@user).deliver
+    UserMailer.notification_for_switching_to_worker(@user,"Worker").deliver
     redirect_to  all_users_globally_local_admins_path, :notice => "Successfully Changed To Worker"
   end
 

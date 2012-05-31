@@ -5,7 +5,7 @@
   <strong> Title: </strong>   <%= profile.title %>          <br>
   <strong> First Name: </strong>  <%= profile.first_name %>    <br>
   <strong> Last Name: </strong>   <%= profile.last_name %> <br>
-  <strong> NikName: </strong>  <%= user.profile.nil? ? "": nikname(user.profile) %>    <br>
+  <!--<strong> NikName: </strong>  <%#= user.profile.nil? ? "": nikname(user.profile) %>    <br>-->
   <strong> Birth Date: </strong>     <%= profile.birth_date %> <br>
   <strong> Gender: </strong>   <%=  profile.gender %>  <br>
   <strong> Photo: </strong>   <%= image_tag user.profile.image_url unless user.profile.nil?%>   <br>

@@ -1,6 +1,11 @@
 class RegistrationsController <  Devise::RegistrationsController
   before_filter :redirect_if_already_exist ,:only=>[:create]
 
+ def create
+    logger.info params.inspect
+   super
+   #redirect_to request.referrer, :notice => "LIst not Submitted"
+ end
   def create_LA
     build_resource
 
