@@ -1,0 +1,37 @@
+<table border="1" class="table">
+  <thead> <tr>
+    <th>Email</th>
+    <th>Country</th>
+    <th>Type</th>
+    <th>Change to MLA</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+
+  <% @admins.each do |admin| %>
+
+      <tr>
+        <td><%=admin.email %></td>
+        <td><%= admin.country %></td>
+        <td><%=admin.role %></td>
+        <td>
+          <%if admin.role == "Local Admin"%>
+              <%if @is_any_main_local_admin %>
+              <%= link_to 'Change to MLA',"#", :confirm => 'Already a MLA exist in system' %>
+              <%else%>
+                  <%= link_to 'Change to MLA', change_admin_role_path(admin), confirm: 'Are you sure?', method: :get %>
+              <%end%>
+          <%else%>
+              <%= "Already MLA"%>
+          <%end%>
+        </td>
+        <td> <%= link_to 'Show', show_admin_local_admin_path(admin.id) %>
+          <%= link_to 'Edit',edit_local_admin_local_admin_path(admin.id) %>
+          <% link_url_tag = admin.suspended ? "Activate" : "Dactivate"  %>
+          <%= link_to link_url_tag,suspend_user_path(admin.id) %>
+          <% link_url_tag_account = admin.canceled ? "ReOpen" : "Cancel"  %>
+          <%= link_to link_url_tag_account,canceled_user_account_path(admin.id) %></td> </td>
+      </tr>
+  <% end %>
+
+</table>

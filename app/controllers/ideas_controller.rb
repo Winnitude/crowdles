@@ -61,7 +61,7 @@ class IdeasController < ApplicationController
   def destroy
     @idea = Idea.find(params[:id])
     @idea.destroy
-    redirect_to ideas_url
+    redirect_to :back ,:notice => "deleted"
   end
 
   # GET Method
@@ -81,6 +81,15 @@ class IdeasController < ApplicationController
     @idea.save
     redirect_to :back, :notice => "Updated successfully"
   end
+
+  def reject
+    @idea = Idea.find(params[:id])
+    logger.info "inside make it good#########################{@idea.inspect}"
+    @idea.type = "RejectedIdea"
+    @idea.save
+    redirect_to :back, :notice => "Updated successfully"
+  end
+
   #NOTE this action means for AGO so that he may decline the idea so the mgo can view it
   def decline
     @idea = Idea.find(params[:id])

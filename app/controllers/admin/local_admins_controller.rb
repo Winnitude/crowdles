@@ -31,6 +31,21 @@ class Admin::LocalAdminsController < ApplicationController
     end
   end
 
+  def edit_local_admin
+    @admin = User.find(params[:id])
+    #render :json=> @admin
+  end
+
+  def update_local_admin
+    @admin = User.find(params[:id])
+    @profile = @admin.profile
+    if @admin.update_attributes(params[:user]) && @profile.update_attributes(params[:profile])
+    redirect_to :root, :notice => "successfully_updated"
+    end
+
+    #render :json=> @admin
+  end
+
   def all_users_globally
     @users = User.where(:role => "User").to_a
   end
@@ -103,6 +118,11 @@ class Admin::LocalAdminsController < ApplicationController
     change_to_MAGO @selected_user
     LaMailer.changed_role(@selected_user).deliver
     redirect_to listing_all_the_agos_local_admins_path , :notice => "Successfully Changed To MAGO"
+  end
+
+  def show_admin
+    @admin = User.find(params[:id])
+    @profile = @admin.profile
   end
 
   private

@@ -1,8 +1,9 @@
 class HomesController < ApplicationController
+
   before_filter :get_hominid ,:only => [:persist_news_letter, :send_news_letter_page, :get_campaigns, :send_news_letter]
 
   def index
-
+    logger.info u.inspect
     logger.info("roleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee #{current_user.role} ccccccccccc#{current_user.country}" )    if current_user != nil
     logger.info  current_user.inspect  if current_user.present?
     if current_user.present? && current_user.sign_in_count == 1    ####need to change the logic

@@ -21,13 +21,13 @@ class UsersController < ApplicationController
   def suspend_user
     @user = User.find(params[:id])
     toggle_user @user
-    redirect_to user_management_path
+    redirect_to :back ,:notice => "Done Successfully"
   end
 
   def canceled_user_account
     @user = User.find(params[:id])
     canceled_user @user
-    redirect_to :back
+    redirect_to :back ,:notice => "Done Successfully"
   end
 
   def edit_user_info

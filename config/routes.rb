@@ -14,6 +14,9 @@ CrowdFunding::Application.routes.draw do
       resources :main_local_admins do
         get :autocomplete_country_name, :on => :collection
         get :all_users, :on => :collection
+        get "edit_local_admin",  :on => :member
+        put "update_local_admin", :on => :member
+        get "show_admin"       , :on => :member
       end
       resources :business_groups do
         get "related_ideas", :on => :collection
@@ -31,6 +34,11 @@ CrowdFunding::Application.routes.draw do
 
       resources :consultant_workers do
         get "change_worker_to_consultant_worker" ,:on => :member
+      end
+
+      resources :global_admins do
+        get "all_admins" ,:on => :collection
+        get "ideas" ,    :on=> :collection
       end
 
       as :local_admins do
@@ -74,6 +82,7 @@ CrowdFunding::Application.routes.draw do
     member do
       get :make_it_good
       get :decline
+      get :reject
     end
   end
   # The priority is based upon order of creation:
