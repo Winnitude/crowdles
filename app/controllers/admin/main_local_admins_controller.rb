@@ -1,7 +1,7 @@
 class Admin::MainLocalAdminsController < ApplicationController
 
   before_filter :get_all_users
-  autocomplete :country, :name
+  autocomplete :country_detail, :name
 
   def all_users
 

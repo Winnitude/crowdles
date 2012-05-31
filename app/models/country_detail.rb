@@ -1,4 +1,4 @@
-class Country
+class CountryDetail
   include Mongoid::Document
   has_many :users
 

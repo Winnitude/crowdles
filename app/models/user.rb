@@ -12,7 +12,7 @@ class User
   has_one :business_group
   has_one :consultant_worker
 
-  belongs_to :country
+  belongs_to :country_detail
   has_many :user_roles
 
 

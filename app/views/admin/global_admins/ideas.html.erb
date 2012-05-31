@@ -30,10 +30,10 @@
         <td> <%= link_to 'Show', idea_path(idea) %>
 
           <% if can? :update, @idea %>
-              <%= link_to 'Edit', edit_idea_path(idea) %>
+            | <%= link_to 'Edit', edit_idea_path(idea) %>
           <%end%>
           <% if can? :delete, @idea %>
-              <%= link_to 'Destroy', idea, confirm: 'Are you sure?', method: :delete %><%end%></td>
+             | <%= link_to 'Destroy', idea, confirm: 'Are you sure?', method: :delete %><%end%></td>
         <td><%= link_to 'Make it good',make_it_good_idea_path(idea) if idea.type !="GoodIdea" && idea.type != "RejectedIdea" %>
           <%= "Already Good" if idea.type =="GoodIdea" %>
           <%= "Rejected" if idea.type =="RejectedIdea" %>
