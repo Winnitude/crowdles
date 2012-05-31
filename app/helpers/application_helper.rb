@@ -17,5 +17,10 @@ module ApplicationHelper
     when :error then "alert alert-error"
     when :alert then "alert alert-error"
     end
+   end
+
+  #Note: this will return currency name
+  def return_curreny_name
+    Currency.all.map{|currency| currency.name}
   end
 end

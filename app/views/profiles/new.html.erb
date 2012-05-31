@@ -2,7 +2,7 @@
 <%=form_for @profile,:url => profiles_path, :html => { :class => "form-horizontal",:multipart => true} do |f| %>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Profile Title</label>
+      <label class="control-label" for="input01">Profile Title<span style="color:red"> *</span></label>
       <div class="controls">
         <%=f.text_field :title,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">First Name</label>
+      <label class="control-label" for="input01">First Name<span style="color:red"> *</span></label>
       <div class="controls">
         <%= f.text_field :first_name,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">Last Name</label>
+      <label class="control-label" for="input01">Last Name<span style="color:red"> *</span></label>
       <div class="controls">
         <%= f.text_field :last_name,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -99,7 +99,7 @@
 
 
     <div class="control-group">
-      <label class="control-label" for="input01">Birth Date (YYYY-MM-DD)</label>
+      <label class="control-label" for="input01">Birth Date <span style="color:red"> *</span></label>
       <div class="controls">
         <%= f.datepicker 'birth_date'%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -134,7 +134,7 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">City</label>
+      <label class="control-label" for="input01">City<span style="color:red"> *</span></label>
       <div class="controls">
         <%= f.text_field :city,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -150,7 +150,7 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">State</label>
+      <label class="control-label" for="input01">State<span style="color:red"> *</span></label>
       <div class="controls">
         <%= f.text_field :state,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -166,7 +166,7 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">Mobile Number</label>
+      <label class="control-label" for="input01">Mobile Number<span style="color:red"> *</span></label>
       <div class="controls">
         <%= f.text_field :mobile_number,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -182,7 +182,7 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">Biography</label>
+      <label class="control-label" for="input01">Biography<span style="color:red"> *</span></label>
       <div class="controls">
         <%= f.text_area :biography,:class=>"input" ,:rows => 6%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -206,22 +206,23 @@
 
         jQuery(function(){
             var profile_title = new LiveValidation('profile_title',{validMessage:" ",onlyOnSubmit:true});
-            profile_title.add( Validate.Presence );
+            profile_title.add( Validate.Presence ,{failureMessage:" Can't be empty"});
 
             var profile_first_name = new LiveValidation("profile_first_name",{validMessage:" ",onlyOnSubmit:true});
-            profile_first_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            profile_first_name.add(Validate.Presence,{failureMessage:" Can't be empty"})
             var profile_last_name = new LiveValidation("profile_last_name",{validMessage:" ",onlyOnSubmit:true});
-            profile_last_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            profile_last_name.add(Validate.Presence,{failureMessage:" Can't be empty"})
             var profile_city = new LiveValidation("profile_city",{validMessage:" ",onlyOnSubmit:true});
-            profile_city.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            profile_city.add(Validate.Presence,{failureMessage:" Can't be empty"})
             var profile_state = new LiveValidation("profile_state",{validMessage:" ",onlyOnSubmit:true});
-            profile_state.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            profile_state.add(Validate.Presence,{failureMessage:" Can't be empty"})
             var profile_mobile_number = new LiveValidation("profile_mobile_number",{validMessage:" ",onlyOnSubmit:true});
-            profile_mobile_number.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            profile_mobile_number.add(Validate.Presence,{failureMessage:" Can't be empty"})
+            profile_mobile_number.add(Validate.Numericality,{failureMessage:" Must be a number"})
             var profile_biography = new LiveValidation("profile_biography",{validMessage:" ",onlyOnSubmit:true});
-            profile_biography.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            profile_biography.add(Validate.Presence,{failureMessage:" Can't be empty"})
             var bdate = new LiveValidation("profile_birth_date",{validMessage:" ",onlyOnSubmit:true});
-            bdate.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            bdate.add(Validate.Presence,{failureMessage:" Can't be empty"})
 //            $('#dob').datepicker({
 //                changeMonth: true,
 //                changeYear: true,
