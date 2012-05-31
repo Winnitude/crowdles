@@ -22,7 +22,8 @@ class Admin::ConsultantWorkersController < ApplicationController
     admin_group_consultant_worker.consultant_worker = consultant_worker
     affillation_key = admin_group_consultant_worker.build_affillation_key
     affillation_key.generate_key
-    @selected_user.update_attributes(:role=>"Consultant Worker")
+   # @selected_user.update_attributes(:role=>"Consultant Worker")
+    RolesManager.add_role("Consultant Worker",@selected_user)
 
     #logger.info "admin group#######{admin_group.to_a.inspect}"
     #logger.info "admin groupcw#######{admin_group_consultant_worker.to_a.inspect}"

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= content_for?(:title) ? yield(:title) : "CrowdFunding" %></title>
@@ -33,31 +35,29 @@
       <a class="brand" href="/">CrowdFunding</a>
       <div class="container nav-collapse">
         <ul class="nav">
-         <li class="brand"> <%=current_user.role if current_user.present? %>   </li>
+
 
           <% if user_signed_in? %>
-              <% if !current_user.nil?  %>
-                  <% if current_user.role == "Global Admin" && request.url.index(ADMIN_HOST).present? %>
+              <% if !current_user.blank?  %>
+                  <% if RolesManagement::RolesManager.is_role_present?("Global Admin", current_user)&& request.url.index(ADMIN_HOST).present? %>
+                      <li class="brand"> <%= "Global Admin" %>   </li>
                       <%= render :partial => 'shared/global_admin_layout'%>
                   <% end %>
-                  <% if current_user.role == "Main Local Admin" && request.url.index(ADMIN_HOST).present? %>
+                  <% if RolesManagement::RolesManager.is_role_present?("Main Local Admin", current_user) && request.url.index(ADMIN_HOST).present? %>
+                      <li class="brand"> <%= "Main Local Admin" %>   </li>
                       <%= render :partial => 'shared/main_local_admin_layout'%>
                   <% end %>
-                  <% if current_user.role == "Local Admin" && request.url.index(ADMIN_HOST).present?%>
+                  <% if RolesManagement::RolesManager.is_role_present?("Local Admin", current_user) && request.url.index(ADMIN_HOST).present?%>
+                      <li class="brand"> <%= "Local Admin" %>   </li>
                       <%= render :partial => 'shared/local_admin_layout'%>
                   <% end %>
-                  <% if current_user.role == "User" || current_user.role.blank? %>
-                      <%= render :partial => 'shared/user_layout' ,:locals => {:current_user => current_user}%>
+                  <% if RolesManagement::RolesManager.is_role_present?("User", current_user) && request.url.index(ADMIN_HOST).present?  %>
+                      <%= render :partial => 'shared/user_layout' %>
                   <% end %>
-                  <% if current_user.role == "Admin Group Owner" && request.url.index(ADMIN_HOST).present?%>
-                      <%= render :partial => 'shared/admin_group_owner_layout'%>
+                  <% if RolesManagement::RolesManager.is_role_present?("Worker", current_user) && request.url.index(ADMIN_HOST).present? %>
+                      <%= render :partial => 'shared/worker_layout' %>
                   <% end %>
-                  <% if current_user.role == "Business Group Owner" && request.url.index(ADMIN_HOST).present?%>
-                      <%= render :partial => 'shared/business_group_owner_layout'%>
-                  <% end %>
-                  <% if current_user.role == "Main Admin Group Owner" && request.url.index(ADMIN_HOST).present?%>
-                      <%= render :partial => 'shared/main_admin_group_owner_layout'%>
-                  <% end %>
+
               <%end  %>
           <% end %>
         </ul>

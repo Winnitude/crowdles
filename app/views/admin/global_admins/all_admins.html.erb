@@ -2,7 +2,7 @@
   <thead> <tr>
     <th>Email</th>
     <th>Country</th>
-    <th>Type</th>
+    <!--<th>Type</th>-->
     <th>Change to MLA</th>
     <th>Actions</th>
   </tr>
@@ -13,9 +13,9 @@
       <tr>
         <td><%=admin.email %></td>
         <td><%= admin.country %></td>
-        <td><%=admin.role %></td>
+        <!--<td><%#=admin.role %></td>-->
         <td>
-          <%if admin.role == "Local Admin"%>
+          <%if RolesManagement::RolesManager.is_role_present?("Local Admin", admin)%>
               <%if @is_any_main_local_admin %>
               <%= link_to 'Change to MLA',"#", :confirm => 'Already a MLA exist in system' %>
               <%else%>

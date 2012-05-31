@@ -11,7 +11,7 @@
     <th><strong> Action<strong></th>
   </tr>
   </thead>
-  <% @user_from_not_any_countries.each do |user_from_not_any_country| %>
+  <% @all_users.each do |user_from_not_any_country| %>
       <%profile= user_from_not_any_country.profile.nil? ? Profile.new : user_from_not_any_country.profile%>
       <tr>
         <td><%= user_from_not_any_country.email %></td>

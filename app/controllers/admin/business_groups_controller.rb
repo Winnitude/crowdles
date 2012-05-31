@@ -4,19 +4,19 @@ class Admin::BusinessGroupsController < ApplicationController
 
   end
   def create
-   user = User.where(:_id =>params[:user_id]).to_a.first
-   user.role= "Business Group Owner"
-   bussiness_group = user.build_business_group(params[:business_group])
-   affillation_key = bussiness_group.build_affillation_key
-   affillation_key.key = Digest::SHA1.hexdigest(Time.now.to_s)[0,15] #todo must move to after_create filter AK model
-   if bussiness_group.save  && user.save && affillation_key.save
-     logger.info bussiness_group.inspect
-     UserMailer.notification_for_switching_to_worker(user).deliver
-     redirect_to root_path ,:notice=>" successfully created "
+    user = User.where(:_id =>params[:user_id]).to_a.first
+    RolesManager.add_role("Business Group Owner",user)
+    bussiness_group = user.build_business_group(params[:business_group])
+    affillation_key = bussiness_group.build_affillation_key
+    affillation_key.key = Digest::SHA1.hexdigest(Time.now.to_s)[0,15] #todo must move to after_create filter AK model
+    if bussiness_group.save  && user.save && affillation_key.save
+      logger.info bussiness_group.inspect
+      UserMailer.notification_for_switching_to_worker(user).deliver
+      redirect_to root_path ,:notice=>" successfully created "
 
-   else
-     redirect_to :back ,:notice=>"not created "
-   end
+    else
+      redirect_to :back ,:notice=>"not created "
+    end
   end
 
   def related_ideas
@@ -34,6 +34,6 @@ class Admin::BusinessGroupsController < ApplicationController
   private
 
   def should_be_admin_group_owner
-  redirect_to root_path, :notice => "You should have the AGO privileges to perform this action"   if current_user.role != "Admin Group Owner"
+    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action"  if RolesManager.is_role_present?("Admin Group Owner", current_user)
   end
 end

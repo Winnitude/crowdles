@@ -17,7 +17,7 @@ class SessionsController <  Devise::SessionsController
     logger.info "#########################{resource.inspect}"
     logger.info "#########################{resource_name.inspect}"
     if resource.is_provider_terms_of_service
-      if (resource.role == "User" && request.url.index(ADMIN_HOST).present?)
+      if (RolesManager.is_role_present?("User",resource) && request.url.index(ADMIN_HOST).present?)
 
         redirect_to logout_path(:error=> "error")
 

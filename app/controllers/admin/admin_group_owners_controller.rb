@@ -3,7 +3,8 @@ class Admin::AdminGroupOwnersController < ApplicationController
 
   #NOTE:ago this will return all the workers  so that ago  can select them to make agw
   def view_all_workers
-    @workers = User.where(:role => "Worker").to_a
+   # @workers = User.where(:role => "Worker").to_a
+     @workers = User.get_all_user_for_selected_role "Worker"
   end
 
   #NOTE:ago this will return all the AGWs  so that ago  can select them to make BGO
@@ -12,7 +13,7 @@ class Admin::AdminGroupOwnersController < ApplicationController
     #logger.info @admin_group_workers.to_a.inspect
     #logger.info @admin_group_workers.length.inspect
     admin_group = current_user.get_admin_group
-    @admin_group_workers = admin_group.admin_group_workers.to_a.select{|i| i.user if i.user.present? && i.user.role == "Admin Group Worker" }
+    @admin_group_workers = admin_group.admin_group_workers.to_a.select{|i| i.user if i.user.present? && RolesManager.is_role_present?("Admin Group Worker", i.user)}
     logger.info @admin_group_workers.inspect
   end
 
@@ -34,6 +35,6 @@ class Admin::AdminGroupOwnersController < ApplicationController
   private
 
   def should_be_AGO
-    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action" if current_user.role != "Admin Group Owner"
+    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action" if RolesManager.is_role_present?("Admin Group Owner", current_user)
   end
 end

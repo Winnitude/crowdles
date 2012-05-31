@@ -8,7 +8,7 @@
     <th><strong> First Name <strong></th>
     <th><strong> Last Name <strong></th>
     <th><strong> Country <strong></th>
-    <th><strong> User Role<strong></th>
+    <!--<th><strong> User Role<strong></th>-->
     <th><strong> Action<strong></th>
   </tr>
   </thead>
@@ -21,7 +21,7 @@
         <td><%= profile.first_name %></td>
         <td><%= profile.last_name %></td>
         <td><%= fetch_county_name(ago) %></td>
-        <td> <%= ago.role %>     </td>
+        <!--<td> <%#= ago.role %>     </td>-->
         <td> <% if @already_having_mago.blank? %>
                 <%= link_to "Change to MAGO",show_AGO_for_change_role_path(ago.id)%>
              <% else %>
