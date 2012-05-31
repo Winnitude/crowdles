@@ -11,6 +11,7 @@ class User
   has_one :admin_group_worker
   has_one :business_group
   has_one :consultant_worker
+  belongs_to :user
 
 
 

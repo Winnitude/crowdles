@@ -1,6 +1,6 @@
 class RegistrationsController <  Devise::RegistrationsController
   before_filter :redirect_if_already_exist ,:only=>[:create]
-
+  autocomplete :country, :name
   def create_LA
     build_resource
 
@@ -19,6 +19,7 @@ class RegistrationsController <  Devise::RegistrationsController
       respond_with resource
     end
   end
+
 
   private
 

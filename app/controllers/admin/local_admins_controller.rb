@@ -1,6 +1,7 @@
 class Admin::LocalAdminsController < ApplicationController
   before_filter :should_be_GA ,:only => [:create_local_admin, :new_local_admin ,:change_admin_role]
   before_filter :get_user
+  autocomplete :country, :name
 
   def show_local_admin
     @local_admins = User.where(:role => "Local Admin").to_a
