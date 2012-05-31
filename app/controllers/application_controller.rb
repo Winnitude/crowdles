@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
+  require 'roles_management.rb'
+  include RolesManagement
   helper_method :fetch_county_name
 
   def after_sign_in_path_for(resource)
