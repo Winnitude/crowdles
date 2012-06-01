@@ -96,9 +96,9 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   #NOTE change worker to admin group owner
-  def chenge_worker_role
+  def change_worker_role
     @selected_user = User.find(params[:id])
-    @admin_group = @selected_user.build_admin_group(params[:admin_group])
+    @admin_group = @selected_user.admin_groups.new(params[:admin_group])
     @admin_group.save_affillation_key_for_admin_group_owner
     change_to_AGO @selected_user
     LaMailer.changed_role(@selected_user,"Admin Group Owner").deliver

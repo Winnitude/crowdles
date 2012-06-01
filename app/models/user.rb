@@ -8,9 +8,9 @@ class User
   #  before_create :build_profile
   # embeds_many :ideas
   has_many :ideas
-  has_one :admin_group
-  has_one :admin_group_worker
-  has_one :business_group
+  has_many :admin_groups
+  has_many :admin_group_workers
+  has_many :business_groups
   has_one :consultant_worker
 
   belongs_to :country_detail
