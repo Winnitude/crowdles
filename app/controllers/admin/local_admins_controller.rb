@@ -16,6 +16,7 @@ class Admin::LocalAdminsController < ApplicationController
 
   def new_local_admin
     @local_admin= User.new
+    @la_setting = @local_admin.build_la_setting
   end
 
   #NOTE this will create local admin
@@ -23,19 +24,21 @@ class Admin::LocalAdminsController < ApplicationController
     @local_admin = User.new params[:user]
     value = @local_admin.set_la_attributes
     @profile =@local_admin.build_profile params[:profile]
-    if @local_admin.save && @profile.save
+    @la_setting = @local_admin.build_la_setting  params[:la_setting]
+    if @local_admin.save && @profile.save && @la_setting.save
       RolesManager.add_role("Local Admin", @local_admin)
       RolesManager.remove_role("User", @local_admin)
       #redirect_to root_path ,:notice => "Successfully created"
-      LaMailer.welcome_email(@local_admin,@profile,value).deliver
+      LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver
       redirect_to root_path ,:notice => "Successfully created"
     else
-     redirect_to :back  ,:notice=>"failure"
+    redirect_to :back  ,:notice=>"failure"
     end
   end
 
   def edit_local_admin
     @admin = User.find(params[:id])
+    @la_setting = @admin.la_setting
     #render :json=> @admin
   end
 
@@ -97,9 +100,9 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   #NOTE change worker to admin group owner
-  def chenge_worker_role
+  def change_worker_role
     @selected_user = User.find(params[:id])
-    @admin_group = @selected_user.build_admin_group(params[:admin_group])
+    @admin_group = @selected_user.admin_groups.new(params[:admin_group])
     @admin_group.save_affillation_key_for_admin_group_owner
     change_to_AGO @selected_user
     LaMailer.changed_role(@selected_user,"Admin Group Owner").deliver

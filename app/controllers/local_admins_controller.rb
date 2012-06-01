@@ -82,7 +82,7 @@ class LocalAdminsController < ApplicationController
     @already_having_mago = User.where(:mago_la_id=>@user.id).to_a
   end
 
-  def chenge_worker_role
+  def change_worker_role
     @selected_user = User.find(params[:id])
     change_to_AGO @selected_user
     LaMailer.changed_role(@selected_user).deliver
