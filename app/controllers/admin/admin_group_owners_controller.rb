@@ -35,6 +35,6 @@ class Admin::AdminGroupOwnersController < ApplicationController
   private
 
   def should_be_AGO
-    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action" if RolesManager.is_role_present?("Admin Group Owner", current_user)
+    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action" if !(RolesManager.is_role_present?("Admin Group Owner", current_user))
   end
 end

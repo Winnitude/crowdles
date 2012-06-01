@@ -17,14 +17,14 @@ class SessionsController <  Devise::SessionsController
     logger.info "#########################{resource.inspect}"
     logger.info "#########################{resource_name.inspect}"
     if resource.is_provider_terms_of_service
-      if (RolesManager.is_role_present?("User",resource) && request.url.index(ADMIN_HOST).present?)
-
-        redirect_to logout_path(:error=> "error")
-
-      else
+      #if (RolesManager.is_role_present?("User",resource) && request.url.index(ADMIN_HOST).present?)
+      #
+      #  redirect_to logout_path(:error=> "error")
+      #
+      #else
         set_flash_message(:notice, :signed_in) if is_navigational_format?
         sign_in_and_redirect(resource_name ,resource)
-      end
+      #end
     else
       set_flash_message(:notice, :is_provider_terms_of_service)
       sign_in(resource_name ,resource)

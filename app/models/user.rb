@@ -182,13 +182,13 @@ class User
   end
 
   def change_role_to_AGW(admin_group_owner)
-    RolesManager.add_role("Admin Group Worker", self)
+    RolesManagement::RolesManager.add_role("Admin Group Worker", self)
     #self.role = "Admin Group Worker"
     #self.agw_ago_id = admin_group_owner.id
   end
 
   def change_role_to_BGO(admin_group_owner)
-    RolesManager.add_role("Business Group Owner", self)
+    RolesManagement::RolesManager.add_role("Business Group Owner", self)
    # self.role = "Business Group Owner"
     self.bgo_ago_id = admin_group_owner.id
   end
@@ -209,6 +209,10 @@ class User
 
   def assign_role_to_user
       RolesManagement::RolesManager.add_role("User",self)
+  end
+
+  def get_all_roles
+    all_user_roles = self.user_roles.collect{|i| i.role.role}
   end
 end
 

@@ -73,7 +73,7 @@ class UsersController < ApplicationController
 
       #@user.save
       #logger.info "user##########{@user.role}###############id#{@user.agw_ago_id}"
-      UserMailer.notification_for_switching_to_worker(@user).deliver
+      UserMailer.notification_for_switching_to_worker(@user,"Admin Group Worker").deliver
       redirect_to  view_all_workers_admin_group_owners_path, :notice => "Successfully Changed To AGW"
     else
       redirect_to  :back, :notice => "failure"

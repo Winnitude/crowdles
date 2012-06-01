@@ -30,7 +30,7 @@ class Admin::ConsultantWorkersController < ApplicationController
     #logger.info "aaaaaaaaaaakkkkkkkkkkkkkkkkk#######{affillation_key.to_a.inspect}"
     #logger.info "workerrrrrrrrr#{consultant_worker.to_a.inspect}"
     if affillation_key.save && consultant_worker.save && admin_group_consultant_worker.save
-      LaMailer.changed_role(@selected_user).deliver
+      LaMailer.changed_role(@selected_user,"Consultant Worker Controller").deliver
       redirect_to :back, :notice => "Successfully Changed To CW"
     else
       redirect_to :back, :notice => "failure"
