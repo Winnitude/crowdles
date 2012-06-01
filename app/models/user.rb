@@ -12,8 +12,11 @@ class User
   has_one :admin_group_worker
   has_one :business_group
   has_one :consultant_worker
+
+  belongs_to :country_detail
   has_many :user_roles
   after_create :assign_role_to_user
+
 
 
   accepts_nested_attributes_for :idea

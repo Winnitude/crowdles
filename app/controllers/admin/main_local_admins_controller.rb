@@ -1,7 +1,7 @@
-class Admin::MainLocalAdminController < ApplicationController
+class Admin::MainLocalAdminsController < ApplicationController
 
   before_filter :get_all_users
-
+  autocomplete :country_detail, :name
 
   def all_users
 
@@ -33,7 +33,7 @@ class Admin::MainLocalAdminController < ApplicationController
     @user = User.find(params[:id])
     @user.update_user_from_loca_admin params[:user]
     #@user.update_attributes(params[:user])
-    redirect_to main_local_admin_all_users_path
+    redirect_to main_local_admins_all_users_path
   end
 
   def  ideas_belonging_to_users

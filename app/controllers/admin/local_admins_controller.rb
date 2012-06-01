@@ -1,6 +1,7 @@
 class Admin::LocalAdminsController < ApplicationController
   before_filter :should_be_GA ,:only => [:create_local_admin, :new_local_admin ,:change_admin_role]
   before_filter :get_user
+  autocomplete :country_detail, :name
 
   def show_local_admin
    # @local_admins = User.where(:role => "Local Admin").to_a
@@ -43,8 +44,6 @@ class Admin::LocalAdminsController < ApplicationController
     if @admin.update_attributes(params[:user]) && @profile.update_attributes(params[:profile])
     redirect_to :root, :notice => "successfully_updated"
     end
-
-    #render :json=> @admin
   end
 
   def all_users_globally

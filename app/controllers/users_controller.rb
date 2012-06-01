@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_filter :should_be_local_admin, :only => [:user_management , :to_worker ,:show_user_to_local_admin]
   before_filter :should_be_AGO ,:only => [:to_admin_group_worker,:to_business_group_owner]
 
+
   def user_management
    # @users = User.where(:country=>fetch_county_name(@user)).where(:role => "User")
    # role= Role.where(:role => "User").first

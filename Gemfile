@@ -13,7 +13,7 @@ gem "devise", "2.1.0.rc"
 gem 'omniauth', ">= 0.1.6"
 gem 'rb-readline'
 gem 'geoip'
-
+gem 'rails3-jquery-autocomplete'
 gem 'ey_config'
 gem 'mongo'
 # To use ActiveModel has_secure_password
