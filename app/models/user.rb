@@ -12,6 +12,7 @@ class User
   has_many :admin_group_workers
   has_many :business_groups
   has_one :consultant_worker
+  has_one :la_setting
 
   belongs_to :country_detail
   has_many :user_roles
@@ -51,13 +52,13 @@ class User
   field :is_provider_terms_of_service,    :type => Boolean ,:null => false, :default => false
   field :is_provider,                     :type => Boolean ,:null => false, :default => false
   #field :role,                            :type => String,  :null => false, :default => "User"
-  field :is_master,                       :type => Boolean    ###LA
-  field :la_country,                      :type => String     ###LA
-  field :la_language,                     :type => String     ###LA
-  field :la_web_domain,                   :type => String     ###LA
-  field :la_platform_home,                :type => String     ###LA
-  field :la_status,                       :type => String
-  field :la_name,                         :type => String     ###la
+  #field :is_master,                       :type => Boolean    ###LA
+  #field :la_country,                      :type => String     ###LA
+  #field :la_language,                     :type => String     ###LA
+  #field :la_web_domain,                   :type => String     ###LA
+  #field :la_platform_home,                :type => String     ###LA
+  #field :la_status,                       :type => String
+  #field :la_name,                         :type => String     ###la
   field :agw_ago_id,                      :type=> String      ##for agw type this will represent its AGO
   field :bgo_ago_id,                      :type=> String      ##for bgo type this will represent its AGO
   field :mago_la_id,                      :type => String     ###la's id for mago'

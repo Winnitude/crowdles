@@ -31,12 +31,7 @@ class Profile
   field :telephone_number,          :type => String, :default => ""
   mount_uploader :image, ImageUploader
   mount_uploader :video, ImageUploader
-  field :company_name,         :type => String
-  field :address,         :type => String
-  field :billing_profile_id, :type=> String
-  field :platform_billing_profile_id, :type=> String
-  field :mail_chimp_integration_key, :type=> String
-  field :freshbooks_integration_key, :type=> String
+
 #  validates_with FullNameValidator
 #  before_validation :strip_names
 
