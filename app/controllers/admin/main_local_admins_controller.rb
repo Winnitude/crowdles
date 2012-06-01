@@ -47,11 +47,11 @@ class Admin::MainLocalAdminsController < ApplicationController
   end
 
   def  listing_good_ideas
-     @good_ideas = Idea.all.select{|idea| @user_from_not_any_countries.map(&:id).include?(idea.user_id) && idea.type == "Good idea"}
+     @good_ideas = Idea.all.select{|idea| @all_users.map(&:id).include?(idea.user_id) && idea.type == "Good idea"}
   end
 
   def  listing_projects
-    @projects = Idea.all.select{|idea| @user_from_not_any_countries.map(&:id).include?(idea.user_id) && idea.type == "Project"}
+    @projects = Idea.all.select{|idea| @all_users.map(&:id).include?(idea.user_id) && idea.type == "Project"}
   end
 
   private
@@ -60,8 +60,8 @@ class Admin::MainLocalAdminsController < ApplicationController
     #country = User.where(:role=>"Local Admin").map(&:country)
    # users_not_beloning_to_any_countries = User.all.select{|u| country.exclude?(u.country)}
     #@user_from_not_any_countries = users_not_beloning_to_any_countries.select{|user| ["Global Admin","Main Local Admin"].exclude?(user.role)}
-    @user_from_not_any_countries = User.all.select{|user|  user.role == "User"}
-
+    #@user_from_not_any_countries = User.all.select{|user|  user.role == "User"}
+    @all_users = User.get_all_user_for_selected_role "User"
   end
 
 

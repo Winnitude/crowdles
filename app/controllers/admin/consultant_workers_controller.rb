@@ -22,14 +22,15 @@ class Admin::ConsultantWorkersController < ApplicationController
     admin_group_consultant_worker.consultant_worker = consultant_worker
     affillation_key = admin_group_consultant_worker.build_affillation_key
     affillation_key.generate_key
-    @selected_user.update_attributes(:role=>"Consultant Worker")
+   # @selected_user.update_attributes(:role=>"Consultant Worker")
+    RolesManager.add_role("Consultant Worker",@selected_user)
 
     #logger.info "admin group#######{admin_group.to_a.inspect}"
     #logger.info "admin groupcw#######{admin_group_consultant_worker.to_a.inspect}"
     #logger.info "aaaaaaaaaaakkkkkkkkkkkkkkkkk#######{affillation_key.to_a.inspect}"
     #logger.info "workerrrrrrrrr#{consultant_worker.to_a.inspect}"
     if affillation_key.save && consultant_worker.save && admin_group_consultant_worker.save
-      LaMailer.changed_role(@selected_user).deliver
+      LaMailer.changed_role(@selected_user,"Consultant Worker Controller").deliver
       redirect_to :back, :notice => "Successfully Changed To CW"
     else
       redirect_to :back, :notice => "failure"

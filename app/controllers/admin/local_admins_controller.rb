@@ -4,7 +4,8 @@ class Admin::LocalAdminsController < ApplicationController
   autocomplete :country_detail, :name
 
   def show_local_admin
-    @local_admins = User.where(:role => "Local Admin").to_a
+   # @local_admins = User.where(:role => "Local Admin").to_a
+    @local_admins = User.get_all_user_for_selected_role "Local Admin"
   end
 
   def change_admin_role
@@ -23,6 +24,7 @@ class Admin::LocalAdminsController < ApplicationController
     value = @local_admin.set_la_attributes
     @profile =@local_admin.build_profile params[:profile]
     if @local_admin.save && @profile.save
+      RolesManager.add_role("Local Admin", @local_admin)
       #redirect_to root_path ,:notice => "Successfully created"
       LaMailer.welcome_email(@local_admin,@profile,value).deliver
       redirect_to root_path ,:notice => "Successfully created"
@@ -45,7 +47,8 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   def all_users_globally
-    @users = User.where(:role => "User").to_a
+    #@users = User.where(:role => "User").to_a
+    @users = User.get_all_user_for_selected_role "User"
   end
 
 
@@ -77,11 +80,13 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   def listing_all_the_workers
-    @workers = User.where(:role=>"Worker").to_a
+    #@workers = User.where(:role=>"Worker").to_a
+    @workers = User.get_all_user_for_selected_role "Worker"
   end
 
   def listing_all_the_agos
-    @AGOS = User.where(:role=>"Admin Group Owner").to_a
+   # @AGOS = User.where(:role=>"Admin Group Owner").to_a
+    @AGOS = User.get_all_user_for_selected_role "Admin Group Owner"
     @already_having_mago = User.where(:mago_la_id=>@user.id).to_a
   end
 
@@ -96,7 +101,7 @@ class Admin::LocalAdminsController < ApplicationController
     @admin_group = @selected_user.build_admin_group(params[:admin_group])
     @admin_group.save_affillation_key_for_admin_group_owner
     change_to_AGO @selected_user
-    LaMailer.changed_role(@selected_user).deliver
+    LaMailer.changed_role(@selected_user,"Admin Group Owner").deliver
     redirect_to listing_all_the_workers_local_admins_path, :notice => "Successfully Changed To AGO"
   end
 
@@ -114,7 +119,7 @@ class Admin::LocalAdminsController < ApplicationController
     affillation_key.remove_affillation_key if !affillation_key.blank?
     @admin_group.save
     change_to_MAGO @selected_user
-    LaMailer.changed_role(@selected_user).deliver
+    LaMailer.changed_role(@selected_user,"Main Admin Group Owner").deliver
     redirect_to listing_all_the_agos_local_admins_path , :notice => "Successfully Changed To MAGO"
   end
 
@@ -125,23 +130,32 @@ class Admin::LocalAdminsController < ApplicationController
 
   private
   def toggle_admin user   #TODO need to move to user model
-    user.role = user.role == "Local Admin" ? "Main Local Admin" : "Local Admin"
-    user.save
+   # user.role = user.role == "Local Admin" ? "Main Local Admin" : "Local Admin"
+    if RolesManager.is_role_present?("Local Admin", user)
+      RolesManager.remove_role("Local Admin", user)
+      RolesManager.add_role("Main Local Admin", user)
+    else
+      RolesManager.remove_role("Main Local Admin", user)
+      RolesManager.add_role("Local Admin", user)
+    end
+    #user.save
   end
   def  should_be_GA       #TODO need to move to user model
-    if current_user.role != "Global Admin"
+    unless RolesManager.is_role_present?("Global Admin", current_user)
       redirect_to root_path, :notice => "sorry you are not able to perform this activity"
     end
   end
 
   def change_to_AGO user   #TODO need to move to user model
-    user.role = "Admin Group Owner"
-    user.save
+    #user.role = "Admin Group Owner"
+    #user.save
+    RolesManager.add_role("Admin Group Owner", user)
   end
 
   def change_to_MAGO user  #TODO need to move to user model
-    user.role = "Main Admin Group Owner"
+    #user.role = "Main Admin Group Owner"
     user.mago_la_id = @user.id
     user.save
+    RolesManager.add_role("Main Admin Group Owner", user)
   end
 end

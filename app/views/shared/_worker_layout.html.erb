@@ -1,0 +1,9 @@
+<% if RolesManagement::RolesManager.is_role_present?("Admin Group Owner", current_user) && request.url.index(ADMIN_HOST).present? %>
+    <%= render :partial => 'shared/admin_group_owner_layout'%>
+<% end %>
+<% if RolesManagement::RolesManager.is_role_present?("Business Group Owner", current_user) && request.url.index(ADMIN_HOST).present? %>
+    <%= render :partial => 'shared/business_group_owner_layout'%>
+<% end %>
+<% if RolesManagement::RolesManager.is_role_present?("Main Admin Group Owner", current_user) && request.url.index(ADMIN_HOST).present? %>
+    <%= render :partial => 'shared/main_admin_group_owner_layout'%>
+<% end %>

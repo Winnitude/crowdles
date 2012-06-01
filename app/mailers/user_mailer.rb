@@ -6,8 +6,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, :subject => "Welcome to Crowd Funding Site")
   end
 
-  def notification_for_switching_to_worker(user)
+  def notification_for_switching_to_worker(user,role)
      @user = user
+     @role = role
      mail(:to => @user.email, :subject => "Role Changed")
   end
 end

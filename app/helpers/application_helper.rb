@@ -1,4 +1,6 @@
 module ApplicationHelper
+  #require 'roles_management.rb'
+  #include RolesManagement
 #  def display_flash(name,msg)
 #    case name.to_s
 #    when "notice" then

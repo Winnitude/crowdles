@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  #after_create :assign_role_to_user
   #  embeds_one :profile
   #  accepts_nested_attributes_for :profile
   has_one :profile,:dependent => :destroy,:autosave=> true# it should be first
@@ -14,7 +15,7 @@ class User
 
   belongs_to :country_detail
   has_many :user_roles
-
+  after_create :assign_role_to_user
 
 
 
@@ -22,7 +23,7 @@ class User
 
   attr_accessible :profile_attributes, :email, :password, :password_confirmation,
                   :remember_me ,:country, :terms_of_service,:is_provider,
-                  :is_provider_terms_of_service,:profile,:role,:is_master,
+                  :is_provider_terms_of_service,:profile,:is_master,
                   :la_country,:la_language,:la_web_domain,:la_platform_home ,:la_name,:la_status,
                   :agw_ago_id, :bgo_ago_id,:last_sign_in_ip
   #######################User Login functionality with devise integration############################
@@ -49,7 +50,7 @@ class User
   field :suspended,                       :type => Boolean ,:null => false, :default => false
   field :is_provider_terms_of_service,    :type => Boolean ,:null => false, :default => false
   field :is_provider,                     :type => Boolean ,:null => false, :default => false
-  field :role,                            :type => String,  :null => false, :default => "User"
+  #field :role,                            :type => String,  :null => false, :default => "User"
   field :is_master,                       :type => Boolean    ###LA
   field :la_country,                      :type => String     ###LA
   field :la_language,                     :type => String     ###LA
@@ -159,7 +160,8 @@ class User
   end
 
   def create_worker
-    self.role = "Worker"
+   # self.role = "Worker"
+    RolesManagement::RolesManager.add_role("Worker", self)
   end
 
   def update_user_from_loca_admin params_user
@@ -172,7 +174,7 @@ class User
     logger.info value.inspect
     self.password = value
     self.password_confirmation
-    self.role = "Local Admin"
+    #self.role = "Local Admin"
     self.is_provider_terms_of_service= true
     self.terms_of_service = true
     self.skip_confirmation!
@@ -180,23 +182,38 @@ class User
   end
 
   def change_role_to_AGW(admin_group_owner)
-    self.role = "Admin Group Worker"
+    RolesManagement::RolesManager.add_role("Admin Group Worker", self)
+    #self.role = "Admin Group Worker"
     #self.agw_ago_id = admin_group_owner.id
   end
 
   def change_role_to_BGO(admin_group_owner)
-    self.role = "Business Group Owner"
+    RolesManagement::RolesManager.add_role("Business Group Owner", self)
+   # self.role = "Business Group Owner"
     self.bgo_ago_id = admin_group_owner.id
   end
 
   def get_admin_group
-    admin_group= AdminGroup.where(:admin_group_owner_id => self._id).to_a.first  if self.role == "Admin Group Owner"
+    admin_group= AdminGroup.where(:admin_group_owner_id => self._id).to_a.first  if RolesManagement::RolesManager.is_role_present?("Admin Group Owner", self)
   end
 
   def get_business_group
-    business_group= BusinessGroup.where(:business_group_owner_id => self._id).to_a.first  if self.role == "Business Group Owner"
+    business_group= BusinessGroup.where(:business_group_owner_id => self._id).to_a.first  if RolesManagement::RolesManager.is_role_present?("Business Group Owner", self)
   end
 
+  def self.get_all_user_for_selected_role user_role
+    role= Role.where(:role => user_role).first
+    all_users_role = UserRole.all.select{|i| i.role == role if i.role.present?}
+    return all_users_role.collect{|i| i.user}
+  end
+
+  def assign_role_to_user
+      RolesManagement::RolesManager.add_role("User",self)
+  end
+
+  def get_all_roles
+    all_user_roles = self.user_roles.collect{|i| i.role.role}
+  end
 end
 
 

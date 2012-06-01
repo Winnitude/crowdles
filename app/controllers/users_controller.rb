@@ -7,7 +7,12 @@ class UsersController < ApplicationController
 
 
   def user_management
-    @users = User.where(:country=>fetch_county_name(@user)).where(:role => "User")
+   # @users = User.where(:country=>fetch_county_name(@user)).where(:role => "User")
+   # role= Role.where(:role => "User").first
+   # all_users_role = UserRole.all.select{|i| i.role == role if i.role.present?}
+   # @users=all_users_role.collect{|i| i.user}
+    @users = User.get_all_user_for_selected_role "User"
+
   end
 
   def all_users
@@ -46,8 +51,8 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
     @user.create_worker
     @user.save
-    logger.info "user##########{@user.role}"
-    UserMailer.notification_for_switching_to_worker(@user).deliver
+    #logger.info "user##########{@user.role}"
+    UserMailer.notification_for_switching_to_worker(@user,"Worker").deliver
     redirect_to  all_users_globally_local_admins_path, :notice => "Successfully Changed To Worker"
   end
 
@@ -58,7 +63,8 @@ class UsersController < ApplicationController
     admin_group = current_user.get_admin_group
     admin_group_worker = admin_group.admin_group_workers.new
     admin_group_worker.user= @user
-    @user.role = "Admin Group Worker"
+    #@user.role = "Admin Group Worker"
+    RolesManager.add_role("Admin Group Worker",@user)
     if @user.save && admin_group.save && admin_group_worker.save
 
       #logger.info "#############################{admin_group_worker.inspect}"
@@ -67,7 +73,7 @@ class UsersController < ApplicationController
 
       #@user.save
       #logger.info "user##########{@user.role}###############id#{@user.agw_ago_id}"
-      UserMailer.notification_for_switching_to_worker(@user).deliver
+      UserMailer.notification_for_switching_to_worker(@user,"Admin Group Worker").deliver
       redirect_to  view_all_workers_admin_group_owners_path, :notice => "Successfully Changed To AGW"
     else
       redirect_to  :back, :notice => "failure"
@@ -91,10 +97,10 @@ class UsersController < ApplicationController
   private
 
   def should_be_local_admin
-    redirect_to root_path ,:notice => "Sorry you are not allowed to perform this activity"  unless current_user.role == "Local Admin"
+    redirect_to root_path ,:notice => "Sorry you are not allowed to perform this activity"  unless RolesManager.is_role_present?("Local Admin", current_user)
   end
 
   def should_be_AGO
-    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action"   if current_user.role != "Admin Group Owner"
+    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action" unless RolesManager.is_role_present?("Admin Group Owner", current_user)
   end
 end

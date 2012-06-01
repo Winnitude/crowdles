@@ -1,6 +1,7 @@
 class RegistrationsController <  Devise::RegistrationsController
   before_filter :redirect_if_already_exist ,:only=>[:create]
   autocomplete :country_detail, :name
+
   def create_LA
     build_resource
 
