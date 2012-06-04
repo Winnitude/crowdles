@@ -195,8 +195,8 @@ class User
     self.bgo_ago_id = admin_group_owner.id
   end
 
-  def get_admin_group
-    admin_group= AdminGroup.where(:admin_group_owner_id => self._id).to_a.first  if RolesManagement::RolesManager.is_role_present?("Admin Group Owner", self)
+  def get_admin_groups
+    admin_group= AdminGroup.where(:admin_group_owner_id => self._id).to_a  if RolesManagement::RolesManager.is_role_present?("Admin Group Owner", self)
   end
 
   def get_business_group
