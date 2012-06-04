@@ -11,8 +11,9 @@ class User
   has_many :admin_groups
   has_many :admin_group_workers
   has_many :business_groups
-  has_one :consultant_worker
-  has_one :la_setting
+  has_many :consultant_worker
+  has_one  :la_setting
+  has_one  :main_admin_group
 
   belongs_to :country_detail
   has_many :user_roles

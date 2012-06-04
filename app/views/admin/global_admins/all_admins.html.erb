@@ -1,37 +1,43 @@
 <table border="1" class="table">
+ <h3><div class  align="right "><%= link_to "Create New LA" ,new_local_admin_local_admins_path%></div></h3>
   <thead> <tr>
+    <th>Sr. No</th>
+    <th>Name</th>
     <th>Email</th>
     <th>Country</th>
     <!--<th>Type</th>-->
-    <th>Change to MLA</th>
+    <!--<th>Change to MLA</th>-->
     <th>Actions</th>
   </tr>
   </thead>
 
-  <% @admins.each do |admin| %>
+  <% @admins.each_with_index do |admin,index| %>
 
       <tr>
+        <td><%=index+1 %></td>
+        <td><%=admin.profile.to_s rescue nil%></td>
         <td><%=admin.email %></td>
         <td><%= admin.country %></td>
         <!--<td><%#=admin.role %></td>-->
-        <td>
-          <%if RolesManagement::RolesManager.is_role_present?("Local Admin", admin)%>
+        <!--<td>-->
+          <!--<%if RolesManagement::RolesManager.is_role_present?("Local Admin", admin)%>-->
 
-              <%if @is_any_main_local_admin.present? %>
-              <%= link_to 'Change to MLA',"#", :confirm => 'Already a MLA exist in system' %>
-              <%else%>
-                  <%= link_to 'Change to MLA', change_admin_role_path(admin), confirm: 'Are you sure?', method: :get %>
-              <%end%>
-          <%else%>
-              <%= "Already MLA"%>
-          <%end%>
-        </td>
+              <!--<%if @is_any_main_local_admin.present? %>-->
+              <!--<%= link_to 'Change to MLA',"#", :confirm => 'Already a MLA exist in system' %>-->
+              <!--<%else%>-->
+                  <!--<%= link_to 'Change to MLA', change_admin_role_path(admin), confirm: 'Are you sure?', method: :get %>-->
+              <!--<%end%>-->
+          <!--<%else%>-->
+              <!--<%= "Already MLA"%>-->
+          <!--<%end%>-->
+        <!--</td>-->
         <td> <%= link_to 'Show', show_admin_local_admin_path(admin.id) %> |
           <%= link_to 'Edit',edit_local_admin_local_admin_path(admin.id) %> |
           <% link_url_tag = admin.suspended ? "Activate" : "Dactivate"  %>
           <%= link_to link_url_tag,suspend_user_path(admin.id) %>  |
-          <% link_url_tag_account = admin.canceled ? "ReOpen" : "Cancel"  %>
-          <%= link_to link_url_tag_account,canceled_user_account_path(admin.id) %></td> </td>
+          <%# link_url_tag_account = admin.canceled ? "ReOpen" : "Cancel"  %>
+          <%#= link_to link_url_tag_account,canceled_user_account_path(admin.id) %>
+          <%= link_to "Delete","#" %></td> </td>
       </tr>
   <% end %>
 
