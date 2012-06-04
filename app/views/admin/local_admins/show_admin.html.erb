@@ -1,5 +1,6 @@
 <div class="form-horizontal"> <% user = @admin %>
   <%profile= user.profile.nil? ? Profile.new : user.profile%>
+  <%la_setting= user.la_setting.nil? ? LaSetting.new : user.la_setting%>
   <strong> Email: </strong>  <%= user.email %>      <br>
   <!--<strong> Ip Address: </strong>    <%#= user.last_sign_in_ip %>                <br>-->
 
@@ -7,8 +8,8 @@
   <strong> First Name: </strong>  <%= profile.first_name %>    <br>
   <strong> Last Name: </strong>   <%= profile.last_name %> <br>
 
-  <strong> Country Name: </strong>   <%= user.country %> <br>
-  <strong> Company Name: </strong>   <%= profile.company_name %> <br>
+  <strong> Country: </strong>   <%= user.country %> <br>
+  <strong> Company Name: </strong>   <%= la_setting.company_name %> <br>
   <strong> City: </strong>  <%= profile.city %> <br>
   <strong> State: </strong>  <%= profile.state %>   <br>
   <strong> ZipCode: </strong>  <%= profile.zip_code %>   <br>
@@ -17,14 +18,14 @@
   <strong> Additional Address Info: </strong>  <%= profile.additional_address_info %>  <br>
   <strong> Telephone Number: </strong>  <%= profile.telephone_number %>  <br>
   <!--<strong> NikName: </strong>  <%#= user.profile.nil? ? "": nikname(user.profile) %>    <br>-->
-  <strong> Assigned To Country Detail: </strong>  <%= user.la_country %>  <br>
-  <strong> Language: </strong>    <%= user.la_language %>                <br>
-  <strong> Web Domain: </strong>    <%= user.la_web_domain %>                <br>
-  <strong> Platform Home: </strong>    <%= user.la_platform_home %>                <br>
-  <strong> Billing Profile: </strong>    <%= profile.billing_profile_id %>  <br>
-  <strong> Platform Billing Profile: </strong>    <%= profile.platform_billing_profile_id %>  <br>
-  <strong> Mail Chimp Integration Key: </strong>    <%= profile.mail_chimp_integration_key %>  <br>
-  <strong> Freshbooks Integration Key: </strong>    <%= profile.freshbooks_integration_key %>  <br>
+  <strong> Assigned To Country: </strong>  <%= la_setting.la_country %>  <br>
+  <strong> Language: </strong>    <%= la_setting.language %>                <br>
+  <strong> Web Domain: </strong>    <%= la_setting.web_domain %>                <br>
+  <strong> Platform Home: </strong>    <%= la_setting.platform_home %>                <br>
+  <strong> Billing Profile: </strong>    <%= la_setting.billing_profile_id %>  <br>
+  <strong> Platform Billing Profile: </strong>    <%= la_setting.platform_billing_profile_id %>  <br>
+  <strong> Mail Chimp Integration Key: </strong>    <%= la_setting.mail_chimp_integration_key %>  <br>
+  <strong> Freshbooks Integration Key: </strong>    <%= la_setting.freshbooks_integration_key %>  <br>
   <!--<strong> Birth Date: </strong>     <%#= profile.birth_date %> <br>-->
   <!--<strong> Gender: </strong>   <%#=  profile.gender %>  <br>-->
   <!--<strong> Photo: </strong>   <%#= image_tag user.profile.image_url unless user.profile.nil?%>   <br>-->
