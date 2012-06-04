@@ -26,9 +26,12 @@ class Admin::LocalAdminsController < ApplicationController
     @profile =@local_admin.build_profile params[:profile]
     @la_setting = @local_admin.build_la_setting  params[:la_setting]
     if @local_admin.save && @profile.save && @la_setting.save
+      main_admin_group=@local_admin.build_main_admin_group(:country => @local_admin.la_setting.la_country)
+      RolesManager.add_role("Main Admin Group Owner",@local_admin)
       RolesManager.add_role("Local Admin", @local_admin)
       RolesManager.remove_role("User", @local_admin)
-      #redirect_to root_path ,:notice => "Successfully created"
+      main_admin_group.save
+      logger.info "############################{main_admin_group.inspect}"
       LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver
       redirect_to root_path ,:notice => "Successfully created"
     else
@@ -47,6 +50,8 @@ class Admin::LocalAdminsController < ApplicationController
     @la_setting = @admin.la_setting || @admin.build_la_setting
     if @admin.update_attributes(params[:user]) && @la_setting.update_attributes(params[:la_setting])
     redirect_to :root, :notice => "successfully_updated"
+    else
+      render :edit_local_admin
     end
   end
 
