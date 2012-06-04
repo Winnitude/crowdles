@@ -30,7 +30,7 @@ class Admin::LocalAdminsController < ApplicationController
       LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver
       redirect_to root_path ,:notice => "Successfully created"
     else
-    redirect_to :back  ,:notice=>"failure"
+     render :new_local_admin
     end
   end
 

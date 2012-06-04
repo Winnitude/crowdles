@@ -4,6 +4,20 @@
   <%=form_for @local_admin ,:url=>local_admins_create_local_admin_path do |f| %>
       <%= fields_for @la_setting do |l| %>
        <%= fields_for @local_admin.build_profile do |p| %>
+             <% if @local_admin.errors.any? || @la_setting.errors.any?  %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@local_admin.errors.count + @la_setting.errors.count, "error") %> prohibited this Local Admin from being saved:</h2>
+
+                    <ul>
+                      <% @local_admin.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                      <% end %>
+                      <% @la_setting.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
           <tr>
             <td><%= f.label :email %></td>
             <td><%= f.text_field :email %></td>

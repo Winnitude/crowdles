@@ -4,7 +4,10 @@ class LaSetting
 
 
   field :is_master,                                            :type => Boolean    ###LA
-  field :la_country,                                           :type => String     ###LA
+  field :la_country,                                           :type => String     ###LA \
+  validates :la_country,
+            :uniqueness => true
+
   field :language,                                             :type => String     ###LA
   field :web_domain,                                           :type => String     ###LA
   field :platform_home,                                        :type => String     ###LA
