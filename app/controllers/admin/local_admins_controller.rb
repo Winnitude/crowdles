@@ -11,7 +11,7 @@ class Admin::LocalAdminsController < ApplicationController
   def change_admin_role
     @user = User.find(params[:id])
     toggle_admin @user
-    redirect_to show_local_admin_local_admins_path
+    redirect_to :back
   end
 
   def new_local_admin
@@ -27,6 +27,8 @@ class Admin::LocalAdminsController < ApplicationController
     @la_setting = @local_admin.build_la_setting  params[:la_setting]
     if @local_admin.save && @profile.save && @la_setting.save
       RolesManager.add_role("Local Admin", @local_admin)
+      RolesManager.remove_role("User", @local_admin)
+      #redirect_to root_path ,:notice => "Successfully created"
       LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver
       redirect_to root_path ,:notice => "Successfully created"
     else
@@ -36,14 +38,14 @@ class Admin::LocalAdminsController < ApplicationController
 
   def edit_local_admin
     @admin = User.find(params[:id])
-    @la_setting = @admin.la_setting
+    @la_setting = @admin.la_setting || LaSetting.new
     #render :json=> @admin
   end
 
   def update_local_admin
     @admin = User.find(params[:id])
-    @profile = @admin.profile
-    if @admin.update_attributes(params[:user]) && @profile.update_attributes(params[:profile])
+    @la_setting = @admin.la_setting || @admin.build_la_setting
+    if @admin.update_attributes(params[:user]) && @la_setting.update_attributes(params[:la_setting])
     redirect_to :root, :notice => "successfully_updated"
     end
   end

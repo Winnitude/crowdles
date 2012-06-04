@@ -16,6 +16,7 @@ gem 'geoip'
 gem 'rails3-jquery-autocomplete'
 gem 'ey_config'
 gem 'mongo'
+gem 'hirb'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem "oauth2","0.5.2"

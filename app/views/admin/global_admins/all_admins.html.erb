@@ -16,7 +16,8 @@
         <!--<td><%#=admin.role %></td>-->
         <td>
           <%if RolesManagement::RolesManager.is_role_present?("Local Admin", admin)%>
-              <%if @is_any_main_local_admin %>
+
+              <%if @is_any_main_local_admin.present? %>
               <%= link_to 'Change to MLA',"#", :confirm => 'Already a MLA exist in system' %>
               <%else%>
                   <%= link_to 'Change to MLA', change_admin_role_path(admin), confirm: 'Are you sure?', method: :get %>

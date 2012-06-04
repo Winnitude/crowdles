@@ -12,6 +12,7 @@ namespace :global_admin do
     user.skip_confirmation!
     user.save
     RolesManager.add_role("Global Admin", user)
+    RolesManager.remove_role("User", user)
   end
 end
 

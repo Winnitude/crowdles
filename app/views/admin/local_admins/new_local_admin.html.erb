@@ -144,6 +144,7 @@
               profile_state.add(Validate.Presence,{failureMessage:"Can't be empty"})
               var profile_telephone_number = new LiveValidation("profile_telephone_number",{validMessage:" ",onlyOnSubmit:true});
               profile_telephone_number.add(Validate.Presence,{failureMessage:"Can't be empty"})
+              profile_telephone_number.add(Validate.Numericality,{failureMessage:"Can't be empty"})
               var profile_billing = new LiveValidation("la_setting_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
               profile_billing.add(Validate.Presence,{failureMessage:"Can't be empty"})
               var profile_plate_form_billing = new LiveValidation("la_setting_platform_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
