@@ -1,5 +1,5 @@
 <table border="1" class="table">
-  <h3><div class  align="right "><%= link_to "Create New LA" ,new_local_admin_local_admins_path%></div></h3>
+
   <thead> <tr>
     <th>Sr. No</th>
     <th>Name Of Owner</th>
@@ -17,7 +17,7 @@
         <td><%=index+1 %></td>
         <td><%=group.user.profile.to_s rescue nil%></td>
         <td><%=group.user.email %></td>
-        <td><%= group.user.country %></td>
+        <td><%= group.country %></td>
         <!--<td><%#=admin.role %></td>-->
         <!--<td>-->
         <!--

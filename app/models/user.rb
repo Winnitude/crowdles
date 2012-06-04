@@ -162,7 +162,7 @@ class User
   end
 
   def create_worker
-   # self.role = "Worker"
+    # self.role = "Worker"
     RolesManagement::RolesManager.add_role("Worker", self)
   end
 
@@ -191,16 +191,17 @@ class User
 
   def change_role_to_BGO(admin_group_owner)
     RolesManagement::RolesManager.add_role("Business Group Owner", self)
-   # self.role = "Business Group Owner"
+    # self.role = "Business Group Owner"
     self.bgo_ago_id = admin_group_owner.id
   end
+
 
   def get_admin_groups
     admin_group= AdminGroup.where(:admin_group_owner_id => self._id).to_a  if RolesManagement::RolesManager.is_role_present?("Admin Group Owner", self)
   end
 
   def get_business_group
-    business_group= BusinessGroup.where(:business_group_owner_id => self._id).to_a.first  if RolesManagement::RolesManager.is_role_present?("Business Group Owner", self)
+    business_group= BusinessGroup.where(:business_group_owner_id => self._id).to_a  if RolesManagement::RolesManager.is_role_present?("Business Group Owner", self)
   end
 
   def self.get_all_user_for_selected_role user_role
@@ -210,11 +211,24 @@ class User
   end
 
   def assign_role_to_user
-      RolesManagement::RolesManager.add_role("User",self)
+    RolesManagement::RolesManager.add_role("User",self)
   end
 
   def get_all_roles
     all_user_roles = self.user_roles.collect{|i| i.role.role}
+  end
+
+  def create_admin_group admin_group
+    @admin_group = self.admin_groups.new(admin_group)
+    @admin_group.save_affillation_key_for_admin_group_owner
+    self.change_to_AGO
+    LaMailer.changed_role(self,"Admin Group Owner").deliver
+  end
+
+  def change_to_AGO   #TODO need to move to user model
+     #user.role = "Admin Group Owner"
+     #user.save
+    RolesManagement::RolesManager.add_role("Admin Group Owner", self)
   end
 end
 
