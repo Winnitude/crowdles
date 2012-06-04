@@ -10,6 +10,7 @@ class AdminGroup
   has_one  :affillation_key
 
   field :name,                 :type => String
+  field :description,                 :type => String
   #field :affillation_key_id,                 :type => String
   field :is_master,                 :type => Boolean
   field :admin_group_owner_id,                 :type => String

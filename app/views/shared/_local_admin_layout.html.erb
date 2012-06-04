@@ -1,17 +1,21 @@
-<li>
-<a href="<%= user_management_path %>">User Management</a>
-</li>
+<!--<li>-->
+<!--<a href="<%#= user_management_path %>">User Management</a>-->
+<!--</li>-->
 
 <li>
   <a href="<%= listing_all_the_workers_local_admins_path %>">Admin Group Management</a>
 </li>
 
-<li>
-  <a href="<%= listing_all_the_agos_local_admins_path %>">Listing AGOS </a>
-</li>
-<li>
-  <a href="<%= all_users_globally_local_admins_path %>">upgrade users to worker</a>
-</li>
+<!--<li>-->
+  <!--<a href="<%#= listing_all_the_agos_local_admins_path %>">Listing AGOS </a>-->
+<!--</li>-->
+<!--<li>-->
+  <!--<a href="<%#= all_users_globally_local_admins_path %>">upgrade users to worker</a>-->
+<!--</li>-->
+<li><%= link_to "Manage Admin Group" , manage_admin_group_local_admins_path  %></li>
+<li><%= link_to "Edit MAG" , edit_user_registration_path  %></li>
+<li><%= link_to "Profile Settings" , edit_user_registration_path  %></li>
+
 <!--
 <li>
   <a href="<%#= local_admins_ideas_belonging_to_country_users_path %>">All Ideas</a>

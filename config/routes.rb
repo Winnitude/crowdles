@@ -6,13 +6,15 @@ CrowdFunding::Application.routes.draw do
       resources :local_admins do
         get "all_users_globally" , :on => :collection
         get "listing_all_the_workers" , :on => :collection
-        get "listing_all_the_agos" , :on => :collection
+        get "manage_admin_group" , :on => :collection
         get "show_local_admin"  ,:on => :collection
         get "new_local_admin"  ,:on => :collection
+        get "add_new_slave_admin_group"  ,:on => :collection
         get "edit_local_admin",  :on => :member
         put "update_local_admin", :on => :member
         get "show_admin"       , :on => :member
         get :autocomplete_country_detail_name, :on => :collection
+        post "change_worker_role", :on => :collection
       end
       resources :business_groups do
         get "related_ideas", :on => :collection
@@ -50,9 +52,9 @@ CrowdFunding::Application.routes.draw do
         match '/local_admins/canceled_user_account/:id'   =>'local_admins#canceled_user_account_from_la',:via => :get    ,:as=>:canceled_user_account_from_la
         match '/local_admins/update/:id'   =>'local_admins#update_user_info_from_la',:via => :post ,:as=>:update_user_info_from_la
         match '/local_admins/suspend/:id'   =>'local_admins#suspend_user_by_la',:via => :get    ,:as=>:suspend_user_by_la
-        match '/local_admins/change_worker_role/:id'   =>'local_admins#change_worker_role',:via => :post    ,:as=>:change_worker_role
+       # match '/local_admins/change_worker_role/:id'   =>'local_admins#change_worker_role',:via => :post    ,:as=>:change_worker_role
         match '/local_admins/change_ago_to_mago/:id'   =>'local_admins#change_ago_to_mago',:via => :post    ,:as=>:change_ago_to_mago
-        match '/local_admins/show_worker_for_change_role/:id'   =>'local_admins#show_worker_for_change_role',:via => :get    ,:as=>:show_worker_for_change_role
+        #match '/local_admins/show_worker_for_change_role/:id'   =>'local_admins#show_worker_for_change_role',:via => :get    ,:as=>:show_worker_for_change_role
         match '/local_admins/show_AGO_for_change_role/:id'   =>'local_admins#show_AGO_for_change_role',:via => :get    ,:as=>:show_AGO_for_change_role
 
       end

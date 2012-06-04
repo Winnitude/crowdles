@@ -88,25 +88,46 @@ class Admin::LocalAdminsController < ApplicationController
     @workers = User.get_all_user_for_selected_role "Worker"
   end
 
-  def listing_all_the_agos
+  def manage_admin_group
    # @AGOS = User.where(:role=>"Admin Group Owner").to_a
-    @AGOS = User.get_all_user_for_selected_role "Admin Group Owner"
-    @already_having_mago = User.where(:mago_la_id=>@user.id).to_a
+    #logger.info "########{current_user.inspect}##########"
+   # @AGOS = User.get_all_user_for_selected_role "Admin Group Owner"
+    @admin_groups = AdminGroup.all.to_a
+   # @already_having_mago = User.where(:mago_la_id=>@user.id).to_a
   end
 
-  def show_worker_for_change_role
-    @selected_user = User.find(params[:id])
+  def add_new_slave_admin_group
+    #@selected_user = User.find(params[:id])
     @admin_group = AdminGroup.new
   end
 
   #NOTE change worker to admin group owner
   def change_worker_role
-    @selected_user = User.find(params[:id])
-    @admin_group = @selected_user.admin_groups.new(params[:admin_group])
-    @admin_group.save_affillation_key_for_admin_group_owner
-    change_to_AGO @selected_user
-    LaMailer.changed_role(@selected_user,"Admin Group Owner").deliver
-    redirect_to listing_all_the_workers_local_admins_path, :notice => "Successfully Changed To AGO"
+    #logger.info "##########{params[:email].inspect}######"
+    #logger.info "##########{params[:admin_group].inspect}######"
+    logger.info "##########{current_user.la_setting.la_country.inspect}######"
+    @selected_user = User.where(:email=>params[:email]).first
+    unless @selected_user.blank?
+      #@admin_group = @selected_user.admin_groups.new(params[:admin_group])
+      #@admin_group.save_affillation_key_for_admin_group_owner
+      #change_to_AGO @selected_user
+      #LaMailer.changed_role(@selected_user,"Admin Group Owner").deliver
+      @selected_user.create_admin_group params[:admin_group]
+    else
+      new_user = User.new(:email=>params[:email],:country=>current_user.la_setting.la_country)
+      value = new_user.set_la_attributes
+      new_user.save
+      LaMailer.welcome_email(new_user,new_user.profile,value,current_user.la_setting).deliver
+      new_user.create_admin_group params[:admin_group]
+    end
+
+    redirect_to root_path ,:notice => "Successfully created"
+    #@selected_user = User.find(params[:id])
+    #@admin_group = @selected_user.admin_groups.new(params[:admin_group])
+    #@admin_group.save_affillation_key_for_admin_group_owner
+    #change_to_AGO @selected_user
+    #LaMailer.changed_role(@selected_user,"Admin Group Owner").deliver
+    #redirect_to listing_all_the_workers_local_admins_path, :notice => "Successfully Changed To AGO"
   end
 
   def show_AGO_for_change_role    #TODO need to move this to main local admin controller
@@ -124,7 +145,7 @@ class Admin::LocalAdminsController < ApplicationController
     @admin_group.save
     change_to_MAGO @selected_user
     LaMailer.changed_role(@selected_user,"Main Admin Group Owner").deliver
-    redirect_to listing_all_the_agos_local_admins_path , :notice => "Successfully Changed To MAGO"
+    redirect_to manage_admin_group_local_admins_path , :notice => "Successfully Changed To MAGO"
   end
 
   def show_admin
@@ -150,11 +171,6 @@ class Admin::LocalAdminsController < ApplicationController
     end
   end
 
-  def change_to_AGO user   #TODO need to move to user model
-    #user.role = "Admin Group Owner"
-    #user.save
-    RolesManager.add_role("Admin Group Owner", user)
-  end
 
   def change_to_MAGO user  #TODO need to move to user model
     #user.role = "Main Admin Group Owner"

@@ -4,10 +4,10 @@
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 </head>
 <body>
-<h1>Welcome to Crowd_funding , <%= @profile.full_name %></h1>
+<h1>Welcome to Crowd_funding , <%= @profile.full_name unless @profile.blank? %></h1>
 <p>
-  your account is successfully created as Local Admin For <%=  @la_setting.la_country %>
-  your login  is: <%= @la.email %>.<br/>
+  your account is successfully created as Local Admin For <%=  @la_setting.la_country unless  @la_setting.blank? %>
+  your login  is: <%= @la.email  unless @la.blank? %>.<br/>
   password is :  <%=@value  %>.
 </p>
 <p>

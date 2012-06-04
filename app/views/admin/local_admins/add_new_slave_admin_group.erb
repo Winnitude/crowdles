@@ -1,8 +1,8 @@
-<h2>Change to AGO</h2>
-<%= form_for @admin_group,:url=>change_worker_role_path, :html => { :class => "form-horizontal",:multipart => true  } do |f|%>
+<h2>Add New Slave Admin Group</h2>
+<%= form_for @admin_group,:url=>change_worker_role_local_admins_path, :html => { :class => "form-horizontal",:multipart => true  } do |f|%>
 
     <div class="control-group">
-      <label class="control-label" for="input01"> Name <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Admin Group Name <span style="color:red"> *</span></label>
       <div class="controls">
         <%=f.text_field :name,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -11,9 +11,18 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01"> Email <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Admin Group Description <span style="color:red"> *</span></label>
       <div class="controls">
-        <%=f.text_field :email,:value=>@selected_user.email,:disabled=>"disabled" ,:class=>"input"%>
+        <%=f.text_area :description,:class=>"input",:rows => 5%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Admin Group Owner Email <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=text_field_tag :email,"",:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
