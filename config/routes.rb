@@ -80,11 +80,15 @@ CrowdFunding::Application.routes.draw do
     get "delete_admin_group", :on => :member
     get "change_admin_group_status", :on => :member
     get "sago_home", :on => :member
+    resources :admin_group_workers do
+      post "create_admin_group_worker" , :on => :collection
+    end
   end
 
   resources :consultant_workers do
     get "change_worker_to_consultant_worker" ,:on => :member
   end
+
 
 
   resources :ideas do
