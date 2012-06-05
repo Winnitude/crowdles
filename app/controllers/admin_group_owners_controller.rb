@@ -60,6 +60,11 @@ class AdminGroupOwnersController < ApplicationController
     @admin_group.change_status
     redirect_to manage_admin_group_local_admins_path
   end
+
+  def sago_home
+    @admin_group = AdminGroup.find(params[:id])
+    @admin_group_workers = @admin_group.admin_group_workers
+  end
   private
 
   def should_be_AGO

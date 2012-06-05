@@ -8,7 +8,7 @@
 <% @admin_groups.each_with_index do |admin_group,i| %>
     <tr>
       <td> <h4><%= i+1 %></h4></td>
-      <td> <h4><%= admin_group.name %></h4></td>
+      <td> <h4><%= link_to  admin_group.name, sago_home_admin_group_owner_path(admin_group)  %></h4></td>
     </tr>
 
 
