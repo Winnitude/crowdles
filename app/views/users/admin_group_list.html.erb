@@ -1,0 +1,16 @@
+<table  class="table">
+  <thead> <tr>
+    <th>Sr. No</th>
+    <th>Name Of the Admin Group</th>
+
+  </tr>
+  </thead>
+<% @admin_groups.each_with_index do |admin_group,i| %>
+    <tr>
+      <td> <h4><%= i+1 %></h4></td>
+      <td> <h4><%= admin_group.name %></h4></td>
+    </tr>
+
+
+<% end %>
+</table>

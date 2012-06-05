@@ -41,6 +41,13 @@ class AdminGroupOwnersController < ApplicationController
     @user = @admin_group.user || User.new
   end
 
+  def delete_admin_group
+    @admin_group = AdminGroup.find(params[:id])
+    @admin_group.delete
+    @admin_group.affillation_key.delete
+    redirect_to manage_admin_group_local_admins_path
+  end
+
   def update_admin_group
     @admin_group = AdminGroup.find(params[:id])
     @admin_group.update_attributes(params[:admin_group])
@@ -48,6 +55,11 @@ class AdminGroupOwnersController < ApplicationController
     redirect_to manage_admin_group_local_admins_path
   end
 
+  def change_admin_group_status
+    @admin_group = AdminGroup.find(params[:id])
+    @admin_group.change_status
+    redirect_to manage_admin_group_local_admins_path
+  end
   private
 
   def should_be_AGO

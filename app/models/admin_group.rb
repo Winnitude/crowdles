@@ -14,6 +14,7 @@ class AdminGroup
   #field :affillation_key_id,                 :type => String
   field :is_master,                 :type => Boolean
   field :admin_group_owner_id,                 :type => String
+  field :is_active,                 :type => Boolean  , :default => true
   #field :admin_group_consultant_worker_id, :type => String
 
   def save_affillation_key_for_admin_group_owner
@@ -43,5 +44,8 @@ class AdminGroup
     keys
   end
 
-
+  def change_status
+    self.is_active = self.is_active? ? false : true
+    self.save
+  end
 end
