@@ -77,6 +77,8 @@ CrowdFunding::Application.routes.draw do
     get "show_admin_group", :on => :member
     get "edit_admin_group", :on => :member
     post "update_admin_group", :on=> :member
+    get "delete_admin_group", :on => :member
+
   end
 
   resources :consultant_workers do

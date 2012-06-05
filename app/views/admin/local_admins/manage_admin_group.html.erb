@@ -42,15 +42,17 @@
   <% @admin_groups.each_with_index do |admin_group,i| %>
     <tr>  <td><%= i+1 %></td>
       <td><%= admin_group.name %></td>
-      <td><%= admin_group.user.profile.to_s %></td>
+      <td><%= admin_group.user.profile.to_s  %></td>
       <td><%= admin_group.user.email %></td>
-      <td><%= admin_group.user.country %></td>
+      <td><%= admin_group.user.country  %></td>
       <td> <%= link_to 'View', show_admin_group_admin_group_owner_path(admin_group) %> |
         <%= link_to 'Edit',edit_admin_group_admin_group_owner_path(admin_group) %>  |
+        <%= link_to 'Delete Group',delete_admin_group_admin_group_owner_path(admin_group) %>  |
+        <%= link_to 'Deactivate',edit_admin_group_admin_group_owner_path(admin_group) %>
 
       </td>
 
-      <td><%= admin_group.user.la_setting.la_country unless admin_group.user.la_setting.nil? %></td>
+      <td><%= admin_group.user.la_setting.la_country  %></td>
       </tr>
 <%end %>
   </table>

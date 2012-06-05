@@ -41,6 +41,13 @@ class AdminGroupOwnersController < ApplicationController
     @user = @admin_group.user || User.new
   end
 
+  def delete_admin_group
+    @admin_group = AdminGroup.find(params[:id])
+    @admin_group.delete
+    @admin_group.affillation_key.delete
+    redirect_to manage_admin_group_local_admins_path
+  end
+
   def update_admin_group
     @admin_group = AdminGroup.find(params[:id])
     @admin_group.update_attributes(params[:admin_group])
