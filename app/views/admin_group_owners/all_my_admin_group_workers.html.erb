@@ -1,0 +1,21 @@
+<h1>Upgrade AGW to BGO</h1>
+
+
+<table border="1" class="table">
+  <thead> <tr>
+    <th>Email</th>
+    <th>Country</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+
+  <% @admin_group_workers.each do |worker| %>
+
+      <tr>
+        <td><%= worker.user.email %></td>
+        <td><%= worker.user.country %></td>
+        <td> <%= link_to 'Change to BGO',to_BGO_path(worker.user)%></td>
+      </tr>
+  <% end %>
+
+</table>

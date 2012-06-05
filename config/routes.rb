@@ -3,6 +3,12 @@ CrowdFunding::Application.routes.draw do
 
   constraints(:subdomain => ADMIN_SUBDOMAIN) do
     scope :module => "admin" do
+
+      resources :global_admins do
+        get "all_admins" ,:on => :collection
+        get "ideas" ,    :on=> :collection
+      end
+
       resources :local_admins do
         get "all_users_globally" , :on => :collection
         get "listing_all_the_workers" , :on => :collection
@@ -16,37 +22,6 @@ CrowdFunding::Application.routes.draw do
         get :autocomplete_country_detail_name, :on => :collection
         post "admin_group_creation", :on => :collection
       end
-      resources :business_groups do
-        get "related_ideas", :on => :collection
-        get "my_keys", :on=> :collection
-      end
-      resources :main_admin_group_owners do
-        get "related_ideas", :on => :collection
-        get "change_ownership" , :on => :collection
-        post "changed" , :on => :collection
-      end
-      resources :admin_group_owners do
-        get "view_all_workers" ,:on => :collection
-        get "all_my_admin_group_workers" ,:on => :collection
-        get "related_ideas", :on => :collection
-        get "my_keys", :on=> :collection
-        get "show_admin_group", :on => :member
-        get "edit_admin_group", :on => :member
-        post "update_admin_group", :on=> :member
-      end
-
-      resources :main_local_admins do
-        get "autocomplete_country_detail_name", :on => :collection
-      end
-
-      resources :consultant_workers do
-        get "change_worker_to_consultant_worker" ,:on => :member
-      end
-
-      resources :global_admins do
-        get "all_admins" ,:on => :collection
-        get "ideas" ,    :on=> :collection
-      end
 
       as :local_admins do
         #match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get
@@ -57,11 +32,15 @@ CrowdFunding::Application.routes.draw do
         match '/local_admins/canceled_user_account/:id'   =>'local_admins#canceled_user_account_from_la',:via => :get    ,:as=>:canceled_user_account_from_la
         match '/local_admins/update/:id'   =>'local_admins#update_user_info_from_la',:via => :post ,:as=>:update_user_info_from_la
         match '/local_admins/suspend/:id'   =>'local_admins#suspend_user_by_la',:via => :get    ,:as=>:suspend_user_by_la
-       # match '/local_admins/change_worker_role/:id'   =>'local_admins#change_worker_role',:via => :post    ,:as=>:change_worker_role
+        # match '/local_admins/change_worker_role/:id'   =>'local_admins#change_worker_role',:via => :post    ,:as=>:change_worker_role
         match '/local_admins/change_ago_to_mago/:id'   =>'local_admins#change_ago_to_mago',:via => :post    ,:as=>:change_ago_to_mago
         #match '/local_admins/show_worker_for_change_role/:id'   =>'local_admins#show_worker_for_change_role',:via => :get    ,:as=>:show_worker_for_change_role
         match '/local_admins/show_AGO_for_change_role/:id'   =>'local_admins#show_AGO_for_change_role',:via => :get    ,:as=>:show_AGO_for_change_role
 
+      end
+
+      resources :main_local_admins do
+        get "autocomplete_country_detail_name", :on => :collection
       end
 
       as :main_local_admins do
@@ -79,6 +58,32 @@ CrowdFunding::Application.routes.draw do
       end
     end
   end
+
+
+  resources :business_groups do
+    get "related_ideas", :on => :collection
+    get "my_keys", :on=> :collection
+  end
+  resources :main_admin_group_owners do
+    get "related_ideas", :on => :collection
+    get "change_ownership" , :on => :collection
+    post "changed" , :on => :collection
+  end
+  resources :admin_group_owners do
+    get "view_all_workers" ,:on => :collection
+    get "all_my_admin_group_workers" ,:on => :collection
+    get "related_ideas", :on => :collection
+    get "my_keys", :on=> :collection
+    get "show_admin_group", :on => :member
+    get "edit_admin_group", :on => :member
+    post "update_admin_group", :on=> :member
+  end
+
+  resources :consultant_workers do
+    get "change_worker_to_consultant_worker" ,:on => :member
+  end
+
+
 
 
   resources :ideas do

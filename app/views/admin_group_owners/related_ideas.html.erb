@@ -1,0 +1,40 @@
+<h1>Ideas</h1>
+
+<table border="1" class="table">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Sub Title</th>
+    <th>Introduction</th>
+    <th>Amount</th>
+    <th>Currency</th>
+    <th>Affiliation Key</th>
+    <th>Status</th>
+
+    <th>Action</th>
+  </tr>
+  <thead>
+
+  <% @ideas.each do |good_idea| %>
+
+      <tr>
+        <td><%= good_idea.title %></td>
+        <td><%= good_idea.sub_title %></td>
+        <td><%= good_idea.introduction %></td>
+        <td><%= good_idea.amount %></td>
+        <td><%= good_idea.currency %></td>
+        <td><%= good_idea.affiliation_key %></td>
+        <td><%= good_idea.type %></td>
+        <!--<td><%= image_tag good_idea.big_image_url %></td>-->
+        <td> <%= link_to 'Show', idea_path(good_idea) %>
+
+         <%= link_to 'Make it good',make_it_good_idea_path(good_idea) if good_idea.type !="GoodIdea" %>
+        <%= link_to 'decline',decline_idea_path(good_idea) %>
+        </td>
+      </tr>
+  <% end %>
+  </table>
+
+<br />
+
+<%= link_to 'Back', root_path %>

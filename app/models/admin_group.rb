@@ -1,7 +1,7 @@
 class AdminGroup
   include Mongoid::Document
 
-  belongs_to :user, :foreign_key => :admin_group_owner_id,    :class_name => "User"
+  belongs_to :user
   has_many :admin_group_consultant_workers
 
 
