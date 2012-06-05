@@ -1,0 +1,15 @@
+<h2> Admin Group</h2>
+<div class="form-horizontal"> <% user = @admin_group.user %>
+
+  <strong>  Name: </strong>  <%= @admin_group.name %>      <br>
+  <strong>  Owner: </strong>          <%= user.profile.to_s %>              <br>
+
+  <!--<strong> Title: </strong>   <%#= profile.title %>          <br>-->
+  <strong> Description: </strong>  <%= @admin_group.description %>    <br>
+  <strong> Owner Email: </strong>   <%= user.email %> <br>
+
+  <strong> Country: </strong>   <%= user.country %> <br>
+
+
+</div>   <br>
+<%= link_to 'Back', :back %>

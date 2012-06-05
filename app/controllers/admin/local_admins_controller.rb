@@ -107,7 +107,7 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   #NOTE change worker to admin group owner
-  def change_worker_role
+  def admin_group_creation
     #logger.info "##########{params[:email].inspect}######"
     #logger.info "##########{params[:admin_group].inspect}######"
     logger.info "##########{current_user.la_setting.la_country.inspect}######"

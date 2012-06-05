@@ -14,7 +14,7 @@ CrowdFunding::Application.routes.draw do
         put "update_local_admin", :on => :member
         get "show_admin"       , :on => :member
         get :autocomplete_country_detail_name, :on => :collection
-        post "change_worker_role", :on => :collection
+        post "admin_group_creation", :on => :collection
       end
       resources :business_groups do
         get "related_ideas", :on => :collection
@@ -28,6 +28,9 @@ CrowdFunding::Application.routes.draw do
         get "all_my_admin_group_workers" ,:on => :collection
         get "related_ideas", :on => :collection
         get "my_keys", :on=> :collection
+        get "show_admin_group", :on => :member
+        get "edit_admin_group", :on => :member
+        post "update_admin_group", :on=> :member
       end
 
       resources :main_local_admins do

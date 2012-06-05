@@ -45,7 +45,11 @@
       <td><%= admin_group.user.profile.to_s %></td>
       <td><%= admin_group.user.email %></td>
       <td><%= admin_group.user.country %></td>
-      <td><%=  %></td>
+      <td> <%= link_to 'View', show_admin_group_admin_group_owner_path(admin_group) %> |
+        <%= link_to 'Edit',edit_admin_group_admin_group_owner_path(admin_group) %>  |
+
+      </td>
+
       <td><%= admin_group.user.la_setting.la_country unless admin_group.user.la_setting.nil? %></td>
       </tr>
 <%end %>

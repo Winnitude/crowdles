@@ -32,6 +32,22 @@ class Admin::AdminGroupOwnersController < ApplicationController
     @all_related_keys = admin_group.all_related_keys_concern_type
   end
 
+  def show_admin_group
+     @admin_group = AdminGroup.find(params[:id])
+  end
+
+  def edit_admin_group
+    @admin_group = AdminGroup.find(params[:id])
+    @user = @admin_group.user || User.new
+  end
+
+  def update_admin_group
+    @admin_group = AdminGroup.find(params[:id])
+    @admin_group.update_attributes(params[:admin_group])
+    @admin_group.user.update_attributes(params[:user])
+    redirect_to manage_admin_group_local_admins_path
+  end
+
   private
 
   def should_be_AGO
