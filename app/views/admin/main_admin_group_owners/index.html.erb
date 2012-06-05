@@ -1,0 +1,35 @@
+<table border="1" class="table">
+
+  <thead> <tr>
+    <th>Sr. No</th>
+    <th>Name Of Owner</th>
+    <th>Email Of Owner</th>
+    <th>Country</th>
+    <!--<th>Type</th>-->
+    <!--<th>Change to MLA</th>-->
+    <th>Actions</th>
+  </tr>
+  </thead>
+
+  <% @groups.each_with_index do |group,index| %>
+
+      <tr>
+        <td><%=index+1 %></td>
+        <td><%=group.user.profile.to_s rescue nil%></td>
+        <td><%=group.user.email %></td>
+        <td><%= group.country %></td>
+        <!--<td><%#=admin.role %></td>-->
+        <!--<td>-->
+        <!--
+        <!--</td>-->
+        <td> <%= link_to 'Show' %> |
+          <%= link_to 'Edit' %> |
+
+          <%# link_url_tag_account = admin.canceled ? "ReOpen" : "Cancel"  %>
+          <%#= link_to link_url_tag_account,canceled_user_account_path(admin.id) %>
+          <%= link_to "Delete","#" %> |
+        <%= link_to "Deactivate","#" %> </td>
+      </tr>
+  <% end %>
+
+</table>

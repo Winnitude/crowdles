@@ -69,8 +69,9 @@
             <!--<td> <%#=f.radio_button :is_master, false %> Not Is Master   </td>-->
           <!--</tr>-->
           <tr>
-            <td><%= l.label :la_country," Assigned To Country" %></td>
-            <td><%= l.text_field :la_country %></td>
+            <td>
+            <%= l.label :la_country," Assigned To Country" %></td>
+            <td><%= l.autocomplete_field :la_country ,autocomplete_country_detail_name_local_admins_path %></td>
           </tr>
           <tr>
             <td><%= l.label :language," Language" %></td>
