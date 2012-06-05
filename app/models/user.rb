@@ -215,7 +215,7 @@ class User
   end
 
   def get_all_roles
-    all_user_roles = self.user_roles
+    all_user_roles = self.user_roles.collect{|i| i.role.role}
   end
 
   def create_admin_group admin_group

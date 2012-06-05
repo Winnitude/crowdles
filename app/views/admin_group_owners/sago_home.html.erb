@@ -1,16 +1,16 @@
 
-<h4><div style="float:right;height:30px;"> <%= link_to "Workers Management" , add_new_slave_admin_group_local_admins_path  %></div></h4>
-<h4><div style="float:right;height:30px;"> <%= link_to "Add New Worker" , add_new_slave_admin_group_local_admins_path  %></div></h4>
-<h4><div style="float:right;height:30px;"> <%= link_to "Consultant Worker" , add_new_slave_admin_group_local_admins_path  %></div></h4>
+<h4><div style="float:right;height:30px;"> | <%= link_to "Workers Management" , add_new_slave_admin_group_local_admins_path  %> </div></h4>
+<h4> <div style="float:right;height:30px;"> | <%= link_to "Add New Worker" , add_new_slave_admin_group_local_admins_path  %> </div> </h4>
+<h4> <div style="float:right;height:30px;">  <%= link_to "Consultant Worker" , add_new_slave_admin_group_local_admins_path  %> </div> </h4>
 <table border="1" class="table">
   <thead>
   <tr>
 
     <th><strong> Sr. No <strong></th>
-    <th><strong> Name of the Admin Group <strong></th>
-    <th><strong> Name of AG Owner <strong></th>
-    <th><strong> Email <strong></th>
+    <th><strong> Name of the Worker<strong></th>
+    <th><strong> Email Id <strong></th>
     <th><strong> Country <strong></th>
+    <th><strong> Roles <strong></th>
     <th><strong> Action <strong></th>
     <th><strong> Status <strong></th>
   </tr>
@@ -18,13 +18,13 @@
 
   <% @admin_group_workers.each_with_index do |admin_group_worker,i| %>
       <tr>  <td><%= i+1 %></td>
-        <!--<td><%#= admin_group.name %></td>-->
-        <!--<td><%#= admin_group.user.profile.to_s unless admin_group.user.blank? %></td>-->
-        <!--<td><%#= admin_group.user.email unless admin_group.user.blank?%></td>-->
-        <!--<td><%#= admin_group.user.country unless admin_group.user.blank? %></td>-->
-        <!--<td> <%#= link_to 'View', show_admin_group_admin_group_owner_path(admin_group) %> |-->
-          <%#= link_to 'Edit',edit_admin_group_admin_group_owner_path(admin_group) %>  |
-          <%#= link_to 'Delete Group',delete_admin_group_admin_group_owner_path(admin_group), confirm: 'Are you sure? you want to delete group', method: :get %>  |
+        <td><%= admin_group_worker.user.profile.to_s %></td>
+        <td><%= admin_group_worker.user.email %></td>
+        <td><%= admin_group_worker.user.country%></td>
+        <td><%= admin_group_worker.user.get_all_roles.last%></td>
+        <td> <%= link_to 'View', show_admin_group_admin_group_owner_path(admin_group_worker) %> |
+          <%= link_to 'Edit',edit_admin_group_admin_group_owner_path(admin_group_worker) %>
+          <%#= link_to 'Delete Group',delete_admin_group_admin_group_owner_path(admin_group), confirm: 'Are you sure? you want to delete group', method: :get %>
           <!--<#% change_status_to = admin_group.is_active? ? "Deactivate": "Activate" %>-->
           <!--<%#= link_to change_status_to,change_admin_group_status_admin_group_owner_path(admin_group),confirm: 'Are you sure? you want to change status', method: :get %>-->
 
