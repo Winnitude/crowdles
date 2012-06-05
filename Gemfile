@@ -46,6 +46,7 @@ gem "carrierwave-mongoid"
 # gem 'capistrano'
 gem "fog", "~> 1.3.1"
 gem "pry"
+gem "pry-remote"
 #gem "rmagick"
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
