@@ -11,7 +11,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Admin Group Description <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Admin Group Description </label>
       <div class="controls">
         <%=f.text_area :description,:class=>"input",:rows => 5%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -41,7 +41,8 @@
             var admin_group_name = new LiveValidation('admin_group_name',{validMessage:" ",onlyOnSubmit:true});
             admin_group_name.add( Validate.Presence,{failureMessage:" Can't be empty"} );
 
-
+            var email = new LiveValidation('email',{validMessage:" ",onlyOnSubmit:true});
+            email.add( Validate.Presence,{failureMessage:" Can't be empty"} );
         });
     </script>
 <% end %>

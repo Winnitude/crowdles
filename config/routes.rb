@@ -78,14 +78,12 @@ CrowdFunding::Application.routes.draw do
     get "edit_admin_group", :on => :member
     post "update_admin_group", :on=> :member
     get "delete_admin_group", :on => :member
-
+    get "change_admin_group_status", :on => :member
   end
 
   resources :consultant_workers do
     get "change_worker_to_consultant_worker" ,:on => :member
   end
-
-
 
 
   resources :ideas do
@@ -159,6 +157,8 @@ CrowdFunding::Application.routes.draw do
     match '/user/to_admin_group_worker/:id'   =>'users#to_admin_group_worker',:via => :get  , :as => :to_AGW
     match '/user/to_business_group_owner/:id'   =>'users#to_business_group_owner',:via => :get  , :as => :to_BGO
     match '/user/canceled_user_account/:id'   =>'users#canceled_user_account',:via => :get    ,:as=>:canceled_user_account
+    match '/user/admin_group_list'   =>'users#admin_group_list',:via => :get
+
   end
 
 

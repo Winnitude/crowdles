@@ -42,17 +42,18 @@
   <% @admin_groups.each_with_index do |admin_group,i| %>
     <tr>  <td><%= i+1 %></td>
       <td><%= admin_group.name %></td>
-      <td><%= admin_group.user.profile.to_s  %></td>
-      <td><%= admin_group.user.email %></td>
-      <td><%= admin_group.user.country  %></td>
+      <td><%= admin_group.user.profile.to_s unless admin_group.user.blank? %></td>
+      <td><%= admin_group.user.email unless admin_group.user.blank?%></td>
+      <td><%= admin_group.user.country unless admin_group.user.blank? %></td>
       <td> <%= link_to 'View', show_admin_group_admin_group_owner_path(admin_group) %> |
         <%= link_to 'Edit',edit_admin_group_admin_group_owner_path(admin_group) %>  |
-        <%= link_to 'Delete Group',delete_admin_group_admin_group_owner_path(admin_group) %>  |
-        <%= link_to 'Deactivate',edit_admin_group_admin_group_owner_path(admin_group) %>
+        <%= link_to 'Delete Group',delete_admin_group_admin_group_owner_path(admin_group), confirm: 'Are you sure? you want to delete group', method: :get %>  |
+        <% change_status_to = admin_group.is_active? ? "Deactivate": "Activate" %>
+        <%= link_to change_status_to,change_admin_group_status_admin_group_owner_path(admin_group),confirm: 'Are you sure? you want to change status', method: :get %>
 
       </td>
 
-      <td><%= admin_group.user.la_setting.la_country  %></td>
+      <td><%= admin_group.is_active? ? "Active": "Deactive" %></td>
       </tr>
 <%end %>
   </table>
