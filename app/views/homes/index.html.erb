@@ -1,6 +1,9 @@
 <div><% if current_user.present? %>
-  <%#= "Welcome #{current_user.role}" %>
-      <% end %></div>
+      <%#= "Welcome #{current_user.role}" %>
+      <% if RolesManagement::RolesManager.is_role_present?("User",current_user)%>
+          <%= render :partial => 'shared/user_tabs'%>
+      <%end%>
+  <% end %></div>
 <div class="span6 videoPlayer">
   <ul class="thumbnails">
     <li> <div class="thumbnail">

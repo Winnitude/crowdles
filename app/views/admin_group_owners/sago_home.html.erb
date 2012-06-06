@@ -21,15 +21,15 @@
         <td><%= admin_group_worker.user.profile.to_s %></td>
         <td><%= admin_group_worker.user.email %></td>
         <td><%= admin_group_worker.user.country%></td>
-        <td><%= admin_group_worker.user.get_all_roles.last%></td>
-        <td> <%= link_to 'View', show_admin_group_admin_group_owner_path(admin_group_worker) %> |
-          <%= link_to 'Edit',edit_admin_group_admin_group_owner_path(admin_group_worker) %>
+        <td><%= (admin_group_worker.user.get_all_roles - ["User", "Admin Group Owner", "Main Admin Group Owner"]).join(",") %></td>
+        <!--<td> <%#= link_to 'View', show_admin_group_admin_group_owner_path(admin_group_worker) %> |-->
+          <!--<%#= link_to 'Edit',edit_admin_group_admin_group_owner_path(admin_group_worker) %>-->
           <%#= link_to 'Delete Group',delete_admin_group_admin_group_owner_path(admin_group), confirm: 'Are you sure? you want to delete group', method: :get %>
           <!--<#% change_status_to = admin_group.is_active? ? "Deactivate": "Activate" %>-->
           <!--<%#= link_to change_status_to,change_admin_group_status_admin_group_owner_path(admin_group),confirm: 'Are you sure? you want to change status', method: :get %>-->
 
         <!--</td>-->
-
+                   <td></td>
         <!--<td><%#= admin_group.is_active? ? "Active": "Deactive" %></td>-->
       </tr>
   <%end %>
