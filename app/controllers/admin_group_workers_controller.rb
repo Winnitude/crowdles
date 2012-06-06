@@ -3,7 +3,7 @@ class AdminGroupWorkersController < ApplicationController
 
     @admin_group = AdminGroup.find(params[:admin_group_owner_id])
     #binding.remote_pry
-    @users =   (User.get_all_user_for_selected_role "User").map{|i| i.email} - @admin_group.get_all_my_admin_group_workers.map{|i| i.email}
+    @users =   (User.get_all_user_for_selected_role "User").map{|i| i.email} - @admin_group.get_all_my_admin_group_workers.map{|i| i.email} - @admin_group.user.email.to_a
     #@admin_group_worker = @admin_group.admin_group_workers.new
   end
 
@@ -15,7 +15,7 @@ class AdminGroupWorkersController < ApplicationController
       @admin_group_worker.user = @user
       RolesManager.add_role("Admin Group Worker",@user)
       @admin_group_worker.save
-      LaMailer.changed_role(@user,"Main Admin Group Owner").deliver
+      LaMailer.changed_role(@user,"Admin Group Owner").deliver
       redirect_to root_path ,:notice => "Successfully created"
     else
       redirect_to :back, :notice => "User not found"
