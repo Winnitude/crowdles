@@ -32,7 +32,8 @@ class MainAdminGroupOwnersController < ApplicationController
       logger.info("===#{existing_owner}========#{group.user}=========#{user}==============#{user == existing_owner}")
       if group.save
         RolesManagement::RolesManager.add_role("Main Admin Group Owner", user)
-        redirect_to :root , :notice => "changed ownership successfully"
+        LaMailer.changed_role(user,"Main Admin Group Owner").deliver
+        redirect_to :root , :notice => "MAGO created"
       end
     else
       redirect_to :root , :notice => "User not Found"
