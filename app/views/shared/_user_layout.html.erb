@@ -1,6 +1,8 @@
-<!--<li>-->
-	<!--<a href="/"><#%= current_user.profile.full_name rescue nil %></a>-->
-<!--</li>-->
+<li>
+
+ <%split_array = request.url.split("/") %>
+  <a href="#"><%= split_array.include?("admin_group_owners")? "SAGO" : "User" %></a>
+</li>
 
 <li>
 	<a href="<%= new_idea_path %>">Propose Idea</a>
