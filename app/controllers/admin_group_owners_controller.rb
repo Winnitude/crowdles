@@ -64,6 +64,7 @@ class AdminGroupOwnersController < ApplicationController
   def sago_home
     @admin_group = AdminGroup.find(params[:id])
     @admin_group_workers = @admin_group.admin_group_workers
+    #binding.pry_remote
   end
   private
 

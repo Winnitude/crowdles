@@ -48,4 +48,8 @@ class AdminGroup
     self.is_active = self.is_active? ? false : true
     self.save
   end
+
+  def get_all_my_admin_group_workers
+    self.admin_group_workers.collect{|i| i.user if i.user.present?}
+  end
 end
