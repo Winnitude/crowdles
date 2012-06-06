@@ -82,6 +82,7 @@ CrowdFunding::Application.routes.draw do
     get "sago_home", :on => :member
     resources :admin_group_workers do
       post "create_admin_group_worker" , :on => :collection
+      get "new_admin_group_workers", :on => :collection
     end
   end
 

@@ -225,10 +225,20 @@ class User
     LaMailer.changed_role(self,"Admin Group Owner").deliver
   end
 
+
+  def create_admin_group_worker admin_group_worker
+    self.change_to_AGW
+    LaMailer.changed_role(self,"Admin Group Worker").deliver
+  end
+
   def change_to_AGO   #TODO need to move to user model
      #user.role = "Admin Group Owner"
      #user.save
     RolesManagement::RolesManager.add_role("Admin Group Owner", self)
+  end
+
+  def change_to_AGW
+    RolesManagement::RolesManager.add_role("Admin Group Worker", self)
   end
 end
 

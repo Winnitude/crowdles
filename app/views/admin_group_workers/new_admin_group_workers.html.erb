@@ -1,0 +1,41 @@
+<h2>Admin Group Worker</h2>
+<%= form_for :admin_group_worker,:url=>create_admin_group_worker_admin_group_owner_admin_group_workers_path(@admin_group_worker.id), :html => { :class => "form-horizontal",:multipart => true  } do |f|%>
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Admin Group Owner Email <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=text_field_tag :email,"",:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Admin Group Owner Email <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_area :description,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+
+    <div class="form-actions">
+      <%= f.submit :class =>"btn btn-primary"  %>
+      <!--<input type="text" class="input-xlarge"  id="input01">-->
+    </div>
+<% end %>
+<%= content_for :head do  %>
+    <script type="text/javascript">
+
+        jQuery(function(){
+            var admin_group_name = new LiveValidation('admin_group_name',{validMessage:" ",onlyOnSubmit:true});
+            admin_group_name.add( Validate.Presence,{failureMessage:" Can't be empty"} );
+
+            var email = new LiveValidation('email',{validMessage:" ",onlyOnSubmit:true});
+            email.add( Validate.Presence,{failureMessage:" Can't be empty"} );
+        });
+    </script>
+<% end %>

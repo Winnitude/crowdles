@@ -24,7 +24,7 @@ class Admin::LocalAdminsController < ApplicationController
     @local_admin = User.new params[:user]
     value = @local_admin.set_la_attributes
     @profile =@local_admin.build_profile params[:profile]
-    @la_setting = @local_admin.build_la_setting  params[:la_setting]
+    @la_setting = @local_admin.build_la_setting params[:la_setting]
     if @local_admin.save && @profile.save && @la_setting.save
       main_admin_group=@local_admin.build_main_admin_group(:country => @local_admin.la_setting.la_country)
       RolesManager.add_role("Main Admin Group Owner",@local_admin)

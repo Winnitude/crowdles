@@ -4,5 +4,7 @@ class AdminGroupWorker
   belongs_to :user
 
   field :worker_id,                       :type => String
+  field :description,                       :type => String
+
 
 end
