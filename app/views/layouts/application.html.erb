@@ -52,7 +52,7 @@
                       <li class="brand"> <%= "Local Admin" %>   </li>
                       <%= render :partial => 'shared/local_admin_layout'%>
                   <% end %>
-                  <% if RolesManagement::RolesManager.is_role_present?("User", current_user) && !request.url.index(ADMIN_HOST).present?  %>
+                  <% if RolesManagement::RolesManager.is_role_present?("User", current_user)   %>
                       <%= render :partial => 'shared/user_layout' %>
                   <% end %>
                   <% if RolesManagement::RolesManager.is_role_present?("Worker", current_user) && request.url.index(ADMIN_HOST).present? %>
