@@ -12,9 +12,9 @@ class MainAdminGroupOwnersController < ApplicationController
   end
 
   def change_ownership
-    @group = MainAdminGroup.where(:country => current_user.la_setting.la_country)
+    @group = MainAdminGroup.where(:country => current_user.la_setting.la_country).first
     #@workers = (User.get_all_user_for_selected_role "Worker").map{|i| i.email}
-    @users =   (User.get_all_user_for_selected_role "User").map{|i| i.email}
+    @users =   (User.get_all_user_for_selected_role "User").map{|i| i.email} - @group.user.email.to_a
     logger.info @group.to_a.inspect
   end
 
