@@ -1,0 +1,30 @@
+<div><ul>
+ <h4> <a >Summary</a>  |
+  <a href="<%= user_admin_group_list_path %>">Admin Group List</a>  |
+
+  <% if RolesManagement::RolesManager.is_role_present?("Admin Group Worker",current_user)%>
+
+      <a href="<%#= show_good_idea_ideas_path %>">Worker</a>   |
+
+  <%end%>
+  <% if RolesManagement::RolesManager.is_role_present?("Business Group Owner",current_user)%>
+
+      <a href="<%#= show_good_idea_ideas_path %>">BGO</a>   |
+
+  <%end%>
+  <% if RolesManagement::RolesManager.is_role_present?("Consultant Worker",current_user)%>
+
+      <a href="<%#= show_good_idea_ideas_path %>">Consultant</a>  |
+
+  <%end%>
+
+     <% if current_user.profile.present? %>
+         <a href="<%= edit_profile_path(current_user.profile) %>">Edit Profile</a>   |
+     <%else %>
+         <a href="<%= new_profile_path %>">Create Profile</a>     |
+     <% end %>
+
+<%= link_to "Settings" , edit_user_registration_path  %>
+ </h4>
+</ul>
+</div>
