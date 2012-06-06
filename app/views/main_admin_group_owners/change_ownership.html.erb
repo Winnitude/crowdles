@@ -1,5 +1,5 @@
 <%= form_tag "/main_admin_group_owners/changed" ,:method => "post" do %>
 
-    <%= select_tag "worker_email", options_for_select(["please select a User",""]+@users ) %>
-    <%=submit_tag "make owner"%>
+    <%= select_tag "worker_email", options_for_select(["-----please select a User-----"]+@users ) %>
+    <%=submit_tag "Make MAGO"%>
 <% end %>
