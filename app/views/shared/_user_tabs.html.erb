@@ -1,22 +1,22 @@
 <div><ul>
-  <h4> <a >Summary</a>  |
+  <h4>      <%= link_to 'Summary',"#", :confirm => 'Under development' %>   |
     <% if RolesManagement::RolesManager.is_role_present?("Admin Group Owner",current_user)%>
         <a href="<%= user_admin_group_list_path %>">Admin Group List</a>  |
 
     <%end%>
     <% if RolesManagement::RolesManager.is_role_present?("Admin Group Worker",current_user)%>
 
-        <a href="<%#= show_good_idea_ideas_path %>">Worker</a>   |
+        <%= link_to 'Worker',"#", :confirm => 'Under development' %>     |
 
     <%end%>
     <% if RolesManagement::RolesManager.is_role_present?("Business Group Owner",current_user)%>
 
-        <a href="<%#= show_good_idea_ideas_path %>">BGO</a>   |
+        <%= link_to 'BGO',"#", :confirm => 'Under development' %>   |
 
-    <%end%>
+  <%end%>
     <% if RolesManagement::RolesManager.is_role_present?("Consultant Worker",current_user)%>
+        <%= link_to 'Consultant',"#", :confirm => 'Under development' %> |
 
-        <a href="<%#= show_good_idea_ideas_path %>">Consultant</a>  |
 
     <%end%>
 
