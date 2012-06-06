@@ -30,7 +30,7 @@
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label" for="input01">Owner</label>
+              <label class="control-label" for="input01">Owne Name</label>
               <div class="controls">
                 <%first_name = @user.profile.first_name unless @user.profile.blank?%>
                 <%= p.text_field :first_name,:value =>first_name,:class=>"input" %>
@@ -39,7 +39,7 @@
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label" for="input01">Owner</label>
+              <label class="control-label" for="input01">Country</label>
               <div class="controls">
                 <%= u.text_field :country, :value =>@user.country,:class=>"input" %>
                 <!--<input type="text" class="input-xlarge" id="input01">-->
