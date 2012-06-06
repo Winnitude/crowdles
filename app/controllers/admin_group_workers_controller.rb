@@ -15,7 +15,7 @@ class AdminGroupWorkersController < ApplicationController
       @admin_group_worker.user = @user
       RolesManager.add_role("Admin Group Worker",@user)
       @admin_group_worker.save
-      LaMailer.changed_role(@user,"Main Admin Group Owner").deliver
+      LaMailer.changed_role(@user,"Admin Group Owner").deliver
       redirect_to root_path ,:notice => "Successfully created"
     else
       redirect_to :back, :notice => "User not found"
