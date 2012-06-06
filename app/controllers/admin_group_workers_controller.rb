@@ -3,7 +3,7 @@ class AdminGroupWorkersController < ApplicationController
 
     @admin_group = AdminGroup.find(params[:admin_group_owner_id])
     #binding.remote_pry
-    @users =   (User.get_all_user_for_selected_role "User").map{|i| i.email} - @admin_group.get_all_my_admin_group_workers.map{|i| i.email}
+    @users =   (User.get_all_user_for_selected_role "User").map{|i| i.email} - @admin_group.get_all_my_admin_group_workers.map{|i| i.email} - @admin_group.user.email.to_a
     #@admin_group_worker = @admin_group.admin_group_workers.new
   end
 
