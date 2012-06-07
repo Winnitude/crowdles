@@ -12,6 +12,7 @@ class SessionsController <  Devise::SessionsController
 
   # POST /resource/sign_in
   def create
+    #binding.remote_pry
     self.resource = warden.authenticate!(auth_options)
     logger.info "#########################session"
     logger.info "#########################{resource.inspect}"

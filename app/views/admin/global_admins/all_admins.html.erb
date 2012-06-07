@@ -17,7 +17,7 @@
         <td><%=index+1 %></td>
         <td><%=admin.profile.to_s rescue nil%></td>
         <td><%=admin.email %></td>
-        <td><%= admin.country %></td>
+        <td><%= admin.la_setting.la_country %></td>
         <!--<td><%#=admin.role %></td>-->
         <!--<td>-->
           <!--<%if RolesManagement::RolesManager.is_role_present?("Local Admin", admin)%>-->

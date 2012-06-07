@@ -20,7 +20,7 @@
               <% end %>
           <tr>
             <td><%= f.label :email %></td>
-            <td><%= f.text_field :email %></td>
+            <td><%= f.text_field :email %>*</td>
           </tr>
           <tr>
             <td><%= p.label :first_name %></td>
@@ -33,7 +33,7 @@
           <tr>
           <tr>
             <td><%= f.label :country %></td>
-            <td><%= f.autocomplete_field :country ,autocomplete_country_detail_name_local_admins_path %></td>
+            <td><%= f.autocomplete_field :country ,autocomplete_country_detail_name_local_admins_path %>*</td>
           </tr>
           <tr>
             <td><%= l.label :company_name %></td>
@@ -61,44 +61,154 @@
           </tr>
           <tr>
             <td><%= p.label :telephone_number %></td>
-            <td><%= p.text_field :telephone_number %></td>
+            <td><%= p.text_field :telephone_number %>*</td>
           </tr>
-          <!--<tr>-->
-            <!--<td>Master</td>-->
-            <!--<td> <%#=f.radio_button :is_master, true %> Is Master     </td>-->
-            <!--<td> <%#=f.radio_button :is_master, false %> Not Is Master   </td>-->
-          <!--</tr>-->
+          <tr>
+            <td>Master</td>
+            <td> <%=l.radio_button :is_master, true %> Is Master     </td>
+            <td> <%=l.radio_button :is_master, false %> Not Is Master   </td>
+          </tr>
           <tr>
             <td>
             <%= l.label :la_country," Assigned To Country" %></td>
-            <td><%= l.autocomplete_field :la_country ,autocomplete_country_detail_name_local_admins_path %></td>
+            <td><%= l.autocomplete_field :la_country ,autocomplete_country_detail_name_local_admins_path %>*</td>
           </tr>
           <tr>
             <td><%= l.label :language," Language" %></td>
-            <td><%= l.text_field :language %></td>
+            <td><%= l.text_field :language %>*</td>
           </tr>
           <tr>
             <td><%= l.label :web_domain,"Web Domain" %></td>
-            <td><%= l.text_field :web_domain %></td>
+            <td><%= l.text_field :web_domain %>*</td>
           </tr>
 
           <tr>
             <td><%= l.label :platform_home,"Platform Home" %></td>
-            <td><%= l.text_field :platform_home %></td>
+            <td><%= l.text_field :platform_home %>*</td>
           </tr>
 
-          <% #a= ["new","active","blocked","suspended","unpaid","inactive"] %>
+          <% a= ["new","active","blocked","suspended","unpaid","inactive"] %>
           <tr>
-            <td><%#= f.label :la_Status,"Status" %></td>
-            <td><%#= f.select :la_status , options_for_select(a ) %></td>
+            <td><%= l.label :status,"Status" %></td>
+            <td><%= l.select :status , options_for_select(a ) %>*</td>
           </tr>
-          <tr>
+
+              <tr>
+                <td><%= l.label :user_terms %></td>
+                <td><%= l.text_area :user_terms, :rows => 5%></td>
+              </tr>
+              <tr>
+                <td><%= l.label :project_terms %></td>
+                <td><%= l.text_area :project_terms,:rows => 5%></td>
+              </tr>
+
+              <tr>
+                <td><%= l.label :worker_terms %></td>
+                <td><%= l.text_area :worker_terms,:rows => 5%></td>
+              </tr>
+
+              <tr>
+                <td><%= l.label :worker_consultant_terms %></td>
+                <td><%= l.text_area :worker_consultant_terms,:rows => 5%></td>
+              </tr>
+
+              <tr>
+                <td><%= l.label :admin_group_terms %></td>
+                <td><%= l.text_area :admin_group_terms,:rows => 5%></td>
+              </tr>
+
+              <tr>
+                <td><%= l.label :business_group_terms %></td>
+                <td><%= l.text_area :business_group_terms,:rows => 5%></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td><%= l.label :local_admin_name%></td>
+                <td><%= l.text_field :local_admin_name%></td>
+              </tr>
+
+              <tr>
+                <td><%= l.label :contact_first_name%></td>
+                <td><%= l.text_field :contact_first_name%></td>
+              </tr>
+
+              <tr>
+                <td><%= l.label :contact_last_name%></td>
+                <td><%= l.text_field :contact_last_name%></td>
+              </tr>
+
+              <tr>
+                <td><%= l.label :contact_email%></td>
+                <td><%= l.text_field :contact_email%></td>
+              </tr>
+
+              <tr>
+                <td><%= l.label :contact_photo%></td>
+                <td><%= l.file_field :contact_photo%></td>
+              </tr>
+
+
+              <tr>
+                <td><%= l.label :pass_la_commissions%></td>
+                <td><%= l.text_field :pass_la_commissions%></td>
+              </tr>
+
+              <!--<tr>-->
+                <!--<td><%= l.label :master_billing_profile_deviation%></td>-->
+                <!--<td><%= l.text_field :master_billing_profile_deviation%></td>-->
+              <!--</tr>-->
+
+              <!--<tr>-->
+                <!--<td><%= l.label :master_administration_deviation%></td>-->
+                <!--<td><%= l.text_field :master_administration_deviation%></td>-->
+              <!--</tr>-->
+
+            <tr>
+              <td><%= l.label :master_billing_profile_deviation%></td>
+              <td> <%=l.radio_button :master_billing_profile_deviation, true %> Yes     </td>
+              <td> <%=l.radio_button :master_billing_profile_deviation, false %> No   </td>
+            </tr>
+
+            <tr>
+              <td><%= l.label :master_administration_deviation%></td>
+              <td> <%=l.radio_button :master_administration_deviation, true %> Yes     </td>
+              <td> <%=l.radio_button :master_administration_deviation, false %> No   </td>
+            </tr>
+
+              <tr>
+                <td><%= l.label :master_worker_deviation%></td>
+                <td><%= l.text_field :master_worker_deviation%>*</td>
+              </tr>
+
+              <tr>
+                <td><%= l.label :master_worker_deviation_comment%></td>
+                <td><%= l.text_field :master_worker_deviation_comment%>*</td>
+              </tr>
+
+            <tr>
+              <td><%= l.label :facebook%></td>
+              <td><%= l.text_field :la_facebook%></td>
+            </tr>
+
+            <tr>
+              <td><%= l.label :twitter%></td>
+              <td><%= l.text_field :la_twitter%></td>
+            </tr>
+
+            <tr>
+              <td><%= l.label :linkedin%></td>
+              <td><%= l.text_field :la_linked_in%></td>
+            </tr>
+              <tr>
             <td><%= l.label :billing_profile_id %></td>
-            <td><%= l.text_field :billing_profile_id %></td>
+            <td><%= l.text_field :billing_profile_id %>*</td>
           </tr>
           <tr>
             <td><%= l.label :platform_billing_profile_id %></td>
-            <td><%= l.text_field :platform_billing_profile_id %></td>
+            <td><%= l.text_field :platform_billing_profile_id %>*</td>
           </tr>
 
           <tr>
@@ -123,6 +233,9 @@
           jQuery(function(){
               var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
               email.add( Validate.Presence );
+              email.add( Validate.Email);
+              var contact_email = new LiveValidation('la_setting_contact_email',{validMessage:" ",onlyOnSubmit:true});
+              contact_email.add( Validate.Email);
               var la_country = new LiveValidation('la_setting_la_country',{validMessage:" ",onlyOnSubmit:true});
               la_country.add( Validate.Presence );
               var country = new LiveValidation('user_country',{validMessage:" ",onlyOnSubmit:true});
@@ -131,18 +244,21 @@
               web.add( Validate.Presence );
               var platform_home = new LiveValidation('la_setting_platform_home',{validMessage:" ",onlyOnSubmit:true});
               platform_home.add( Validate.Presence );
-              var zipcode = new LiveValidation('profile_zip_code',{validMessage:" ",onlyOnSubmit:true});
-              zipcode.add( Validate.Presence );
-              var addr = new LiveValidation('la_setting_address',{validMessage:" ",onlyOnSubmit:true});
-              addr.add( Validate.Presence );
-              var profile_first_name = new LiveValidation("profile_first_name",{validMessage:" ",onlyOnSubmit:true});
-              profile_first_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
-              var profile_last_name = new LiveValidation("profile_last_name",{validMessage:" ",onlyOnSubmit:true});
-              profile_last_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
-              var profile_city = new LiveValidation("profile_city",{validMessage:" ",onlyOnSubmit:true});
-              profile_city.add(Validate.Presence,{failureMessage:"Can't be empty"})
-              var profile_state = new LiveValidation("profile_state",{validMessage:" ",onlyOnSubmit:true});
-              profile_state.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//              var zipcode = new LiveValidation('profile_zip_code',{validMessage:" ",onlyOnSubmit:true});
+//              zipcode.add( Validate.Presence );
+//              var addr = new LiveValidation('la_setting_address',{validMessage:" ",onlyOnSubmit:true});
+//              addr.add( Validate.Presence );
+
+              var status = new LiveValidation('la_setting_status',{validMessage:" ",onlyOnSubmit:true});
+              status.add( Validate.Presence );
+//              var profile_first_name = new LiveValidation("profile_first_name",{validMessage:" ",onlyOnSubmit:true});
+//              profile_first_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//              var profile_last_name = new LiveValidation("profile_last_name",{validMessage:" ",onlyOnSubmit:true});
+//              profile_last_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//              var profile_city = new LiveValidation("profile_city",{validMessage:" ",onlyOnSubmit:true});
+//              profile_city.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//              var profile_state = new LiveValidation("profile_state",{validMessage:" ",onlyOnSubmit:true});
+//              profile_state.add(Validate.Presence,{failureMessage:"Can't be empty"})
               var profile_telephone_number = new LiveValidation("profile_telephone_number",{validMessage:" ",onlyOnSubmit:true});
               profile_telephone_number.add(Validate.Presence,{failureMessage:"Can't be empty"})
               profile_telephone_number.add(Validate.Numericality,{failureMessage:"Can't be empty"})
@@ -151,6 +267,15 @@
               var profile_plate_form_billing = new LiveValidation("la_setting_platform_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
               profile_plate_form_billing.add(Validate.Presence,{failureMessage:"Can't be empty"})
 
+              var devition = new LiveValidation("la_setting_master_worker_deviation",{validMessage:" ",onlyOnSubmit:true});
+              devition.add(Validate.Presence,{failureMessage:"Can't be empty"})
+
+              var devition_comment = new LiveValidation("la_setting_master_worker_deviation_comment",{validMessage:" ",onlyOnSubmit:true});
+              devition_comment.add(Validate.Presence,{failureMessage:"Can't be empty"})
+
+
+              var language = new LiveValidation("la_setting_language",{validMessage:" ",onlyOnSubmit:true});
+              language.add(Validate.Presence,{failureMessage:"Can't be empty"})
 //            $('#dob').datepicker({
 //                changeMonth: true,
 //                changeYear: true,

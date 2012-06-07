@@ -1,7 +1,7 @@
 class Profile
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
-  attr_accessible :first_name, :last_name, :full_name,:title, :birth_date, :gender, :city, :state, :mobile_number, :biography , :image , :video, :web,:blog ,:social_fb,:social_twitter,:social_linkedin,:social_myspace, :zip_code,:street,:street_number,:additional_address_info, :telephone_number,:company_name,:address,:billing_profile_id,:platform_billing_profile_id,:mail_chimp_integration_key,:freshbooks_integration_key
+  attr_accessible :first_name, :last_name, :full_name,:title, :birth_date, :gender, :city, :state, :mobile_number, :biography , :image , :video, :web,:blog ,:social_fb,:social_twitter,:social_linkedin,:social_myspace, :zip_code,:street,:street_number,:additional_address_info, :telephone_number,:company_name,:address,:billing_profile_id,:platform_billing_profile_id,:mail_chimp_integration_key,:freshbooks_integration_key,:telephone_number
 
 
 #  embedded_in :user, :inverse_of => :profile

@@ -96,6 +96,7 @@ class UsersController < ApplicationController
 
   def admin_group_list
     @admin_groups = current_user.admin_groups
+    binding.remote_pry
   end
   private
 
