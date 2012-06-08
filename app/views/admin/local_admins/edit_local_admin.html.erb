@@ -1,6 +1,6 @@
 <h1>Edit Admin</h1>
 
-<table>
+
   <%=form_for @admin ,:url=>update_local_admin_local_admin_path do |f| %>
       <%= fields_for @la_setting do |l| %>
           <%= fields_for @admin.profile do |p| %>
@@ -18,143 +18,206 @@
                     </ul>
                   </div>
               <% end %>
+            <table>
             <tr>
-              <td><%= f.label :email %></td>
+              <td><label class="control-label" for="input01">Email: <span style="color:red"> *</span></label></td>
               <td><%= f.text_field :email %></td>
-            </tr>
-            <tr>
-              <td><%= p.label :first_name %></td>
-              <td><%= p.text_field :first_name %></td>
-            </tr>
-            <tr>
-              <td><%= p.label :last_name %></td>
-              <td><%= p.text_field :last_name %></td>
-            </tr>
-            <tr>
-            <tr>
-              <td><%= f.label :country %></td>
-              <td><%= f.autocomplete_field :country ,autocomplete_country_detail_name_local_admins_path %></td>
-            </tr>
-            <tr>
-              <td><%= l.label :company_name %></td>
-              <td><%= l.text_field :company_name %></td>
-            </tr>
-            <tr>
-              <td><%= p.label :city %></td>
-              <td><%= p.text_field :city %></td>
-            </tr>
-            <tr>
-              <td><%= p.label :zip_code %></td>
-              <td><%= p.text_field :zip_code %></td>
-            </tr>
-            <tr>
-              <td><%= p.label :state %></td>
-              <td><%= p.text_field :state %></td>
-            </tr>
-            <tr>
-              <td><%= l.label :address %></td>
-              <td><%= l.text_field :address %></td>
-            </tr>
-            <tr>
-              <td><%= p.label :additional_address_info %></td>
-              <td><%= p.text_field :additional_address_info %></td>
-            </tr>
-            <tr>
-              <td><%= p.label :telephone_number %></td>
-              <td><%= p.text_field :telephone_number %></td>
-            </tr>
-            <tr>
-              <td>Master</td>
-              <td> <%=l.radio_button :is_master, true %> Is Master     </td>
-              <td> <%=l.radio_button :is_master, false %> Not Is Master   </td>
-            </tr>
-            <tr>
-              <td>
-                <%= l.label :la_country," Assigned To Country" %></td>
-              <td><%= l.autocomplete_field :la_country ,autocomplete_country_detail_name_local_admins_path %></td>
-            </tr>
-            <tr>
-              <td><%= l.label :language," Language" %></td>
-              <td><%= l.text_field :language %></td>
-            </tr>
-            <tr>
-              <td><%= l.label :web_domain,"Web Domain" %></td>
-              <td><%= l.text_field :web_domain %></td>
             </tr>
 
             <tr>
-              <td><%= l.label :platform_home,"Platform Home" %></td>
+              <td><label class="control-label" for="input01">Is Master: <span style="color:red">* </span></label></td>
+              <td> <%=l.radio_button :is_master, true %>Yes
+                <%=l.radio_button :is_master, false %> No   </td>
+            </tr>
+
+            <tr>
+              <td>
+                <label class="control-label" for="input01">LA country: <span style="color:red"> *</span></label></td>
+              <td><%= l.autocomplete_field :la_country ,autocomplete_country_detail_name_local_admins_path %></td>
+            </tr>
+
+            <tr>
+              <td><label class="control-label" for="input01">LA Language: <span style="color:red">* </span></label></td>
+              <td><%= l.text_field :language %></td>
+            </tr>
+
+            <tr>
+              <td><label class="control-label" for="input01">LA Plateform Home <span style="color:red"> *<%=  %></span></label></td>
               <td><%= l.text_field :platform_home %></td>
             </tr>
 
-            <% a= ["new","active","blocked","suspended","unpaid","inactive"] %>
             <tr>
-              <td><%= l.label :status,"Status" %></td>
-              <td><%= l.select :status , options_for_select(a ) %></td>
-            </tr>
-
-            <tr>
-              <td><%= l.label :user_terms %></td>
+              <td><%= l.label "User Terms:" %></td>
               <td><%= l.text_area :user_terms, :rows => 5%></td>
             </tr>
             <tr>
-              <td><%= l.label :project_terms %></td>
+              <td><%= l.label "Project Terms:" %></td>
               <td><%= l.text_area :project_terms,:rows => 5%></td>
             </tr>
 
             <tr>
-              <td><%= l.label :worker_terms %></td>
+              <td><%= l.label "Worker Terms:" %></td>
               <td><%= l.text_area :worker_terms,:rows => 5%></td>
             </tr>
 
             <tr>
-              <td><%= l.label :worker_consultant_terms %></td>
+              <td><%= l.label "Worker Consultant Terms:" %></td>
               <td><%= l.text_area :worker_consultant_terms,:rows => 5%></td>
             </tr>
 
             <tr>
-              <td><%= l.label :admin_group_terms %></td>
+              <td><%= l.label "admin_group_terms:" %></td>
               <td><%= l.text_area :admin_group_terms,:rows => 5%></td>
             </tr>
 
             <tr>
-              <td><%= l.label :business_group_terms %></td>
+              <td><%= l.label "business_group_terms" %></td>
               <td><%= l.text_area :business_group_terms,:rows => 5%></td>
             </tr>
 
 
-
-
             <tr>
-              <td><%= l.label :local_admin_name%></td>
-              <td><%= l.text_field :local_admin_name%></td>
+              <td><%= p.label "first_name: "%></td>
+              <td><%= p.text_field :first_name %></td>
+            </tr>
+            <tr>
+              <td><%= p.label "last_name:" %></td>
+              <td><%= p.text_field :last_name %></td>
+            </tr>
+            <tr>
+              <td><%= l.label "company_name:" %></td>
+              <td><%= l.text_field :company_name %></td>
+            </tr>
+            <tr>
+            <tr>
+              <td><label class="control-label" for="input01">Country: <span style="color:red"> *</span></label></td>
+              <td><%= f.autocomplete_field :country ,autocomplete_country_detail_name_local_admins_path %></td>
             </tr>
 
             <tr>
-              <td><%= l.label :contact_first_name%></td>
+              <td><%= p.label "City:" %></td>
+              <td><%= p.text_field :city %></td>
+            </tr>
+
+
+            <tr>
+              <td><%= p.label "Zip Code:" %></td>
+              <td><%= p.text_field :zip_code %></td>
+            </tr>
+            <tr>
+              <td><%= p.label "State:" %></td>
+              <td><%= p.text_field :state %></td>
+            </tr>
+            <tr>
+              <td><%= l.label "address:" %></td>
+              <td><%= l.text_field :address %></td>
+            </tr>
+            <tr>
+              <td><%= p.label "additional_address:" %></td>
+              <td><%= p.text_field :additional_address_info %></td>
+            </tr>
+            <tr>
+              <td><%= p.label "phone_number "%></td>
+              <td><%= p.text_field :telephone_number %></td>
+            </tr>
+
+            <tr>
+              <td><label class="control-label" for="input01">LA Facebook Page URL:</label></td>
+              <td><%= l.text_field :la_facebook%></td>
+            </tr>
+
+            <tr>
+              <td><label class="control-label" for="input01">LA Twitter Handle:</label></td>
+              <td><%= l.text_field :la_twitter%></td>
+            </tr>
+
+            <tr>
+              <td><label class="control-label" for="input01">LA LinkedIn URL:</label></td>
+              <td><%= l.text_field :la_linked_in%></td>
+            </tr>
+
+            <tr>
+              <td><label class="control-label" for="input01">Contact First Name:</label></td>
               <td><%= l.text_field :contact_first_name%></td>
             </tr>
 
             <tr>
-              <td><%= l.label :contact_last_name%></td>
+              <td><label class="control-label" for="input01">Contact Last Name:</label></td>
               <td><%= l.text_field :contact_last_name%></td>
             </tr>
 
             <tr>
-              <td><%= l.label :contact_email%></td>
+              <td><label class="control-label" for="input01">Contact Email:</label></td>
               <td><%= l.text_field :contact_email%></td>
             </tr>
 
             <tr>
-              <td><%= l.label :contact_photo%></td>
+              <td><label class="control-label" for="input01">Contact Photo:</label></td>
               <td><%= l.file_field :contact_photo%></td>
+            </tr>
+
+            <tr>
+              <td><label class="control-label" for="input01">Contact Biography:</label></td>
+              <td><%= l.text_field :contact_biography%></td>
+            </tr>
+            <tr>
+              <td><label class="control-label" for="input01">Billing Profile ID:<span style="color:red"> *</span></label></td>
+              <td><%= l.text_field :billing_profile_id %></td>
+            </tr>
+
+            <tr>
+              <td><label class="control-label" for="input01">Platform Billing Profile ID:<span style="color:red">* </span></label> </td>
+              <td><%= l.text_field :platform_billing_profile_id %></td>
             </tr>
 
 
             <tr>
-              <td><%= l.label :pass_la_commissions%></td>
+              <td><label class="control-label" for="input01">PasS LA Commissions:</label> </td>
               <td><%= l.text_field :pass_la_commissions%></td>
             </tr>
+
+            <!--<tr>-->
+            <!--<td><%= l.label :web_domain,"Web Domain" %></td>-->
+            <!--<td><%= l.text_field :web_domain %>*</td>-->
+            <!--</tr>-->
+
+
+
+            <% a= ["new","active","blocked","suspended","unpaid","inactive"] %>
+            <!--<tr>-->
+            <!--<td><%= l.label :status,"Status" %></td>-->
+            <!--<td><%= l.select :status , options_for_select(a ) %></td>-->
+            <!--</tr>-->
+
+            <tr>
+              <td><label class="control-label" for="input01">Master Billing Profile Deviation:</label> </td>
+              <td> <%=l.radio_button :master_billing_profile_deviation, true %> True
+                <%=l.radio_button :master_billing_profile_deviation, false %> False   </td>
+            </tr>
+
+            <tr>
+              <td><label class="control-label" for="input01">Master Administration Deviation:</label> </td>
+              <td> <%=l.radio_button :master_administration_deviation, true %> True
+                <%=l.radio_button :master_administration_deviation, false %> False  </td>
+            </tr>
+
+            <tr>
+              <td><label class="control-label" for="input01">MailChimp Integration Key:</label> </td>
+              <td><%= l.text_field :mail_chimp_integration_key %></td>
+            </tr>
+
+            <tr>
+              <td><label class="control-label" for="input01">Freshbooks Integration Key:</label> </td>
+              <td><%= l.text_field :freshbooks_integration_key %></td>
+            </tr>
+
+            <!--<tr>-->
+            <!--<td><%= l.label :local_admin_name%></td>-->
+            <!--<td><%= l.text_field :local_admin_name%></td>-->
+            <!--</tr>-->
+
+
+
 
             <!--<tr>-->
             <!--<td><%= l.label :master_billing_profile_deviation%></td>-->
@@ -166,60 +229,35 @@
             <!--<td><%= l.text_field :master_administration_deviation%></td>-->
             <!--</tr>-->
 
-            <tr>
-              <td><%= l.label :master_billing_profile_deviation%></td>
-              <td> <%=l.radio_button :master_billing_profile_deviation, true %> Yes     </td>
-              <td> <%=l.radio_button :master_billing_profile_deviation, false %> No   </td>
-            </tr>
+
 
             <tr>
-              <td><%= l.label :master_administration_deviation%></td>
-              <td> <%=l.radio_button :master_administration_deviation, true %> Yes     </td>
-              <td> <%=l.radio_button :master_administration_deviation, false %> No   </td>
-            </tr>
-
-            <tr>
-              <td><%= l.label :master_worker_deviation%></td>
+              <td><label class="control-label" for="input01">Master Worker Deviation:<span style="color:red"> </span></label> </td>
               <td><%= l.text_field :master_worker_deviation%></td>
             </tr>
 
             <tr>
-              <td><%= l.label :master_worker_deviation_comment%></td>
+              <td><label class="control-label" for="input01">Master Worker Deviation Comment:<span style="color:red"> </span></label> </td>
               <td><%= l.text_field :master_worker_deviation_comment%></td>
             </tr>
 
-            <tr>
-              <td><%= l.label :facebook%></td>
-              <td><%= l.text_field :la_facebook%></td>
-            </tr>
 
-            <tr>
-              <td><%= l.label :twitter%></td>
-              <td><%= l.text_field :la_twitter%></td>
-            </tr>
 
-            <tr>
-              <td><%= l.label :linkedin%></td>
-              <td><%= l.text_field :la_linked_in%></td>
-            </tr>
-            <tr>
-              <td><%= l.label :billing_profile_id %></td>
-              <td><%= l.text_field :billing_profile_id %></td>
-            </tr>
-            <tr>
-              <td><%= l.label :platform_billing_profile_id %></td>
-              <td><%= l.text_field :platform_billing_profile_id %></td>
-            </tr>
 
-            <tr>
-              <td><%= l.label :mail_chimp_integration_key %></td>
-              <td><%= l.text_field :mail_chimp_integration_key %></td>
-            </tr>
+            <!--<tr>-->
+            <!--<td><%= l.label :mail_chimp_integration_key %></td>-->
+            <!--<td><%= l.text_field :mail_chimp_integration_key %></td>-->
+            <!--</tr>-->
 
-            <tr>
-              <td><%= l.label :freshbooks_integration_key %></td>
-              <td><%= l.text_field :freshbooks_integration_key %></td>
-            </tr>
+            <!--<tr>-->
+            <!--<td><%= l.label :freshbooks_integration_key %></td>-->
+            <!--<td><%= l.text_field :freshbooks_integration_key %></td>-->
+            <!--</tr>-->
+
+            <!--<tr>-->
+            <!--<td><%= l.label :Deactivation_date %></td>-->
+            <!--<td><%= l.datepicker :deactivation_date %></td>-->
+            <!--</tr>-->
             <tr>
               <td><%= f.submit"Create LocalAdmin" ,:class => "btn-small btn" %></td>
             </tr>
@@ -227,18 +265,21 @@
         <% end %>
     <% end %>
 <%end%>
-<%= content_for :head do  %>
+<<%= content_for :head do  %>
     <script type="text/javascript">
 
         jQuery(function(){
             var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
             email.add( Validate.Presence );
+            email.add( Validate.Email);
+            var contact_email = new LiveValidation('la_setting_contact_email',{validMessage:" ",onlyOnSubmit:true});
+            contact_email.add( Validate.Email);
             var la_country = new LiveValidation('la_setting_la_country',{validMessage:" ",onlyOnSubmit:true});
             la_country.add( Validate.Presence );
             var country = new LiveValidation('user_country',{validMessage:" ",onlyOnSubmit:true});
             country.add( Validate.Presence );
-            var web = new LiveValidation('la_setting_web_domain',{validMessage:" ",onlyOnSubmit:true});
-            web.add( Validate.Presence );
+//            var web = new LiveValidation('la_setting_web_domain',{validMessage:" ",onlyOnSubmit:true});
+//            web.add( Validate.Presence );
             var platform_home = new LiveValidation('la_setting_platform_home',{validMessage:" ",onlyOnSubmit:true});
             platform_home.add( Validate.Presence );
 //              var zipcode = new LiveValidation('profile_zip_code',{validMessage:" ",onlyOnSubmit:true});
@@ -246,8 +287,8 @@
 //              var addr = new LiveValidation('la_setting_address',{validMessage:" ",onlyOnSubmit:true});
 //              addr.add( Validate.Presence );
 
-            var status = new LiveValidation('la_setting_status',{validMessage:" ",onlyOnSubmit:true});
-            status.add( Validate.Presence );
+//            var status = new LiveValidation('la_setting_status',{validMessage:" ",onlyOnSubmit:true});
+//            status.add( Validate.Presence );
 //              var profile_first_name = new LiveValidation("profile_first_name",{validMessage:" ",onlyOnSubmit:true});
 //              profile_first_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
 //              var profile_last_name = new LiveValidation("profile_last_name",{validMessage:" ",onlyOnSubmit:true});
@@ -257,18 +298,18 @@
 //              var profile_state = new LiveValidation("profile_state",{validMessage:" ",onlyOnSubmit:true});
 //              profile_state.add(Validate.Presence,{failureMessage:"Can't be empty"})
             var profile_telephone_number = new LiveValidation("profile_telephone_number",{validMessage:" ",onlyOnSubmit:true});
-            profile_telephone_number.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            // profile_telephone_number.add(Validate.Presence,{failureMessage:"Can't be empty"})
             profile_telephone_number.add(Validate.Numericality,{failureMessage:"Can't be empty"})
             var profile_billing = new LiveValidation("la_setting_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
             profile_billing.add(Validate.Presence,{failureMessage:"Can't be empty"})
             var profile_plate_form_billing = new LiveValidation("la_setting_platform_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
             profile_plate_form_billing.add(Validate.Presence,{failureMessage:"Can't be empty"})
 
-            var devition = new LiveValidation("la_setting_master_worker_deviation",{validMessage:" ",onlyOnSubmit:true});
-            devition.add(Validate.Presence,{failureMessage:"Can't be empty"})
-
-            var devition_comment = new LiveValidation("la_setting_master_worker_deviation_comment",{validMessage:" ",onlyOnSubmit:true});
-            devition_comment.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//            var devition = new LiveValidation("la_setting_master_worker_deviation",{validMessage:" ",onlyOnSubmit:true});
+//            devition.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//
+//            var devition_comment = new LiveValidation("la_setting_master_worker_deviation_comment",{validMessage:" ",onlyOnSubmit:true});
+//            devition_comment.add(Validate.Presence,{failureMessage:"Can't be empty"})
 
 
             var language = new LiveValidation("la_setting_language",{validMessage:" ",onlyOnSubmit:true});
