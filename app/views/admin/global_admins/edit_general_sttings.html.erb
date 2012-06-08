@@ -17,7 +17,7 @@
           </div>
       <% end %>
       <tr>
-        <td>   <label class="control-label" for="input01">Email <span style="color:red"> *</span></label></td>
+        <td>   <label class="control-label" for="input01">Email: <span style="color:red"> *</span></label></td>
         <td><%= global_admin.text_field :email %></td>
       </tr>
 
@@ -30,25 +30,25 @@
           <%   global_admin_general_setting = @global_admin.global_admin_general_setting  %>
 
           <tr>
-            <td>   <label class="control-label" for="input01">Plateform Name <span style="color:red"> *</span></label></td>
+            <td>   <label class="control-label" for="input01">Plateform Name: <span style="color:red"> *</span></label></td>
             <td><%= setting.text_field :plateform_name, :value =>global_admin_general_setting.plateform_name %></td>
           </tr>
 
           <tr>
-            <td>   <label class="control-label" for="input01">Plateform Default Language <span style="color:red"> *</span></label></td>
+            <td>   <label class="control-label" for="input01">Plateform Default Language: <span style="color:red"> *</span></label></td>
             <td><%= setting.text_field :plateform_default_language ,:value =>global_admin_general_setting.plateform_default_language%></td>
           </tr>
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Plateform Default Domain <span style="color:red"> *</span></label></td>
+            <td>   <label class="control-label" for="input01">Plateform Default Domain: <span style="color:red"> *</span></label></td>
             <td><%= setting.text_field :plateform_default_domain,:value =>global_admin_general_setting.plateform_default_domain %></td>
           </tr>
 
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Facebook Login Enabled <span style="color:red"> *</span></label></td>
+            <td>   <label class="control-label" for="input01">Facebook Login Enabled: <span style="color:red"> *</span></label></td>
             <td><%= setting.radio_button :facebook_login_enabled ,true, :checked=> (global_admin_general_setting.facebook_login_enabled == true)? true : false %> Yes
               <%= setting.radio_button :facebook_login_enabled,false, :checked=> (global_admin_general_setting.facebook_login_enabled == false)? true : false %> No</td>
           </tr>
@@ -56,7 +56,7 @@
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Facebook Signup Enabled <span style="color:red"> *</span></label></td>
+            <td>   <label class="control-label" for="input01">Facebook Signup Enabled: <span style="color:red"> *</span></label></td>
             <td><%= setting.radio_button :facebook_signup_enabled,true , :checked=> (global_admin_general_setting.facebook_signup_enabled == true)? true : false%> Yes
               <%= setting.radio_button :facebook_signup_enabled,false, :checked=> (global_admin_general_setting.facebook_signup_enabled == false)? true : false%> No</td>
           </tr>
@@ -64,7 +64,7 @@
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Mailchimp Integration Enabled <span style="color:red"> *</span></label></td>
+            <td>   <label class="control-label" for="input01">Mailchimp Integration Enabled: <span style="color:red"> *</span></label></td>
             <td><%= setting.radio_button :mailchimp_integration_enabled , true, :checked=> (global_admin_general_setting.mailchimp_integration_enabled == true)? true : false %> Yes
               <%= setting.radio_button :mailchimp_integration_enabled,false, :checked=> (global_admin_general_setting.mailchimp_integration_enabled == false)? true : false %> No</td>
           </tr>
@@ -72,7 +72,7 @@
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Freshbooks Integration Enabled <span style="color:red"> *</span></label></td>
+            <td>   <label class="control-label" for="input01">Freshbooks Integration Enabled: <span style="color:red"> *</span></label></td>
             <td><%= setting.radio_button :freshbooks_integration_enabled, true, :checked=> (global_admin_general_setting.freshbooks_integration_enabled == true)? true : false%> Yes
               <%= setting.radio_button :freshbooks_integration_enabled,false, :checked=> (global_admin_general_setting.freshbooks_integration_enabled == false)? true : false %> No</td>
           </tr>
@@ -80,7 +80,7 @@
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Platform Legal Terms Global </label></td>
+            <td>   <label class="control-label" for="input01">Platform Legal Terms Global: </label></td>
             <td><%= setting.text_field :platform_legal_terms_global ,:value =>global_admin_general_setting.platform_legal_terms_global%></td>
           </tr>
 
@@ -88,73 +88,73 @@
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Arena Minimum Cap </label></td>
+            <td>   <label class="control-label" for="input01">Arena Minimum Cap: </label></td>
             <td><%= setting.text_field :arena_minimum_cap ,:value =>global_admin_general_setting.arena_minimum_cap%></td>
           </tr>
 
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Arena Maximum Cap </label></td>
+            <td>   <label class="control-label" for="input01">Arena Maximum Cap: </label></td>
             <td><%= setting.text_field :arena_maximum_cap,:value =>global_admin_general_setting.arena_maximum_cap %></td>
           </tr>
 
           <tr>
-            <td>   <label class="control-label" for="input01">Arena Factor </label></td>
+            <td>   <label class="control-label" for="input01">Arena Factor: </label></td>
             <td><%= setting.text_field :arena_factor,:value =>global_admin_general_setting.arena_factor %></td>
           </tr>
 
-          <td>   <label class="control-label" for="input01">Bg Qualification Votes </label></td>
+          <td>   <label class="control-label" for="input01">Bg Qualification Votes: </label></td>
           <td><%= setting.text_field :bg_qualification_votes ,:value =>global_admin_general_setting.bg_qualification_votes%></td>
           </tr>
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Ga Facebook </label></td>
+            <td>   <label class="control-label" for="input01">Ga Facebook: </label></td>
             <td><%= setting.text_field :ga_facebook ,:value =>global_admin_general_setting.ga_facebook%></td>
           </tr>
 
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Ga Twitter </label></td>
+            <td>   <label class="control-label" for="input01">Ga Twitter: </label></td>
             <td><%= setting.text_field :arena_factor,:value =>global_admin_general_setting.ga_twitter %></td>
           </tr>
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">User Terms </label></td>
+            <td>   <label class="control-label" for="input01">User Terms: </label></td>
             <td><%= setting.text_area :user_terms,:value =>global_admin_general_setting.user_terms,:rows=>5 %></td>
           </tr>
 
           <tr>
-            <td>   <label class="control-label" for="input01">Project Terms </label></td>
+            <td>   <label class="control-label" for="input01">Project Terms: </label></td>
             <td><%= setting.text_area :project_terms,:value =>global_admin_general_setting.project_terms ,:rows=>5 %></td>
           </tr>
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Worker Terms </label</td>
+            <td>   <label class="control-label" for="input01">Worker Terms: </label</td>
             <td><%= setting.text_area :worker_terms,:value =>global_admin_general_setting.worker_terms ,:rows=>5%></td>
           </tr>
 
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Worker Consultant Terms </label></td>
+            <td>   <label class="control-label" for="input01">Worker Consultant Terms: </label></td>
             <td><%= setting.text_area :worker_consultant_terms,:value =>global_admin_general_setting.worker_consultant_terms,:rows=>5 %></td>
           </tr>
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Admin Group Terms </label></td>
+            <td>   <label class="control-label" for="input01">Admin Group Terms: </label></td>
             <td><%= setting.text_area :admin_group_terms,:value =>global_admin_general_setting.admin_group_terms,:rows=>5 %></td>
           </tr>
 
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">business_group_terms </label></td>
+            <td>   <label class="control-label" for="input01">business_group_terms: </label></td>
             <td><%= setting.text_area :business_group_terms,:value =>global_admin_general_setting.business_group_terms ,:rows=>5%></td>
           </tr>
 

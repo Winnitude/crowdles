@@ -24,7 +24,7 @@ class Admin::GlobalAdminsController < ApplicationController
     @global_admin_general_setting = @global_admin.global_admin_general_setting || @global_admin.build_global_admin_general_setting
     logger.info "##########{@global_admin_general_setting.inspect}########"
     if @global_admin_general_setting.update_attributes(params[:user][:global_admin_general_setting]) && @global_admin.update_attributes(params[:user])
-      redirect_to all_admins_global_admins_path, :notice=>"Successfully Update"
+      redirect_to edit_user_registration_path, :notice=>"Successfully Update"
     else
       render :edit_general_sttings
     end
