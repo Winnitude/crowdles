@@ -14,6 +14,7 @@ class User
   has_many :consultant_worker
   has_one  :la_setting
   has_one  :main_admin_group
+  has_one  :global_admin_general_setting
 
   belongs_to :country_detail
   has_many :user_roles
@@ -27,7 +28,7 @@ class User
                   :remember_me ,:country, :terms_of_service,:is_provider,
                   :is_provider_terms_of_service,:profile,:is_master,
                   :la_country,:la_language,:la_web_domain,:la_platform_home ,:la_name,:la_status,
-                  :agw_ago_id, :bgo_ago_id,:last_sign_in_ip
+                  :agw_ago_id, :bgo_ago_id,:last_sign_in_ip,:global_admin_general_setting
   #######################User Login functionality with devise integration############################
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

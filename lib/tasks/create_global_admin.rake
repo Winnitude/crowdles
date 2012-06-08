@@ -13,6 +13,8 @@ namespace :global_admin do
     user.save
     RolesManager.add_role("Global Admin", user)
     RolesManager.remove_role("User", user)
+    global_admin_general_setting = user.build_global_admin_general_setting
+    global_admin_general_setting.save
   end
 end
 
