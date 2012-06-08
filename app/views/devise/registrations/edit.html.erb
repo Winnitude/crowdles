@@ -1,6 +1,11 @@
 <% if RolesManagement::RolesManager.is_role_present?("Global Admin", current_user)%>
 <%= render :partial => 'shared/global_admin_settings' %>
 <%end%>
+
+<% if RolesManagement::RolesManager.is_role_present?("Local Admin", current_user)%>
+    <%= render :partial => 'shared/local_admin_settings' %>
+<%end%>
+
 <%= form_for(resource, :as => resource_name, :url => user_registration_path, :html => { :method => :put,:class=> "form-horizontal" }) do |f| %>
     <fieldset>
       <%= render "shared/form_errors", :object => resource %>

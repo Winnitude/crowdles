@@ -143,6 +143,19 @@ class Admin::LocalAdminsController < ApplicationController
     @profile = @admin.profile
   end
 
+  def my_settings
+      @admin = current_user
+      @la_settings = current_user.la_setting
+  end
+
+  def update_my_setting
+    @la_setting = current_user.la_setting
+    #binding.remote_pry
+   if @la_setting.update_attributes(params[:la_setting])
+      redirect_to :back ,:notice => "updated successfully"
+   end
+  end
+
   private
   def toggle_admin user   #TODO need to move to user model
     if RolesManager.is_role_present?("Local Admin", user)

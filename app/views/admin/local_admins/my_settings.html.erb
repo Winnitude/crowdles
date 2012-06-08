@@ -1,0 +1,106 @@
+<%= render :partial => 'shared/local_admin_settings' %>
+
+  <div>
+
+    <%=form_for @la_settings ,:url => update_my_setting_local_admins_path  do |l| %>
+
+
+        <table>
+
+          <tr>
+            <td><label class="control-label" for="input01">Contact First Name:</label></td>
+            <td><%= l.text_field :contact_first_name%></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">Contact Last Name:</label></td>
+            <td><%= l.text_field :contact_last_name%></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">Contact Email:</label></td>
+            <td><%= l.text_field :contact_email%></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">Contact Photo:</label></td>
+            <td><%= l.file_field :contact_photo%></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">Contact Biography:</label></td>
+            <td><%= l.text_field :contact_biography%></td>
+          </tr>
+
+          <tr>
+            <td> </td>
+            <td><%=l.submit "update" ,:class => "btn"%></td>
+          </tr>
+            </table>
+
+    <%end%>
+  </div>
+
+<%= content_for :head do  %>
+    <script type="text/javascript">
+
+        jQuery(function(){
+            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
+            email.add( Validate.Presence );
+            email.add( Validate.Email);
+            var contact_email = new LiveValidation('la_setting_contact_email',{validMessage:" ",onlyOnSubmit:true});
+            contact_email.add( Validate.Email);
+            var la_country = new LiveValidation('la_setting_la_country',{validMessage:" ",onlyOnSubmit:true});
+            la_country.add( Validate.Presence );
+            var country = new LiveValidation('user_country',{validMessage:" ",onlyOnSubmit:true});
+            country.add( Validate.Presence );
+//            var web = new LiveValidation('la_setting_web_domain',{validMessage:" ",onlyOnSubmit:true});
+//            web.add( Validate.Presence );
+            var platform_home = new LiveValidation('la_setting_platform_home',{validMessage:" ",onlyOnSubmit:true});
+            platform_home.add( Validate.Presence );
+//              var zipcode = new LiveValidation('profile_zip_code',{validMessage:" ",onlyOnSubmit:true});
+//              zipcode.add( Validate.Presence );
+//              var addr = new LiveValidation('la_setting_address',{validMessage:" ",onlyOnSubmit:true});
+//              addr.add( Validate.Presence );
+
+//            var status = new LiveValidation('la_setting_status',{validMessage:" ",onlyOnSubmit:true});
+//            status.add( Validate.Presence );
+//              var profile_first_name = new LiveValidation("profile_first_name",{validMessage:" ",onlyOnSubmit:true});
+//              profile_first_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//              var profile_last_name = new LiveValidation("profile_last_name",{validMessage:" ",onlyOnSubmit:true});
+//              profile_last_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//              var profile_city = new LiveValidation("profile_city",{validMessage:" ",onlyOnSubmit:true});
+//              profile_city.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//              var profile_state = new LiveValidation("profile_state",{validMessage:" ",onlyOnSubmit:true});
+//              profile_state.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            var profile_telephone_number = new LiveValidation("profile_telephone_number",{validMessage:" ",onlyOnSubmit:true});
+            // profile_telephone_number.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            profile_telephone_number.add(Validate.Numericality,{failureMessage:"Can't be empty"})
+            var profile_billing = new LiveValidation("la_setting_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
+            profile_billing.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            var profile_plate_form_billing = new LiveValidation("la_setting_platform_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
+            profile_plate_form_billing.add(Validate.Presence,{failureMessage:"Can't be empty"})
+
+//            var devition = new LiveValidation("la_setting_master_worker_deviation",{validMessage:" ",onlyOnSubmit:true});
+//            devition.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//
+//            var devition_comment = new LiveValidation("la_setting_master_worker_deviation_comment",{validMessage:" ",onlyOnSubmit:true});
+//            devition_comment.add(Validate.Presence,{failureMessage:"Can't be empty"})
+
+
+            var language = new LiveValidation("la_setting_language",{validMessage:" ",onlyOnSubmit:true});
+            language.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//            $('#dob').datepicker({
+//                changeMonth: true,
+//                changeYear: true,
+//                yearRange: 'c-100:c'
+//
+//
+//            });
+        });
+    </script>
+<% end %>
+
+
+
+

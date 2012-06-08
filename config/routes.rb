@@ -23,6 +23,8 @@ CrowdFunding::Application.routes.draw do
         get "show_admin"       , :on => :member
         get :autocomplete_country_detail_name, :on => :collection
         post "admin_group_creation", :on => :collection
+        get  "my_settings",        :on => :collection
+        put  "update_my_setting",        :on => :collection
       end
 
       as :local_admins do
