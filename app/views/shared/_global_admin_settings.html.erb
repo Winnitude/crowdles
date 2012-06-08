@@ -1,8 +1,9 @@
-<div><ul>
-  <h4>      <%= link_to 'Global Admin General Settings',edit_general_sttings_global_admin_path(current_user),:style=>" text-decoration: underline;" %>   |
-        <a href="">Global Admin Commissions Settings</a>  |
-        <%= link_to 'Global Admin PaaS Settings',"#", :confirm => 'Under development' %>     |
+<div style="margin-left: 325px;"><ul>
+  <%= link_to 'Profile',"#", :confirm => 'Under development' %>     |
+     <%= link_to 'General Settings',edit_general_sttings_global_admin_path(current_user) %>   |
+        <a href="">Commissions Settings</a>  |
+        <%= link_to 'PaaS Settings',"#", :confirm => 'Under development' %>     |
         <%= link_to 'PaaS Products Table',"#", :confirm => 'Under development' %>
-  </h4>
+
 </ul>
 </div>
