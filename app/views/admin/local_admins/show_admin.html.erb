@@ -26,6 +26,14 @@
   <strong> Worker Consultant Terms: </strong>    <%= la_setting.worker_consultant_terms %>  <br>
 
 
+  <strong>Master billing profile deviation </strong>  <%= la_setting.master_billing_profile_deviation %>  <br>
+  <strong> Master administration deviation: </strong>    <%= la_setting.user_terms %>                <br>
+  <!--<strong> Project Terms: </strong>    <%= la_setting.project_terms %>                <br>-->
+  <!--<strong> Worker Terms: </strong>    <%= la_setting.worker_terms %>                <br>-->
+  <!--<strong> Worker Consultant Terms: </strong>    <%= la_setting.worker_consultant_terms %>  <br>-->
+
+
+
   <strong> Assigned To Country: </strong>  <%= la_setting.la_country %>  <br>
   <strong> Language: </strong>    <%= la_setting.language %>                <br>
   <strong> Web Domain: </strong>    <%= la_setting.web_domain %>                <br>
@@ -40,15 +48,16 @@
   <!--<strong> Biography: </strong>     <%#= profile.biography %>  <br>-->
   <!--<strong> web: </strong>    <%#= profile.web %>  <br>-->
   <!--<strong> Blog: </strong>  <%#= profile.blog %>  <br>-->
-  <!--<strong> Social Fb: </strong>  <%#= profile.social_fb %> <br>-->
-  <!--<strong> Social Twitter: </strong>  <%#= profile.social_twitter %> <br>-->
-  <!--<strong> Social Linkedin: </strong>  <%#= profile.social_linkedin %>  <br>-->
+  <strong> LA facebook page: </strong>  <%= la_setting.la_facebook %> <br>
+  <strong> LA Twitter: </strong>  <%= la_setting.la_twitter %> <br>
+  <strong> La Linkedin: </strong>  <%= la_setting.la_linked_in %>  <br>
   <!--<strong> Social Myspace: </strong>  <%#= profile.social_myspace %>    <br>-->
   <!--&lt;!&ndash;<strong> Country: </strong>  <%#= user.country %>  <br>&ndash;&gt;-->
 
   <!--<strong> Street Number: </strong>  <%#= profile.street_number %> <br>-->
 
   <!--<strong> Mobile Number </strong>  <%#= profile.mobile_number %>  <br>-->
+  <strong> Created Date: </strong>    <%= la_setting.creation_date %>  <br>
 
 </div>
 <%= link_to 'Back', :back %>
