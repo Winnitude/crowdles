@@ -1,63 +1,179 @@
-<div class="form-horizontal"> <% user = @admin %>
-  <%profile= user.profile.nil? ? Profile.new : user.profile%>
-  <%la_setting= user.la_setting.nil? ? LaSetting.new : user.la_setting%>
-  <strong> Email: </strong>  <%= user.email %>      <br>
-  <!--<strong> Ip Address: </strong>    <%#= user.last_sign_in_ip %>                <br>-->
+<%user=@admin%>
+<%profile = user.profile.nil? ? Profile.new : user.profile%>
+<%la_setting= user.la_setting.nil? ? LaSetting.new : user.la_setting%>
+<h1>Local Admin Information</h1>
+<table border="1">
+  <tr>
+    <th width="200"><strong> Email: </strong></th>
+    <td width="500"><%= user.email %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong> Is Master: </strong></td>
+    <td width="300"><%= la_setting.is_master %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>LA Country: </strong></td>
+    <td width="300"><%= la_setting.la_country %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>LA Language: </strong></td>
+    <td width="300"><%= la_setting.language %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Platform Home: </strong></td>
+    <td width="300"><%= la_setting.platform_home %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>User Terms: </strong></td>
+    <td><%= la_setting.user_terms %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Project Terms: </strong></td>
+    <td><%= la_setting.project_terms%></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Worker Terms:: </strong></td>
+    <td><%= la_setting.worker_terms %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Worker Consultant Terms: </strong></td>
+    <td><%= la_setting.worker_consultant_terms %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Admin Group Terms: </strong></td>
+    <td><%= la_setting.admin_group_terms %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Business Group Terms: </strong></td>
+    <td><%= la_setting.business_group_terms %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Created At: </strong></td>
+    <td><%= time_ago_in_words(la_setting.creation_date)+ " Ago"  rescue nil  %></td>
+  </tr>
 
-  <!--<strong> Title: </strong>   <%#= profile.title %>          <br>-->
-  <strong> First Name: </strong>  <%= profile.first_name %>    <br>
-  <strong> Last Name: </strong>   <%= profile.last_name %> <br>
+  <tr>
+    <td width="100"><strong>Deactivation Date: </strong></td>
+    <td><%=  time_ago_in_words(la_setting.deactivation_date) rescue nil %></td>
+  </tr>
 
-  <strong> Country: </strong>   <%= user.country %> <br>
-  <strong> Company Name: </strong>   <%= la_setting.company_name %> <br>
-  <strong> City: </strong>  <%= profile.city %> <br>
-  <strong> State: </strong>  <%= profile.state %>   <br>
-  <strong> ZipCode: </strong>  <%= profile.zip_code %>   <br>
-  <!--<strong> Street: </strong>  <%#= profile.street %>   <br>-->
-  <strong> Address: </strong>  <%= la_setting.address %>   <br>
-  <strong> Additional Address Info: </strong>  <%= profile.additional_address_info %>  <br>
-  <strong> Telephone Number: </strong>  <%= profile.telephone_number %>  <br>
-  <!--<strong> NikName: </strong>  <%#= user.profile.nil? ? "": nikname(user.profile) %>    <br>-->
+  <tr>
+    <td width="100"><strong>Local Admin Name: </strong></td>
+    <td><%=  la_setting.local_admin_name %></td>
+  </tr>
 
-  <strong> Status </strong>  <%= la_setting.status %>  <br>
-  <strong> User Terms: </strong>    <%= la_setting.user_terms %>                <br>
-  <strong> Project Terms: </strong>    <%= la_setting.project_terms %>                <br>
-  <strong> Worker Terms: </strong>    <%= la_setting.worker_terms %>                <br>
-  <strong> Worker Consultant Terms: </strong>    <%= la_setting.worker_consultant_terms %>  <br>
+  <tr>
+    <td width="100"><strong>Status: </strong></td>
+    <td><%=  la_setting.status %></td>
+  </tr>
+
+  <tr>
+    <td width="100"><strong>First Name: </strong></td>
+    <td><%=  profile.first_name %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Last Name: </strong></td>
+    <td><%=  profile.last_name %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Company: </strong></td>
+    <td><%=  la_setting.company_name %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Country: </strong></td>
+    <td><%= user.country %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>City: </strong></td>
+    <td><%= profile.city %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Zip: </strong></td>
+    <td><%= profile.zip_code%></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>State: </strong></td>
+    <td><%= profile.state %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Address:: </strong></td>
+    <td><%= la_setting.address %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Additional Address: </strong></td>
+    <td><%= profile.additional_address_info %></td>
+  </tr>
+  <tr>
+    <td width="100"><strong>Phone Number: </strong></td>
+    <td><%=profile.telephone_number %></td>
+  </tr>
+
+  <tr>
+    <td width="100"><strong>Facebook Page: </strong></td>
+    <td><%= la_setting.la_facebook%></td>
+  </tr>
+
+  <tr>
+    <td width="100"><strong>Twitter Handle: </strong></td>
+    <td><%=la_setting.la_twitter%></td>
+  </tr>
+
+  <tr>
+    <td width="100"><strong>LA LinkedIn URL: </strong></td>
+    <td><%= la_setting.la_linked_in%></td>
+  </tr>
+
+  <tr>
+    <td width="100"><strong>Contact First Name: </strong></td>
+    <td><%= la_setting.contact_first_name%></td>
+  </tr>
+
+  <tr>
+    <td width="100"><strong>Contact Last Name: </strong></td>
+    <td><%= la_setting.contact_last_name%></td>
+  </tr>
+
+  <tr>
+    <td width="100"><strong>Contact Email: </strong></td>
+    <td><%= la_setting.contact_email%></td>
+  </tr>
+
+  <tr>
+    <td width="100"><strong>Billing Profile ID: </strong></td>
+    <td><%= la_setting.billing_profile_id %></td>
+  </tr>
+
+  <tr>
+    <td width="100"><strong> Platform Billing Profile ID: </strong></td>
+    <td><%=la_setting.platform_billing_profile_id %></td>
+  </tr>
 
 
-  <strong>Master billing profile deviation </strong>  <%= la_setting.master_billing_profile_deviation %>  <br>
-  <strong> Master administration deviation: </strong>    <%= la_setting.user_terms %>                <br>
-  <!--<strong> Project Terms: </strong>    <%= la_setting.project_terms %>                <br>-->
-  <!--<strong> Worker Terms: </strong>    <%= la_setting.worker_terms %>                <br>-->
-  <!--<strong> Worker Consultant Terms: </strong>    <%= la_setting.worker_consultant_terms %>  <br>-->
+  <tr>
+    <td><strong>PasS LA Commission: </strong></td>
+    <td><%= la_setting.pass_la_commissions%></td>
+  </tr>
 
+  <tr>
+    <td width="100"><strong>Master Billing Profile Deviation:</strong></td>
+    <td> <%=la_setting.master_billing_profile_deviation%></td>
+  </tr>
 
+  <tr>
+    <td width="100"><strong>Master Billing Administration Deviation:</strong></td>
+    <td> <%=la_setting.master_administration_deviation %>  </td>
+  </tr>
 
-  <strong> Assigned To Country: </strong>  <%= la_setting.la_country %>  <br>
-  <strong> Language: </strong>    <%= la_setting.language %>                <br>
-  <strong> Web Domain: </strong>    <%= la_setting.web_domain %>                <br>
-  <strong> Platform Home: </strong>    <%= la_setting.platform_home %>                <br>
-  <strong> Billing Profile: </strong>    <%= la_setting.billing_profile_id %>  <br>
-  <strong> Platform Billing Profile: </strong>    <%= la_setting.platform_billing_profile_id %>  <br>
-  <strong> Mail Chimp Integration Key: </strong>    <%= la_setting.mail_chimp_integration_key %>  <br>
-  <strong> Freshbooks Integration Key: </strong>    <%= la_setting.freshbooks_integration_key %>  <br>
-  <!--<strong> Birth Date: </strong>     <%#= profile.birth_date %> <br>-->
-  <!--<strong> Gender: </strong>   <%#=  profile.gender %>  <br>-->
-  <!--<strong> Photo: </strong>   <%#= image_tag user.profile.image_url unless user.profile.nil?%>   <br>-->
-  <!--<strong> Biography: </strong>     <%#= profile.biography %>  <br>-->
-  <!--<strong> web: </strong>    <%#= profile.web %>  <br>-->
-  <!--<strong> Blog: </strong>  <%#= profile.blog %>  <br>-->
-  <strong> LA facebook page: </strong>  <%= la_setting.la_facebook %> <br>
-  <strong> LA Twitter: </strong>  <%= la_setting.la_twitter %> <br>
-  <strong> La Linkedin: </strong>  <%= la_setting.la_linked_in %>  <br>
-  <!--<strong> Social Myspace: </strong>  <%#= profile.social_myspace %>    <br>-->
-  <!--&lt;!&ndash;<strong> Country: </strong>  <%#= user.country %>  <br>&ndash;&gt;-->
+  <tr>
+    <td width="100"><strong>MailChimp Integration Key:</strong></td>
+    <td><%=la_setting.mail_chimp_integration_key %></td>
+  </tr>
 
-  <!--<strong> Street Number: </strong>  <%#= profile.street_number %> <br>-->
+  <tr>
+    <td width="100"><strong>FreshBooks Integration Key:</strong></td>
+    <td><%= la_setting.freshbooks_integration_key %></td>
+  </tr>
 
-  <!--<strong> Mobile Number </strong>  <%#= profile.mobile_number %>  <br>-->
-  <strong> Created Date: </strong>    <%= la_setting.creation_date %>  <br>
+</table>
 
-</div>
-<%= link_to 'Back', :back %>
+<%= link_to "back",all_admins_global_admins_path , :class => "btn btn-primary"%>
