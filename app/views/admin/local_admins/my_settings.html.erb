@@ -1,12 +1,128 @@
 <%= render :partial => 'shared/local_admin_settings' %>
 
   <div>
-
-    <%=form_for @la_settings ,:url => update_my_setting_local_admins_path  do |l| %>
-
+    <%=form_for @admin ,:url=>update_my_setting_local_admins_path do |f| %>
+    <%=fields_for @la_settings  do |l| %>
+        <%= fields_for @admin.profile do |p| %>
 
         <table>
 
+          <tr>
+            <td><label class="control-label" for="input01">Email: <span style="color:red"> </span></label></td>
+            <td><%= f.text_field :email ,:disabled => true %></td>
+          </tr>
+
+          <tr>
+            <td>
+              <label class="control-label" for="input01">LA country: <span style="color:red"> </span></label></td>
+            <td><%= l.text_field :la_country,:disabled => true  %></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">LA Language: <span style="color:red"> </span></label></td>
+            <td><%= l.text_field :language ,:disabled => true %></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">LA Plateform Home <span style="color:red"> <%=  %></span></label></td>
+            <td><%= l.text_field :platform_home ,:disabled => true %></td>
+          </tr>
+
+          <tr>
+            <td><%= l.label "User Terms:" %></td>
+            <td><%= l.text_area :user_terms, :rows => 5 ,:disabled => true  %></td>
+          </tr>
+          <tr>
+            <td><%= l.label "Project Terms:" %></td>
+            <td><%= l.text_area :project_terms,:rows => 5 ,:disabled => true %></td>
+          </tr>
+
+          <tr>
+            <td><%= l.label "Worker Terms:" %></td>
+            <td><%= l.text_area :worker_terms,:rows => 5,:disabled => true %></td>
+          </tr>
+
+          <tr>
+            <td><%= l.label "Worker Consultant Terms:" %></td>
+            <td><%= l.text_area :worker_consultant_terms,:rows => 5 ,:disabled => true %></td>
+          </tr>
+
+          <tr>
+            <td><%= l.label "admin_group_terms:" %></td>
+            <td><%= l.text_area :admin_group_terms,:rows => 5, :disabled => true %></td>
+          </tr>
+
+          <tr>
+            <td><%= l.label "business_group_terms" %></td>
+            <td><%= l.text_area :business_group_terms,:rows => 5 ,:disabled => true %></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">Local Admin Name: <span style="color:red"> </span></label></td>
+            <td><%= l.text_field :local_admin_name ,:disabled => true %></td>
+
+
+
+          </tr>
+          <tr>
+            <td><%= p.label "first_name: "%></td>
+            <td><%= p.text_field :first_name ,:disabled => true  %></td>
+          </tr>
+          <tr>
+            <td><%= p.label "last_name:" %></td>
+            <td><%= p.text_field :last_name ,:disabled => true  %></td>
+          </tr>
+          <tr>
+            <td><%= l.label "company_name:" %></td>
+            <td><%= l.text_field :company_name ,:disabled => true  %></td>
+          </tr>
+          <tr>
+          <tr>
+            <td><label class="control-label" for="input01">Country: <span style="color:red"> </span></label></td>
+            <td><%= f.text_field :country ,:disabled => true  %></td>
+          </tr>
+
+          <tr>
+            <td><%= p.label "City:" %></td>
+            <td><%= p.text_field :city  ,:disabled => true %></td>
+          </tr>
+
+
+          <tr>
+            <td><%= p.label "Zip Code:" %></td>
+            <td><%= p.text_field :zip_code ,:disabled => true  %></td>
+          </tr>
+          <tr>
+            <td><%= p.label "State:" %></td>
+            <td><%= p.text_field :state ,:disabled => true %></td>
+          </tr>
+          <tr>
+            <td><%= l.label "address:" %></td>
+            <td><%= l.text_field :address ,:disabled => true %></td>
+          </tr>
+          <tr>
+            <td><%= p.label "additional_address:" %></td>
+            <td><%= p.text_field :additional_address_info  ,:disabled => true%></td>
+          </tr>
+          <tr>
+            <td><%= p.label "phone_number "%></td>
+            <td><%= p.text_field :telephone_number ,:disabled => true %></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">LA Facebook Page URL:</label></td>
+            <td><%= l.text_field :la_facebook ,:disabled => true%></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">LA Twitter Handle:</label></td>
+            <td><%= l.text_field :la_twitter ,:disabled => true%></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">LA LinkedIn URL:</label></td>
+            <td><%= l.text_field :la_linked_in ,:disabled => true%></td>
+          </tr>
           <tr>
             <td><label class="control-label" for="input01">Contact First Name:</label></td>
             <td><%= l.text_field :contact_first_name%></td>
@@ -38,6 +154,8 @@
           </tr>
             </table>
 
+            <%end%>
+        <%end%>
     <%end%>
   </div>
 
