@@ -15,6 +15,7 @@ class AdminGroup
   field :is_master,                 :type => Boolean
   field :admin_group_owner_id,                 :type => String
   field :is_active,                 :type => Boolean  , :default => true
+  field :country ,                  :type => String
   #field :admin_group_consultant_worker_id, :type => String
 
   def save_affillation_key_for_admin_group_owner

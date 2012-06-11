@@ -66,6 +66,12 @@ class AdminGroupOwnersController < ApplicationController
     @admin_group_workers = @admin_group.admin_group_workers
     #binding.pry_remote
   end
+
+  def all_workers
+    @admin_group = AdminGroup.find(params[:id])
+    @workers = @admin_group.admin_group_workers.includes(:user)
+    #render :json => @admin_group_workers
+  end
   private
 
   def should_be_AGO

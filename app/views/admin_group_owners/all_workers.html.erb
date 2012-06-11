@@ -1,0 +1,29 @@
+
+
+
+<h2>Listing all the Worker</h2>
+<table border="1" class="table">
+  <thead>
+  <tr>
+    <th><strong> Email <strong></th>
+    <th><strong> Country <strong></th>
+    <!--<th><strong> User Role<strong></th>-->
+    <th><strong> Action<strong></th>
+  </tr>
+  </thead>
+  <% @workers.each do |worker|%>
+
+<%profile= worker.user.profile.nil? ? Profile.new : worker.user.profile%>
+      <tr>
+        <td><%= worker.user.email %></td>
+        <td><%= worker.user.country %></td>
+        <!--<td> <%#= worker.role %>     </td>-->
+        <td>  <%#= link_to "Change to AGO",show_worker_for_change_role_path(worker.id) %>
+          <%= link_to "Show Profile",show_user_to_local_admin_path(worker.user) %>
+
+        </td>
+
+      </tr>
+
+  <% end %>
+</table>

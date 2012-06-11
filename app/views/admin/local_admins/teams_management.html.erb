@@ -1,0 +1,11 @@
+<div>
+  <%if @admins.present?%>
+  <ul>
+    <% @admins.each do |admin| %>
+    <li>
+   <h2> <%= link_to admin.name , all_workers_admin_group_owner_path(admin)%>     </h2>
+    </li>
+    <%end%>
+  </ul>
+  <%end%>
+</div>

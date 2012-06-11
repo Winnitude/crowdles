@@ -95,7 +95,7 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   def manage_admin_group
-    @admin_groups = AdminGroup.all.to_a
+    @admin_groups = AdminGroup.where(:country => current_user.la_setting.la_country)
   end
 
   def add_new_slave_admin_group
@@ -107,13 +107,17 @@ class Admin::LocalAdminsController < ApplicationController
   def admin_group_creation
     @selected_user = User.where(:email=>params[:email]).first
     unless @selected_user.blank?
-      @selected_user.create_admin_group params[:admin_group]
+      @selected_user.create_admin_group params[:admin_group] , current_user
+      #binding.remote_pry
     else
+      #binding.remote_pry
       new_user = User.new(:email=>params[:email],:country=>current_user.la_setting.la_country)
       value = new_user.set_la_attributes
       new_user.save
       LaMailer.welcome_email(new_user,new_user.profile,value,current_user.la_setting).deliver
-      new_user.create_admin_group params[:admin_group]
+      new_user.create_admin_group params[:admin_group] , current_user
+      #binding.remote_pry
+
     end
 
     redirect_to root_path ,:notice => "Successfully created"
@@ -154,6 +158,11 @@ class Admin::LocalAdminsController < ApplicationController
    if @la_setting.update_attributes(params[:la_setting])
       redirect_to :back ,:notice => "updated successfully"
    end
+  end
+
+  def teams_management
+     @admins = AdminGroup.where(:country => current_user.la_setting.la_country)
+     #render :json => @admins
   end
 
   private

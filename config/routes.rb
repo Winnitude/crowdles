@@ -25,6 +25,7 @@ CrowdFunding::Application.routes.draw do
         post "admin_group_creation", :on => :collection
         get  "my_settings",        :on => :collection
         put  "update_my_setting",        :on => :collection
+        get  "teams_management",        :on => :collection
       end
 
       as :local_admins do
@@ -84,6 +85,7 @@ CrowdFunding::Application.routes.draw do
     get "delete_admin_group", :on => :member
     get "change_admin_group_status", :on => :member
     get "sago_home", :on => :member
+    get "all_workers", :on => :member
     resources :admin_group_workers do
       post "create_admin_group_worker" , :on => :collection
       get "new_admin_group_workers", :on => :collection
