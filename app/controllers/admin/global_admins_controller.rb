@@ -14,19 +14,19 @@ class Admin::GlobalAdminsController < ApplicationController
     @ideas = Idea.all
   end
 
-  def edit_general_sttings
+  def edit_general_settings
     @global_admin = User.find(params[:id])
     @global_admin_general_setting = @global_admin.global_admin_general_setting || GlobalAdminGeneralSetting.new
   end
 
-  def update_general_sttings
+  def update_general_settings
     @global_admin = User.find(params[:id])
     @global_admin_general_setting = @global_admin.global_admin_general_setting || @global_admin.build_global_admin_general_setting
     logger.info "##########{@global_admin_general_setting.inspect}########"
     if @global_admin_general_setting.update_attributes(params[:user][:global_admin_general_setting]) && @global_admin.update_attributes(params[:user])
       redirect_to edit_user_registration_path, :notice=>"Successfully Update"
     else
-      render :edit_general_sttings
+      render :edit_general_settings
     end
 
     #@global_admin_general_setting.update_attributes(params)

@@ -1,6 +1,6 @@
 <h1>Edit Global Admin Settings</h1>
 <table>
-  <%=form_for @global_admin ,:url=>update_general_sttings_global_admin_path(@global_admin),:html => { :class => "form-horizontal"} do |global_admin| %>
+  <%=form_for @global_admin ,:url=>update_general_settings_global_admin_path(@global_admin),:html => { :class => "form-horizontal"} do |global_admin| %>
       <%= global_admin.fields_for :global_admin_general_setting, :html => { :class => "form-horizontal",:multipart => true} do |setting| %>
       <% if @global_admin.errors.any? || @global_admin_general_setting.errors.any?  %>
           <div id="error_explanation">
@@ -30,18 +30,18 @@
           <%   global_admin_general_setting = @global_admin.global_admin_general_setting  %>
 
           <tr>
-            <td>   <label class="control-label" for="input01">Plateform Name: <span style="color:red"> *</span></label></td>
+            <td>   <label class="control-label" for="input01">Platform Name: <span style="color:red"> *</span></label></td>
             <td><%= setting.text_field :plateform_name, :value =>global_admin_general_setting.plateform_name %></td>
           </tr>
 
           <tr>
-            <td>   <label class="control-label" for="input01">Plateform Default Language: <span style="color:red"> *</span></label></td>
+            <td>   <label class="control-label" for="input01">Platform Default Language: <span style="color:red"> *</span></label></td>
             <td><%= setting.text_field :plateform_default_language ,:value =>global_admin_general_setting.plateform_default_language%></td>
           </tr>
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">Plateform Default Domain: <span style="color:red"> *</span></label></td>
+            <td>   <label class="control-label" for="input01">Platform Default Domain: <span style="color:red"> *</span></label></td>
             <td><%= setting.text_field :plateform_default_domain,:value =>global_admin_general_setting.plateform_default_domain %></td>
           </tr>
 

@@ -4,7 +4,7 @@ class AdminGroupOwnersController < ApplicationController
   #NOTE:ago this will return all the workers  so that ago  can select them to make agw
   def view_all_workers
    # @workers = User.where(:role => "Worker").to_a
-     @workers = User.get_all_user_for_selected_role "Worker"
+     @workers = User.g  et_all_user_for_selected_role "Worker"
   end
 
   #NOTE:ago this will return all the AGWs  so that ago  can select them to make BGO

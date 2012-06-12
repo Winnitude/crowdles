@@ -7,8 +7,8 @@ CrowdFunding::Application.routes.draw do
       resources :global_admins do
         get "all_admins" ,:on => :collection
         get "ideas" ,    :on=> :collection
-        get "edit_general_sttings",  :on => :member
-        put "update_general_sttings",  :on => :member
+        get "edit_general_settings",  :on => :member
+        put "update_general_settings",  :on => :member
       end
 
       resources :local_admins do
