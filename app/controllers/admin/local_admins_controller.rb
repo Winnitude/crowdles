@@ -163,6 +163,8 @@ class Admin::LocalAdminsController < ApplicationController
 
   def teams_management
      @admins = AdminGroup.where(:country => current_user.la_setting.la_country)
+     @master_admin_group = MainAdminGroup.where(:country => current_user.la_setting.la_country)
+     #binding.remote_pry
      #render :json => @admins
   end
 

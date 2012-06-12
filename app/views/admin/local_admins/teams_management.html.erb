@@ -7,6 +7,19 @@
   </h4>
 </ul>
 </div>
+  <div>
+    <%if @master_admin_group.present?%>
+        <ul>
+          <% @master_admin_group.each do |admin| %>
+              <li>
+                <h2> <%= link_to "Main Admin Group" , all_workers_main_admin_group_owner_path(admin)%>     </h2>
+              </li>
+          <%end%>
+        </ul>
+    <%end%>
+  </div>
+
+
 <div>
   <%if @admins.present?%>
   <ul>
@@ -18,3 +31,4 @@
   </ul>
   <%end%>
 </div>
+

@@ -41,6 +41,12 @@ class MainAdminGroupOwnersController < ApplicationController
 
   end
 
+  def all_workers
+    @admin_group = MainAdminGroup.find(params[:id])
+    @workers = @admin_group.admin_group_workers.includes(:user)
+    #render :json => @admin_group_workers
+  end
+
   def  should_be_GA       #TODO need to move to user model
     unless RolesManager.is_role_present?("Global Admin", current_user)
       redirect_to root_path, :notice => "sorry you are not able to perform this activity"
