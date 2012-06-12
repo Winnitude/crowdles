@@ -1,3 +1,25 @@
+<%split_array = request.url.split("/") %>
+
+<h4><div class="pull-right">
+  <% if split_array.include?("manage_admin_group") %>
+
+      <%= link_to "Slave AG Mgmt" ,manage_admin_group_local_admins_path,:style=>"text-decoration: underline;" %> |
+  <%else%>
+      <%= link_to "Slave AG Mgmt" ,manage_admin_group_local_admins_path %> |
+  <%end%>
+  <% if split_array.include?("change_ownership") %>
+
+      <%= link_to "Main AG Mgmt" ,change_ownership_main_admin_group_owners_path,:style=>"text-decoration: underline;" %> |
+  <%else%>
+      <%= link_to "Main AG Mgmt" ,change_ownership_main_admin_group_owners_path %> |
+  <%end%>
+
+  <% if split_array.include?("add_new_slave_admin_group") %>
+      <%= link_to "Add New Slave Admin Group" , add_new_slave_admin_group_local_admins_path ,:style=>"text-decoration: underline;" %>
+  <%else%>
+      <%= link_to "Add New Slave Admin Group" , add_new_slave_admin_group_local_admins_path  %>
+  <%end%>
+</h4>
 <h2>Add New Slave Admin Group</h2>
 <%= form_for @admin_group,:url=>admin_group_creation_local_admins_path, :html => { :class => "form-horizontal",:multipart => true  } do |f|%>
 

@@ -1,9 +1,16 @@
 <div style="margin-left: 325px;"><ul>
- <a href="">Profile</a>    |
-     <%= link_to 'General Settings',edit_general_settings_global_admin_path(current_user) %>   |
-        <a href="">Commissions Settings</a>  |
-        <%= link_to 'PaaS Settings',"#", :confirm => 'Under development' %>     |
-        <%= link_to 'PaaS Products Table',"#", :confirm => 'Under development' %>
+  <%split_array = request.url.split("/") %>
+  <% if split_array.include?("edit") %>
+      <%= link_to 'Profile',edit_user_registration_path ,:style=>"text-decoration: underline;" %>    |
+      <%= link_to 'General Settings',edit_general_settings_global_admin_path(current_user) %>   |
+  <%else  %>
+      <%= link_to 'Profile',edit_user_registration_path  %>    |
+      <%= link_to 'General Settings',edit_general_settings_global_admin_path(current_user) ,:style=>"text-decoration: underline;" %>   |
+  <%end%>
+
+  <a href="">Commissions Settings</a>  |
+  <%= link_to 'PaaS Settings',"#", :confirm => 'Under development' %>     |
+  <%= link_to 'PaaS Products Table',"#", :confirm => 'Under development' %>
 
 </ul>
 </div>

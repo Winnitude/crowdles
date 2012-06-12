@@ -1,16 +1,23 @@
-<li>
-
- <%split_array = request.url.split("/") %>
-  <a href="#"><%= split_array.include?("admin_group_owners")? "SAGO" : "User" %></a>
-</li>
-
-<li>
+<%split_array = request.url.split("/") %>
+<% if split_array.include?("new")  %>
+    <li class= "active">
+<%else%>
+    <li>
+<%end%>
 	<a href="<%= new_idea_path %>">Propose Idea</a>
 </li>
-<li>
+<% if request.path == "/ideas" %>
+    <li class= "active">
+<%else%>
+    <li>
+<%end%>
 	<a href="<%= ideas_path %>">My Ideas</a>
 </li>
-<li>
+<% if split_array.include?("show_good_idea")  %>
+    <li class= "active">
+<%else%>
+    <li>
+<%end%>
 	<a href="<%= show_good_idea_ideas_path %>">My Good Ideas</a>
 </li>
 

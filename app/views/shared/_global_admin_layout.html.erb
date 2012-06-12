@@ -10,34 +10,51 @@
 
 
   <li> <a href="#">Overview</a></li>
-  <li>
+  <%split_array = request.url.split("/") %>
+  <% if split_array.include?("edit") or split_array.include?("edit_general_settings") %>
+  <li class= "active">
+   <%else%>
+     <li>
+     <%end%>
     <a href="<%= edit_user_registration_path %>">Setting</a>
   </li>
-  <li>
-    <a href="<%= all_admins_global_admins_path %>">Local Admins Management</a>
+  <% if split_array.include?("all_admins") or split_array.include?("new_local_admin") or split_array.include?("edit_local_admin") or split_array.include?("show_admin")%>
+      <li class= "active">
+  <%else%>
+      <li>
+  <%end%>
+    <a href="<%= all_admins_global_admins_path %>">Local Admins <br>Management</a>
   </li>
-  <li>
-    <a href="<%=main_admin_group_owners_path  %>">Main Admin Groups Management</a>
+  <% if split_array.include?("main_admin_group_owners")  %>
+      <li class= "active">
+  <%else%>
+      <li>
+  <%end%>
+    <a href="<%=main_admin_group_owners_path  %>">Main Admin Groups  <br>Management</a>
   </li>
 
-  <!--<li>-->
-    <!--<a href="#">Business Groups Management</a>-->
-  <!--</li>-->
-  <!--<li>-->
-    <!--<a href="#">Teams Management</a>-->
-  <!--</li>-->
-  <!--<li>-->
-    <!--<a href="#">Users Management</a>-->
-  <!--</li>-->
-  <!--<li>-->
-    <!--<a href="#">Projects Management</a>-->
-  <!--</li>-->
-  <!--<li>-->
-    <!--<a href="#">Pages Management</a>-->
-  <!--</li>-->
-  <!--<li>-->
-    <!--<a href="#">Statistics</a>-->
-  <!--</li>-->
+  <li>
+    <a href="#">Business Groups <br> Management</a>
+  </li>
+  <li>
+    <a href="#">Teams <br> Management</a>
+  </li>
+  <li>
+    <a href="#">Users <br> Management</a>
+  </li>
+  <% if split_array.include?("ideas")  %>
+      <li class= "active">
+  <%else%>
+      <li>
+  <%end%>
+    <a href="<%= ideas_global_admins_path  %>">Projects  <br>Management</a>
+  </li>
+  <li>
+    <a href="#">Pages  <br>Management</a>
+  </li>
+  <li>
+    <a href="#">Statistics</a>
+  </li>
 
   <!--<li>-->
     <!--<a href="<%= ideas_global_admins_path  %>">Idea Management</a>-->
