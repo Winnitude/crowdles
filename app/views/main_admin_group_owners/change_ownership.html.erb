@@ -1,3 +1,25 @@
+<%split_array = request.url.split("/") %>
+
+<h4><div class="pull-right">
+  <% if split_array.include?("manage_admin_group") %>
+
+      <%= link_to "Slave AG Mgmt" ,manage_admin_group_local_admins_path,:style=>"text-decoration: underline;" %> |
+  <%else%>
+      <%= link_to "Slave AG Mgmt" ,manage_admin_group_local_admins_path %> |
+  <%end%>
+  <% if split_array.include?("change_ownership") %>
+
+      <%= link_to "Main AG Mgmt" ,change_ownership_main_admin_group_owners_path,:style=>"text-decoration: underline;" %> |
+  <%else%>
+      <%= link_to "Main AG Mgmt" ,change_ownership_main_admin_group_owners_path %> |
+  <%end%>
+
+  <% if split_array.include?("add_new_slave_admin_group") %>
+      <%= link_to "Add New Slave Admin Group" , add_new_slave_admin_group_local_admins_path ,:style=>"text-decoration: underline;" %>
+  <%else%>
+      <%= link_to "Add New Slave Admin Group" , add_new_slave_admin_group_local_admins_path  %>
+  <%end%>
+</h4>
 <%= form_tag "/main_admin_group_owners/changed" ,:method => "post" do %>
 
     <%= select_tag "worker_email", options_for_select(["-----please select a User-----"]+@users ) %>

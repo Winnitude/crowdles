@@ -23,7 +23,7 @@
   <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
   <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
 </head>
-<body>
+<body style="padding-top: 50px">
 
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -34,43 +34,69 @@
         <span class="icon-bar"></span>
       </a>
       <a class="brand" href="/">CrowdFunding</a>
-      <div class="container nav-collapse">
-        <ul class="nav">
-
-
-          <% if user_signed_in? %>
-              <% if !current_user.blank?  %>
-                  <% if RolesManagement::RolesManager.is_role_present?("Global Admin", current_user)&& request.url.index(ADMIN_HOST).present? %>
-                      <li class="brand"> <%= "Global Admin" %>   </li>
-                      <%= render :partial => 'shared/global_admin_layout'%>
-                  <% end %>
-                  <% if RolesManagement::RolesManager.is_role_present?("Main Local Admin", current_user) && request.url.index(ADMIN_HOST).present? %>
-                      <li class="brand"> <%= "Main Local Admin" %>   </li>
-                      <%= render :partial => 'shared/main_local_admin_layout'%>
-                  <% end %>
-                  <% if RolesManagement::RolesManager.is_role_present?("Local Admin", current_user) && request.url.index(ADMIN_HOST).present?%>
-                      <li class="brand"> <%= "Local Admin" %>   </li>
-                      <%= render :partial => 'shared/local_admin_layout'%>
-                  <% end %>
-                  <% if RolesManagement::RolesManager.is_role_present?("User", current_user)   %>
-                      <%= render :partial => 'shared/user_layout' %>
-                  <% end %>
-                  <% if RolesManagement::RolesManager.is_role_present?("Worker", current_user) && request.url.index(ADMIN_HOST).present? %>
-                      <%= render :partial => 'shared/worker_layout' %>
-                  <% end %>
-
-              <%end  %>
+      <% if !current_user.blank?  %>
+          <% if RolesManagement::RolesManager.is_role_present?("Global Admin", current_user)&& request.url.index(ADMIN_HOST).present? %>
+              <li class="brand"> <%= "Global Admin" %>   </li>
           <% end %>
-        </ul>
-      </div><!--/.nav-collapse -->
+          <% if RolesManagement::RolesManager.is_role_present?("Local Admin", current_user)&& request.url.index(ADMIN_HOST).present? %>
+              <li class="brand"> <%= "Local Admin" %>   </li>
+          <% end %>
+          <% if RolesManagement::RolesManager.is_role_present?("User", current_user) %>
+              <li  class="brand">
+                <%split_array = request.url.split("/") %>
+               <%= split_array.include?("admin_group_owners")? "SAGO" : "User" %>
+              </li>
+          <% end %>
+      <% end %>
     </div>
   </div>
 </div>
 
 <div class="container">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <div class="container nav-collapse">
+          <ul class="nav">
+
+
+            <% if user_signed_in? %>
+                <% if !current_user.blank?  %>
+                    <% if RolesManagement::RolesManager.is_role_present?("Global Admin", current_user)&& request.url.index(ADMIN_HOST).present? %>
+                        <!--<li class="brand"> <%= "Global Admin" %>   </li>-->
+                        <%= render :partial => 'shared/global_admin_layout'%>
+                    <% end %>
+                    <% if RolesManagement::RolesManager.is_role_present?("Main Local Admin", current_user) && request.url.index(ADMIN_HOST).present? %>
+                        <li class="brand"> <%= "Main Local Admin" %>   </li>
+                        <%= render :partial => 'shared/main_local_admin_layout'%>
+                    <% end %>
+                    <% if RolesManagement::RolesManager.is_role_present?("Local Admin", current_user) && request.url.index(ADMIN_HOST).present?%>
+                        <!--<li class="brand"> <%= "Local Admin" %>   </li>-->
+                        <%= render :partial => 'shared/local_admin_layout'%>
+                    <% end %>
+                    <% if RolesManagement::RolesManager.is_role_present?("User", current_user)   %>
+
+                        <%= render :partial => 'shared/user_layout' %>
+                    <% end %>
+                    <% if RolesManagement::RolesManager.is_role_present?("Worker", current_user) && request.url.index(ADMIN_HOST).present? %>
+                        <%= render :partial => 'shared/worker_layout' %>
+                    <% end %>
+
+                <%end  %>
+            <% end %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
   <div class="content">
     <div class="row">
-      <div class="span9">
+      <div class="span9" style="margin-top: 0;">
         <div id="user_nav">
           <% [:notice, :error, :alert].each do |level| %>
               <% unless flash[level].blank? %>

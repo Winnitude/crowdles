@@ -12,4 +12,9 @@
  *= require bootstrap.min
  *= require datepicker
  *= require custom_bootstrap
+ *= require custom
 */
+.navbar .nav > li > a {
+    text-align: center;
+    padding: 10px 15px 11px;
+}

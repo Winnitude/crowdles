@@ -1,8 +1,14 @@
 <div align="right"><ul>
-  <h4>
 
-    <%= link_to "General Settings" , my_settings_local_admins_path %>    |
-    <%= link_to "Profile Settings" , edit_user_registration_path  %>
+  <h4>
+    <%split_array = request.url.split("/") %>
+    <% if split_array.include?("my_settings") %>
+        <%= link_to 'General Settings',my_settings_local_admins_path ,:style=>"text-decoration: underline;" %>   |
+        <%= link_to 'Profile Settings',edit_user_registration_path  %>
+    <%else  %>
+        <%= link_to 'General Settings',my_settings_local_admins_path  %>   |
+        <%= link_to 'Profile Settings',edit_user_registration_path ,:style=>"text-decoration: underline;" %>
+    <%end%>
   </h4>
 </ul>
 </div>
