@@ -40,7 +40,7 @@ module RolesManagement
 
     def self.all_roles(user)
       user = User.where(:_id => user._id).first
-      all_user_roles = user.user_roles.collect{|i| i.role if i.role.present?}
+      all_user_roles = user.user_roles.collect{|i| i.role.role if i.role.present?}
       puts all_user_roles.inspect
       all_user_roles
     end

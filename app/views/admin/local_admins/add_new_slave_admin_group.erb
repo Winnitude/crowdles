@@ -42,6 +42,7 @@
 
             var email = new LiveValidation('email',{validMessage:" ",onlyOnSubmit:true});
             email.add( Validate.Presence,{failureMessage:" Can't be empty"} );
+            email.add( Validate.Email,{failureMessage:"Not a valid Email"} );
         });
     </script>
 <% end %>

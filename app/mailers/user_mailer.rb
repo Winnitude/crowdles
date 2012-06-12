@@ -11,4 +11,10 @@ class UserMailer < ActionMailer::Base
      @role = role
      mail(:to => @user.email, :subject => "Role Changed")
   end
+
+  def welcome_mail_to_ago(user,value)
+     @user = user
+     @pass = value
+     mail(:to => user.email, :subject => "Welcome to Crowd Funding Site")
+  end
 end

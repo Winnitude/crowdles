@@ -114,7 +114,8 @@ class Admin::LocalAdminsController < ApplicationController
       new_user = User.new(:email=>params[:email],:country=>current_user.la_setting.la_country)
       value = new_user.set_la_attributes
       new_user.save
-      LaMailer.welcome_email(new_user,new_user.profile,value,current_user.la_setting).deliver
+      #LaMailer.welcome_email(new_user,new_user.profile,value,current_user.la_setting).deliver
+      UserMailer.welcome_mail_to_ago(new_user,value).deliver
       new_user.create_admin_group params[:admin_group] , current_user
       #binding.remote_pry
 

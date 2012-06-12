@@ -47,6 +47,7 @@ gem "carrierwave-mongoid"
 gem "fog", "~> 1.3.1"
 gem "pry"
 gem "pry-remote"
+#gem "geocoder"
 #gem "rmagick"
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
