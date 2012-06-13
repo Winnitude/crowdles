@@ -20,8 +20,8 @@ class MainAdminGroupOwnersController < ApplicationController
   end
 
   def changed
-    @admin_group = AdminGroup.find(params[:id])
-    @admin_group.update_attributes(params[:admin_group])
+    @main_admin_group = MainAdminGroup.find(params[:id])
+    @main_admin_group.update_attributes(params[:main_admin_group])
     redirect_to root_path   ,:notice => "Successfully Update"
     #group = MainAdminGroup.where(:country => current_user.la_setting.la_country).to_a.first
     #user= User.where(:email => params[:worker_email]).to_a.first

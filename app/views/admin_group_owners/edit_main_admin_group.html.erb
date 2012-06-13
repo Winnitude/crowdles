@@ -1,35 +1,7 @@
-<%split_array = request.url.split("/") %>
-
-<h4><div class="pull-right">
-  <% if split_array.include?("manage_admin_group") %>
-
-      <%= link_to "Slave AG Mgmt" ,manage_admin_group_local_admins_path,:style=>"text-decoration: underline;" %> |
-  <%else%>
-      <%= link_to "Slave AG Mgmt" ,manage_admin_group_local_admins_path %> |
-  <%end%>
-  <% if split_array.include?("change_ownership") %>
-
-      <%= link_to "Main AG Mgmt" ,change_ownership_main_admin_group_owners_path,:style=>"text-decoration: underline;" %> |
-  <%else%>
-      <%= link_to "Main AG Mgmt" ,change_ownership_main_admin_group_owners_path %> |
-  <%end%>
-
-  <% if split_array.include?("add_new_slave_admin_group") %>
-      <%= link_to "Add New Slave Admin Group" , add_new_slave_admin_group_local_admins_path ,:style=>"text-decoration: underline;" %>
-  <%else%>
-      <%= link_to "Add New Slave Admin Group" , add_new_slave_admin_group_local_admins_path  %>
-  <%end%>
-</div></h4>
-<%#= form_tag "/main_admin_group_owners/changed" ,:method => "post" do %>
-
-    <%#= select_tag "worker_email", options_for_select(["-----please select a User-----"]+@users ) %>
-    <%#=submit_tag "Make MAGO"%>
-<%# end %>
-
 <h2>Edit Main Admin Group</h2>
 
 <table>
-  <%= form_for @group,:url=> changed_main_admin_group_owner_path(@group), :html => { :class => "form-horizontal",:multipart => true  } do |f|%>
+  <%= form_for @main_admin_group,:url=>update_main_admin_group_admin_group_owner_path, :html => { :class => "form-horizontal",:multipart => true  } do |f|%>
       <% @local_admin = @local_admin.blank? ? LaSetting.new : @local_admin    %>
       <tr>
         <td><label class="control-label" for="input01">Owner ID: <span style="color:red"> *</span></label></td>
@@ -41,15 +13,15 @@
       </tr>
       <tr>
         <td><label class="control-label" for="input01">AG Creation Date: <span style="color:red"> *</span></label></td>
-        <td><%= f.text_field :ag_creation_date,:disabled=>true %></td>
+        <td><%= f.text_field :ag_creation_date %></td>
       </tr>
       <tr>
         <td><label class="control-label" for="input01">AG Expiration Date:</label></td>
-        <td><%= f.text_field :ag_expiration_date ,:disabled=>true %></td>
+        <td><%= f.text_field :ag_expiration_date %></td>
       </tr>
       <tr>
         <td><label class="control-label" for="input01">AG Deactivation Date:</label></td>
-        <td><%= f.text_field :ag_deactivation_date,:disabled=>true %></td>
+        <td><%= f.text_field :ag_deactivation_date %></td>
       </tr>
       <tr>
         <td><label class="control-label" for="input01">Admin Group Name:</label></td>
@@ -67,7 +39,7 @@
       <% a= ["new","active","Expiring","Blocked","Suspend","Unpaid"] %>
       <tr>
         <td><label class="control-label" for="input01">Status: <span style="color:red"> *</span></label></td>
-        <td><%= f.select :status , options_for_select(a,@group.status) %></td>
+        <td><%= f.select :status , options_for_select(a,@main_admin_group.status) %></td>
       </tr>
       <tr>
         <td><label class="control-label" for="input01">AG Country:</label></td>
@@ -134,17 +106,17 @@
       </tr>
       <tr>
         <td>Self Management: <span style="color:red"> *</span></td>
-        <td> <%=f.radio_button :self_management, true, :checked=> (@group.self_management == true)? true : false %> Yes
-          <%=f.radio_button :self_management, false, :checked=> (@group.self_management == false)? true : false %> No   </td>
+        <td> <%=f.radio_button :self_management, true, :checked=> (@main_admin_group.self_management == true)? true : false %> Yes
+          <%=f.radio_button :self_management, false, :checked=> (@main_admin_group.self_management == false)? true : false %> No   </td>
       </tr>
       <td>Area Flag: <span style="color:red"> *</span></td>
-      <td> <%=f.radio_button :arena_flag, true, :checked=> (@group.arena_flag == true)? true : false %> Yes
-        <%=f.radio_button :arena_flag, false, :checked=> (@group.arena_flag == false)? true : false %> No   </td>
+      <td> <%=f.radio_button :arena_flag, true, :checked=> (@main_admin_group.self_management == true)? true : false %> Yes
+        <%=f.radio_button :arena_flag, false, :checked=> (@main_admin_group.self_management == false)? true : false %> No   </td>
       </tr>
 
       <td>BG Contest Allowed: <span style="color:red"> *</span></td>
-      <td> <%=f.radio_button :bg_contest_allowed, true, :checked=> (@group.bg_contest_allowed == true)? true : false %> Yes
-        <%=f.radio_button :bg_contest_allowed, false, :checked=> (@group.bg_contest_allowed == false)? true : false%> No   </td>
+      <td> <%=f.radio_button :bg_contest_allowed, true, :checked=> (@main_admin_group.bg_contest_allowed == true)? true : false %> Yes
+        <%=f.radio_button :bg_contest_allowed, false, :checked=> (@main_admin_group.bg_contest_allowed == false)? true : false%> No   </td>
       </tr>
       <tr>
         <td><label class="control-label" for="input01">AG Commissions:</label></td>
@@ -156,28 +128,28 @@
       </tr>
 
       <tr><td>BG Free Standard Commissions Allowed: <span style="color:red"> *</span></td>
-        <td> <%=f.radio_button :bg_free_standard_commissions_allowed, true, :checked=> (@group.bg_free_standard_commissions_allowed == true)? true : false%> Yes
-          <%=f.radio_button :bg_free_standard_commissions_allowed, false, :checked=> (@group.bg_free_standard_commissions_allowed == false)? true : false%> No   </td>
+        <td> <%=f.radio_button :bg_free_standard_commissions_allowed, true, :checked=> (@main_admin_group.bg_free_standard_commissions_allowed == true)? true : false%> Yes
+          <%=f.radio_button :bg_free_standard_commissions_allowed, false, :checked=> (@main_admin_group.bg_free_standard_commissions_allowed == false)? true : false%> No   </td>
       </tr>
       <tr>
         <td>BG Free Pro Commissions Allowed: <span style="color:red"> *</span></td>
-        <td> <%=f.radio_button :bg_free_pro_commissions_allowed, true, :checked=> (@group.bg_free_private_commissions_allowed == true)? true : false %> Yes
-          <%=f.radio_button :bg_free_pro_commissions_allowed, false, :checked=> (@group.bg_free_private_commissions_allowed == false)? true : false  %> No   </td>
+        <td> <%=f.radio_button :bg_free_pro_commissions_allowed, true, :checked=> (@main_admin_group.bg_free_private_commissions_allowed == true)? true : false %> Yes
+          <%=f.radio_button :bg_free_pro_commissions_allowed, false, :checked=> (@main_admin_group.bg_free_private_commissions_allowed == false)? true : false  %> No   </td>
       </tr>
       <tr>
         <td>BG Free Standard Commissions Allowed: <span style="color:red"> *</span></td>
-        <td> <%=f.radio_button :bg_free_private_commissions_allowed, true, :checked=> (@group.bg_free_private_commissions_allowed == true)? true : false%> Yes
-          <%=f.radio_button :bg_free_private_commissions_allowed, false, :checked=> (@group.bg_free_private_commissions_allowed == false)? true : false %> No   </td>
+        <td> <%=f.radio_button :bg_free_private_commissions_allowed, true, :checked=> (@main_admin_group.self_management == true)? true : false%> Yes
+          <%=f.radio_button :bg_free_private_commissions_allowed, false, :checked=> (@main_admin_group.self_management == false)? true : false %> No   </td>
       </tr>
       <tr>
         <td>BG Custom Commissions Allowed: <span style="color:red"> *</span></td>
-        <td> <%=f.radio_button :bg_custom_commissions_allowed, true, :checked=> (@group.bg_custom_commissions_allowed == true)? true : false %> Yes
-          <%=f.radio_button :bg_custom_commissions_allowed, false, :checked=> (@group.bg_custom_commissions_allowed == false)? true : false  %> No   </td>
+        <td> <%=f.radio_button :bg_custom_commissions_allowed, true, :checked=> (@main_admin_group.bg_custom_commissions_allowed == true)? true : false %> Yes
+          <%=f.radio_button :bg_custom_commissions_allowed, false, :checked=> (@main_admin_group.bg_custom_commissions_allowed == false)? true : false  %> No   </td>
       </tr>
       <tr>
         <td> BG Gateway Commission Payer Setting Allowed: <span style="color:red"> *</span></td>
-        <td> <%=f.radio_button :bg_gateway_commission_payer_setting_allowed, true, :checked=> (@group.bg_gateway_commission_payer_setting_allowed == true)? true : false %> Yes
-          <%=f.radio_button :bg_gateway_commission_payer_setting_allowed, false, :checked=> (@group.bg_gateway_commission_payer_setting_allowed == false)? true : false%> No   </td>
+        <td> <%=f.radio_button :bg_gateway_commission_payer_setting_allowed, true, :checked=> (@main_admin_group.bg_gateway_commission_payer_setting_allowed == true)? true : false %> Yes
+          <%=f.radio_button :bg_gateway_commission_payer_setting_allowed, false, :checked=> (@main_admin_group.bg_gateway_commission_payer_setting_allowed == false)? true : false%> No   </td>
       </tr>
 
 
@@ -199,11 +171,11 @@
 
       <tr>
         <td><label class="control-label" for="input01">Paas Fees Exemption:</label></td>
-        <td><%= f.select :paas_fees_exemption , options_for_select(paas_fees_exemption_array,@group.paas_fees_exemption) %></td>
+        <td><%= f.select :paas_fees_exemption , options_for_select(paas_fees_exemption_array,@main_admin_group.paas_fees_exemption) %></td>
       </tr>
 
       <tr>
-        <td><%= f.submit"Update Main Slave Admin Group" ,:class => "btn-small btn" %></td>
+        <td><%= f.submit"Update Slave Admin Group" ,:class => "btn-small btn" %></td>
       </tr>
       </table>
 

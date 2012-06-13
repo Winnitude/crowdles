@@ -73,6 +73,23 @@ class AdminGroupOwnersController < ApplicationController
     @workers = @admin_group.admin_group_workers.includes(:user)
     #render :json => @admin_group_workers
   end
+
+  def show_main_admin_group
+    @main_admin_group = MainAdminGroup.find(params[:id])
+  end
+
+  def edit_main_admin_group
+    @main_admin_group = MainAdminGroup.find(params[:id])
+    @local_admin = current_user.la_setting
+    @user = @main_admin_group.user || User.new
+  end
+
+  def update_main_admin_group
+    @main_admin_group = MainAdminGroup.find(params[:id])
+    @main_admin_group.update_attributes(params[:main_admin_group])
+    redirect_to root_path   ,:notice => "Successfully Update"
+  end
+
   private
 
   def should_be_AGO

@@ -1,0 +1,51 @@
+<h2>Main Admin Group</h2>
+<div class="form-horizontal">
+  <table border="1" style="text-align: left;">
+    <tr><td><strong>  Owner ID: </strong></td> <td> <%= @main_admin_group.admin_group_owner_id %>       </td>    </tr>
+
+
+    <!--<strong> Title: </strong>   <%#= profile.title %>           -->
+    <tr><td><strong> Main Worker ID: </strong> </td>  <td><%= @main_admin_group.main_worker_id %>        </td>    </tr>
+
+    <tr><td> <strong> AG Creation Date: </strong>  </td> <td> <%=  @main_admin_group.ag_creation_date %>     </td>  </tr>
+    <tr><td> <strong> AG Expiration Date: </strong> </td>   <td><%=  @main_admin_group.ag_expiration_date %>         </td> </tr>
+    <tr> <td><strong> AG Deactivation Date: </strong> </td>  <td> <%=  @main_admin_group.ag_deactivation_date %>     </td>   </tr>
+    <tr> <td><strong> Admin Group Name: </strong> </td>   <td><%=  @main_admin_group.name %>       </td>      </tr>
+    <tr><td> <strong> Admin Group Description: </strong> </td>  <td> <%=  @main_admin_group.description %>     </td>  </tr>
+    <tr><td> <strong> Admin Group Email: </strong></td>   <td> <%=  @main_admin_group.admin_group_email %>     </td> </tr>
+    <tr><td>  <strong> Status: </strong> </td> <td>  <%=  @main_admin_group.status %>          </td> </tr>
+    <tr> <td><strong> AG Country: </strong></td>  <td>  <%=  @main_admin_group.country %>    </td></tr>
+    <tr> <td><strong> AG Creation Date: </strong> </td>  <td> <%=  @main_admin_group.ag_creation_date %>   </td> </tr>
+    <tr><td> <strong> Language: </strong> </td> <td>  <%=  @main_admin_group.language %>          </td>  </tr>
+    <tr><td> <strong> First Name: </strong> </td> <td>  <%=  @main_admin_group.first_name %>   </td> </tr>
+
+    <tr> <td><strong> Last Name: </strong></td>  <td>  <%=  @main_admin_group.last_name %>        </td>  </tr>
+    <tr><td><strong> Company Name: </strong></td>  <td>  <%=  @main_admin_group.company_name %>     </td> </tr>
+    <tr><td><strong> Country: </strong>  </td> <td> <%=  @main_admin_group.country %>       </td>  </tr>
+    <tr><td><strong> City: </strong> </td>  <td> <%=  @main_admin_group.city %>           </td> </tr>
+    <tr><td><strong> State: </strong></td> <td>   <%=  @main_admin_group.state %>    </td>     </tr>
+    <tr><td><strong> Zip Code: </strong></td> <td>   <%=  @main_admin_group.zip_code %>      </td>  </tr>
+    <tr><td><strong> Address: </strong>   </td> <td><%=  @main_admin_group.address %>        </td>   </tr>
+    <tr><td><strong> Additional Address: </strong></td>  <td>  <%=  @main_admin_group.additional_address %>    </td></tr>
+    <tr><td><strong> phone_number: </strong>  </td> <td> <%=  @main_admin_group.phone_number %>            </td></tr>
+    <tr><td><strong> Billing Profile Id: </strong> </td> <td>  <%=  @main_admin_group.billing_profile_id %>    </td> </tr>
+    <tr><td><strong> Self Management: </strong> </td> <td>  <%=  @main_admin_group.self_management %>     </td>  </tr>
+    <tr><td><strong> Arena Flag: </strong>  </td> <td> <%=  @main_admin_group.arena_flag %>        </td> </tr>
+    <tr><td><strong> BG Contest Allowed: </strong></td>   <td> <%=  @main_admin_group.bg_contest_allowed %>      </td></tr>
+    <tr><td><strong> AG Commissions: </strong>   </td> <td><%=  @main_admin_group.ag_commissions %>      </td>  </tr>
+    <tr><td><strong> BG Free Standard Commissions Allowed: </strong> </td>  <td> <%=  @main_admin_group.bg_free_standard_commissions_allowed %>   </td>  </tr>
+    <tr><td><strong> BG  Free Pro Commissions_allowed: </strong>  </td> <td> <%=  @main_admin_group.bg_free_pro_commissions_allowed %>     </td>  </tr>
+
+    <tr><td><strong> BG Free Private Commissions_allowed: </strong>   </td> <td><%=  @main_admin_group.bg_free_private_commissions_allowed %>    </td></tr>
+    <tr><td><strong> BG  Custom Commissions_allowed: </strong></td>  <td>  <%=  @main_admin_group.bg_custom_commissions_allowed %>      </td>    </tr>
+    <tr><td><strong> BG  Gateway Commission Payer Setting Allowed: </td> <td></strong>   <%=  @main_admin_group.bg_gateway_commission_payer_setting_allowed %>
+    <tr><td><strong> Platform Billing Profile Id:<td> </strong></td> <td>    <%=  @main_admin_group.platform_billing_profile_id %>      </td>    </tr>
+    <tr><td><strong> Paas Product Id: </strong></td>   <td> <%=  @main_admin_group.paas_product_id %>      </td>  </tr>
+
+    <tr><td><strong> Paas Exemption Expiration Date:</strong> </td> <td>   <%=  @main_admin_group.paas_exemption_expiration_date %>    </tr>
+    <tr><td><strong> Paas Fees Exemption: </strong> </td> <td>  <%=  @main_admin_group.paas_fees_exemption %>   </td></tr>
+
+  </table>
+
+</div>
+<%= link_to 'Back', :back %>

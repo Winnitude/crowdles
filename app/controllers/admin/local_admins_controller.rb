@@ -31,7 +31,7 @@ class Admin::LocalAdminsController < ApplicationController
       RolesManager.add_role("Main Admin Group Owner",@local_admin)
       RolesManager.add_role("Local Admin", @local_admin)
       RolesManager.remove_role("User", @local_admin)
-      main_admin_group.assign_attributes @local_admin
+      main_admin_group.set_la_attributes @local_admin
       main_admin_group.save
       logger.info "############################{main_admin_group.inspect}"
       LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver

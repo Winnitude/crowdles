@@ -25,7 +25,7 @@
   <%end%>
     <a href="<%= all_admins_global_admins_path %>">Local Admins <br>Management</a>
   </li>
-  <% if split_array.include?("slave_admin_group_mgmt")  %>
+  <% if split_array.include?("slave_admin_group_mgmt") or split_array.include?("edit_main_admin_group") or split_array.include?("main_admin_group_mgmt") %>
       <li class= "active">
   <%else%>
       <li>

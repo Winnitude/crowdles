@@ -12,10 +12,10 @@
   <% if split_array.include?("change_ownership") %>
 
       <%= link_to "Main AG Mgmt" ,main_admin_group_mgmt_global_adminss_path,:style=>"text-decoration: underline;" %>
- <%else%>
+  <%else%>
       <%= link_to "Main AG Mgmt" ,main_admin_group_mgmt_global_admins_path %>
- <%end%>
-<%#= link_to 'Main AG Mgmt',"#", :confirm => 'Under development' %>
+  <%end%>
+  <%#= link_to 'Main AG Mgmt',"#", :confirm => 'Under development' %>
 </div></h4>
 <table border="1" class="table">
   <thead>
@@ -57,23 +57,23 @@
   <!--</tr>-->
 
   <!--<#% end %>-->
-  <% @slave_admin_groups.each_with_index do |slave_admin_group,i| %>
+  <% @main_admin_groups.each_with_index do |main_admin_group,i| %>
       <tr>  <td><%= i+1 %></td>
-        <td><%= slave_admin_group.name %></td>
-        <td><%= slave_admin_group.user.profile.to_s unless slave_admin_group.user.blank? %></td>
-        <td><%= slave_admin_group.admin_group_email%></td>
-        <td><%= slave_admin_group.user.country unless slave_admin_group.user.blank? %></td>
-        <td> <%= link_to 'View', show_admin_group_admin_group_owner_path(slave_admin_group) %> |
+        <td><%= main_admin_group.name %></td>
+        <td><%= main_admin_group.user.profile.to_s unless main_admin_group.user.blank? %></td>
+        <td><%= main_admin_group.admin_group_email%></td>
+        <td><%= main_admin_group.user.country unless main_admin_group.user.blank? %></td>
+        <td> <%= link_to 'View',show_main_admin_group_admin_group_owner_path(main_admin_group) %> |
           <%#= link_to 'Edit',edit_admin_group_admin_group_owner_path(slave_admin_group) %>
-          <%= link_to 'Edit',edit_admin_group_admin_group_owner_path(slave_admin_group) %>  |
+          <%= link_to 'Edit',edit_main_admin_group_admin_group_owner_path(main_admin_group) %>  |
           <%#= link_to 'Delete Group',delete_admin_group_admin_group_owner_path(slave_admin_group), confirm: 'Are you sure? you want to delete group', method: :get %>
           <%= link_to 'Delete Group',"#", :confirm => 'Under development' %> |
-          <% change_status_to = slave_admin_group.is_active? ? "Deactivate": "Activate" %>
+          <% change_status_to = main_admin_group.is_active? ? "Deactivate": "Activate" %>
           <%#= link_to change_status_to,change_admin_group_status_admin_group_owner_path(slave_admin_group),confirm: 'Are you sure? you want to change status', method: :get %>
           <%= link_to change_status_to,"#", :confirm => 'Under development' %>
         </td>
 
-        <td><%= slave_admin_group.is_active? ? "Active": "Deactive" %></td>
+        <td><%= main_admin_group.is_active? ? "Active": "Deactive" %></td>
       </tr>
   <%end %>
 </table>

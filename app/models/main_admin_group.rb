@@ -51,7 +51,7 @@ class MainAdminGroup
   field :consultant_commissions ,                    :type => Float
   field :is_active ,                                 :type => Boolean
 
-  def assign_attributes local_admin
+  def set_la_attributes local_admin
     self.admin_group_owner_id = local_admin.id
     self.country = local_admin.country
     self.billing_profile_id = local_admin.la_setting.billing_profile_id

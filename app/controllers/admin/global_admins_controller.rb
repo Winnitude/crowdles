@@ -42,6 +42,11 @@ class Admin::GlobalAdminsController < ApplicationController
   def slave_admin_group_mgmt
     @slave_admin_groups = AdminGroup.all.to_a
   end
+
+
+  def main_admin_group_mgmt
+    @main_admin_groups = MainAdminGroup.all.to_a
+  end
   #def all_main_admin_groups
   #  @groups = MainAdminGroup.all
   #  logger.info @groups.inspect
