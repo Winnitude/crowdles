@@ -74,6 +74,7 @@ CrowdFunding::Application.routes.draw do
     get "related_ideas", :on => :collection
     get "change_ownership" , :on => :collection
     post "changed" , :on => :collection
+    get "all_workers", :on => :member
   end
   resources :admin_group_owners do
     get "view_all_workers" ,:on => :collection
