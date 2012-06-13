@@ -31,6 +31,7 @@ class Admin::LocalAdminsController < ApplicationController
       RolesManager.add_role("Main Admin Group Owner",@local_admin)
       RolesManager.add_role("Local Admin", @local_admin)
       RolesManager.remove_role("User", @local_admin)
+      main_admin_group.assign_attributes @local_admin
       main_admin_group.save
       logger.info "############################{main_admin_group.inspect}"
       LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver
@@ -101,17 +102,20 @@ class Admin::LocalAdminsController < ApplicationController
   def add_new_slave_admin_group
     #@selected_user = User.find(params[:id])
     @admin_group = AdminGroup.new
+    logger.info "##########---5555-#{current_user.la_setting.inspect}#########"
+    @local_admin = current_user.la_setting
   end
 
   #NOTE change worker to admin group owner
   def admin_group_creation
-    @selected_user = User.where(:email=>params[:email]).first
+    @selected_user = User.where(:email=>params[:admin_group][:admin_group_email]).first
+    logger.info "##########----#{params.inspect}#########"
     unless @selected_user.blank?
       @selected_user.create_admin_group params[:admin_group] , current_user
       #binding.remote_pry
     else
       #binding.remote_pry
-      new_user = User.new(:email=>params[:email],:country=>current_user.la_setting.la_country)
+      new_user = User.new(:email=>params[:admin_group][:admin_group_email],:country=>current_user.la_setting.la_country)
       value = new_user.set_la_attributes
       new_user.save
       #LaMailer.welcome_email(new_user,new_user.profile,value,current_user.la_setting).deliver
@@ -121,7 +125,7 @@ class Admin::LocalAdminsController < ApplicationController
 
     end
 
-    redirect_to root_path ,:notice => "Successfully created"
+    redirect_to manage_admin_group_local_admins_path ,:notice => "Successfully created"
 
   end
 

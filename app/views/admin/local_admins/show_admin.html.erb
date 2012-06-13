@@ -2,7 +2,7 @@
 <%profile = user.profile.nil? ? Profile.new : user.profile%>
 <%la_setting= user.la_setting.nil? ? LaSetting.new : user.la_setting%>
 <h1>Local Admin Information</h1>
-<table border="1">
+<table border="1" style="text-align: left;">
   <tr>
     <th width="200"><strong> Email: </strong></th>
     <td width="500"><%= user.email %></td>

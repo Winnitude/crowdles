@@ -25,12 +25,12 @@
   <%end%>
     <a href="<%= all_admins_global_admins_path %>">Local Admins <br>Management</a>
   </li>
-  <% if split_array.include?("main_admin_group_owners")  %>
+  <% if split_array.include?("slave_admin_group_mgmt")  %>
       <li class= "active">
   <%else%>
       <li>
   <%end%>
-    <a href="<%=main_admin_group_owners_path  %>">Main Admin Groups  <br>Management</a>
+    <a href="<%=slave_admin_group_mgmt_global_admins_path  %>">Admin Groups  <br>Management</a>
   </li>
 
   <li>

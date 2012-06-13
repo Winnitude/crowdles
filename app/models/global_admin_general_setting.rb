@@ -24,6 +24,7 @@ class GlobalAdminGeneralSetting
   field :worker_consultant_terms,             :type => String
   field :admin_group_terms,                   :type => String
   field :business_group_terms,                :type => String
+  field :no_profit_terms,                     :type => String
 
 
   validates :plateform_name   , :presence => true

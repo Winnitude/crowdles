@@ -155,12 +155,15 @@
 
 
           <tr>
-            <td>   <label class="control-label" for="input01">business_group_terms: </label></td>
+            <td>   <label class="control-label" for="input01">Business Group Terms: </label></td>
             <td><%= setting.text_area :business_group_terms,:value =>global_admin_general_setting.business_group_terms ,:rows=>5%></td>
           </tr>
 
 
-
+          <tr>
+            <td><label class="control-label" for="input01">No Profit Terms:<span style="color:red"> </span></label> </td>
+            <td><%= setting.text_field :no_profit_terms,:value =>global_admin_general_setting.no_profit_terms%></td>
+          </tr>
 
           <tr>
         <td>            <%= global_admin.submit "Update General Settings",:class =>"btn btn-primary"  %></td>

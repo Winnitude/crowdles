@@ -7,6 +7,7 @@ CrowdFunding::Application.routes.draw do
       resources :global_admins do
         get "all_admins" ,:on => :collection
         get "ideas" ,    :on=> :collection
+        get "slave_admin_group_mgmt" ,    :on=> :collection
         get "edit_general_settings",  :on => :member
         put "update_general_settings",  :on => :member
       end
@@ -81,7 +82,7 @@ CrowdFunding::Application.routes.draw do
     get "my_keys", :on=> :collection
     get "show_admin_group", :on => :member
     get "edit_admin_group", :on => :member
-    post "update_admin_group", :on=> :member
+    put "update_admin_group", :on=> :member
     get "delete_admin_group", :on => :member
     get "change_admin_group_status", :on => :member
     get "sago_home", :on => :member

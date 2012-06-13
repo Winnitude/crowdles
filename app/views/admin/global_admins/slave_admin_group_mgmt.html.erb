@@ -1,0 +1,79 @@
+<%split_array = request.url.split("/") %>
+
+<h4><div class="pull-right" style="margin-bottom: 15px;">
+
+  <% if split_array.include?("slave_admin_group_mgmt") %>
+
+      <%= link_to "Slave AG Mgmt" ,slave_admin_group_mgmt_global_admins_path,:style=>"text-decoration: underline;" %>  |
+  <%else%>
+      <%= link_to "Slave AG Mgmt" ,slave_admin_group_mgmt_global_admins_path %>  |
+  <%end%>
+
+  <!--<#% if split_array.include?("change_ownership") %>-->
+
+      <!--<#%= link_to "Main AG Mgmt" ,main_admin_group_owners_path,:style=>"text-decoration: underline;" %>-->
+  <!--<%#else%>-->
+      <!--<%#= link_to "Main AG Mgmt" ,main_admin_group_owners_path %>-->
+  <!--<%#end%>-->
+  <%= link_to 'Main AG Mgmt',"#", :confirm => 'Under development' %>
+</div></h4>
+<table border="1" class="table">
+  <thead>
+  <tr>
+    <!--<th><strong> Email <strong></th>-->
+    <!--<th><strong> Ip Address <strong></th>-->
+    <!--<th><strong> Title <strong></th>-->
+    <!--<th><strong> First Name <strong></th>-->
+    <!--<th><strong> Last Name <strong></th>-->
+    <!--<th><strong> Country <strong></th>-->
+    <!--&lt;!&ndash;<th><strong> User Role<strong></th>&ndash;&gt;-->
+    <!--<th><strong> Action<strong></th>-->
+    <th><strong> Sr. No <strong></th>
+    <th><strong> Name of the Admin Group <strong></th>
+    <th><strong> Name of AG Owner <strong></th>
+    <th><strong> Email <strong></th>
+    <th><strong> Country <strong></th>
+    <th><strong> Action <strong></th>
+    <th><strong> Status <strong></th>
+  </tr>
+  </thead>
+  <!--<#% @AGOS.each do |ago| %>-->
+  <!--<%#profile= ago.profile.nil? ? Profile.new : ago.profile%>-->
+  <!--<tr>-->
+  <!--<td><%#= ago.email %></td>-->
+  <!--<td><%#= ago.last_sign_in_ip %></td>-->
+  <!--<td><%#= profile.title %></td>-->
+  <!--<td><%#= profile.first_name %></td>-->
+  <!--<td><%#= profile.last_name %></td>-->
+  <!--<td><%#= fetch_county_name(ago) %></td>-->
+  <!--&lt;!&ndash;<td> <%#= ago.role %>     </td>&ndash;&gt;-->
+  <!--  <td> <#% if @already_having_mago.blank? %>
+                <!--<%#= link_to "Change to MAGO",show_AGO_for_change_role_path(ago.id) %>-->
+  <!--<%# else %>-->
+  <!--<%#= link_to "Change to MAGO","", confirm: 'This country is already having MAGO', method: :get %>-->
+  <!--<%#end%>-->
+  <!--</td>-->
+
+  <!--</tr>-->
+
+  <!--<#% end %>-->
+  <% @slave_admin_groups.each_with_index do |slave_admin_group,i| %>
+      <tr>  <td><%= i+1 %></td>
+        <td><%= slave_admin_group.name %></td>
+        <td><%= slave_admin_group.user.profile.to_s unless slave_admin_group.user.blank? %></td>
+        <td><%= slave_admin_group.user.email unless slave_admin_group.user.blank?%></td>
+        <td><%= slave_admin_group.user.country unless slave_admin_group.user.blank? %></td>
+        <td> <%= link_to 'View', show_admin_group_admin_group_owner_path(slave_admin_group) %> |
+          <%#= link_to 'Edit',edit_admin_group_admin_group_owner_path(slave_admin_group) %>
+          <%= link_to 'Edit',edit_admin_group_admin_group_owner_path(slave_admin_group) %>  |
+          <%#= link_to 'Delete Group',delete_admin_group_admin_group_owner_path(slave_admin_group), confirm: 'Are you sure? you want to delete group', method: :get %>
+          <%= link_to 'Delete Group',"#", :confirm => 'Under development' %> |
+          <% change_status_to = slave_admin_group.is_active? ? "Deactivate": "Activate" %>
+          <%#= link_to change_status_to,change_admin_group_status_admin_group_owner_path(slave_admin_group),confirm: 'Are you sure? you want to change status', method: :get %>
+          <%= link_to change_status_to,"#", :confirm => 'Under development' %>
+        </td>
+
+        <td><%= slave_admin_group.is_active? ? "Active": "Deactive" %></td>
+      </tr>
+  <%end %>
+</table>

@@ -222,6 +222,7 @@ class User
   def create_admin_group admin_group ,user
     @admin_group = self.admin_groups.new(admin_group)
     @admin_group.country = user.la_setting.la_country
+    @admin_group.admin_group_owner_id = user.id
     @admin_group.save_affillation_key_for_admin_group_owner
     self.change_to_AGO
     LaMailer.changed_role(self,"Admin Group Owner").deliver

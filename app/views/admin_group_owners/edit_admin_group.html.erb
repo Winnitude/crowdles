@@ -1,66 +1,198 @@
-<h2>Admin Group Details</h2>
-<%= form_for :admin_group, :url => update_admin_group_admin_group_owner_path, :html => { :class => "form-horizontal"} do |admin_group| %>
-    <div class="control-group">
-      <label class="control-label" for="input01">Name</label>
-      <div class="controls">
-        <%=admin_group.text_field :name,:class=>"input"%>
-        <!--<input type="text" class="input-xlarge" id="input01">-->
-        <p class="help-block"></p>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="input01">Description</label>
-      <div class="controls">
-        <%= admin_group.text_field :description,:class=>"input" %>
-        <!--<input type="text" class="input-xlarge" id="input01">-->
-        <p class="help-block"></p>
-      </div>
-    </div>
+<h2>Edit Admin Group</h2>
+
+    <table>
+      <%= form_for @admin_group,:url=>update_admin_group_admin_group_owner_path, :html => { :class => "form-horizontal",:multipart => true  } do |f|%>
+          <% @local_admin = @local_admin.blank? ? LaSetting.new : @local_admin    %>
+          <tr>
+            <td><label class="control-label" for="input01">Owner ID: <span style="color:red"> *</span></label></td>
+            <td><%= f.text_field :admin_group_owner_id ,:value=>@local_admin.id ,:disabled=>true%></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">Main Worker Id: <span style="color:red"> *</span></label></td>
+            <td><%= f.text_field :main_worker_id %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">AG Creation Date: <span style="color:red"> *</span></label></td>
+            <td><%= f.text_field :ag_creation_date %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">AG Expiration Date:</label></td>
+            <td><%= f.text_field :ag_expiration_date %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">AG Deactivation Date:</label></td>
+            <td><%= f.text_field :ag_deactivation_date %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">Admin Group Name:</label></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">Admin Group Description:</label></td>
+            <td><%= f.text_area :description,:rows=>5 %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">Admin Group Email:</label></td>
+            <td><%= f.text_field :admin_group_email %></td>
+          </tr>
+
+          <% a= ["new","active","Expiring","Blocked","Suspend","Unpaid"] %>
+          <tr>
+            <td><label class="control-label" for="input01">Status: <span style="color:red"> *</span></label></td>
+            <td><%= f.select :status , options_for_select(a,@admin_group.status) %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">AG Country:</label></td>
+            <td><%= text_field_tag :ag_country ,@local_admin.la_country%></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">Language:</label></td>
+            <td><%= f.text_field :language ,:value=>@local_admin.language%></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">First Name:</label></td>
+            <td><%= f.text_field :first_name %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">Last Name:</label></td>
+            <td><%= f.text_field :last_name %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">Company Name:</label></td>
+            <td><%= f.text_field :company_name,:value=>@local_admin.company_name %></td>
+          </tr>
+          <% profile = (@local_admin.blank? or @local_admin.user.blank?) ?  Profile.new : @local_admin.user.profile   %>
+          <tr>
+            <td><label class="control-label" for="input01">Country:</label></td>
+            <td><%= f.text_field :country  %></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">City:</label></td>
+            <td><%= f.text_field :city ,:value=>profile.city%></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">Zip Code:</label></td>
+            <td><%= f.text_field :zip_code,:value=>profile.zip_code %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">State:</label></td>
+            <td><%= f.text_field :state,:value=>profile.state %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">Address:</label></td>
+            <td><%= f.text_field :address,:value=>@local_admin.address %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">Additional Address:</label></td>
+            <td><%= f.text_field :additional_address %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">Phone Number:</label></td>
+            <td><%= f.text_field :phone_number %></td>
+          </tr>
 
 
-    <%= fields_for :user, :html => { :class => "form-horizontal",:multipart => true} do |u| %>
-        <%= u.fields_for :profile do |p| %>
-            <div class="control-group">
-              <label class="control-label" for="input01">Email</label>
-              <%profile= profile.nil? ? Profile.new : profile%>
-              <div class="controls">
-                <%=u.text_field :email, :value =>@user.email,:class=>"input"%>
-                <!--<input type="text" class="input-xlarge" id="input01">-->
-                <p class="help-block"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="input01">Owne Name</label>
-              <div class="controls">
-                <%first_name = @user.profile.first_name unless @user.profile.blank?%>
-                <%= p.text_field :first_name,:value =>first_name,:class=>"input" %>
-                <!--<input type="text" class="input-xlarge" id="input01">-->
-                <p class="help-block"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="input01">Country</label>
-              <div class="controls">
-                <%= u.text_field :country, :value =>@user.country,:class=>"input" %>
-                <!--<input type="text" class="input-xlarge" id="input01">-->
-                <p class="help-block"></p>
-              </div>
-            </div>
-        <%end%>
-    <% end %>
-    <div class="form-actions">
-      <%= admin_group.submit "Update Admin Group",:class =>"btn btn-primary"  %>
-    </div>
-<%end%>
-<%= content_for :head do  %>
-    <script type="text/javascript">
+          <!--<tr>-->
+          <!--<td>Master</td>-->
+          <!--<td> <%#=f.radio_button :is_master, true %> Is Master     </td>-->
+          <!--<td> <%#=f.radio_button :is_master, false %> Not Is Master   </td>-->
+          <!--</tr>-->
+          <tr>
+            <td><label class="control-label" for="input01">Billing Profile Id:</label></td>
+            <td><%= f.text_field :billing_profile_id,:value=>@local_admin.billing_profile_id %></td>
+          </tr>
+          <tr>
+            <td>Self Management: <span style="color:red"> *</span></td>
+            <td> <%=f.radio_button :self_management, true, :checked=> (@admin_group.self_management == true)? true : false %> Yes
+              <%=f.radio_button :self_management, false, :checked=> (@admin_group.self_management == false)? true : false %> No   </td>
+          </tr>
+          <td>Area Flag: <span style="color:red"> *</span></td>
+          <td> <%=f.radio_button :arena_flag, true, :checked=> (@admin_group.self_management == true)? true : false %> Yes
+            <%=f.radio_button :arena_flag, false, :checked=> (@admin_group.self_management == false)? true : false %> No   </td>
+          </tr>
 
-        jQuery(function(){
-            var user_email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
-            user_email.add( Validate.Presence,{failureMessage:" Can't be empty"} );
+          <td>BG Contest Allowed: <span style="color:red"> *</span></td>
+          <td> <%=f.radio_button :bg_contest_allowed, true, :checked=> (@admin_group.bg_contest_allowed == true)? true : false %> Yes
+            <%=f.radio_button :bg_contest_allowed, false, :checked=> (@admin_group.bg_contest_allowed == false)? true : false%> No   </td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">AG Commissions:</label></td>
+            <td><%= f.text_field :ag_commissions %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">Consultant Commissions:</label></td>
+            <td><%= f.text_field :consultant_commissions %></td>
+          </tr>
 
-            var admin_group_name = new LiveValidation('admin_group_name',{validMessage:" ",onlyOnSubmit:true});
-            admin_group_name.add( Validate.Presence,{failureMessage:" Can't be empty"} );
-        });
-    </script>
-<% end %>
+          <tr><td>BG Free Standard Commissions Allowed: <span style="color:red"> *</span></td>
+            <td> <%=f.radio_button :bg_free_standard_commissions_allowed, true, :checked=> (@admin_group.bg_free_standard_commissions_allowed == true)? true : false%> Yes
+              <%=f.radio_button :bg_free_standard_commissions_allowed, false, :checked=> (@admin_group.bg_free_standard_commissions_allowed == false)? true : false%> No   </td>
+          </tr>
+          <tr>
+            <td>BG Free Pro Commissions Allowed: <span style="color:red"> *</span></td>
+            <td> <%=f.radio_button :bg_free_pro_commissions_allowed, true, :checked=> (@admin_group.bg_free_private_commissions_allowed == true)? true : false %> Yes
+              <%=f.radio_button :bg_free_pro_commissions_allowed, false, :checked=> (@admin_group.bg_free_private_commissions_allowed == false)? true : false  %> No   </td>
+          </tr>
+          <tr>
+            <td>BG Free Standard Commissions Allowed: <span style="color:red"> *</span></td>
+            <td> <%=f.radio_button :bg_free_private_commissions_allowed, true, :checked=> (@admin_group.self_management == true)? true : false%> Yes
+              <%=f.radio_button :bg_free_private_commissions_allowed, false, :checked=> (@admin_group.self_management == false)? true : false %> No   </td>
+          </tr>
+          <tr>
+            <td>BG Custom Commissions Allowed: <span style="color:red"> *</span></td>
+            <td> <%=f.radio_button :bg_custom_commissions_allowed, true, :checked=> (@admin_group.bg_custom_commissions_allowed == true)? true : false %> Yes
+              <%=f.radio_button :bg_custom_commissions_allowed, false, :checked=> (@admin_group.bg_custom_commissions_allowed == false)? true : false  %> No   </td>
+          </tr>
+          <tr>
+            <td> BG Gateway Commission Payer Setting Allowed: <span style="color:red"> *</span></td>
+            <td> <%=f.radio_button :bg_gateway_commission_payer_setting_allowed, true, :checked=> (@admin_group.bg_gateway_commission_payer_setting_allowed == true)? true : false %> Yes
+              <%=f.radio_button :bg_gateway_commission_payer_setting_allowed, false, :checked=> (@admin_group.bg_gateway_commission_payer_setting_allowed == false)? true : false%> No   </td>
+          </tr>
+
+
+          <tr>
+            <td><label class="control-label" for="input01">Platform Billing Profile Id:</label></td>
+            <td><%= f.text_field :platform_billing_profile_id %></td>
+          </tr>
+
+          <tr>
+            <td><label class="control-label" for="input01">Paas Product Id:</label></td>
+            <td><%= f.text_field :paas_product_id %></td>
+          </tr>
+          <tr>
+            <td><label class="control-label" for="input01">Paas Exemption Expiration Date:</label> </td>
+            <td><%= f.text_field :paas_exemption_expiration_date %></td>
+          </tr>
+
+          <% paas_fees_exemption_array= ["Temporary","Permanent"] %>
+
+          <tr>
+            <td><label class="control-label" for="input01">Paas Fees Exemption:</label></td>
+            <td><%= f.select :paas_fees_exemption , options_for_select(paas_fees_exemption_array,@admin_group.paas_fees_exemption) %></td>
+          </tr>
+
+          <tr>
+            <td><%= f.submit"Update Slave Admin Group" ,:class => "btn-small btn" %></td>
+          </tr>
+          </table>
+
+      <% end %>
+      <%= content_for :head do  %>
+          <script type="text/javascript">
+
+              jQuery(function(){
+                  var admin_group_admin_group_owner_id = new LiveValidation('admin_group_admin_group_owner_id',{validMessage:" ",onlyOnSubmit:true});
+                  admin_group_admin_group_owner_id.add( Validate.Presence );
+                  var admin_group_main_worker_id = new LiveValidation('admin_group_main_worker_id',{validMessage:" ",onlyOnSubmit:true});
+                  admin_group_main_worker_id.add( Validate.Presence );
+                  var admin_group_ag_creation_date = new LiveValidation('admin_group_ag_creation_date',{validMessage:" ",onlyOnSubmit:true});
+                  admin_group_ag_creation_date.add( Validate.Presence );
+                  var admin_group_admin_group_email = new LiveValidation('admin_group_admin_group_email',{validMessage:" ",onlyOnSubmit:true});
+                  admin_group_admin_group_email.add( Validate.Presence );
+                  admin_group_admin_group_email.add( Validate.Email );
+              });
+          </script>
+      <% end %>

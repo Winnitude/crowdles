@@ -1,3 +1,22 @@
+<%split_array = request.url.split("/") %>
+<h4><div class="pull-right" style="margin-bottom: 15px;">
+
+
+  <% if split_array.include?("slave_admin_group_mgmt") %>
+
+      <%= link_to "Slave AG Mgmt" ,slave_admin_group_mgmt_global_admins_path,:style=>"text-decoration: underline;" %> |
+  <%else%>
+      <%= link_to "Slave AG Mgmt" ,slave_admin_group_mgmt_global_admins_path %>  |
+  <%end%>
+
+  <!--<#% if split_array.include?("change_ownership") %>-->
+
+  <!--<#%= link_to "Main AG Mgmt" ,main_admin_group_owners_path,:style=>"text-decoration: underline;" %>-->
+  <!--<%#else%>-->
+  <!--<%#= link_to "Main AG Mgmt" ,main_admin_group_owners_path %>-->
+  <!--<%#end%>-->
+  <%= link_to 'Main AG Mgmt',"#", :confirm => 'Under development' %>
+</h4>
 <table border="1" class="table">
 
   <thead> <tr>

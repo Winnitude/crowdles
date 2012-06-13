@@ -42,7 +42,8 @@ class LaSetting
   field :freshbooks_integration_key,                           :type=> String
   field :la_facebook,                                          :type=> String
   field :la_twitter,                                           :type=> String
-  field :la_linked_in,                                        :type=> String
+  field :la_linked_in,                                         :type=> String
+  field :no_profit_terms,                                      :type=> String
 
   mount_uploader :contact_photo, ImageUploader
 end

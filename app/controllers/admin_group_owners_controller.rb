@@ -38,6 +38,7 @@ class AdminGroupOwnersController < ApplicationController
 
   def edit_admin_group
     @admin_group = AdminGroup.find(params[:id])
+    @local_admin = current_user.la_setting
     @user = @admin_group.user || User.new
   end
 
@@ -52,7 +53,7 @@ class AdminGroupOwnersController < ApplicationController
     @admin_group = AdminGroup.find(params[:id])
     @admin_group.update_attributes(params[:admin_group])
     @admin_group.user.update_attributes(params[:user])
-    redirect_to manage_admin_group_local_admins_path
+    redirect_to root_path   ,:notice => "Successfully Update"
   end
 
   def change_admin_group_status

@@ -16,7 +16,6 @@ class Admin::GlobalAdminsController < ApplicationController
 
   def edit_general_settings
     @global_admin = User.find(params[:id])
-    binding.remote_pry
     @global_admin_general_setting = @global_admin.global_admin_general_setting || GlobalAdminGeneralSetting.new
   end
 
@@ -38,6 +37,10 @@ class Admin::GlobalAdminsController < ApplicationController
     #  render :edit_local_admin
     #end
 
+  end
+
+  def slave_admin_group_mgmt
+    @slave_admin_groups = AdminGroup.all.to_a
   end
   #def all_main_admin_groups
   #  @groups = MainAdminGroup.all

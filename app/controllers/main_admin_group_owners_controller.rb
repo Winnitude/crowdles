@@ -15,29 +15,33 @@ class MainAdminGroupOwnersController < ApplicationController
     @group = MainAdminGroup.where(:country => current_user.la_setting.la_country).first
     #@workers = (User.get_all_user_for_selected_role "Worker").map{|i| i.email}
     @users =   (User.get_all_user_for_selected_role "User").map{|i| i.email} - @group.user.email.to_a
-    logger.info @group.to_a.inspect
+    @local_admin = current_user.la_setting
+    logger.info "#######----#{@group.to_a.inspect}########"
   end
 
   def changed
-    group = MainAdminGroup.where(:country => current_user.la_setting.la_country).to_a.first
-    user= User.where(:email => params[:worker_email]).to_a.first
-    if user.present?
-      existing_owner = group.user
-      abc = existing_owner
-      RolesManagement::RolesManager.remove_role("Main Admin Group Owner",existing_owner)
-      logger.info user.inspect
-      logger.info("===#{existing_owner}========#{group.user}=========#{user}==============#{user == existing_owner}")
-      group.user = user
-      logger.info("===#{existing_owner}========#{group.user}=========#{user}==============#{user == existing_owner}")
-      logger.info("===#{existing_owner}========#{group.user}=========#{user}==============#{user == existing_owner}")
-      if group.save
-        RolesManagement::RolesManager.add_role("Main Admin Group Owner", user)
-        LaMailer.changed_role(user,"Main Admin Group Owner").deliver
-        redirect_to :root , :notice => "MAGO created"
-      end
-    else
-      redirect_to :root , :notice => "User not Found"
-    end
+    @admin_group = AdminGroup.find(params[:id])
+    @admin_group.update_attributes(params[:admin_group])
+    redirect_to root_path   ,:notice => "Successfully Update"
+    #group = MainAdminGroup.where(:country => current_user.la_setting.la_country).to_a.first
+    #user= User.where(:email => params[:worker_email]).to_a.first
+    #if user.present?
+    #  existing_owner = group.user
+    #  abc = existing_owner
+    #  RolesManagement::RolesManager.remove_role("Main Admin Group Owner",existing_owner)
+    #  logger.info user.inspect
+    #  logger.info("===#{existing_owner}========#{group.user}=========#{user}==============#{user == existing_owner}")
+    #  group.user = user
+    #  logger.info("===#{existing_owner}========#{group.user}=========#{user}==============#{user == existing_owner}")
+    #  logger.info("===#{existing_owner}========#{group.user}=========#{user}==============#{user == existing_owner}")
+    #  if group.save
+    #    RolesManagement::RolesManager.add_role("Main Admin Group Owner", user)
+    #    LaMailer.changed_role(user,"Main Admin Group Owner").deliver
+    #    redirect_to :root , :notice => "MAGO created"
+    #  end
+    #else
+    #  redirect_to :root , :notice => "User not Found"
+    #end
 
   end
 
