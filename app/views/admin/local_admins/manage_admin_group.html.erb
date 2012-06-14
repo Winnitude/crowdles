@@ -65,7 +65,7 @@
       <tr>  <td><%= i+1 %></td>
         <td><%= admin_group.name %></td>
         <td><%= admin_group.user.profile.to_s unless admin_group.user.blank? %></td>
-        <td><%= admin_group.admin_group_email %></td>
+        <td><%= admin_group.user.email %></td>
         <td><%= admin_group.user.country unless admin_group.user.blank? %></td>
         <td> <%= link_to 'View', show_admin_group_admin_group_owner_path(admin_group) %> |
           <%= link_to 'Edit',edit_admin_group_admin_group_owner_path(admin_group) %>  |
