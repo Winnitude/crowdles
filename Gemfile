@@ -47,6 +47,8 @@ gem "carrierwave-mongoid"
 gem "fog", "~> 1.3.1"
 gem "pry"
 gem "pry-remote"
+gem 'railroady'
+
 #gem "geocoder"
 #gem "rmagick"
 # To use debugger
