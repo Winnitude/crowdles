@@ -3,6 +3,7 @@ class GlobalAdminGeneralSetting
   belongs_to :user
 
   field :plateform_name,                      :type => String ,:null => false, :default => 'Crowdles'
+  field  :platform_email   ,  :type => String ,:null => false
   field :plateform_default_language,          :type => String ,:null => false, :default => 'English'
   field :plateform_default_domain,            :type => String ,:null => false, :default => 'crowdles.com'
 

@@ -18,17 +18,22 @@
           </div>
       <% end %>
       <tr>
-        <td>   <label class="control-label" for="input01">Email: <span style="color:red"> *</span></label></td>
-        <td><%= global_admin.text_field :email %></td>
-      </tr>
+        <td>   <label class="control-label" for="input01">Email: <span style="color:red"> </span></label></td>
+        <td><%= global_admin.text_field :email, :disabled => "true" %></td>
+      </tr> <!--<tr>-->
+          <!--<td>   <label class="control-label" for="input01">Password <span style="color:red"> *</span></label></td>-->
+          <!--<td><%#= global_admin.password_field :password %></td>-->
+          <!--</tr>-->
 
-      <!--<tr>-->
-        <!--<td>   <label class="control-label" for="input01">Password <span style="color:red"> *</span></label></td>-->
-        <!--<td><%#= global_admin.password_field :password %></td>-->
-      <!--</tr>-->
+
 
 
           <%   global_admin_general_setting = @global_admin.global_admin_general_setting  %>
+
+          <tr>
+            <td>   <label class="control-label" for="input01">Platform Email: <span style="color:red"> *</span></label></td>
+            <td><%= setting.text_field :platform_email, :value =>global_admin_general_setting.platform_email ,:id => "platform_email" %></td>
+          </tr>
 
           <tr>
             <td>   <label class="control-label" for="input01">Platform Name: <span style="color:red"> *</span></label></td>
@@ -162,7 +167,7 @@
 
           <tr>
             <td><label class="control-label" for="input01">No Profit Terms:<span style="color:red"> </span></label> </td>
-            <td><%= setting.text_field :no_profit_terms,:value =>global_admin_general_setting.no_profit_terms%></td>
+            <td><%= setting.text_area :no_profit_terms,:value =>global_admin_general_setting.no_profit_terms ,:rows => 5%></td>
           </tr>
 
           <tr>
@@ -185,6 +190,11 @@
             user_global_admin_general_setting_plateform_default_language.add(Validate.Presence,{failureMessage:"Can't be empty"})
             var user_global_admin_general_setting_plateform_default_domain = new LiveValidation("user_global_admin_general_setting_plateform_default_domain",{validMessage:" ",onlyOnSubmit:true});
             user_global_admin_general_setting_plateform_default_domain.add(Validate.Presence,{failureMessage:"Can't be empty"})
+
+            var plateform_email = new LiveValidation("platform_email",{validMessage:" ",onlyOnSubmit:true});
+            plateform_email.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            plateform_email.add( Validate.Email,{failureMessage:"Must be valid email"} );
+
 
         });
     </script>

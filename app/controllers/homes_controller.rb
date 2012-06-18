@@ -23,6 +23,9 @@ class HomesController < ApplicationController
   end
 
   def news_letter
+    if request.url.index(ADMIN_HOST).present?   #this is just to ensure that form admin panel LA GA cat go here
+      redirect_to root_path
+    end
   end
 
   def persist_news_letter

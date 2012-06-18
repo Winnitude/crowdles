@@ -33,9 +33,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="/">CrowdFunding</a>
+      <a class="brand" href="/"><%= get_platform_default_name%></a>
       <% if !current_user.blank?  %>
-          <% if RolesManagement::RolesManager.is_role_present?("Global Admin", current_user)&& request.url.index(ADMIN_HOST).present? %>
+          <% if global_admin_present %>
               <li class="brand"> <%= "Global Admin" %>   </li>
           <% end %>
           <% if RolesManagement::RolesManager.is_role_present?("Local Admin", current_user)&& request.url.index(ADMIN_HOST).present? %>

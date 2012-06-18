@@ -1,4 +1,6 @@
 class Admin::GlobalAdminsController < ApplicationController
+  before_filter :should_be_global_admin
+
 
   def all_admins
     ## @admins = User.all.select{|i| i.role == "Local Admin" || i.role == "Main Local Admin"}
@@ -21,7 +23,8 @@ class Admin::GlobalAdminsController < ApplicationController
 
   def update_general_settings
     @global_admin = User.find(params[:id])
-    @global_admin_general_setting = @global_admin.global_admin_general_setting || @global_admin.build_global_admin_general_setting
+    #binding.remote_pry
+    @global_admin_general_setting = @global_admin.global_admin_general_setting
     logger.info "##########{@global_admin_general_setting.inspect}########"
     if @global_admin_general_setting.update_attributes(params[:user][:global_admin_general_setting]) && @global_admin.update_attributes(params[:user])
       redirect_to edit_user_registration_path, :notice=>"Successfully Update"
@@ -51,7 +54,11 @@ class Admin::GlobalAdminsController < ApplicationController
   #  @groups = MainAdminGroup.all
   #  logger.info @groups.inspect
   #end
-
+  def  should_be_global_admin      #TODO need to move to user model
+    unless RolesManager.is_role_present?("Global Admin", current_user)
+      redirect_to root_path, :notice => "sorry you are not able to perform this activity"
+    end
+  end
 end
 
 

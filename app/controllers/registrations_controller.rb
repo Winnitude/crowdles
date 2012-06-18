@@ -1,5 +1,6 @@
 class RegistrationsController <  Devise::RegistrationsController
   before_filter :redirect_if_already_exist ,:only=>[:create]
+  before_filter :redirect_to_home , :only => [:new]
   autocomplete :country_detail, :name
 
   def create_LA
@@ -32,5 +33,12 @@ class RegistrationsController <  Devise::RegistrationsController
         redirect_to :controller => 'homes', :action => 'show_error_msg', :id =>check_user.id
       end
     end
+  end
+
+  def redirect_to_home
+   if  check_is_admin_host_present?
+     redirect_to root_path
+   end
+
   end
 end
