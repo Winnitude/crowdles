@@ -115,7 +115,7 @@
 
           <tr>
             <td>   <label class="control-label" for="input01">Ga Twitter: </label></td>
-            <td><%= setting.text_field :arena_factor,:value =>global_admin_general_setting.ga_twitter %></td>
+            <td><%= setting.text_field :arena_factor,:value =>global_admin_general_setting.ga_twitter ,:id => "twitter"%></td>
           </tr>
 
           <tr>
@@ -199,6 +199,10 @@
             arena_factor.add(Validate.Numericality,{failureMessage:"Must be number"})
             var facebook =   new LiveValidation("facebook",{validMessage:" ",onlyOnSubmit:true});
             facebook.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+            var twitter =   new LiveValidation("twitter",{validMessage:" ",onlyOnSubmit:true});
+            twitter.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+//            var linkedin =   new LiveValidation("twitter",{validMessage:" ",onlyOnSubmit:true});
+//            linkedin.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
 
 
 

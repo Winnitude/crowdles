@@ -1,6 +1,7 @@
 class Admin::LocalAdminsController < ApplicationController
   before_filter :should_be_GA ,:only => [:create_local_admin, :new_local_admin ,:change_admin_role]
   before_filter :should_not_be_fake_language, :only => [:create_local_admin,:update_local_admin]
+  before_filter :should_not_be_fake_country, :only => [:create_local_admin,:update_local_admin]
   before_filter :get_user
   autocomplete :country_detail, :name
   #autocomplete :user, :email
@@ -207,6 +208,12 @@ class Admin::LocalAdminsController < ApplicationController
     start_debugging
     if Language.is_fake ( params[:la_setting][:language]  )
       redirect_to :back , :notice => "Sorry the language you have selected is not exist"
+    end
+  end
+
+  def should_not_be_fake_country
+    if (CountryDetail.is_fake (params[:la_setting][:la_country]) && CountryDetail.is_fake(params[:user][:country]))
+      redirect_to :back , :notice => "Sorry the country you Have selected is not exist"
     end
   end
 end
