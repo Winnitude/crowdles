@@ -3,6 +3,7 @@ class Admin::LocalAdminsController < ApplicationController
   before_filter :should_not_be_fake_language, :only => [:create_local_admin,:update_local_admin]
   before_filter :get_user
   autocomplete :country_detail, :name
+  #autocomplete :user, :email
   autocomplete :language, :name
 
 
