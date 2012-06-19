@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
   end
 
   def start_debugging
-    binding.remote_pry
+    #binding.remote_pry
   end
 
   def check_is_admin_host_present?

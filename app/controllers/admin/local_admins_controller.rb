@@ -19,15 +19,18 @@ class Admin::LocalAdminsController < ApplicationController
   def new_local_admin
     @local_admin= User.new
     @la_setting = @local_admin.build_la_setting
+    #set_flash_message(:notice,:show_local_admin)
   end
 
   #NOTE this will create local admin
+  #TODO need to make it refactored
   def create_local_admin
     @local_admin = User.new params[:user]
     value = @local_admin.set_la_attributes
     @profile =@local_admin.build_profile params[:profile]
     @la_setting = @local_admin.build_la_setting params[:la_setting]
     @la_setting.creation_date = DateTime.now
+    @la_setting.is_master = !(LaSetting.is_any_LA_exist_in_system)
     #binding.remote_pry
     if @local_admin.save && @profile.save && @la_setting.save
       main_admin_group=@local_admin.build_main_admin_group(:country => @local_admin.la_setting.la_country)

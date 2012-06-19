@@ -46,4 +46,13 @@ class LaSetting
   field :no_profit_terms,                                      :type=> String
 
   mount_uploader :contact_photo, ImageUploader
+
+  def self.is_any_LA_exist_in_system
+    count = self.count
+    if count > 0
+      return true
+    else
+      return false
+    end
+  end
 end

@@ -12,6 +12,7 @@ class Admin::GlobalAdminsController < ApplicationController
     # logger.info "3333333333333#{@is_any_main_local_admin.inspect}"
     ##now new flow
     @admins = User.get_all_user_for_selected_role "Local Admin"
+    #start_debugging
   end
 
   def ideas
