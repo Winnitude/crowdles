@@ -33,13 +33,13 @@ class Admin::LocalAdminsController < ApplicationController
     @la_setting.is_master = !(LaSetting.is_any_LA_exist_in_system)
     #binding.remote_pry
     if @local_admin.save && @profile.save && @la_setting.save
-      main_admin_group=@local_admin.build_main_admin_group(:country => @local_admin.la_setting.la_country)
-      RolesManager.add_role("Main Admin Group Owner",@local_admin)
+      #main_admin_group=@local_admin.build_main_admin_group(:country => @local_admin.la_setting.la_country)
+      #RolesManager.add_role("Main Admin Group Owner",@local_admin)
       RolesManager.add_role("Local Admin", @local_admin)
       RolesManager.remove_role("User", @local_admin)
-      main_admin_group.set_la_attributes @local_admin
-      main_admin_group.save
-      logger.info "############################{main_admin_group.inspect}"
+      #main_admin_group.set_la_attributes @local_admin
+      #main_admin_group.save
+      #logger.info "############################{main_admin_group.inspect}"
       LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver
       redirect_to root_path ,:notice => "Successfully created"
     else

@@ -44,6 +44,8 @@ class LaSetting
   field :la_twitter,                                           :type=> String
   field :la_linked_in,                                         :type=> String
   field :no_profit_terms,                                      :type=> String
+  field :is_individual,                                        :type=> Boolean
+
 
   mount_uploader :contact_photo, ImageUploader
 

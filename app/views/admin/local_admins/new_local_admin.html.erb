@@ -19,15 +19,21 @@
                 </div>
             <% end %>
             <table>
+
+            <tr>
+              <td><label class="control-label" for="input01">Create Local Admin For: <span style="color:red">* </span></label></td>
+              <td> <%=l.radio_button :is_individual ,true , :checked => true  %>Individual
+                <%=l.radio_button :is_individual, false %> Company  </td>
+            </tr>
             <tr>
               <td><label class="control-label" for="input01">Email: <span style="color:red"> *</span></label></td>
               <td><%= f.text_field :email %></td>
             </tr>
 
             <!--<tr>-->
-              <!--<td><label class="control-label" for="input01">Is Master: <span style="color:red">* </span></label></td>-->
-              <!--<td> <%#=l.radio_button :is_master, true %>Yes-->
-                <%#=l.radio_button :is_master, false %> No   </td>
+            <!--<td><label class="control-label" for="input01">Is Master: <span style="color:red">* </span></label></td>-->
+            <!--<td> <%#=l.radio_button :is_master, true %>Yes-->
+            <%#=l.radio_button :is_master, false %>    </td>
             <!--</tr>-->
 
             <tr>
@@ -79,13 +85,13 @@
 
             <tr>
               <td><label class="control-label" for="input01">Local Admin Name: <span style="color:red"> *</span></label></td>
-            <td><%= l.text_field :local_admin_name%></td>
+              <td><%= l.text_field :local_admin_name%></td>
 
               <% a= ["new","active","blocked","suspended","unpaid","inactive"] %>
-              <tr>
+            <tr>
               <td><%= l.label :status,"Status" %></td>
               <td><%= l.select :status , options_for_select(a ) %></td>
-              </tr>
+            </tr>
 
             </tr>
             <tr>
