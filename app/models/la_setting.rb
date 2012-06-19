@@ -14,7 +14,7 @@ class LaSetting
   field :user_terms,                                           :type => String     ###LA
   field :project_terms,                                        :type => String     ###LA
   field :worker_consultant_terms,                              :type => String     ###LA
-  field :worker_terms,                                        :type => String     ###L
+  field :worker_terms,                                         :type => String     ###L
   field :admin_group_terms,                                    :type => String     ###LA
   field :business_group_terms,                                 :type => String     ###L
   field :status,                                               :type => String
@@ -28,8 +28,8 @@ class LaSetting
   field :contact_email,                                        :type => String     ###LA
   field :contact_biography,                                    :type => String     ###L
   field :pass_la_commissions,                                  :type => String
-  field :master_billing_profile_deviation,                     :type => Boolean     ###la
-  field :master_administration_deviation,                      :type => Boolean     ###la
+  field :master_billing_profile_deviation,                     :type => Boolean, :default => false    ###la
+  field :master_administration_deviation,                      :type => Boolean  , :default => false   ###la
   field :master_worker_deviation,                              :type => String     ###la
   field :master_worker_deviation_comment,                      :type => String     ###la
 
@@ -56,5 +56,11 @@ class LaSetting
     else
       return false
     end
+  end
+
+  def fix_attributes
+    self.creation_date = DateTime.now
+    self.platform_home = "http://" + LOCAL_HOST + "/country/" + self.la_country
+    self.is_master = !(LaSetting.is_any_LA_exist_in_system)
   end
 end

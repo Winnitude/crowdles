@@ -31,8 +31,8 @@ class Admin::LocalAdminsController < ApplicationController
     value = @local_admin.set_la_attributes
     @profile =@local_admin.build_profile params[:profile]
     @la_setting = @local_admin.build_la_setting params[:la_setting]
-    @la_setting.creation_date = DateTime.now
-    @la_setting.is_master = !(LaSetting.is_any_LA_exist_in_system)
+    @la_setting.fix_attributes
+    #@la_setting.is_master = !(LaSetting.is_any_LA_exist_in_system)
     #binding.remote_pry
     if @local_admin.save && @profile.save && @la_setting.save
       #main_admin_group=@local_admin.build_main_admin_group(:country => @local_admin.la_setting.la_country)
@@ -42,10 +42,10 @@ class Admin::LocalAdminsController < ApplicationController
       #main_admin_group.set_la_attributes @local_admin
       #main_admin_group.save
       #logger.info "############################{main_admin_group.inspect}"
-      LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver
+      #LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver
       redirect_to root_path ,:notice => "Successfully created"
     else
-     render :new_local_admin
+      render :new_local_admin
     end
   end
 
@@ -61,7 +61,7 @@ class Admin::LocalAdminsController < ApplicationController
     @la_setting = @admin.la_setting || @admin.build_la_setting
 
     if @admin.update_attributes(params[:user]) && @la_setting.update_attributes(params[:la_setting]) && @profile.update_attributes(params[:profile])
-    redirect_to :root, :notice => "successfully_updated"
+      redirect_to :root, :notice => "successfully_updated"
     else
       render :edit_local_admin
     end
@@ -161,23 +161,23 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   def my_settings
-      @admin = current_user
-      @la_settings = current_user.la_setting
+    @admin = current_user
+    @la_settings = current_user.la_setting
   end
 
   def update_my_setting
     @la_setting = current_user.la_setting
     #binding.remote_pry
-   if @la_setting.update_attributes(params[:la_setting])
+    if @la_setting.update_attributes(params[:la_setting])
       redirect_to :back ,:notice => "updated successfully"
-   end
+    end
   end
 
   def teams_management
-     @admins = AdminGroup.where(:country => current_user.la_setting.la_country)
-     @master_admin_group = MainAdminGroup.where(:country => current_user.la_setting.la_country)
-     #binding.remote_pry
-     #render :json => @admins
+    @admins = AdminGroup.where(:country => current_user.la_setting.la_country)
+    @master_admin_group = MainAdminGroup.where(:country => current_user.la_setting.la_country)
+    #binding.remote_pry
+    #render :json => @admins
   end
 
   private
@@ -189,7 +189,7 @@ class Admin::LocalAdminsController < ApplicationController
       RolesManager.remove_role("Main Local Admin", user)
       RolesManager.add_role("Local Admin", user)
     end
-    #user.save
+                          #user.save
   end
   def  should_be_GA       #TODO need to move to user model
     unless RolesManager.is_role_present?("Global Admin", current_user)
@@ -205,14 +205,13 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   def should_not_be_fake_language
-    start_debugging
     if Language.is_fake ( params[:la_setting][:language]  )
       redirect_to :back , :notice => "Sorry the language you have selected is not exist"
     end
   end
 
   def should_not_be_fake_country
-    if (CountryDetail.is_fake (params[:la_setting][:la_country]) && CountryDetail.is_fake(params[:user][:country]))
+    if(CountryDetail.is_fake(params[:la_setting][:la_country]) || CountryDetail.is_fake(params[:user][:country]))
       redirect_to :back , :notice => "Sorry the country you Have selected is not exist"
     end
   end

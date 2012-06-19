@@ -1,7 +1,7 @@
 <h1>Edit Admin</h1>
 
 
-  <%=form_for @admin ,:url=>update_local_admin_local_admin_path do |f| %>
+  <%=form_for @admin ,:url=>update_local_admin_local_admin_path ,:html => {:multipart => true} do |f| %>
       <%= fields_for @la_setting do |l| %>
           <%= fields_for @admin.profile do |p| %>
               <% if @admin.errors.any? || @la_setting.errors.any?  %>
@@ -21,14 +21,14 @@
             <table>
             <tr>
               <td><label class="control-label" for="input01">Email: <span style="color:red"> *</span></label></td>
-              <td><%= f.text_field :email %></td>
+              <td><%= f.text_field :email ,:disabled => true %></td>
             </tr>
 
-            <tr>
-              <td><label class="control-label" for="input01">Is Master: <span style="color:red">* </span></label></td>
-              <td> <%=l.radio_button :is_master, true %>Yes
+            <!--<tr>-->
+              <!--<td><label class="control-label" for="input01">Is Master: <span style="color:red">* </span></label></td>-->
+              <!--<td> <%=l.radio_button :is_master, true %>Yes-->
                 <%=l.radio_button :is_master, false %> No   </td>
-            </tr>
+            <!--</tr>-->
 
             <tr>
               <td>
@@ -79,11 +79,11 @@
               <td><label class="control-label" for="input01">Local Admin Name: <span style="color:red"> *</span></label></td>
               <td><%= l.text_field :local_admin_name%></td>
 
-              <% a= ["new","active","blocked","suspended","unpaid","inactive"] %>
-            <tr>
-              <td><%= l.label :status,"Status" %></td>
-              <td><%= l.select :status , options_for_select(a ) %></td>
-            </tr>
+              <!--<% a= ["new","active","blocked","suspended","unpaid","inactive"] %>-->
+            <!--<tr>-->
+              <!--<td><%= l.label :status,"Status" %></td>-->
+              <!--<td><%= l.select :status , options_for_select(a ) %></td>-->
+            <!--</tr>-->
 
             </tr>
             <tr>
@@ -133,17 +133,17 @@
 
             <tr>
               <td><label class="control-label" for="input01">LA Facebook Page URL:</label></td>
-              <td><%= l.text_field :la_facebook%></td>
+              <td><%= l.text_field :la_facebook ,:id => "facebook"%></td>
             </tr>
 
             <tr>
               <td><label class="control-label" for="input01">LA Twitter Handle:</label></td>
-              <td><%= l.text_field :la_twitter%></td>
+              <td><%= l.text_field :la_twitter ,:id => "twitter"%></td>
             </tr>
 
             <tr>
               <td><label class="control-label" for="input01">LA LinkedIn URL:</label></td>
-              <td><%= l.text_field :la_linked_in%></td>
+              <td><%= l.text_field :la_linked_in ,:id => "linkedin"%></td>
             </tr>
 
             <tr>
@@ -164,6 +164,7 @@
             <tr>
               <td><label class="control-label" for="input01">Contact Photo:</label></td>
               <td><%= l.file_field :contact_photo%></td>
+              <td><%= image_tag @la_setting.contact_photo_url , :width => 320, :height=> 320 %></td>
             </tr>
 
             <tr>
@@ -183,7 +184,7 @@
 
             <tr>
               <td><label class="control-label" for="input01">PasS LA Commissions:</label> </td>
-              <td><%= l.text_field :pass_la_commissions%></td>
+              <td><%= l.text_field :pass_la_commissions , :id => "commission"%></td>
             </tr>
 
             <!--<tr>-->
@@ -291,7 +292,7 @@
 //            var web = new LiveValidation('la_setting_web_domain',{validMessage:" ",onlyOnSubmit:true});
 //            web.add( Validate.Presence );
             var platform_home = new LiveValidation('la_setting_platform_home',{validMessage:" ",onlyOnSubmit:true});
-            platform_home.add( Validate.Presence );
+//            platform_home.add( Validate.Presence );
 //              var zipcode = new LiveValidation('profile_zip_code',{validMessage:" ",onlyOnSubmit:true});
 //              zipcode.add( Validate.Presence );
 //              var addr = new LiveValidation('la_setting_address',{validMessage:" ",onlyOnSubmit:true});
@@ -321,10 +322,20 @@
 //
 //            var devition_comment = new LiveValidation("la_setting_master_worker_deviation_comment",{validMessage:" ",onlyOnSubmit:true});
 //            devition_comment.add(Validate.Presence,{failureMessage:"Can't be empty"})
-
+            var commission = new LiveValidation("commission",{validMessage:" ",onlyOnSubmit:true});
+            commission.add(Validate.Numericality,{failureMessage:"Must be number"})
 
             var language = new LiveValidation("la_setting_language",{validMessage:" ",onlyOnSubmit:true});
             language.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            var facebook =   new LiveValidation("facebook",{validMessage:" ",onlyOnSubmit:true});
+            facebook.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+            var twitter =   new LiveValidation("twitter",{validMessage:" ",onlyOnSubmit:true});
+            twitter.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+            var linked_in =   new LiveValidation("linkedin",{validMessage:" ",onlyOnSubmit:true});
+            linked_in.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+//            var platform_name =   new LiveValidation("platform_name",{validMessage:" ",onlyOnSubmit:true});
+            platform_home.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+
 //            $('#dob').datepicker({
 //                changeMonth: true,
 //                changeYear: true,
