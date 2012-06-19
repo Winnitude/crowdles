@@ -11,6 +11,7 @@ CrowdFunding::Application.routes.draw do
         get "main_admin_group_mgmt" ,    :on=> :collection
         get "edit_general_settings",  :on => :member
         put "update_general_settings",  :on => :member
+        get :autocomplete_language_name, :on => :collection
       end
 
       resources :local_admins do
@@ -28,6 +29,7 @@ CrowdFunding::Application.routes.draw do
         get  "my_settings",        :on => :collection
         put  "update_my_setting",        :on => :collection
         get  "teams_management",        :on => :collection
+        get :autocomplete_language_name, :on => :collection
       end
 
       as :local_admins do

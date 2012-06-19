@@ -38,7 +38,7 @@
 
             <tr>
               <td><label class="control-label" for="input01">LA Language: <span style="color:red">* </span></label></td>
-              <td><%= l.text_field :language %></td>
+              <td><%= l.autocomplete_field :language ,autocomplete_language_name_local_admins_path ,:value => @la_setting.language %></td>
             </tr>
 
             <tr>
@@ -269,7 +269,7 @@
             <!--<td><%= l.datepicker :deactivation_date %></td>-->
             <!--</tr>-->
             <tr>
-              <td><%= f.submit"Create LocalAdmin" ,:class => "btn-small btn" %></td>
+              <td><%= f.submit"Update LocalAdmin" ,:class => "btn-small btn" %></td>
             </tr>
             </table>
         <% end %>

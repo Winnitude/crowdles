@@ -1,5 +1,7 @@
 class Admin::GlobalAdminsController < ApplicationController
   before_filter :should_be_global_admin
+  before_filter :should_not_be_fake_language, :only => [:update_general_settings]
+  autocomplete :language, :name
 
 
   def all_admins
@@ -27,7 +29,7 @@ class Admin::GlobalAdminsController < ApplicationController
     @global_admin_general_setting = @global_admin.global_admin_general_setting
     logger.info "##########{@global_admin_general_setting.inspect}########"
     if @global_admin_general_setting.update_attributes(params[:user][:global_admin_general_setting]) && @global_admin.update_attributes(params[:user])
-      redirect_to edit_user_registration_path, :notice=>"Successfully Update"
+      redirect_to :back, :notice=>"Successfully Update"
     else
       render :edit_general_settings
     end
@@ -57,6 +59,12 @@ class Admin::GlobalAdminsController < ApplicationController
   def  should_be_global_admin      #TODO need to move to user model
     unless RolesManager.is_role_present?("Global Admin", current_user)
       redirect_to root_path, :notice => "sorry you are not able to perform this activity"
+    end
+  end
+
+  def should_not_be_fake_language
+    if Language.is_fake ( params[:user][:global_admin_general_setting][:plateform_default_language])
+      redirect_to :back , :notice => "Sorry the language you Have selected is not exist"
     end
   end
 end

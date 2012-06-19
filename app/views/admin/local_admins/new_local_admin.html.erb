@@ -38,7 +38,9 @@
 
             <tr>
               <td><label class="control-label" for="input01">LA Language: <span style="color:red">* </span></label></td>
-              <td><%= l.text_field :language %></td>
+              <td><%#= l.text_field :language %>
+                <%= l.autocomplete_field :language ,autocomplete_language_name_local_admins_path %>
+              </td>
             </tr>
 
             <tr>

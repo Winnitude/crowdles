@@ -1,7 +1,10 @@
 class Admin::LocalAdminsController < ApplicationController
   before_filter :should_be_GA ,:only => [:create_local_admin, :new_local_admin ,:change_admin_role]
+  before_filter :should_not_be_fake_language, :only => [:create_local_admin,:update_local_admin]
   before_filter :get_user
   autocomplete :country_detail, :name
+  autocomplete :language, :name
+
 
   def show_local_admin
     @local_admins = User.get_all_user_for_selected_role "Local Admin"
@@ -194,5 +197,12 @@ class Admin::LocalAdminsController < ApplicationController
     user.mago_la_id = @user.id
     user.save
     RolesManager.add_role("Main Admin Group Owner", user)
+  end
+
+  def should_not_be_fake_language
+    start_debugging
+    if Language.is_fake ( params[:la_setting][:language]  )
+      redirect_to :back , :notice => "Sorry the language you have selected is not exist"
+    end
   end
 end

@@ -42,7 +42,8 @@
 
           <tr>
             <td>   <label class="control-label" for="input01">Platform Default Language: <span style="color:red"> *</span></label></td>
-            <td><%= setting.text_field :plateform_default_language ,:value =>global_admin_general_setting.plateform_default_language%></td>
+            <td><%#= setting.text_field :plateform_default_language ,:value =>global_admin_general_setting.plateform_default_language%>
+              <%= setting.autocomplete_field :plateform_default_language ,autocomplete_language_name_global_admins_path, :value =>global_admin_general_setting.plateform_default_language  %></td>
           </tr>
 
 
@@ -83,41 +84,31 @@
               <%= setting.radio_button :freshbooks_integration_enabled,false, :checked=> (global_admin_general_setting.freshbooks_integration_enabled == false)? true : false %> No</td>
           </tr>
 
-
-
-          <tr>
-            <td>   <label class="control-label" for="input01">Platform Legal Terms Global: </label></td>
-            <td><%= setting.text_field :platform_legal_terms_global ,:value =>global_admin_general_setting.platform_legal_terms_global%></td>
-          </tr>
-
-
-
-
           <tr>
             <td>   <label class="control-label" for="input01">Arena Minimum Cap: </label></td>
-            <td><%= setting.text_field :arena_minimum_cap ,:value =>global_admin_general_setting.arena_minimum_cap%></td>
+            <td><%= setting.text_field :arena_minimum_cap ,:value =>global_admin_general_setting.arena_minimum_cap ,:id => "min_cap"%></td>
           </tr>
 
 
 
           <tr>
             <td>   <label class="control-label" for="input01">Arena Maximum Cap: </label></td>
-            <td><%= setting.text_field :arena_maximum_cap,:value =>global_admin_general_setting.arena_maximum_cap %></td>
+            <td><%= setting.text_field :arena_maximum_cap,:value =>global_admin_general_setting.arena_maximum_cap ,:id => "max_cap" %></td>
           </tr>
 
           <tr>
             <td>   <label class="control-label" for="input01">Arena Factor: </label></td>
-            <td><%= setting.text_field :arena_factor,:value =>global_admin_general_setting.arena_factor %></td>
+            <td><%= setting.text_field :arena_factor,:value =>global_admin_general_setting.arena_factor ,:id => "arena_factor" %></td>
           </tr>
 
           <td>   <label class="control-label" for="input01">Bg Qualification Votes: </label></td>
-          <td><%= setting.text_field :bg_qualification_votes ,:value =>global_admin_general_setting.bg_qualification_votes%></td>
+          <td><%= setting.text_field :bg_qualification_votes ,:value =>global_admin_general_setting.bg_qualification_votes ,:id => "votes" %></td>
           </tr>
 
 
           <tr>
             <td>   <label class="control-label" for="input01">Ga Facebook: </label></td>
-            <td><%= setting.text_field :ga_facebook ,:value =>global_admin_general_setting.ga_facebook%></td>
+            <td><%= setting.text_field :ga_facebook ,:value =>global_admin_general_setting.ga_facebook ,:id => "facebook"%></td>
           </tr>
 
 
@@ -127,6 +118,10 @@
             <td><%= setting.text_field :arena_factor,:value =>global_admin_general_setting.ga_twitter %></td>
           </tr>
 
+          <tr>
+            <td>   <label class="control-label" for="input01">Platform Legal Terms Global: </label></td>
+            <td><%= setting.text_area :platform_legal_terms_global ,:value =>global_admin_general_setting.platform_legal_terms_global,:rows=>5%></td>
+          </tr>
 
           <tr>
             <td>   <label class="control-label" for="input01">User Terms: </label></td>
@@ -194,6 +189,17 @@
             var plateform_email = new LiveValidation("platform_email",{validMessage:" ",onlyOnSubmit:true});
             plateform_email.add(Validate.Presence,{failureMessage:"Can't be empty"})
             plateform_email.add( Validate.Email,{failureMessage:"Must be valid email"} );
+            var mincap =   new LiveValidation("min_cap",{validMessage:" ",onlyOnSubmit:true});
+            mincap.add(Validate.Numericality, { onlyInteger: true },{failureMessage:"Must be integer"})
+            var maxcap =   new LiveValidation("max_cap",{validMessage:" ",onlyOnSubmit:true});
+            maxcap.add(Validate.Numericality, { onlyInteger: true },{failureMessage:"Must be integer"})
+            var votes =   new LiveValidation("votes",{validMessage:" ",onlyOnSubmit:true});
+            votes.add(Validate.Numericality, { onlyInteger: true },{failureMessage:"Must be integer"})
+            var arena_factor =   new LiveValidation("arena_factor",{validMessage:" ",onlyOnSubmit:true});
+            arena_factor.add(Validate.Numericality,{failureMessage:"Must be number"})
+            var facebook =   new LiveValidation("facebook",{validMessage:" ",onlyOnSubmit:true});
+            facebook.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+
 
 
         });

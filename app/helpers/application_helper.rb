@@ -39,4 +39,8 @@ module ApplicationHelper
 
   end
 
+  def check_is_admin_host_present?
+    request.url.index(ADMIN_HOST).present?
+  end
+
 end

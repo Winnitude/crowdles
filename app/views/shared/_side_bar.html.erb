@@ -11,7 +11,7 @@
             <li><%#= link_to "Account Settings" , edit_user_registration_path  %></li>
         <% end %>
     <% else %>
-        <li><%= link_to "Subscribe for News Letter", news_letter_homes_path %></li>
+        <li><%= link_to "Subscribe for News Letter", news_letter_homes_path if !(check_is_admin_host_present?) %> </li>
         <li>  <% if request.url.index(ADMIN_HOST).present? == false %>
           <%= link_to "Sign up", new_user_registration_path %>
           <% end %>
