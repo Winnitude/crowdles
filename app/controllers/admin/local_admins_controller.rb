@@ -180,6 +180,11 @@ class Admin::LocalAdminsController < ApplicationController
     #render :json => @admins
   end
 
+  def check_for_existing_user
+   @user =User.where(:email => params[:email]).first
+    #logger.info (@user.profile.first_name.inspect)
+  end
+
   private
   def toggle_admin user   #TODO need to move to user model
     if RolesManager.is_role_present?("Local Admin", user)

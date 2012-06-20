@@ -1,0 +1,27 @@
+
+<% if (@user.present? && @user.profile.present?) %>
+<% fname = @user.profile.first_name, lname = @user.profile.last_name  %>
+
+    <tr>
+      <td><%= label_tag "first_name: "%></td>
+      <td><%= text_field_tag "user[first_name]" , fname  %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag "last_name:" %></td>
+      <td><%= text_field_tag "user[last_name]" , lname %></td>
+    </tr>
+
+
+    <%else%>
+
+
+    <tr>
+      <td><%= label_tag "first_name: "%></td>
+      <td><%= text_field_tag "user[first_name]"   %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag "last_name:" %></td>
+      <td><%= text_field_tag "user[last_name]"  %></td>
+    </tr>
+<%end%>
+

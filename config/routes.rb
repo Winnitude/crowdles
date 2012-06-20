@@ -31,6 +31,7 @@ CrowdFunding::Application.routes.draw do
         put  "update_my_setting",        :on => :collection
         get  "teams_management",        :on => :collection
         get :autocomplete_language_name, :on => :collection
+        get :check_for_existing_user  ,  :on => :collection
       end
 
       as :local_admins do

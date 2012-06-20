@@ -1,5 +1,5 @@
 <h1>Create Local Admin</h1>
-
+<div id = "ajax_path" ><%= ADMIN_HOST %>/local_admins/check_for_existing_user</div>
 
 <%=form_for @local_admin ,:url=>local_admins_create_local_admin_path do |f| %>
     <%= fields_for @la_setting do |l| %>
@@ -21,13 +21,14 @@
             <table>
 
             <!--<tr>-->
-              <!--<td><label class="control-label" for="input01">Create Local Admin For: <span style="color:red">* </span></label></td>-->
-              <!--<td> <%=l.radio_button :is_individual ,true , :checked => true  %>Individual-->
+            <!--<td><label class="control-label" for="input01">Create Local Admin For: <span style="color:red">* </span></label></td>-->
+            <!--<td> <%=l.radio_button :is_individual ,true , :checked => true  %>Individual-->
             <!-- <%#=l.radio_button :is_individual, false %> Company  </td> -->
             <!--</tr>-->
             <tr>
               <td><label class="control-label" for="input01">Email: <span style="color:red"> *</span></label></td>
               <td><%= f.text_field :email %></td>
+              <td><%= link_to "check" ,"",:class => "btn" ,:id => "check" %></td>
             </tr>
 
             <!--<tr>-->
@@ -50,8 +51,8 @@
             </tr>
 
             <!--<tr>-->
-              <!--<td><label class="control-label" for="input01">LA Plateform Home <span style="color:red"> *<%=  %></span></label></td>-->
-              <!--<td><%= l.text_field :platform_home %></td>-->
+            <!--<td><label class="control-label" for="input01">LA Plateform Home <span style="color:red"> *<%=  %></span></label></td>-->
+            <!--<td><%= l.text_field :platform_home %></td>-->
             <!--</tr>-->
 
             <tr>
@@ -93,20 +94,13 @@
               <td><%= l.text_field :local_admin_name%></td>
 
               <!--<% a= ["new","active","blocked","suspended","unpaid","inactive"] %>-->
-            <!--<tr>-->
+              <!--<tr>-->
               <!--<td><%= l.label :status,"Status" %></td>-->
               <!--<td><%= l.select :status , options_for_select(a ) %></td>-->
-            <!--</tr>-->
+              <!--</tr>-->
 
             </tr>
-            <tr>
-              <td><%= p.label "first_name: "%></td>
-              <td><%= p.text_field :first_name %></td>
-            </tr>
-            <tr>
-              <td><%= p.label "last_name:" %></td>
-              <td><%= p.text_field :last_name %></td>
-            </tr>
+           <div id = "render_name"><%= render :partial => "la_name" %> </div>
             <tr>
               <td><%= l.label "company_name:" %></td>
               <td><%= l.text_field :company_name %></td>
@@ -355,6 +349,26 @@
 //
 //
 //            });
+
+
+
+            $("#check").click(function(event){
+                event.preventDefault();
+
+                 url = location.href
+               var link = $("#ajax_path").text()
+               var email = $("#user_email").val()
+//
+                $.get("/local_admins/check_for_existing_user",{"email" :email},function(k){}
+//
+              )
+
+            });
+
+
+
+
+
         });
     </script>
 <% end %>
