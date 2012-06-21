@@ -45,7 +45,7 @@ class LaSetting
   field :la_linked_in,                                         :type=> String
   field :no_profit_terms,                                      :type=> String
   field :is_individual,                                        :type=> Boolean
-
+  field :la_email,                                             :type => String
 
   mount_uploader :contact_photo, ImageUploader
 

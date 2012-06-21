@@ -1,7 +1,5 @@
 <h1>Create Local Admin</h1>
-<div id = "ajax_path" ><%= ADMIN_HOST %>/local_admins/check_for_existing_user</div>
-
-<%=form_for @local_admin ,:url=>local_admins_create_local_admin_path do |f| %>
+<%=form_for @local_admin ,:url=>local_admins_create_local_admin_path , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
     <%= fields_for @la_setting do |l| %>
         <%= fields_for @local_admin.build_profile do |p| %>
             <% if @local_admin.errors.any? || @la_setting.errors.any?  %>
@@ -18,266 +16,311 @@
                   </ul>
                 </div>
             <% end %>
-            <table>
 
-            <!--<tr>-->
-            <!--<td><label class="control-label" for="input01">Create Local Admin For: <span style="color:red">* </span></label></td>-->
-            <!--<td> <%=l.radio_button :is_individual ,true , :checked => true  %>Individual-->
-            <!-- <%#=l.radio_button :is_individual, false %> Company  </td> -->
-            <!--</tr>-->
-            <tr>
-              <td><label class="control-label" for="input01">Email: <span style="color:red"> *</span></label></td>
-              <td><%= f.text_field :email %></td>
-              <td><%= link_to "check" ,"",:class => "btn" ,:id => "check" %></td>
-            </tr>
+            <div class="control-group">
+              <label class="control-label" for="input01">Email: <span style="color:red"> *</span></label>
+              <div class="controls">
+                <%=f.text_field :email,:class=>"input"%> <span><%= link_to "Check Existence" ,"#",:class => "btn" ,:id => "check" ,:confirm => "Under Development"%></span>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"> </p>
+              </div>
+            </div>
 
-            <!--<tr>-->
-            <!--<td><label class="control-label" for="input01">Is Master: <span style="color:red">* </span></label></td>-->
-            <!--<td> <%#=l.radio_button :is_master, true %>Yes-->
-            <%#=l.radio_button :is_master, false %>    </td>
-            <!--</tr>-->
+            <h3>LA Group Details</h3>
 
-            <tr>
-              <td>
-                <label class="control-label" for="input01">LA country: <span style="color:red"> *</span></label></td>
-              <td><%= l.autocomplete_field :la_country ,autocomplete_country_detail_name_local_admins_path %></td>
-            </tr>
 
-            <tr>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Local Admin Name:: <span style="color:red"> *</span></label>
+              <div class="controls">
+                <%=l.text_field :local_admin_name,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">LA country: <span style="color:red"> *</span></label>
+              <div class="controls">
+                <%=l.autocomplete_field :la_country ,autocomplete_country_detail_name_local_admins_path,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
               <td><label class="control-label" for="input01">LA Language: <span style="color:red">* </span></label></td>
-              <td><%#= l.text_field :language %>
-                <%= l.autocomplete_field :language ,autocomplete_language_name_local_admins_path %>
-              </td>
-            </tr>
+              <div class="controls">
+                <%=l.autocomplete_field :language ,autocomplete_language_name_local_admins_path ,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
-            <!--<tr>-->
-            <!--<td><label class="control-label" for="input01">LA Plateform Home <span style="color:red"> *<%=  %></span></label></td>-->
-            <!--<td><%= l.text_field :platform_home %></td>-->
-            <!--</tr>-->
+            <div class="control-group">
+              <td><label class="control-label" for="input01">LA Group Email ID: <span style="color:red">* </span></label></td>
+              <div class="controls">
+                <%=l.text_field :la_email  ,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
-            <tr>
-              <td><%= l.label "User Terms:" %></td>
-              <td><%= l.text_area :user_terms, :rows => 5%></td>
-            </tr>
-            <tr>
-              <td><%= l.label "Project Terms:" %></td>
-              <td><%= l.text_area :project_terms,:rows => 5%></td>
-            </tr>
+            <div class="control-group">
+              <label class="control-label" for="input01">LA Facebook Page URL: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%= l.text_field :la_facebook ,:id => "facebook",:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
-            <tr>
-              <td><%= l.label "Worker Terms:" %></td>
-              <td><%= l.text_area :worker_terms,:rows => 5%></td>
-            </tr>
+            <div class="control-group">
+              <label class="control-label" for="input01">LA Twitter Handle: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=l.text_field :la_twitter ,:id => "twitter",:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
-            <tr>
-              <td><%= l.label "Worker Consultant Terms:" %></td>
-              <td><%= l.text_area :worker_consultant_terms,:rows => 5%></td>
-            </tr>
-
-            <tr>
-              <td><%= l.label "admin_group_terms:" %></td>
-              <td><%= l.text_area :admin_group_terms,:rows => 5%></td>
-            </tr>
-
-            <tr>
-              <td><%= l.label "business_group_terms" %></td>
-              <td><%= l.text_area :business_group_terms,:rows => 5%></td>
-            </tr>
-
-            <tr>
-              <td><label class="control-label" for="input01">No Profit Terms:<span style="color:red"> </span></label> </td>
-              <td><%= l.text_area :no_profit_terms ,:rows => 5%></td>
-            </tr>
-
-            <tr>
-              <td><label class="control-label" for="input01">Local Admin Name: <span style="color:red"> *</span></label></td>
-              <td><%= l.text_field :local_admin_name%></td>
-
-              <!--<% a= ["new","active","blocked","suspended","unpaid","inactive"] %>-->
-              <!--<tr>-->
-              <!--<td><%= l.label :status,"Status" %></td>-->
-              <!--<td><%= l.select :status , options_for_select(a ) %></td>-->
-              <!--</tr>-->
-
-            </tr>
-           <div id = "render_name"><%= render :partial => "la_name" %> </div>
-            <tr>
-              <td><%= l.label "company_name:" %></td>
-              <td><%= l.text_field :company_name %></td>
-            </tr>
-            <tr>
-            <tr>
-              <td><label class="control-label" for="input01">Country: <span style="color:red"> *</span></label></td>
-              <td><%= f.autocomplete_field :country ,autocomplete_country_detail_name_local_admins_path %></td>
-            </tr>
-
-            <tr>
-              <td><%= p.label "City:" %></td>
-              <td><%= p.text_field :city %></td>
-            </tr>
+            <div class="control-group">
+              <label class="control-label" for="input01">LA LinkedIn URL: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%= l.text_field :la_linked_in ,:id => "linkedin",:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
 
-            <tr>
-              <td><%= p.label "Zip Code:" %></td>
-              <td><%= p.text_field :zip_code %></td>
-            </tr>
-            <tr>
-              <td><%= p.label "State:" %></td>
-              <td><%= p.text_field :state %></td>
-            </tr>
-            <tr>
-              <td><%= l.label "address:" %></td>
-              <td><%= l.text_field :address %></td>
-            </tr>
-            <tr>
-              <td><%= p.label "additional_address:" %></td>
-              <td><%= p.text_field :additional_address_info %></td>
-            </tr>
-            <tr>
-              <td><%= p.label "phone_number "%></td>
-              <td><%= p.text_field :telephone_number %></td>
-            </tr>
+            <h3>LA Organization Details</h3>
 
-            <tr>
-              <td><label class="control-label" for="input01">LA Facebook Page URL:</label></td>
-              <td><%= l.text_field :la_facebook ,:id => "facebook"%></td>
-            </tr>
+            <div id = "render_name"><%= render :partial => "la_name" %> </div>
 
-            <tr>
-              <td><label class="control-label" for="input01">LA Twitter Handle:</label></td>
-              <td><%= l.text_field :la_twitter ,:id => "twitter"%></td>
-            </tr>
+            <div class="control-group">
+              <label class="control-label" for="input01">Company Name: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=l.text_field :company_name,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="input01">Country: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=f.autocomplete_field :country ,autocomplete_country_detail_name_local_admins_path,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
-            <tr>
-              <td><label class="control-label" for="input01">LA LinkedIn URL:</label></td>
-              <td><%= l.text_field :la_linked_in ,:id => "linkedin"%></td>
-            </tr>
+            <div class="control-group">
+              <label class="control-label" for="input01">City: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=p.text_field :city,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
-            <tr>
-              <td><label class="control-label" for="input01">Contact First Name:</label></td>
-              <td><%= l.text_field :contact_first_name%></td>
-            </tr>
+            <div class="control-group">
+              <label class="control-label" for="input01">ZipCode: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=p.text_field :zip_code,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
-            <tr>
-              <td><label class="control-label" for="input01">Contact Last Name:</label></td>
-              <td><%= l.text_field :contact_last_name%></td>
-            </tr>
+            <div class="control-group">
+              <label class="control-label" for="input01">Address: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=l.text_field :address,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
-            <tr>
-              <td><label class="control-label" for="input01">Contact Email:</label></td>
-              <td><%= l.text_field :contact_email%></td>
-            </tr>
+            <div class="control-group">
+              <label class="control-label" for="input01">Additional_address: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=p.text_field :additional_address_info,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
-            <tr>
-              <td><label class="control-label" for="input01">Contact Photo:</label></td>
-              <td><%= l.file_field :contact_photo%></td>
-            </tr>
+            <div class="control-group">
+              <label class="control-label" for="input01">Phone Number: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=p.text_field :telephone_number,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
-            <tr>
-              <td><label class="control-label" for="input01">Contact Biography:</label></td>
-              <td><%= l.text_field :contact_biography%></td>
-            </tr>
-            <tr>
-              <td><label class="control-label" for="input01">Billing Profile ID:<span style="color:red"> *</span></label></td>
-              <td><%= l.text_field :billing_profile_id %></td>
-            </tr>
+            <h3>LA Group Contact Person</h3>
 
-            <tr>
-              <td><label class="control-label" for="input01">Platform Billing Profile ID:<span style="color:red">* </span></label> </td>
-              <td><%= l.text_field :platform_billing_profile_id %></td>
-            </tr>
+            <div class="control-group">
+              <label class="control-label" for="input01">Contact First Name: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%= l.text_field :contact_first_name,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Contact Last Name: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%= l.text_field :contact_last_name,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Contact email: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%= l.text_field :contact_email,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Contact Photo: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%= l.file_field :contact_photo,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Contact Biography: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%= l.text_field :contact_biography,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+             <h3>Terms and Condition</h3>
+            <div class="control-group">
+              <label class="control-label" for="input01"><%= l.label "User Terms:" %><span style="color:red"> </span></label>
+              <div class="controls">
+                <%=l.text_area :user_terms, :rows => 5,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01"><%= l.label "Project Terms:" %><span style="color:red"> </span></label>
+              <div class="controls">
+                <%=l.text_area :project_terms, :rows => 5,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01"><%= l.label "Worker Terms:" %><span style="color:red"> </span></label>
+              <div class="controls">
+                <%=l.text_area :worker_terms, :rows => 5,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01"><%= l.label "Worker Consultant Terms:" %><span style="color:red"> </span></label>
+              <div class="controls">
+                <%=l.text_area :worker_consultant_terms, :rows => 5,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01"><%= l.label "Admin Group Terms:" %><span style="color:red"> </span></label>
+              <div class="controls">
+                <%=l.text_area :admin_group_terms, :rows => 5,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01"><%= l.label "Business Group Terms:" %><span style="color:red"> </span></label>
+              <div class="controls">
+                <%=l.text_area :business_group_terms, :rows => 5,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01"><%= l.label "No Profit Terms:" %><span style="color:red"> </span></label>
+              <div class="controls">
+                <%=l.text_area :no_profit_terms, :rows => 5,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+            <h3>Billing And Commission related</h3>
+            <div class="control-group">
+              <label class="control-label" for="input01">PasS LA Commissions: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%= l.text_field :pass_la_commissions ,:id => "commission",:class=>"input"%><span> %</span>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+            <h5>All details regarding Default Billing Profile as well as PaaS Billing Profile will place here</h5>
+            <div class="control-group">
+              <label class="control-label" for="input01">Master Billing Profile Deviation: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%= l.radio_button :master_billing_profile_deviation, true,:class=>"input"%>  True   </div>
+              <div class="controls"> <%= l.radio_button :master_billing_profile_deviation, false,:class=>"input"%> false  </div>
+              <!--<input type="text" class="input-xlarge" id="input01">-->
+              <p class="help-block"></p>
+            </div>
 
 
-            <tr>
-              <td><label class="control-label" for="input01">PasS LA Commissions:</label> </td>
-              <td><%= l.text_field :pass_la_commissions ,:id => "commission"%></td>
-            </tr>
+            <div class="control-group">
+              <label class="control-label" for="input01">Master Administration Deviation:<span style="color:red"> </span></label>
+              <div class="controls">
+                <%= l.radio_button :master_administration_deviation, true,:class=>"input"%>  True   </div>
+              <div class="controls"> <%=l.radio_button :master_administration_deviation, false,:class=>"input"%> false  </div>
+              <!--<input type="text" class="input-xlarge" id="input01">-->
+              <p class="help-block"></p>
+            </div>
 
-            <!--<tr>-->
-            <!--<td><%= l.label :web_domain,"Web Domain" %></td>-->
-            <!--<td><%= l.text_field :web_domain %>*</td>-->
-            <!--</tr>-->
+            <div class="control-group">
+              <label class="control-label" for="input01">Master Worker Deviation: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%= l.text_field :master_worker_deviation,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
+            <div class="control-group">
+              <label class="control-label" for="input01">Master Worker Deviation Comment: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%= l.text_field :master_worker_deviation_comment,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
 
-
-            <% a= ["new","active","blocked","suspended","unpaid","inactive"] %>
-            <!--<tr>-->
-            <!--<td><%= l.label :status,"Status" %></td>-->
-            <!--<td><%= l.select :status , options_for_select(a ) %></td>-->
-            <!--</tr>-->
-
-            <tr>
-              <td><label class="control-label" for="input01">Master Billing Profile Deviation:</label> </td>
-              <td> <%=l.radio_button :master_billing_profile_deviation, true %> True
-                <%=l.radio_button :master_billing_profile_deviation, false %> False   </td>
-            </tr>
-
-            <tr>
-              <td><label class="control-label" for="input01">Master Administration Deviation:</label> </td>
-              <td> <%=l.radio_button :master_administration_deviation, true %> True
-                <%=l.radio_button :master_administration_deviation, false %> False  </td>
-            </tr>
-
-            <tr>
-              <td><label class="control-label" for="input01">MailChimp Integration Key:</label> </td>
-              <td><%= l.text_field :mail_chimp_integration_key %></td>
-            </tr>
-
-            <tr>
-              <td><label class="control-label" for="input01">Freshbooks Integration Key:</label> </td>
-              <td><%= l.text_field :freshbooks_integration_key %></td>
-            </tr>
-
-            <!--<tr>-->
-            <!--<td><%= l.label :local_admin_name%></td>-->
-            <!--<td><%= l.text_field :local_admin_name%></td>-->
-            <!--</tr>-->
-
-
-
-
-            <!--<tr>-->
-            <!--<td><%= l.label :master_billing_profile_deviation%></td>-->
-            <!--<td><%= l.text_field :master_billing_profile_deviation%></td>-->
-            <!--</tr>-->
-
-            <!--<tr>-->
-            <!--<td><%= l.label :master_administration_deviation%></td>-->
-            <!--<td><%= l.text_field :master_administration_deviation%></td>-->
-            <!--</tr>-->
-
-
-
-            <tr>
-              <td><label class="control-label" for="input01">Master Worker Deviation:<span style="color:red"> </span></label> </td>
-              <td><%= l.text_field :master_worker_deviation%></td>
-            </tr>
-
-            <tr>
-              <td><label class="control-label" for="input01">Master Worker Deviation Comment:<span style="color:red"> </span></label> </td>
-              <td><%= l.text_field :master_worker_deviation_comment%></td>
-            </tr>
-
-
-
-            <!--<tr>-->
-            <!--<td><%= l.label :mail_chimp_integration_key %></td>-->
-            <!--<td><%= l.text_field :mail_chimp_integration_key %></td>-->
-            <!--</tr>-->
-
-            <!--<tr>-->
-            <!--<td><%= l.label :freshbooks_integration_key %></td>-->
-            <!--<td><%= l.text_field :freshbooks_integration_key %></td>-->
-            <!--</tr>-->
-
-            <!--<tr>-->
-            <!--<td><%= l.label :Deactivation_date %></td>-->
-            <!--<td><%= l.datepicker :deactivation_date %></td>-->
-            <!--</tr>-->
-            <tr>
-              <td><%= f.submit"Create LocalAdmin" ,:class => "btn-small btn" %></td>
-            </tr>
-            </table>
+            <div class="form-actions">
+              <%= f.submit "Create Local Admin",:class =>"btn btn-primary"  %>
+              <a class="btn" href="/">Cancel</a>
+              <!--<input type="text" class="input-xlarge"  id="input01">-->
+            </div>
         <% end %>
     <% end %>
 <%end%>
@@ -285,6 +328,19 @@
     <script type="text/javascript">
 
         jQuery(function(){
+
+//            $("#check").click(function(event){
+//                event.preventDefault();
+//
+//                url = location.href
+//                var link = $("#ajax_path").text()
+//                var email = $("#user_email").val()
+////
+//                $.get("/local_admins/check_for_existing_user",{"email" :email},function(k){}
+////
+//                )
+//
+//            });
             var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
             email.add( Validate.Presence );
             email.add( Validate.Email);
@@ -316,10 +372,10 @@
             var profile_telephone_number = new LiveValidation("profile_telephone_number",{validMessage:" ",onlyOnSubmit:true});
             // profile_telephone_number.add(Validate.Presence,{failureMessage:"Can't be empty"})
             profile_telephone_number.add(Validate.Numericality,{failureMessage:"Can't be empty"})
-            var profile_billing = new LiveValidation("la_setting_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
-            profile_billing.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            var profile_plate_form_billing = new LiveValidation("la_setting_platform_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
-            profile_plate_form_billing.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//            var profile_billing = new LiveValidation("la_setting_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
+//            profile_billing.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//            var profile_plate_form_billing = new LiveValidation("la_setting_platform_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
+//            profile_plate_form_billing.add(Validate.Presence,{failureMessage:"Can't be empty"})
             var la_name = new LiveValidation("la_setting_local_admin_name",{validMessage:" ",onlyOnSubmit:true});
             la_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
 
@@ -352,18 +408,7 @@
 
 
 
-            $("#check").click(function(event){
-                event.preventDefault();
 
-                 url = location.href
-               var link = $("#ajax_path").text()
-               var email = $("#user_email").val()
-//
-                $.get("/local_admins/check_for_existing_user",{"email" :email},function(k){}
-//
-              )
-
-            });
 
 
 
