@@ -1,6 +1,7 @@
 class LaSetting
   include Mongoid::Document
   belongs_to :user
+  has_many :admin_groups
 
 
   field :is_master,                                            :type => Boolean    ###LA

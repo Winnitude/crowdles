@@ -13,10 +13,10 @@ class User
   has_many :business_groups
   has_many :consultant_worker
   has_one  :la_setting
-  has_one  :main_admin_group
+  #has_one  :main_admin_group
   has_one  :global_admin_general_setting
 
-  belongs_to :country_detail
+  #belongs_to :country_detail
   has_many :user_roles
   after_create :assign_role_to_user
 

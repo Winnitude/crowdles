@@ -17,7 +17,7 @@ class Profile
   field :state,          :type => String  , :null => false, :default => ""
   field :mobile_number,  :type => String  , :null => false, :default => ""
   field :biography,      :type => String  , :null => false, :default => ""
-  field :user_id,        :type => Integer,  :required => true
+  #field :user_id,        :type => Integer,  :required => true
   field :web,            :type => String, :default => ""
   field :blog,           :type => String, :default => ""
   field :social_fb,      :type => String, :default => ""

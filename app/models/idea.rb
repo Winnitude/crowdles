@@ -14,7 +14,7 @@ class Idea
   field :affiliation_key,          :type => String  , :null => false, :default => ""
   field :category,  :type => String  , :null => false, :default => ""
   field :sub_category,      :type => String  , :null => false, :default => ""
-  field :user_id,        :type => Integer,  :required => true
+  #field :user_id,        :type => Integer,  :required => true
   field :is_private,            :type => String, :default => ""
   field :is_pro,           :type => String, :default => "N"
   field :general_description,      :type => String, :default => ""

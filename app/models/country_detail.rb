@@ -1,6 +1,6 @@
 class CountryDetail
   include Mongoid::Document
-  has_many :users
+  #has_many :users
 
   field :name, :type => String
   def self.is_fake (name)

@@ -2,6 +2,7 @@ class AdminGroup
   include Mongoid::Document
 
   belongs_to :user
+  belongs_to :la_setting
   has_many :admin_group_consultant_workers
 
 
@@ -10,33 +11,34 @@ class AdminGroup
   has_one  :affillation_key
 
   field :name,                                      :type => String
-  field :description,                               :type => String
+  #field :description,                               :type => String
   #field :affillation_key_id,                 :type => String
-  field :admin_group_owner_id,                      :type => String
+  #field :admin_group_owner_id,                      :type => String
  # field :is_active,                                 :type => Boolean  ,  :default => true
-  field :local_admin_id ,                           :type => String
-  field :country ,                                  :type => String
-  field :admin_group_type ,                         :type => String
-  field :main_worker_id ,                           :type => String
+ # field :local_admin_id ,                           :type => String
+ # field :country ,                                  :type => String
+ # field :admin_group_type ,                         :type => String
+  field :is_master ,                               :type => Boolean ,    :default => false
+  #field :main_worker_id ,                           :type => String
   field :ag_creation_date ,                         :type => DateTime   , :default => DateTime.now.utc
   field :ag_expiration_date ,                       :type => DateTime
   field :ag_deactivation_date ,                     :type => DateTime
-  field :admin_group_type ,                         :type => String ,     :default => 'Slave'
+  #field :admin_group_type ,                         :type => String ,     :default => 'Slave'
   field :admin_group_email ,                        :type => String
   field :status ,                                   :type => String   ,   :default => 'new'
   field :language ,                                 :type => String
-  field :first_name ,                               :type => String
-  field :last_name ,                                :type => String
+  #field :first_name ,                               :type => String
+  #field :last_name ,                                :type => String
   field :company_name ,                             :type => String
-  field :country ,                                  :type => String
-  field :city ,                                     :type => String
-  field :zip_code ,                                 :type => String
-  field :state ,                                    :type => String
+  #field :country ,                                  :type => String
+  #field :city ,                                     :type => String
+  #field :zip_code ,                                 :type => String
+  #field :state ,                                    :type => String
   field :address ,                                  :type => String
-  field :additional_address ,                       :type => String
+  #field :additional_address ,                       :type => String
 
-  field :phone_number ,                             :type => String
-  field :billing_profile_id ,                       :type => String
+  #field :phone_number ,                             :type => String
+  #field :billing_profile_id ,                       :type => String
   field :self_management ,                          :type => Boolean
   field :arena_flag ,                               :type => Boolean
   field :bg_contest_allowed ,                       :type => Boolean
@@ -46,15 +48,15 @@ class AdminGroup
   field :bg_custom_commissions_allowed ,            :type => Boolean
   field :bg_recepient_setting_allowed ,             :type => Boolean
   field :bg_gateway_commission_payer_setting_allowed,:type => Boolean
-  field :platform_billing_profile_id,                :type => String
-  field :paas_product_id ,                           :type => String
+  #field :platform_billing_profile_id,                :type => String
+  #field :paas_product_id ,                           :type => String
   field :paas_fees_exemption ,                       :type => String
   field :paas_exemption_expiration_date ,            :type => DateTime
   field :ag_commissions ,                            :type => Float
   field :consultant_commissions ,                    :type => Float
   field :is_active ,                                 :type => Boolean
 
-  validates :main_worker_id   , :presence => true
+  #validates :main_worker_id   , :presence => true
   validates :ag_creation_date   , :presence => true
 
 
