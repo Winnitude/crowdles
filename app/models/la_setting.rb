@@ -36,15 +36,15 @@ class LaSetting
 
   field :company_name,                                         :type => String
   field :address,                                              :type => String
-  field :billing_profile_id,                                   :type=> String
-  field :platform_billing_profile_id,                          :type=> String
+  #field :billing_profile_id,                                   :type=> String
+  #field :platform_billing_profile_id,                          :type=> String
   field :mail_chimp_integration_key,                           :type=> String
   field :freshbooks_integration_key,                           :type=> String
   field :la_facebook,                                          :type=> String
   field :la_twitter,                                           :type=> String
   field :la_linked_in,                                         :type=> String
   field :no_profit_terms,                                      :type=> String
-  field :is_individual,                                        :type=> Boolean
+  #field :is_individual,                                        :type=> Boolean
   field :la_email,                                             :type => String
 
   mount_uploader :contact_photo, ImageUploader
