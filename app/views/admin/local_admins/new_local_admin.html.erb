@@ -368,10 +368,12 @@
 //              var profile_city = new LiveValidation("profile_city",{validMessage:" ",onlyOnSubmit:true});
 //              profile_city.add(Validate.Presence,{failureMessage:"Can't be empty"})
 //              var profile_state = new LiveValidation("profile_state",{validMessage:" ",onlyOnSubmit:true});
+
 //              profile_state.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            var profile_telephone_number = new LiveValidation("profile_telephone_number",{validMessage:" ",onlyOnSubmit:true});
+            var profile_telephone_number = new LiveValidation("profile_telephone_number");
+            profile_telephone_number.add( Validate.Format , { pattern: /^\+[1-9]{1}[0-9]{10}$/, failureMessage: "Must be a valid Phone Number" });
             // profile_telephone_number.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            profile_telephone_number.add(Validate.Numericality,{failureMessage:"Can't be empty"})
+//            profile_telephone_number.add(Validate.Numericality,{failureMessage:"Can't be empty"})
 //            var profile_billing = new LiveValidation("la_setting_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
 //            profile_billing.add(Validate.Presence,{failureMessage:"Can't be empty"})
 //            var profile_plate_form_billing = new LiveValidation("la_setting_platform_billing_profile_id",{validMessage:" ",onlyOnSubmit:true});
@@ -379,12 +381,15 @@
             var la_name = new LiveValidation("la_setting_local_admin_name",{validMessage:" ",onlyOnSubmit:true});
             la_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
 
+
 //            var devition = new LiveValidation("la_setting_master_worker_deviation",{validMessage:" ",onlyOnSubmit:true});
 //            devition.add(Validate.Presence,{failureMessage:"Can't be empty"})
 //
 //            var devition_comment = new LiveValidation("la_setting_master_worker_deviation_comment",{validMessage:" ",onlyOnSubmit:true});
 //            devition_comment.add(Validate.Presence,{failureMessage:"Can't be empty"})
-
+            var la_email = new LiveValidation("la_setting_la_email",{validMessage:" ",onlyOnSubmit:true});
+           la_email.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            la_email.add(Validate.Email)
 
             var language = new LiveValidation("la_setting_language",{validMessage:" ",onlyOnSubmit:true});
             language.add(Validate.Presence,{failureMessage:"Can't be empty"})
