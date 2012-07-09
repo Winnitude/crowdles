@@ -26,7 +26,6 @@ class RegistrationsController <  Devise::RegistrationsController
   private
 
   def redirect_if_already_exist
-    #render :text=>"dsdgdsg"
     check_user = User.where(:email=>params[:user][:email]).to_a.first
     if !check_user.nil?
       if !check_user.confirmation_token.nil?

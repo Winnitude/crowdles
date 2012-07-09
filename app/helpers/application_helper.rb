@@ -36,7 +36,11 @@ module ApplicationHelper
   end
 
   def login_or_logout
-
+   if current_user.present?
+     "sign in"
+   else
+     'sign out'
+   end
   end
 
   def check_is_admin_host_present?
