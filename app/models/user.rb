@@ -243,6 +243,18 @@ class User
   def change_to_AGW
     RolesManagement::RolesManager.add_role("Admin Group Worker", self)
   end
+
+  def has_role role
+    RolesManagement::RolesManager.is_role_present?(role, self)
+  end
+
+  def add_role role
+    RolesManagement::RolesManager.add_role(role, self)
+  end
+
+  def remove_role role
+    RolesManagement::RolesManager.remove_role(role, self)
+  end
 end
 
 

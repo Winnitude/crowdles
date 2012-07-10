@@ -47,4 +47,8 @@ module ApplicationHelper
     request.url.index(ADMIN_HOST).present?
   end
 
+  def is_admin_login_permitted?
+
+  end
+
 end
