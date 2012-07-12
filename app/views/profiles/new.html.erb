@@ -1,8 +1,19 @@
 <h1>Create Profile</h1>
 <%=form_for @profile,:url => profiles_path, :html => { :class => "form-horizontal",:multipart => true} do |f| %>
+            <% if @profile.errors.any?  %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@profile.errors.count , "error") %> prohibited this Profile from being saved:</h2>
+
+                  <ul>
+                    <% @profile.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Profile Title<span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Profile Title<span style="color:red"> </span></label>
       <div class="controls">
         <%=f.text_field :title,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -10,7 +21,7 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">First Name<span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">First Name<span style="color:red"> </span></label>
       <div class="controls">
         <%= f.text_field :first_name,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -18,9 +29,17 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">Last Name<span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Last Name<span style="color:red"> </span></label>
       <div class="controls">
         <%= f.text_field :last_name,:class =>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">NickName<span style="color:red"> </span></label>
+      <div class="controls">
+        <%= f.text_field :nick_name,:class =>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -206,23 +225,23 @@
 
         jQuery(function(){
             var profile_title = new LiveValidation('profile_title',{validMessage:" ",onlyOnSubmit:true});
-            profile_title.add( Validate.Presence ,{failureMessage:" Can't be empty"});
+//            profile_title.add( Validate.Presence ,{failureMessage:" Can't be empty"});
 
             var profile_first_name = new LiveValidation("profile_first_name",{validMessage:" ",onlyOnSubmit:true});
-            profile_first_name.add(Validate.Presence,{failureMessage:" Can't be empty"})
+//            profile_first_name.add(Validate.Presence,{failureMessage:" Can't be empty"})
             var profile_last_name = new LiveValidation("profile_last_name",{validMessage:" ",onlyOnSubmit:true});
-            profile_last_name.add(Validate.Presence,{failureMessage:" Can't be empty"})
+//            profile_last_name.add(Validate.Presence,{failureMessage:" Can't be empty"})
             var profile_city = new LiveValidation("profile_city",{validMessage:" ",onlyOnSubmit:true});
-            profile_city.add(Validate.Presence,{failureMessage:" Can't be empty"})
+//            profile_city.add(Validate.Presence,{failureMessage:" Can't be empty"})
             var profile_state = new LiveValidation("profile_state",{validMessage:" ",onlyOnSubmit:true});
-            profile_state.add(Validate.Presence,{failureMessage:" Can't be empty"})
+//            profile_state.add(Validate.Presence,{failureMessage:" Can't be empty"})
             var profile_mobile_number = new LiveValidation("profile_mobile_number",{validMessage:" ",onlyOnSubmit:true});
-            profile_mobile_number.add(Validate.Presence,{failureMessage:" Can't be empty"})
-            profile_mobile_number.add(Validate.Numericality,{failureMessage:" Must be a number"})
+//            profile_mobile_number.add(Validate.Presence,{failureMessage:" Can't be empty"})
+//            profile_mobile_number.add(Validate.Numericality,{failureMessage:" Must be a number"})
             var profile_biography = new LiveValidation("profile_biography",{validMessage:" ",onlyOnSubmit:true});
-            profile_biography.add(Validate.Presence,{failureMessage:" Can't be empty"})
+//            profile_biography.add(Validate.Presence,{failureMessage:" Can't be empty"})
             var bdate = new LiveValidation("profile_birth_date",{validMessage:" ",onlyOnSubmit:true});
-            bdate.add(Validate.Presence,{failureMessage:" Can't be empty"})
+//            bdate.add(Validate.Presence,{failureMessage:" Can't be empty"})
 //            $('#dob').datepicker({
 //                changeMonth: true,
 //                changeYear: true,
