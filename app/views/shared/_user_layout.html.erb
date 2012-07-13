@@ -4,23 +4,26 @@
 <%else%>
     <li>
 <%end%>
-	<a href="<%= new_idea_path %>">Propose Idea</a>
+<a href="<%= new_idea_path %>">Propose Idea</a>
 </li>
 <% if request.path == "/ideas" %>
     <li class= "active">
 <%else%>
     <li>
 <%end%>
-	<a href="<%= ideas_path %>">My Ideas</a>
+<a href="<%= ideas_path %>">My Ideas</a>
 </li>
 <% if split_array.include?("show_good_idea")  %>
     <li class= "active">
 <%else%>
     <li>
 <%end%>
-	<a href="<%= show_good_idea_ideas_path %>">My Good Ideas</a>
+<a href="<%= show_good_idea_ideas_path %>">My Good Ideas</a>
 </li>
 
-<!--<li>-->
-	<!--<a href="<%#= my_own_project_ideas_path %>">My Own Projects</a>-->
-<!--</li>-->
+
+<li>
+  <a href="<%=  new_default_billing_profile_path %>">Create Default Billing Profile</a>
+</li>
+
+

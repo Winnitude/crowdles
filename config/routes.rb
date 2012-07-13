@@ -210,8 +210,12 @@ CrowdFunding::Application.routes.draw do
   end
 
   resources :profiles
-  resources :pass_billing_profiles
-  resources :default_billing_profiles
+  resources :pass_billing_profiles do
+
+  end
+  resources :default_billing_profiles do
+
+  end
 
   #as :local_admins do
   #  match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get

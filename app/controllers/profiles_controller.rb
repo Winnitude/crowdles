@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    params[:profile][:birth_date] = format_birth_date(params[:profile][:birth_date])
+    params[:profile][:birth_date] = format_birth_date(params[:profile][:birth_date])      if params[:profile][:birth_date].present?
     profile = @user.build_profile(params[:profile])
 
     logger.info "##########################{profile.inspect}"
