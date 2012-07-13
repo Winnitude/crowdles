@@ -2,7 +2,7 @@ class LaSetting
   include Mongoid::Document
   belongs_to :user
   has_many :admin_groups
-
+  has_one :platform_billing_profile
 
   field :is_master,                                            :type => Boolean    ###LA
   field :la_country,                                           :type => String     ###LA \
@@ -14,7 +14,7 @@ class LaSetting
   field :platform_home,                                        :type => String     ###LA
   field :user_terms,                                           :type => String     ###LA
   field :project_terms,                                        :type => String     ###LA
-  field :worker_consultant_terms,                              :type => String     ###LA
+  field :pass_terms,                              :type => String     ###LA
   field :worker_terms,                                         :type => String     ###L
   field :admin_group_terms,                                    :type => String     ###LA
   field :business_group_terms,                                 :type => String     ###L
@@ -33,7 +33,14 @@ class LaSetting
   field :master_administration_deviation,                      :type => Boolean  , :default => false   ###la
   field :master_worker_deviation,                              :type => String     ###la
   field :master_worker_deviation_comment,                      :type => String     ###la
+  field :country,                                              :type => String
+  field :city,                                                 :type => String
+  field :zip_code,                                              :type => String
+  field :state ,                                               :type => String
+  field :address,                                              :type => String
+  field :additional_address,                                    :type => String
 
+  field :phone_number,                                            :type => String
 
   field :company_name,                                         :type => String
   field :address,                                              :type => String

@@ -21,7 +21,6 @@ class Admin::LocalAdminsController < ApplicationController
   def new_local_admin
     @local_admin= User.new
     @la_setting = @local_admin.build_la_setting
-    #set_flash_message(:notice,:show_local_admin)
   end
 
   #NOTE this will create local admin

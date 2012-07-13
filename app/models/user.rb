@@ -18,6 +18,7 @@ class User
 
   #belongs_to :country_detail
   has_many :user_roles
+  has_one :default_billing_profile
   after_create :assign_role_to_user
 
 
