@@ -30,8 +30,8 @@ class Profile
   field :additional_address_info,   :type => String, :default => ""
   field :telephone_number,          :type => String, :default => ""
   field :nick_name,         :type => String
-  validates :nick_name,
-            :uniqueness => true
+  #validates :nick_name,
+  #          :uniqueness => true
   mount_uploader :image, ImageUploader
   mount_uploader :video, ImageUploader
 

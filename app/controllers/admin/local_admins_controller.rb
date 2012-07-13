@@ -1,7 +1,7 @@
 class Admin::LocalAdminsController < ApplicationController
   before_filter :should_be_GA ,:only => [:create_local_admin, :new_local_admin ,:change_admin_role]
-  before_filter :should_not_be_fake_country, :only => [:create_local_admin,:update_local_admin]
-  before_filter :should_not_be_fake_language, :only => [:create_local_admin,:update_local_admin]
+  #before_filter :should_not_be_fake_country, :only => [:create_local_admin,:update_local_admin]
+  #before_filter :should_not_be_fake_language, :only => [:create_local_admin,:update_local_admin]
   before_filter :get_user
   autocomplete :country_detail, :name
   #autocomplete :user, :email
@@ -21,28 +21,37 @@ class Admin::LocalAdminsController < ApplicationController
   def new_local_admin
     @local_admin= User.new
     @la_setting = @local_admin.build_la_setting
+    @profile =@local_admin.build_profile
   end
 
   #NOTE this will create local admin
   #TODO need to make it refactored
   def create_local_admin
-    @local_admin = User.new params[:user]
-    value = @local_admin.set_la_attributes
-    @profile =@local_admin.build_profile params[:profile]
+    # the below statement will check weather the user exist or not if not exist then create new user
+    @local_admin = User.where(:email => params[:user][:email]).first.present? ? User.where(:email => params[:user][:email]).first : User.new(params[:user])
+    logger.info "ffffffffffffffffffffffffffffffffffffff#{@local_admin.inspect}"
+    value = @local_admin.set_la_attributes  if @local_admin.new_record?
+
+    # the below if check weathe we need to create the profile or not
+     if @local_admin.new_record? || !(@local_admin.profile.present?)
+       @profile =@local_admin.build_profile params[:profile]
+     else
+       @profile = @local_admin.profile
+     end
+
     @la_setting = @local_admin.build_la_setting params[:la_setting]
     @la_setting.fix_attributes
-    #@la_setting.is_master = !(LaSetting.is_any_LA_exist_in_system)
-    #binding.remote_pry
+    @local_admin.country = @la_setting.la_country    if @local_admin.new_record?
     if @local_admin.save && @profile.save && @la_setting.save
-      #main_admin_group=@local_admin.build_main_admin_group(:country => @local_admin.la_setting.la_country)
-      #RolesManager.add_role("Main Admin Group Owner",@local_admin)
-      RolesManager.add_role("Local Admin", @local_admin)
-      RolesManager.remove_role("User", @local_admin)
-      #main_admin_group.set_la_attributes @local_admin
-      #main_admin_group.save
-      #logger.info "############################{main_admin_group.inspect}"
+      @local_admin.add_role "Local Admin"
+      @local_admin.remove_role "User"
       #LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver
-      redirect_to root_path ,:notice => "Successfully created"
+      @pass_billing_profile = @la_setting.build_platform_billing_profile
+      if @local_admin.default_billing_profile.present?
+        @pass_billing_profile.set_bp_attributes @local_admin
+      end
+      @pass_billing_profile.save!
+      redirect_to edit_pass_billing_profile_path(@pass_billing_profile) ,:notice => "Local Admin Created Successfully "
     else
       render :new_local_admin
     end
