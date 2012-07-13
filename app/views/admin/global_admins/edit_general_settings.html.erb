@@ -54,20 +54,6 @@
 
 
 
-          <tr>
-            <td>   <label class="control-label" for="input01">Facebook Login Enabled: <span style="color:red"> *</span></label></td>
-            <td><%= setting.radio_button :facebook_login_enabled ,true, :checked=> (global_admin_general_setting.facebook_login_enabled == true)? true : false %> Yes
-              <%= setting.radio_button :facebook_login_enabled,false, :checked=> (global_admin_general_setting.facebook_login_enabled == false)? true : false %> No</td>
-          </tr>
-
-
-
-          <tr>
-            <td>   <label class="control-label" for="input01">Facebook Signup Enabled: <span style="color:red"> *</span></label></td>
-            <td><%= setting.radio_button :facebook_signup_enabled,true , :checked=> (global_admin_general_setting.facebook_signup_enabled == true)? true : false%> Yes
-              <%= setting.radio_button :facebook_signup_enabled,false, :checked=> (global_admin_general_setting.facebook_signup_enabled == false)? true : false%> No</td>
-          </tr>
-
 
 
           <tr>

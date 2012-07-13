@@ -9,7 +9,7 @@ class GlobalAdminGeneralSetting
 
   field :facebook_login_enabled,              :type => Boolean, :default => true
   field :facebook_signup_enabled,             :type => Boolean, :default => true
-  field :mailchimp_integration_enabled,       :type => Boolean, :default => false
+  field :mailchimp_integration_enabled,       :type => Boolean, :default => true
   field :freshbooks_integration_enabled,      :type => Boolean, :default => true
   field :platform_legal_terms_global,         :type => String
   field :arena_minimum_cap,                   :type => Integer

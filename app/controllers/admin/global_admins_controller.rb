@@ -21,7 +21,7 @@ class Admin::GlobalAdminsController < ApplicationController
 
   def edit_general_settings
     @global_admin = User.find(params[:id])
-    @global_admin_general_setting = @global_admin.global_admin_general_setting || GlobalAdminGeneralSetting.new
+    @global_admin_general_setting = @global_admin.global_admin_general_setting
   end
 
   def update_general_settings
@@ -42,6 +42,23 @@ class Admin::GlobalAdminsController < ApplicationController
     #else
     #  render :edit_local_admin
     #end
+
+  end
+
+  def profile_setting
+   @global_admin = current_user
+   logger.info @global_admin.inspect
+  end
+
+  def edit_integration_setting
+   @global_admin_general_setting = current_user.global_admin_general_setting
+  end
+
+  def update_integration_setting
+    @global_admin_general_setting = current_user.global_admin_general_setting
+   if  @global_admin_general_setting.update_attributes(params[:global_admin_general_setting])
+      redirect_to profile_setting_global_admins_path, :notice => "Updated integration Setting"
+   end
 
   end
 

@@ -1,0 +1,64 @@
+<%= render :partial => 'shared/global_admin_settings' %>
+<h2>Edit Integration Settings</h2>
+<table>
+  <%=form_for @global_admin_general_setting ,:url=>update_integration_setting_global_admins_path,:html => { :class => "form-horizontal"} do |f| %>
+
+
+      <tr>
+        <td><label class="control-label" for="input01">Mailchimp Integration Enabled:</label> </td>
+        <td> <%=f.radio_button :mailchimp_integration_enabled, true %> True
+          <%=f.radio_button :mailchimp_integration_enabled, false %> False   </td>
+      </tr>
+
+
+      <tr>
+        <td><label class="control-label" for="input01">Freshbooks Integration Enabled:</label> </td>
+        <td> <%=f.radio_button :freshbooks_integration_enabled, true %> True
+          <%=f.radio_button :freshbooks_integration_enabled, false %> False   </td>
+      </tr>
+
+
+      <tr>
+        <td> <%= f.submit "Update General Settings",:class =>"btn btn-primary"  %></td>
+      </tr>
+  <% end %>
+
+</table>
+
+<%= content_for :head do  %>
+    <script type="text/javascript">
+
+        jQuery(function(){
+            var user_email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
+            user_email.add( Validate.Presence,{failureMessage:"Can't be empty"} );
+            user_email.add( Validate.Email,{failureMessage:"Must be valid email"} );
+            var user_global_admin_general_setting_plateform_name = new LiveValidation("user_global_admin_general_setting_plateform_name",{validMessage:" ",onlyOnSubmit:true});
+            user_global_admin_general_setting_plateform_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            var user_global_admin_general_setting_plateform_default_language = new LiveValidation("user_global_admin_general_setting_plateform_default_language",{validMessage:" ",onlyOnSubmit:true});
+            user_global_admin_general_setting_plateform_default_language.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            var user_global_admin_general_setting_plateform_default_domain = new LiveValidation("user_global_admin_general_setting_plateform_default_domain",{validMessage:" ",onlyOnSubmit:true});
+            user_global_admin_general_setting_plateform_default_domain.add(Validate.Presence,{failureMessage:"Can't be empty"})
+
+            var plateform_email = new LiveValidation("platform_email",{validMessage:" ",onlyOnSubmit:true});
+            plateform_email.add(Validate.Presence,{failureMessage:"Can't be empty"})
+            plateform_email.add( Validate.Email,{failureMessage:"Must be valid email"} );
+            var mincap =   new LiveValidation("min_cap",{validMessage:" ",onlyOnSubmit:true});
+            mincap.add(Validate.Numericality, { onlyInteger: true },{failureMessage:"Must be integer"})
+            var maxcap =   new LiveValidation("max_cap",{validMessage:" ",onlyOnSubmit:true});
+            maxcap.add(Validate.Numericality, { onlyInteger: true },{failureMessage:"Must be integer"})
+            var votes =   new LiveValidation("votes",{validMessage:" ",onlyOnSubmit:true});
+            votes.add(Validate.Numericality, { onlyInteger: true },{failureMessage:"Must be integer"})
+            var arena_factor =   new LiveValidation("arena_factor",{validMessage:" ",onlyOnSubmit:true});
+            arena_factor.add(Validate.Numericality,{failureMessage:"Must be number"})
+            var facebook =   new LiveValidation("facebook",{validMessage:" ",onlyOnSubmit:true});
+            facebook.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+            var twitter =   new LiveValidation("twitter",{validMessage:" ",onlyOnSubmit:true});
+            twitter.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+//            var linkedin =   new LiveValidation("twitter",{validMessage:" ",onlyOnSubmit:true});
+//            linkedin.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+
+
+
+        });
+    </script>
+<% end %>

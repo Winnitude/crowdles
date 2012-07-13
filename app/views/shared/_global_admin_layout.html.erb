@@ -16,7 +16,7 @@
    <%else%>
      <li>
      <%end%>
-    <a href="<%= edit_user_registration_path %>">Setting</a>
+    <a href="<%= profile_setting_global_admins_path %>">Setting</a>
   </li>
   <% if split_array.include?("all_admins") or split_array.include?("new_local_admin") or split_array.include?("edit_local_admin") or split_array.include?("show_admin")%>
       <li class= "active">

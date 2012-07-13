@@ -14,7 +14,7 @@ class User
   has_many :consultant_worker
   has_one  :la_setting
   #has_one  :main_admin_group
-  has_one  :global_admin_general_setting
+  has_one  :global_admin_general_setting  , :dependent => :destroy
 
   #belongs_to :country_detail
   has_many :user_roles
