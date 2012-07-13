@@ -1,4 +1,4 @@
-<h1>Edit Admin</h1>
+<h1>Edit Local Admin</h1>
 
 
   <%=form_for @admin ,:url=>update_local_admin_local_admin_path ,:html => {:multipart => true} do |f| %>
@@ -20,15 +20,13 @@
               <% end %>
             <table>
             <tr>
-              <td><label class="control-label" for="input01">Email: <span style="color:red"> *</span></label></td>
-              <td><%= f.text_field :email ,:disabled => true %></td>
+              <td><label class="control-label" for="input01">LA Owner: <span style="color:red"> </span></label></td>
+              <td><%= @admin.profile.full_name rescue nil %>  |
+              <%= @admin.email %></td>
+              <td><%=link_to "Change Owner" , "#",:class => "btn" ,:confirm => "Under Development"%></td>
             </tr>
 
-            <!--<tr>-->
-              <!--<td><label class="control-label" for="input01">Is Master: <span style="color:red">* </span></label></td>-->
-              <!--<td> <%=l.radio_button :is_master, true %>Yes-->
-                <%=l.radio_button :is_master, false %> No   </td>
-            <!--</tr>-->
+
 
             <tr>
               <td>
@@ -61,8 +59,8 @@
             </tr>
 
             <tr>
-              <td><%= l.label "Worker Consultant Terms:" %></td>
-              <td><%= l.text_area :worker_consultant_terms,:rows => 5%></td>
+              <td><%= l.label "PaSS Terms:" %></td>
+              <td><%= l.text_area :pass_terms,:rows => 5%></td>
             </tr>
 
             <tr>
@@ -171,15 +169,8 @@
               <td><label class="control-label" for="input01">Contact Biography:</label></td>
               <td><%= l.text_field :contact_biography%></td>
             </tr>
-            <tr>
-              <td><label class="control-label" for="input01">Billing Profile ID:<span style="color:red"> *</span></label></td>
-              <td><%= l.text_field :billing_profile_id %></td>
-            </tr>
 
-            <tr>
-              <td><label class="control-label" for="input01">Platform Billing Profile ID:<span style="color:red">* </span></label> </td>
-              <td><%= l.text_field :platform_billing_profile_id %></td>
-            </tr>
+
 
 
             <tr>
