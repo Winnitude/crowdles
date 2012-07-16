@@ -13,10 +13,9 @@ class User
   has_many :business_groups
   has_many :consultant_worker
   has_one  :la_setting
-  has_many :products
   #has_one  :main_admin_group
   has_one  :global_admin_general_setting  , :dependent => :destroy
-
+  has_many :user_products
   #belongs_to :country_detail
   has_many :user_roles
   has_one :default_billing_profile
@@ -174,7 +173,7 @@ class User
   end
 
   ################for LA creation#############3
-  def set_la_attributes
+  def set_owner_attributes
     value = ""; 8.times{value  << (65 + rand(25)).chr}
     logger.info value.inspect
     self.password = value

@@ -24,7 +24,7 @@ class AdminGroup
   field :ag_expiration_date ,                       :type => DateTime
   field :ag_deactivation_date ,                     :type => DateTime
   field :admin_group_type ,                         :type => String ,     :default => 'Slave'
-  field :admin_group_email ,                        :type => String
+  field :ag_email ,                        :type => String
   field :status ,                                   :type => String   ,   :default => 'new'
   field :language ,                                 :type => String
   #field :first_name ,                               :type => String
@@ -43,9 +43,9 @@ class AdminGroup
   field :self_management ,                          :type => Boolean
   field :arena_flag ,                               :type => Boolean
   field :bg_contest_allowed ,                       :type => Boolean
-  field :bg_free_standard_commissions_allowed ,     :type => Boolean
-  field :bg_free_pro_commissions_allowed ,          :type => Boolean
-  field :bg_free_private_commissions_allowed ,      :type => Boolean
+  field :bg_free_standard_commissions_allowed ,     :type => Boolean         ,   :default => true
+  field :bg_free_pro_commissions_allowed ,          :type => Boolean         ,:default => true
+  field :bg_free_private_commissions_allowed ,      :type => Boolean         ,:default => true
   #field :bg_custom_commissions_allowed ,            :type => Boolean
   #field :bg_recepient_setting_allowed ,             :type => Boolean
   #field :bg_gateway_commission_payer_setting_allowed,:type => Boolean

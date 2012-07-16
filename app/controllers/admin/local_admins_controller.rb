@@ -30,7 +30,7 @@ class Admin::LocalAdminsController < ApplicationController
     # the below statement will check weather the user exist or not if not exist then create new user
     @local_admin = User.where(:email => params[:user][:email]).first.present? ? User.where(:email => params[:user][:email]).first : User.new(params[:user])
     logger.info "ffffffffffffffffffffffffffffffffffffff#{@local_admin.inspect}"
-    value = @local_admin.set_la_attributes  if @local_admin.new_record?
+    value = @local_admin.set_owner_attributes  if @local_admin.new_record?
 
     # the below if check weathe we need to create the profile or not
      if @local_admin.new_record? || !(@local_admin.profile.present?)
@@ -113,14 +113,14 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   def manage_admin_group
-    @admin_groups = AdminGroup.where(:country => current_user.la_setting.la_country)
+    @admin_groups = current_user.la_setting.admin_groups
   end
 
   def new_admin_group
-     @owner = User.new
+    @admin_group_owner = User.new
      #@la_setting = current_user.la_setting
-     @profile = @owner.build_profile
-     @admin_group = @owner.build_admin_group
+     @profile = @admin_group_owner.build_profile
+     @admin_group = @admin_group_owner.build_admin_group
      @admin_group.la_setting = current_user.la_setting
      @products = Product.all
   end
@@ -128,15 +128,27 @@ class Admin::LocalAdminsController < ApplicationController
   #NOTE change worker to admin group owner
   def admin_group_creation
     @admin_group_owner = User.where(:email => params[:user][:email]).first.present? ? User.where(:email => params[:user][:email]).first : User.new(params[:user])
+    value =  @admin_group_owner.set_owner_attributes  if  @admin_group_owner.new_record?
     # the below if check weathe we need to create the profile or not
     if  @admin_group_owner.new_record? || !( @admin_group_owner.profile.present?)
       @profile = @admin_group_owner.build_profile params[:profile]
     else
       @profile = @admin_group_owner.profile
     end
-    @admin_group = @owner.build_admin_group params[:admin_group]
-    @admin_group.la_setting = current_user.la_setting
 
+    @admin_group = @admin_group_owner.build_admin_group params[:admin_group]
+
+    @admin_group.la_setting = current_user.la_setting
+    @admin_group_owner.country = @admin_group.la_setting.la_country   if  @admin_group_owner.new_record?
+    @product = Product.find(params[:product])
+    @user_product = @admin_group_owner.user_products.new
+    @user_product.product = @product
+    if @admin_group_owner.save && @user_product.save && @admin_group.save
+      @admin_group_owner.add_role "Admin Group Owner"
+      redirect_to  manage_admin_group_local_admins_path , :notice => "Admin Group Created"
+    else
+      render :action => "new_admin_group"
+    end
 
   end
 

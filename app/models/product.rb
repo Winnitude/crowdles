@@ -1,6 +1,6 @@
 class Product
   include Mongoid::Document
-  belongs_to :user
+  has_many :user_products
   field :platform_product_name,           :type => String
   field :bg_private,                     :type => Boolean
   field :bg_window_number,                 :type => Integer
