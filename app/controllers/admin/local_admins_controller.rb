@@ -116,33 +116,27 @@ class Admin::LocalAdminsController < ApplicationController
     @admin_groups = AdminGroup.where(:country => current_user.la_setting.la_country)
   end
 
-  def add_new_slave_admin_group
-    #@selected_user = User.find(params[:id])
-    @admin_group = AdminGroup.new
-    logger.info "##########---5555-#{current_user.la_setting.inspect}#########"
-    @local_admin = current_user.la_setting
+  def new_admin_group
+     @owner = User.new
+     #@la_setting = current_user.la_setting
+     @profile = @owner.build_profile
+     @admin_group = @owner.build_admin_group
+     @admin_group.la_setting = current_user.la_setting
+     @products = Product.all
   end
 
   #NOTE change worker to admin group owner
   def admin_group_creation
-    @selected_user = User.where(:email=>params[:admin_group][:admin_group_email]).first
-    logger.info "##########----#{params.inspect}#########"
-    unless @selected_user.blank?
-      @selected_user.create_admin_group params[:admin_group] , current_user
-      #binding.remote_pry
+    @admin_group_owner = User.where(:email => params[:user][:email]).first.present? ? User.where(:email => params[:user][:email]).first : User.new(params[:user])
+    # the below if check weathe we need to create the profile or not
+    if  @admin_group_owner.new_record? || !( @admin_group_owner.profile.present?)
+      @profile = @admin_group_owner.build_profile params[:profile]
     else
-      #binding.remote_pry
-      new_user = User.new(:email=>params[:admin_group][:admin_group_email],:country=>current_user.la_setting.la_country)
-      value = new_user.set_la_attributes
-      new_user.save
-      #LaMailer.welcome_email(new_user,new_user.profile,value,current_user.la_setting).deliver
-      UserMailer.welcome_mail_to_ago(new_user,value).deliver
-      new_user.create_admin_group params[:admin_group] , current_user
-      #binding.remote_pry
-
+      @profile = @admin_group_owner.profile
     end
+    @admin_group = @owner.build_admin_group params[:admin_group]
+    @admin_group.la_setting = current_user.la_setting
 
-    redirect_to manage_admin_group_local_admins_path ,:notice => "Successfully created"
 
   end
 
@@ -194,6 +188,15 @@ class Admin::LocalAdminsController < ApplicationController
     #logger.info (@user.profile.first_name.inspect)
   end
 
+  def check_for_existing_user_for_ag
+    @ag_owner_user = User.where(:email => params[:email]).first
+    logger.info (@user.profile.first_name.inspect)
+  end
+
+  def get_product_details
+    @product =Product.find(params[:product])
+    logger.info @product.inspect
+  end
   private
   def toggle_admin user   #TODO need to move to user model
     if RolesManager.is_role_present?("Local Admin", user)

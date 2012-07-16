@@ -1,0 +1,67 @@
+
+<%if @product.present?%>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">BG private Allowed:</label>
+      <div class="controls">
+        <%=@product.bg_private%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Number of BG Windows Allowed:</label>
+      <div class="controls">
+        <%=@product.bg_window_number%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Number of BG Contest Allowed:</label>
+      <div class="controls">
+        <%=@product.bg_contest_number%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Number of Active Workers Allowed:</label>
+      <div class="controls">
+        <%=@product.ag_workers_number%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">BG Custom Commissions Allowed:</label>
+      <div class="controls">
+        <%=@product.ag_custom_commissions%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Bg Custom Funding Recepient:</label>
+      <div class="controls">
+        <%=@product.ag_recepient_settings%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Custom PaymentGateway Payer Allowed:</label>
+      <div class="controls">
+        <%=@product.ag_payment_gateway_commissions_payer_settings%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+<%end%>

@@ -19,6 +19,7 @@ class ProfilesController < ApplicationController
      end
   end
   def edit
+    logger.info current_user.inspect
     @profile = current_user.profile
   end
 

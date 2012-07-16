@@ -16,9 +16,9 @@
   <%end%>
 
   <% if split_array.include?("add_new_slave_admin_group") %>
-      <%= link_to "Add New Slave Admin Group" , add_new_slave_admin_group_local_admins_path ,:style=>"text-decoration: underline;" %>
+      <%= link_to "Add New Slave Admin Group" ,new_admin_group_local_admins_path ,:style=>"text-decoration: underline;" %>
   <%else%>
-      <%= link_to "Add New Slave Admin Group" , add_new_slave_admin_group_local_admins_path  %>
+      <%= link_to "Add New Slave Admin Group" , new_admin_group_local_admins_path  %>
   <%end%>
 </h4>
 <table border="1" class="table">

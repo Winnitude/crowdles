@@ -1,0 +1,202 @@
+<h1>New Slave Admin Group</h1>
+<%=form_for @owner ,:url=>admin_group_creation_local_admins_path , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
+    <%= fields_for @admin_group do |ag| %>
+        <%= fields_for @profile do |p| %>
+            <div class="control-group">
+              <label class="control-label" for="input01">Email: <span style="color:red"> *</span></label>
+              <div class="controls">
+                <%=f.text_field :email,:class=>"input"%> <span><%= link_to "Check Existence","" ,:class => "btn" ,:id => "check"%></span>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"> </p>
+              </div>
+            </div>
+
+            <h3>AG Group Details</h3>
+
+
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Admin Group Name: <span style="color:red"> *</span></label>
+              <div class="controls">
+                <%=ag.text_field :name,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01"> Admin Group Description: <span style="color:red"> *</span></label>
+              <div class="controls">
+                <%=ag.text_field :description,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">LA country: <span style="color:red"> *</span></label>
+              <div class="controls">
+                <%=ag.autocomplete_field :ag_country ,autocomplete_country_detail_name_local_admins_path,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <td><label class="control-label" for="input01">LA Language: <span style="color:red">* </span></label></td>
+              <div class="controls">
+                <%=ag.autocomplete_field :language ,autocomplete_language_name_local_admins_path ,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+            <h3>AG Organization Details</h3>
+
+            <div id = "render_name"><%= render :partial => "ag_name" %> </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Company Name: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=ag.text_field :company_name,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="input01">Country: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=ag.autocomplete_field :country ,autocomplete_country_detail_name_local_admins_path,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">City: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=ag.text_field :city,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">ZipCode: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=ag.text_field :zip_code,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">State: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=ag.text_field :state,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Address: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=ag.text_field :address,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Additional_address: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=ag.text_field :additional_address,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Phone Number: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=ag.text_field :phone_number,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+            <h3>AG Organization Details</h3>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Select Product: <span style="color:red"> </span></label>
+              <div class="controls">
+                <%=select_tag :product,options_from_collection_for_select(@products,:id, :platform_product_name) ,:class=>"input"%>
+                <!--<input type="text" class="input-xlarge" id="input01">-->
+                <p class="help-block"></p>
+              </div>
+            </div>
+
+            <div id= "products_details">
+              <%= render :partial => "product_info" %>
+            </div>
+            <h3>Special Settings and Promotions</h3>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">BG Free Standard Commissions Allowed:<span style="color:red"> </span></label>
+              <div class="controls">
+                <%= ag.radio_button :bg_free_standard_commissions_allowed, true,:class=>"input"%>  True   </div>
+              <div class="controls"> <%=ag.radio_button :bg_free_standard_commissions_allowed, false,:class=>"input"%> false  </div>
+              <!--<input type="text" class="input-xlarge" id="input01">-->
+              <p class="help-block"></p>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">BG Free pro Commissions Allowed:<span style="color:red"> </span></label>
+              <div class="controls">
+                <%= ag.radio_button :bg_free_pro_commissions_allowed, true,:class=>"input"%>  True   </div>
+              <div class="controls"> <%=ag.radio_button :bg_free_pro_commissions_allowed, false,:class=>"input"%> false  </div>
+              <!--<input type="text" class="input-xlarge" id="input01">-->
+              <p class="help-block"></p>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">BG Free Private Commissions Allowed:<span style="color:red"> </span></label>
+              <div class="controls">
+                <%= ag.radio_button :bg_free_private_commissions_allowed, true,:class=>"input"%>  True   </div>
+              <div class="controls"> <%=ag.radio_button :bg_free_private_commissions_allowed, false,:class=>"input"%> false  </div>
+              <!--<input type="text" class="input-xlarge" id="input01">-->
+              <p class="help-block"></p>
+            </div>
+
+            <div class="form-actions">
+              <%= f.submit "Create Local Admin",:class =>"btn btn-primary"  %>
+              <a class="btn" href="/">Cancel</a>
+              <!--<input type="text" class="input-xlarge"  id="input01">-->
+            </div>
+
+        <%end%>
+    <%end%>
+<%end%>
+
+<%= content_for :head do  %>
+    <script type="text/javascript">
+
+        jQuery(function(){
+
+            $("#check").click(function(event){
+                event.preventDefault();
+                var email = $("#user_email").val()
+                $.get("/local_admins/check_for_existing_user_for_ag",{"email" :email},function(k){}
+                )
+            });
+
+            $("#product").change(function(){
+               var  product = $("#product").val()
+                $.get("/local_admins/get_product_details",{"product" :product},function(k){}
+                )
+
+            });
+
+
+        });
+    </script>
+<% end %>

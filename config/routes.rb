@@ -24,7 +24,7 @@ CrowdFunding::Application.routes.draw do
         get "manage_admin_group" , :on => :collection
         get "show_local_admin"  ,:on => :collection
         get "new_local_admin"  ,:on => :collection
-        get "add_new_slave_admin_group"  ,:on => :collection
+        get "new_admin_group"  ,:on => :collection
         get "edit_local_admin",  :on => :member
         put "update_local_admin", :on => :member
         get "show_admin"       , :on => :member
@@ -35,6 +35,8 @@ CrowdFunding::Application.routes.draw do
         get  "teams_management",        :on => :collection
         get :autocomplete_language_name, :on => :collection
         get :check_for_existing_user  ,  :on => :collection
+        get :check_for_existing_user_for_ag  ,  :on => :collection
+        get :get_product_details,                 :on => :collection
       end
 
       as :local_admins do
