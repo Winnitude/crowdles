@@ -58,8 +58,9 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   def edit_local_admin
-    @admin = User.find(params[:id])
-    @la_setting = @admin.la_setting || LaSetting.new
+    @local_admin = User.find(params[:id])
+    @la_setting = @local_admin.la_setting
+    @profile = @local_admin.profile
     #render :json=> @admin
   end
 
@@ -69,7 +70,7 @@ class Admin::LocalAdminsController < ApplicationController
     @la_setting = @admin.la_setting || @admin.build_la_setting
 
     if @admin.update_attributes(params[:user]) && @la_setting.update_attributes(params[:la_setting]) && @profile.update_attributes(params[:profile])
-      redirect_to :root, :notice => "successfully_updated"
+      redirect_to all_admins_global_admins_path, :notice => "successfully_updated"
     else
       render :edit_local_admin
     end
