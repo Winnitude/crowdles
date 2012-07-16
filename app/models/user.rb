@@ -13,6 +13,7 @@ class User
   has_many :business_groups
   has_many :consultant_worker
   has_one  :la_setting
+  has_many :products
   #has_one  :main_admin_group
   has_one  :global_admin_general_setting  , :dependent => :destroy
 
