@@ -8,7 +8,7 @@ class DefaultBillingProfile
   field :first_name                     ,:type => String
   field :last_name                       ,:type => String
   field :company_name                     ,:type => String
-  field :birth_date                     ,:type => DateTime
+  field :birth_date                     ,:type => Date
   field :birth_place                     ,:type => String
   field :email                           ,:type => String
   field :telephone_number                  ,:type => String

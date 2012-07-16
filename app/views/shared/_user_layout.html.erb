@@ -23,7 +23,11 @@
 
 
 <li>
-  <a href="<%=  new_default_billing_profile_path %>">Create Default Billing Profile</a>
+  <% if !(current_user.default_billing_profile.present?)%>
+      <a href="<%=  new_default_billing_profile_path %>">Create Default Billing Profile</a>
+  <%else%>
+      <a href="<%=  edit_default_billing_profile_path(45) %>">Edit Default Billing Profile</a>
+  <%end%>
 </li>
 
 

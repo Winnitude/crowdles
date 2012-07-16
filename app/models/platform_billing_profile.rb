@@ -1,4 +1,5 @@
 class PlatformBillingProfile
+  before_save :set_creation_date
   include Mongoid::Document
   belongs_to :la_setting
   field :creation_date                 ,:type => DateTime
@@ -7,7 +8,7 @@ class PlatformBillingProfile
   field :first_name                     ,:type => String
   field :last_name                       ,:type => String
   field :company_name                     ,:type => String
-  field :birth_date                     ,:type => DateTime
+  field :birth_date                     ,:type => Date
   field :birth_place                     ,:type => String
   field :email                           ,:type => String
   field :telephone_number                  ,:type => String
@@ -45,5 +46,10 @@ class PlatformBillingProfile
     self.contact_first_name = default_profile.contact_first_name
     self.contact_last_name  = default_profile.contact_last_name
     self.contact_telephone_number = default_profile.contact_telephone_number
+  end
+
+  def set_creation_date
+    self.creation_date = DateTime.now
+    self.last_modification_date = DateTime.now
   end
 end
