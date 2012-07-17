@@ -23,7 +23,6 @@ class PassBillingProfilesController < ApplicationController
     end
    end
 
-  end
 
   def  should_be_global_admin
     unless RolesManager.is_role_present?("Global Admin", current_user)

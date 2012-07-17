@@ -108,10 +108,11 @@ class AdminGroup
     self.country = local_admin.user.country
     self.zip_code = local_admin.zip_code
     self.state = local_admin.state
+    self.city = local_admin.city
     self.address = local_admin.address
     self.additional_address = local_admin.additional_address
     self.phone_number = local_admin.phone_number
-    puts self
+    self.language = local_admin.language
   end
 
 

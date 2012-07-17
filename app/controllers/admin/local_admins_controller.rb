@@ -62,6 +62,8 @@ class Admin::LocalAdminsController < ApplicationController
     #@la_setting = current_user.la_setting
     @profile = @admin_group_owner.profile
     @admin_group = @admin_group_owner.admin_group
+    @product = @admin_group_owner.user_products.first.product
+
   end
 
   def update_admin_group
@@ -234,8 +236,24 @@ class Admin::LocalAdminsController < ApplicationController
 
   def edit_main_admin_group
     @admin_group_owner = User.find params[:id]
-    render :json => @admin_group_owner
+    @profile = @admin_group_owner.profile
+    @admin_group = @admin_group_owner.admin_group
+    @product = @admin_group_owner.user_products.first.product
   end
+
+  def update_main_admin_group
+    params[:admin_group][:free_paas_expiration_date] = format_birth_date(params[:admin_group][:free_paas_expiration_date])      if params[:admin_group][:free_paas_expiration_date].present?
+    @admin_group_owner = User.find params[:id]
+    @profile = @admin_group_owner.profile
+    @admin_group = @admin_group_owner.admin_group
+    if @admin_group_owner.update_attributes(params[:user])  && @profile.update_attributes(params[:profile])  && @admin_group.update_attributes(params[:admin_group])
+      redirect_to  all_admins_global_admins_path , :notice => "Admin Group Updated"  if current_user.has_role "Global Admin"
+      redirect_to manage_admin_group_local_admins_path, :notice => "successfully_updated"   if current_user.has_role "Local Admin"
+    else
+      render :action => "edit_main_admin_group"
+    end
+  end
+
   private
   def toggle_admin user   #TODO need to move to user model
     if RolesManager.is_role_present?("Local Admin", user)
