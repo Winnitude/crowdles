@@ -100,5 +100,20 @@ class AdminGroup
     self.admin_group_workers.collect{|i| i.user if i.user.present?}
   end
 
+  def set_group_attributes local_admin
+    self.name = "Main Admin Group" + local_admin.la_country
+    self.ag_email = local_admin.la_email
+    self.ag_country = local_admin.la_country
+    self.company_name = local_admin.company_name
+    self.country = local_admin.user.country
+    self.zip_code = local_admin.zip_code
+    self.state = local_admin.state
+    self.city = local_admin.city
+    self.address = local_admin.address
+    self.additional_address = local_admin.additional_address
+    self.phone_number = local_admin.phone_number
+    self.language = local_admin.language
+  end
+
 
 end
