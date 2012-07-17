@@ -231,6 +231,11 @@ class Admin::LocalAdminsController < ApplicationController
     @product =Product.find(params[:product])
     logger.info @product.inspect
   end
+
+  def edit_main_admin_group
+    @admin_group_owner = User.find params[:id]
+    render :json => @admin_group_owner
+  end
   private
   def toggle_admin user   #TODO need to move to user model
     if RolesManager.is_role_present?("Local Admin", user)

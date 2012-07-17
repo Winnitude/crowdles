@@ -7,6 +7,7 @@ class PassBillingProfilesController < ApplicationController
 
   def update
     @billing_profile = PlatformBillingProfile.find (params[:id])
+    #NOTE the following code is to create the MAG for LA when GA create the LA
    if @billing_profile.update_attributes(params[:platform_billing_profile])
      redirect_to root_path , :notice => "Updated Successfully"
    end
