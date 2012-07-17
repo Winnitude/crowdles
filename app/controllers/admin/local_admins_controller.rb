@@ -33,11 +33,11 @@ class Admin::LocalAdminsController < ApplicationController
     value = @local_admin.set_owner_attributes  if @local_admin.new_record?
 
     # the below if check weathe we need to create the profile or not
-     if @local_admin.new_record? || !(@local_admin.profile.present?)
-       @profile =@local_admin.build_profile params[:profile]
-     else
-       @profile = @local_admin.profile
-     end
+    if @local_admin.new_record? || !(@local_admin.profile.present?)
+      @profile =@local_admin.build_profile params[:profile]
+    else
+      @profile = @local_admin.profile
+    end
 
     @la_setting = @local_admin.build_la_setting params[:la_setting]
     @la_setting.fix_attributes
@@ -55,6 +55,26 @@ class Admin::LocalAdminsController < ApplicationController
     else
       render :new_local_admin
     end
+  end
+
+  def edit_admin_group
+    @admin_group_owner = User.find params[:id]
+    #@la_setting = current_user.la_setting
+    @profile = @admin_group_owner.profile
+    @admin_group = @admin_group_owner.admin_group
+  end
+
+  def update_admin_group
+    params[:admin_group][:free_paas_expiration_date] = format_birth_date(params[:admin_group][:free_paas_expiration_date])      if params[:admin_group][:free_paas_expiration_date].present?
+    @admin_group_owner = User.find params[:id]
+    @profile = @admin_group_owner.profile
+    @admin_group = @admin_group_owner.admin_group
+    if @admin_group_owner.update_attributes(params[:user])  && @profile.update_attributes(params[:profile])  && @admin_group.update_attributes(params[:admin_group])
+      redirect_to  manage_admin_group_local_admins_path , :notice => "Admin Group Updated"
+    else
+      render :action => "edit_admin_group"
+    end
+
   end
 
   def edit_local_admin
@@ -118,18 +138,19 @@ class Admin::LocalAdminsController < ApplicationController
 
   def new_admin_group
     @admin_group_owner = User.new
-     #@la_setting = current_user.la_setting
-     @profile = @admin_group_owner.build_profile
-     @admin_group = @admin_group_owner.build_admin_group
-     @admin_group.la_setting = current_user.la_setting
-     @products = Product.all
+    #@la_setting = current_user.la_setting
+    @profile = @admin_group_owner.build_profile
+    @admin_group = @admin_group_owner.build_admin_group
+    @admin_group.la_setting = current_user.la_setting
+    @products = Product.all
   end
 
   #NOTE change worker to admin group owner
   def admin_group_creation
+    params[:admin_group][:free_paas_expiration_date] = format_birth_date(params[:admin_group][:free_paas_expiration_date])      if params[:admin_group][:free_paas_expiration_date].present?
     @admin_group_owner = User.where(:email => params[:user][:email]).first.present? ? User.where(:email => params[:user][:email]).first : User.new(params[:user])
     value =  @admin_group_owner.set_owner_attributes  if  @admin_group_owner.new_record?
-    # the below if check weathe we need to create the profile or not
+    # the below if check weather we need to create the profile or not
     if  @admin_group_owner.new_record? || !( @admin_group_owner.profile.present?)
       @profile = @admin_group_owner.build_profile params[:profile]
     else
@@ -137,8 +158,9 @@ class Admin::LocalAdminsController < ApplicationController
     end
 
     @admin_group = @admin_group_owner.build_admin_group params[:admin_group]
-
+    #set la_setting for group
     @admin_group.la_setting = current_user.la_setting
+    #also assign cuntry to him
     @admin_group_owner.country = @admin_group.la_setting.la_country   if  @admin_group_owner.new_record?
     @product = Product.find(params[:product])
     @user_product = @admin_group_owner.user_products.new
@@ -196,7 +218,7 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   def check_for_existing_user
-   @user = User.where(:email => params[:email]).first
+    @user = User.where(:email => params[:email]).first
     #logger.info (@user.profile.first_name.inspect)
   end
 

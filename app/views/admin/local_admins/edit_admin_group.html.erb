@@ -1,11 +1,11 @@
 <h1>New Slave Admin Group</h1>
-<%=form_for @admin_group_owner ,:url=>admin_group_creation_local_admins_path , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
+<%=form_for @admin_group_owner ,:url=>update_admin_group_local_admin_path(@admin_group_owner) , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
     <%= fields_for @admin_group do |ag| %>
         <%= fields_for @profile do |p| %>
 
             <% if @admin_group_owner.errors.any? || @profile.errors.any? || @admin_group.errors.any? %>
                 <div id="error_explanation">
-                  <h2><%= pluralize(@admin_group_owner.errors.count + @profile.errors.count + @admin_group.errors.count , "error") %> prohibited this Local Admin from being saved:</h2>
+                  <h2><%= pluralize(@admin_group_owner.errors.count + @profile.errors.count + @admin_group.errors.count , "error") %> prohibited this Admin Group from being saved:</h2>
 
                   <ul>
                     <% @admin_group_owner.errors.full_messages.each do |msg| %>
@@ -21,9 +21,9 @@
                 </div>
             <% end %>
             <div class="control-group">
-              <label class="control-label" for="input01">Email: <span style="color:red"> *</span></label>
+              <label class="control-label" for="input01">AG Owner: </label>
               <div class="controls">
-                <%=f.text_field :email,:class=>"input"%> <span><%= link_to "Check Existence","" ,:class => "btn" ,:id => "check"%></span>
+                <%=@profile.first_name%> &nbsp <%=@profile.last_name%> &nbsp &nbsp  <%=@admin_group_owner.email%>
                 <!--<input type="text" class="input-xlarge" id="input01">-->
                 <p class="help-block"> </p>
               </div>
@@ -151,16 +151,15 @@
                 <p class="help-block"></p>
               </div>
             </div>
-            <h3>AG Organization Details</h3>
 
-            <div class="control-group">
-              <label class="control-label" for="input01">Select Product: <span style="color:red"> </span></label>
-              <div class="controls">
-                <%=select_tag :product,options_from_collection_for_select(@products,:id, :platform_product_name) ,:class=>"input"%>
-                <!--<input type="text" class="input-xlarge" id="input01">-->
-                <p class="help-block"></p>
-              </div>
-            </div>
+            <!--<div class="control-group">-->
+              <!--<label class="control-label" for="input01">Select Product: <span style="color:red"> </span></label>-->
+              <!--<div class="controls">-->
+                <!--<%#=select_tag :product,options_from_collection_for_select(@products,:id, :platform_product_name) ,:class=>"input"%>-->
+                <!--&lt;!&ndash;<input type="text" class="input-xlarge" id="input01">&ndash;&gt;-->
+                <!--<p class="help-block"></p>-->
+              <!--</div>-->
+            <!--</div>-->
 
             <div id= "products_details">
               <%= render :partial => "product_info" %>
@@ -234,16 +233,16 @@
                 )
             });
 
-            $("#product").change(function(){
-               var  product = $("#product").val()
-                $.get("/local_admins/get_product_details",{"product" :product},function(k){}
-                )
+//            $("#product").change(function(){
+//                var  product = $("#product").val()
+//                $.get("/local_admins/get_product_details",{"product" :product},function(k){}
+//                )
+//
+//            });
 
-            });
-
-            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
-            email.add( Validate.Email);
-            email.add(Validate.Presence)
+//            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
+//            email.add( Validate.Email);
+//            email.add(Validate.Presence)
 
             var group_name = new LiveValidation('admin_group_name',{validMessage:" ",onlyOnSubmit:true});
 
@@ -255,7 +254,7 @@
             group_email.add( Validate.Email);
 
             var telephone_number = new LiveValidation("admin_group_phone_number",{validMessage:" ",onlyOnSubmit:true});
-           telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
+            telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
 
 
         });

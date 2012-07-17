@@ -56,7 +56,8 @@ class AdminGroup
   field :ag_commissions ,                            :type => Float
   field :consultant_commissions ,                    :type => Float
   field :is_active ,                                 :type => Boolean
-
+  field :free_subscription ,                       :type => String
+  field :free_paas_expiration_date ,            :type => Date
   #validates :main_worker_id   , :presence => true
   #validates :ag_creation_date   , :presence => true
 

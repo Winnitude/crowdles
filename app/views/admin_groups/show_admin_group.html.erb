@@ -1,25 +1,23 @@
 <h2> Admin Group</h2>
 <div class="form-horizontal">
   <table border="1" style="text-align: left;">
-    <tr><td><strong>  Owner ID: </strong></td> <td> <%= @admin_group.admin_group_owner_id %>       </td>    </tr>
-    <tr><td>  <strong>  Affiliation Key: </strong>        <td>  <%= @admin_group.affillation_key.key %>              </td>  </tr>
 
   <!--<strong> Title: </strong>   <%#= profile.title %>           -->
-    <tr><td><strong> Main Worker ID: </strong> </td>  <td><%= @admin_group.main_worker_id %>        </td>    </tr>
+
 
     <tr><td> <strong> AG Creation Date: </strong>  </td> <td> <%=  @admin_group.ag_creation_date %>     </td>  </tr>
     <tr><td> <strong> AG Expiration Date: </strong> </td>   <td><%=  @admin_group.ag_expiration_date %>         </td> </tr>
     <tr> <td><strong> AG Deactivation Date: </strong> </td>  <td> <%=  @admin_group.ag_deactivation_date %>     </td>   </tr>
     <tr> <td><strong> Admin Group Name: </strong> </td>   <td><%=  @admin_group.name %>       </td>      </tr>
     <tr><td> <strong> Admin Group Description: </strong> </td>  <td> <%=  @admin_group.description %>     </td>  </tr>
-    <tr><td> <strong> Admin Group Email: </strong></td>   <td> <%=  @admin_group.admin_group_email %>     </td> </tr>
+    <tr><td> <strong> Admin Group Email: </strong></td>   <td> <%=  @admin_group.ag_email %>     </td> </tr>
     <tr><td>  <strong> Status: </strong> </td> <td>  <%=  @admin_group.status %>          </td> </tr>
     <tr> <td><strong> AG Country: </strong></td>  <td>  <%=  @admin_group.country %>    </td></tr>
     <tr> <td><strong> AG Creation Date: </strong> </td>  <td> <%=  @admin_group.ag_creation_date %>   </td> </tr>
     <tr><td> <strong> Language: </strong> </td> <td>  <%=  @admin_group.language %>          </td>  </tr>
-    <tr><td> <strong> First Name: </strong> </td> <td>  <%=  @admin_group.first_name %>   </td> </tr>
+    <tr><td> <strong> First Name: </strong> </td> <td>  <%=  @profile.first_name %>   </td> </tr>
 
-    <tr> <td><strong> Last Name: </strong></td>  <td>  <%=  @admin_group.last_name %>        </td>  </tr>
+    <tr> <td><strong> Last Name: </strong></td>  <td>  <%=  @profile.last_name %>        </td>  </tr>
     <tr><td><strong> Company Name: </strong></td>  <td>  <%=  @admin_group.company_name %>     </td> </tr>
     <tr><td><strong> Country: </strong>  </td> <td> <%=  @admin_group.country %>       </td>  </tr>
     <tr><td><strong> City: </strong> </td>  <td> <%=  @admin_group.city %>           </td> </tr>
@@ -28,7 +26,7 @@
     <tr><td><strong> Address: </strong>   </td> <td><%=  @admin_group.address %>        </td>   </tr>
     <tr><td><strong> Additional Address: </strong></td>  <td>  <%=  @admin_group.additional_address %>    </td></tr>
     <tr><td><strong> phone_number: </strong>  </td> <td> <%=  @admin_group.phone_number %>            </td></tr>
-    <tr><td><strong> Billing Profile Id: </strong> </td> <td>  <%=  @admin_group.billing_profile_id %>    </td> </tr>
+
     <tr><td><strong> Self Management: </strong> </td> <td>  <%=  @admin_group.self_management %>     </td>  </tr>
     <tr><td><strong> Arena Flag: </strong>  </td> <td> <%=  @admin_group.arena_flag %>        </td> </tr>
     <tr><td><strong> BG Contest Allowed: </strong></td>   <td> <%=  @admin_group.bg_contest_allowed %>      </td></tr>
@@ -37,13 +35,11 @@
     <tr><td><strong> BG  Free Pro Commissions_allowed: </strong>  </td> <td> <%=  @admin_group.bg_free_pro_commissions_allowed %>     </td>  </tr>
 
     <tr><td><strong> BG Free Private Commissions_allowed: </strong>   </td> <td><%=  @admin_group.bg_free_private_commissions_allowed %>    </td></tr>
-    <tr><td><strong> BG  Custom Commissions_allowed: </strong></td>  <td>  <%=  @admin_group.bg_custom_commissions_allowed %>      </td>    </tr>
-    <tr><td><strong> BG  Gateway Commission Payer Setting Allowed: </td> <td></strong>   <%=  @admin_group.bg_gateway_commission_payer_setting_allowed %>  
-    <tr><td><strong> Platform Billing Profile Id:<td> </strong></td> <td>    <%=  @admin_group.platform_billing_profile_id %>      </td>    </tr>
-    <tr><td><strong> Paas Product Id: </strong></td>   <td> <%=  @admin_group.paas_product_id %>      </td>  </tr>
 
-    <tr><td><strong> Paas Exemption Expiration Date:</strong> </td> <td>   <%=  @admin_group.paas_exemption_expiration_date %>    </tr>
-    <tr><td><strong> Paas Fees Exemption: </strong> </td> <td>  <%=  @admin_group.paas_fees_exemption %>   </td></tr>
+
+    <tr><td><strong> Free Subscription: </strong> </td> <td>  <%=  @admin_group.free_subscription %>   </td></tr>
+    <tr><td><strong> Free PaaS Expiration Date:</strong> </td> <td>   <%=  @admin_group.free_paas_expiration_date %>    </tr>
+
 
 </table>
 

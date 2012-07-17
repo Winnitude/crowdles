@@ -1,4 +1,4 @@
-class AdminGroupOwnersController < ApplicationController
+class AdminGroupsController < ApplicationController
   before_filter :should_be_AGO ,:only => [:view_all_workers, :all_my_admin_group_workers]
 
   #NOTE:ago this will return all the workers  so that ago  can select them to make agw
@@ -34,6 +34,9 @@ class AdminGroupOwnersController < ApplicationController
 
   def show_admin_group
      @admin_group = AdminGroup.find(params[:id])
+     @owner = @admin_group.user
+     @profile = @owner.profile
+
   end
 
   def edit_admin_group

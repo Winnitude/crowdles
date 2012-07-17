@@ -36,7 +36,9 @@ CrowdFunding::Application.routes.draw do
         get :autocomplete_language_name, :on => :collection
         get :check_for_existing_user  ,  :on => :collection
         get :check_for_existing_user_for_ag  ,  :on => :collection
-        get :get_product_details,                 :on => :collection
+        get :get_product_details,               :on => :collection
+        get :edit_admin_group ,          :on => :member
+        put :update_admin_group ,         :on => :member
       end
 
       as :local_admins do
@@ -86,7 +88,7 @@ CrowdFunding::Application.routes.draw do
     put "changed" ,:on => :member
     get "all_workers", :on => :member
   end
-  resources :admin_group_owners do
+  resources :admin_groups do
     get "view_all_workers" ,:on => :collection
     get "all_my_admin_group_workers" ,:on => :collection
     get "related_ideas", :on => :collection
