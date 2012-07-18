@@ -2,37 +2,42 @@ class PasswordsController <  Devise::PasswordsController
   prepend_before_filter :require_no_authentication
 #  include Devise::Controllers::InternalHelpers
 
-  # GET /resource/password/new
+# GET /resource/password/new
   def new
     build_resource({})
 #    render_with_scope :new
   end
 
   # POST /resource/password
-#  def create
-#    logger.info "inside create"
-#    self.resource = resource_class.send_reset_password_instructions(params[resource_name])
-#    if successful_and_sane?(resource)
-#      set_flash_message(:notice, :send_instructions) if is_navigational_format?
-#      redirect_to("/", :notice => "Reset Password Sent Successfully")
-#    else
-#      redirect_to("/", :notice => "Email not Found")
-#    end
-#  end
+  #  def create
+  #    logger.info "inside create"
+  #    self.resource = resource_class.send_reset_password_instructions(params[resource_name])
+  #    if successful_and_sane?(resource)
+  #      set_flash_message(:notice, :send_instructions) if is_navigational_format?
+  #      redirect_to("/", :notice => "Reset Password Sent Successfully")
+  #    else
+  #      redirect_to("/", :notice => "Email not Found")
+  #    end
+  #  end
 
   def create
     logger.info "inside create"
     user = (User.where(:email => (params[:user][:email]))).to_a.first
-    if user.is_provider == false
-      self.resource = resource_class.send_reset_password_instructions(params[resource_name])
+    if user.present?
+      if user.is_provider == false
+        self.resource = resource_class.send_reset_password_instructions(params[resource_name])
 
-      if successfully_sent?(resource)
-        respond_with({}, :location => after_sending_reset_password_instructions_path_for(resource_name))
-      else
-        respond_with(resource)
+        if successfully_sent?(resource)
+          respond_with({}, :location => after_sending_reset_password_instructions_path_for(resource_name))
+        else
+          respond_with(resource)
+        end
+      else redirect_to root_path ,:notice => "Sorry facebook users dont have this feature  "
       end
-    else redirect_to root_path ,:notice => "Sorry facebook users dont have this feature  "
+    else
+      redirect_to new_user_password_path ,:notice => "User not found "
     end
+
   end
 
   # GET /resource/password/edit?reset_password_token=abcdef
@@ -43,18 +48,18 @@ class PasswordsController <  Devise::PasswordsController
   end
 
   # PUT /resource/password
-#  def update
-#    self.resource = resource_class.reset_password_by_token(params[resource_name])
-#
-#    if resource.errors.empty?
-#      set_flash_message(:notice, :updated) if is_navigational_format?
-#      sign_in(resource_name, resource)
-#      respond_with resource, :location => redirect_location(resource_name, resource)
-#    else
-#    #respond_with_navigational(resource){:edit}
-#      redirect_to edit_user_password_path ,:notice => "Your password should contain minimum 6 characters and the both password should be Identical"
-#    end
-#  end
+  #  def update
+  #    self.resource = resource_class.reset_password_by_token(params[resource_name])
+  #
+  #    if resource.errors.empty?
+  #      set_flash_message(:notice, :updated) if is_navigational_format?
+  #      sign_in(resource_name, resource)
+  #      respond_with resource, :location => redirect_location(resource_name, resource)
+  #    else
+  #    #respond_with_navigational(resource){:edit}
+  #      redirect_to edit_user_password_path ,:notice => "Your password should contain minimum 6 characters and the both password should be Identical"
+  #    end
+  #  end
   def update
     super
   end
