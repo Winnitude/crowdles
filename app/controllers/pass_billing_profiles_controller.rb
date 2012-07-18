@@ -1,4 +1,7 @@
 class PassBillingProfilesController < ApplicationController
+  autocomplete :country_detail, :name
+  #autocomplete :user, :email
+  autocomplete :language, :name
   before_filter :should_be_global_admin ,:only => [:edit]
   def edit
     @billing_profile = PlatformBillingProfile.find (params[:id])

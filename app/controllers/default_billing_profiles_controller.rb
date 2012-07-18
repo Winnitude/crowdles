@@ -1,4 +1,7 @@
 class DefaultBillingProfilesController < ApplicationController
+  autocomplete :country_detail, :name
+  #autocomplete :user, :email
+  autocomplete :language, :name
 
   def new
     @profile = current_user.build_default_billing_profile
