@@ -178,6 +178,8 @@ class Admin::LocalAdminsController < ApplicationController
       @user_product.product = @product
       if @admin_group_owner.save && @user_product.save && @admin_group.save
         @admin_group_owner.add_role "Admin Group Owner"
+        AgMailer.welcome_email(@admin_group_owner,@profile,value,current_user.la_setting).deliver if value.present?
+        AgMailer.welcome_email_existing_user(@admin_group_owner,current_user.la_setting).deliver if value.present? == false
         redirect_to  manage_admin_group_local_admins_path , :notice => "Admin Group Created"
       else
         render :action => "new_admin_group"

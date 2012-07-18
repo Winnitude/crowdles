@@ -11,6 +11,6 @@ class AgMailer < ActionMailer::Base
 
   def welcome_email_existing_user(ag,la_setting)
     @la_setting = la_setting
-    mail(:to => @ag.email, :subject => "Welcome to Crowd Funding Site")
+    mail(:to => ag.email, :subject => "Welcome to Crowd Funding Site")
   end
 end

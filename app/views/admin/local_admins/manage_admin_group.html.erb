@@ -10,9 +10,9 @@
 
   <% if split_array.include?("change_ownership") %>
 
-      <%= link_to "Main AG Mgmt" ,change_ownership_main_admin_group_owners_path,:style=>"text-decoration: underline;" %> |
+      <%= link_to "Main AG Mgmt" ,"#",:style=>"text-decoration: underline;" %> |
   <%else%>
-      <%= link_to "Main AG Mgmt" ,change_ownership_main_admin_group_owners_path %> |
+      <%= link_to "Main AG Mgmt" ,"#" %> |
   <%end%>
 
   <% if split_array.include?("add_new_slave_admin_group") %>

@@ -105,7 +105,7 @@
           </tr>
 
           <tr>
-            <td>   <label class="control-label" for="input01">Platform Legal Terms Global: </label></td>
+            <td>   <label class="control-label" for="input01">Platform Legal Terms Global:<span style="color:red">* </span> </label></td>
             <td><%= setting.text_area :platform_legal_terms_global ,:value =>global_admin_general_setting.platform_legal_terms_global,:rows=>5%></td>
           </tr>
 
@@ -187,6 +187,9 @@
             facebook.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
             var twitter =   new LiveValidation("twitter",{validMessage:" ",onlyOnSubmit:true});
             twitter.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+
+            var user_global_admin_general_setting_plateform_default_language = new LiveValidation("user_global_admin_general_setting_platform_legal_terms_global",{validMessage:" ",onlyOnSubmit:true});
+            user_global_admin_general_setting_plateform_default_language.add(Validate.Presence,{failureMessage:"Can't be empty"})
 //            var linkedin =   new LiveValidation("twitter",{validMessage:" ",onlyOnSubmit:true});
 //            linkedin.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
 
