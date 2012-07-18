@@ -1,7 +1,7 @@
 class Admin::LocalAdminsController < ApplicationController
   before_filter :should_be_GA ,:only => [:create_local_admin, :new_local_admin ,:change_admin_role]
-  before_filter :should_not_be_fake_country, :only => [:create_local_admin,:update_local_admin]
-  before_filter :should_not_be_fake_language, :only => [:create_local_admin,:update_local_admin]
+  #before_filter :should_not_be_fake_country, :only => [:create_local_admin,:update_local_admin]
+  #before_filter :should_not_be_fake_language, :only => [:create_local_admin,:update_local_admin]
   before_filter :get_user
   autocomplete :country_detail, :name
   #autocomplete :user, :email
