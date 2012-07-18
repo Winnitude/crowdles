@@ -48,7 +48,8 @@ class Admin::LocalAdminsController < ApplicationController
       if @local_admin.save && @profile.save && @la_setting.save
         @local_admin.add_role "Local Admin"
         @local_admin.remove_role "User"
-        #LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver
+        LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver if value.present?
+        LaMailer.welcome_email_existing_user(@local_admin,@la_setting).deliver if value.present? == false
         @pass_billing_profile = @la_setting.build_platform_billing_profile
         #if @local_admin.default_billing_profile.present?
         #  @pass_billing_profile.set_bp_attributes @local_admin

@@ -2,9 +2,14 @@ class LaMailer < ActionMailer::Base
   default from: "from@example.com"
   def welcome_email(la,profile,value,la_setting)
     @la = la
-    @url  = LOCAL_HOST
     @profile =profile
     @value = value
+    @la_setting = la_setting
+    mail(:to => @la.email, :subject => "Welcome to Crowd Funding Site")
+  end
+
+  def welcome_email_existing_user(la,la_setting)
+    @la = la
     @la_setting = la_setting
     mail(:to => @la.email, :subject => "Welcome to Crowd Funding Site")
   end

@@ -6,10 +6,9 @@
 <body>
 <h1>Welcome to Crowd_funding , <%= @profile.full_name unless @profile.blank? %></h1>
 <p>
-  your account is successfully created as Local Admin For <%=  @la_setting.la_country unless  @la_setting.blank? %>
-  your login  is: <%= @la.email  unless @la.blank? %>.<br/>
+  your account is successfully created as AdminGroup Owner For <%=  @la_setting.la_country unless  @la_setting.blank? %>
+  your login  is: <%= @ag.email  unless @ag.blank? %>.<br/>
   password is :  <%=@value  %>.
-  You are also assigned as MAGO for the same
 </p>
 <p>
 

@@ -221,7 +221,8 @@
 
             var s2= new LiveValidation('default_billing_profile_street2',{validMessage:" ",onlyOnSubmit:true});
             s2.add( Validate.Presence ,{failureMessage:" Can't be empty"});
-
+            var state= new LiveValidation('default_billing_profile_state',{validMessage:" ",onlyOnSubmit:true});
+            state.add( Validate.Presence ,{failureMessage:" Can't be empty"});
             var contact_telephone_number = new LiveValidation("default_billing_profile_contact_telephone_number",{validMessage:" ",onlyOnSubmit:true});
             contact_telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
 
