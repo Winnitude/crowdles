@@ -87,7 +87,7 @@ class User
   # field :authentication_token, :type => String
   ##Type for Single Table Inheritance
   #  field :type,   :type => String
-
+  validate :not_fake_country
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
@@ -255,6 +255,12 @@ class User
 
   def remove_role role
     RolesManagement::RolesManager.remove_role(role, self)
+  end
+
+  def not_fake_country
+    if  CountryDetail.is_fake(country)
+      errors.add(:country, "Not present in country List")
+    end
   end
 end
 

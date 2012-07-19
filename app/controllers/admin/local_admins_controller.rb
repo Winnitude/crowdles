@@ -93,11 +93,11 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   def update_local_admin
-    @admin = User.find(params[:id])
-    @profile =  @admin.profile
-    @la_setting = @admin.la_setting || @admin.build_la_setting
+    @local_admin = User.find(params[:id])
+    @profile =  @local_admin.profile
+    @la_setting = @local_admin.la_setting || @local_admin.build_la_setting
 
-    if @admin.update_attributes(params[:user]) && @la_setting.update_attributes(params[:la_setting]) && @profile.update_attributes(params[:profile])
+    if @local_admin.update_attributes(params[:user]) && @la_setting.update_attributes(params[:la_setting]) && @profile.update_attributes(params[:profile])
       redirect_to all_admins_global_admins_path, :notice => "successfully_updated"
     else
       render :edit_local_admin

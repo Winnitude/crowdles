@@ -1,6 +1,7 @@
 class DefaultBillingProfile
   include Mongoid::Document
   belongs_to :user
+  before_save :set_creation_date
 
   field :creation_date                 ,:type => DateTime
   field :last_modification_date         ,:type => DateTime
@@ -24,5 +25,30 @@ class DefaultBillingProfile
   field :contact_last_name                 ,:type => String
   field :contact_telephone_number        ,:type => String
 
+  validates  :first_name, :last_name , :currency , :company_name,:email, :telephone_number , :language, :country, :city, :state, :street1 , :presence => true
+  validate :not_fake_country
+  validate :not_fake_language
+
+
+
+  def not_fake_country
+    if  CountryDetail.is_fake(country)
+      errors.add(:country, "Not present in country List")
+    end
+  end
+
+  def not_fake_language
+    if  Language.is_fake(language)
+      errors.add(:language, "Not present in Language List")
+    end
+  end
+
+  private
+
+  def set_creation_date
+    logger.info "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    self.creation_date = DateTime.now
+    self.last_modification_date = DateTime.now
+  end
 
 end

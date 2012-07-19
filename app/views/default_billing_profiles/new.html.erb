@@ -1,6 +1,17 @@
 <h1>Create Profile</h1>
 <%=form_for @profile, :html => { :class => "form-horizontal"} do |f| %>
 
+        <% if @profile.errors.any?  %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@profile.errors.count , "error") %> prohibited this Profile from being saved:</h2>
+
+              <ul>
+                <% @profile.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
 
     <div class="control-group">
       <label class="control-label" for="input01">Currency<span style="color:red">*</span></label>
@@ -221,8 +232,8 @@
             var s1= new LiveValidation('default_billing_profile_street1',{validMessage:" ",onlyOnSubmit:true});
             s1.add( Validate.Presence ,{failureMessage:" Can't be empty"});
 
-            var s2= new LiveValidation('default_billing_profile_street2',{validMessage:" ",onlyOnSubmit:true});
-            s2.add( Validate.Presence ,{failureMessage:" Can't be empty"});
+//            var s2= new LiveValidation('default_billing_profile_street2',{validMessage:" ",onlyOnSubmit:true});
+//            s2.add( Validate.Presence ,{failureMessage:" Can't be empty"});
 
             var state= new LiveValidation('default_billing_profile_state',{validMessage:" ",onlyOnSubmit:true});
             state.add( Validate.Presence ,{failureMessage:" Can't be empty"});

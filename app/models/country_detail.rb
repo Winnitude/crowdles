@@ -4,7 +4,11 @@ class CountryDetail
 
   field :name, :type => String
   def self.is_fake (name)
-    country = where(:name => name).first
-    !country.present?
+    if name.present? == false
+      return false
+    else
+      country = where(:name => name).first
+      !country.present?
+    end
   end
 end

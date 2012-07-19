@@ -24,7 +24,9 @@ class PlatformBillingProfile
   field :contact_telephone_number        ,:type => String
 
   before_save :set_creation_date
-
+  validates  :first_name, :last_name , :currency , :company_name,:email, :telephone_number , :language, :country, :city, :state, :street1 , :presence => true
+  validate :not_fake_country
+  validate :not_fake_language
 
   def set_bp_attributes person
     default_profile = person.default_billing_profile
@@ -48,6 +50,18 @@ class PlatformBillingProfile
     self.contact_first_name = default_profile.contact_first_name
     self.contact_last_name  = default_profile.contact_last_name
     self.contact_telephone_number = default_profile.contact_telephone_number
+  end
+
+  def not_fake_country
+    if  CountryDetail.is_fake(country)
+      errors.add(:country, "Not present in country List")
+    end
+  end
+
+  def not_fake_language
+    if  Language.is_fake(language)
+      errors.add(:language, "Not present in Language List")
+    end
   end
   private
 

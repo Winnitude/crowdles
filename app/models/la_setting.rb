@@ -56,6 +56,10 @@ class LaSetting
   field :la_email,                                             :type => String
 
   mount_uploader :contact_photo, ImageUploader
+  validate :not_fake_la_country
+  validate :not_fake_country
+  validate :not_fake_language
+
 
   def self.is_any_LA_exist_in_system
     count = self.count
@@ -71,4 +75,22 @@ class LaSetting
     self.platform_home = "http://" + LOCAL_HOST + "/country/" + self.la_country
     self.is_master = !(LaSetting.is_any_LA_exist_in_system)
   end
+
+  def not_fake_la_country
+    if CountryDetail.is_fake(la_country)
+      errors.add(:la_country, "Not present in country List")
+    end
+  end
+
+  def not_fake_country
+    if  CountryDetail.is_fake(country)
+      errors.add(:country, "Not present in country List")
+    end
+  end
+
+ def not_fake_language
+   if  Language.is_fake(:language)
+     errors.add(:language, "Not present in Language List")
+   end
+ end
 end
