@@ -54,7 +54,7 @@ class Admin::LocalAdminsController < ApplicationController
         #if @local_admin.default_billing_profile.present?
         #  @pass_billing_profile.set_bp_attributes @local_admin
         #end
-        @pass_billing_profile.save!
+        @pass_billing_profile.save(:validate => false)
         redirect_to edit_pass_billing_profile_path(@pass_billing_profile) ,:notice => "Local Admin Created Successfully "
       else
         render :new_local_admin

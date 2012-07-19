@@ -27,6 +27,8 @@ class DefaultBillingProfilesController < ApplicationController
     @profile = current_user.default_billing_profile
     if @profile.update_attributes(params[:default_billing_profile])
       redirect_to root_path ,:notice => "Billing Profile Updated successfully"
+    else
+      render :action=> :edit
     end
 
   end

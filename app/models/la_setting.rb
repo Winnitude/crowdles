@@ -89,7 +89,7 @@ class LaSetting
   end
 
  def not_fake_language
-   if  Language.is_fake(:language)
+   if  Language.is_fake(language)
      errors.add(:language, "Not present in Language List")
    end
  end

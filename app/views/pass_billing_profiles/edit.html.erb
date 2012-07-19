@@ -1,6 +1,16 @@
 <h1>Edit Pass Billing Profile</h1>
 <%=form_for @billing_profile , :url=>pass_billing_profile_path , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
+    <% if @billing_profile.errors.any?  %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@billing_profile.errors.count , "error") %> prohibited this Profile from being saved:</h2>
 
+          <ul>
+            <% @billing_profile.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
     <div class="control-group">
       <label class="control-label" for="input01">Currency<span style="color:red">*</span></label>

@@ -1,6 +1,16 @@
 <h1>Edit Profile</h1>
 <%=form_for @profile, :html => { :class => "form-horizontal"} do |f| %>
+    <% if @profile.errors.any?  %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@profile.errors.count , "error") %> prohibited this Profile from being saved:</h2>
 
+          <ul>
+            <% @profile.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
     <div class="control-group">
       <label class="control-label" for="input01">Currency<span style="color:red">*</span></label>

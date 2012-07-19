@@ -23,6 +23,9 @@ class PassBillingProfilesController < ApplicationController
       @admin_group_owner.save && @admin_group.save  && @user_product.save
       @admin_group_owner.add_role "Main Admin Group Owner"
       redirect_to edit_main_admin_group_local_admin_path(@admin_group_owner) , :notice => "Updated Successfully"
+
+    else
+      render :action=> :edit
     end
    end
 
