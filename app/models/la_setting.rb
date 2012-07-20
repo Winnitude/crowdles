@@ -54,6 +54,8 @@ class LaSetting
   field :no_profit_terms,                                      :type=> String
   #field :is_individual,                                        :type=> Boolean
   field :la_email,                                             :type => String
+  field :first_name,                                           :type => String
+  field :last_name,                                           :type => String
 
   mount_uploader :contact_photo, ImageUploader
   validate :not_fake_la_country
