@@ -320,7 +320,7 @@
           <!--<input type="text" class="input-xlarge" id="input01">-->
           <p class="help-block"></p>
         </div>
-
+        <div id="deviation">
         <div class="control-group">
           <label class="control-label" for="input01">Master Worker Deviation: <span style="color:red"> </span></label>
           <div class="controls">
@@ -338,6 +338,7 @@
             <p class="help-block"></p>
           </div>
         </div>
+        </div>
 
         <div class="form-actions">
           <%= f.submit "Create Local Admin",:class =>"btn btn-primary"  %>
@@ -351,6 +352,15 @@
     <script type="text/javascript">
 
         jQuery(function(){
+            $("#deviation").hide()
+            $("#la_setting_master_administration_deviation_false").click(function(event){
+                $("#deviation").hide()
+            });
+
+            $("#la_setting_master_administration_deviation_true").click(function(event){
+                $("#deviation").show()
+            });
+
 
             $("#check").click(function(event){
                 event.preventDefault();

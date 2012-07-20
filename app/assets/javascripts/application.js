@@ -11,37 +11,15 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap-datepicker
 //= require bootstrap-dropdown
-//= require jwplayer
-
-//= require jquery-ui
 //= require autocomplete-rails
-/*//= require_tree .*/
+//= require_self
+//= require_tree .
 
-
-
-jQuery(function(){
-
-//    alert("hello")
-//    $("#lists").click(function(){
-////        alert("hello")
-//        $('#wait').html("plz wait")
-//        var value=$("#lists").val()
-//        alert(value)
-//        $.get("/homes/get_campaigns",{"list":value
-//
-//        },function(){ $('#wait').html("")})
-//    });
-//    $(".close").on('click' , function(){
-//        $(this).fadeOut;
-////        alert(value)
-//    });
-    $(".close").on('click', function(){ $(this).parent().hide()});
-
+jQuery(document).ready(function(e){
+    $(".alert").fadeOut(10000);
 
 });
-
-
-      

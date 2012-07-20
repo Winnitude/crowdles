@@ -18,7 +18,7 @@ class LaSetting
   field :worker_terms,                                         :type => String     ###L
   field :admin_group_terms,                                    :type => String     ###LA
   field :business_group_terms,                                 :type => String     ###L
-  field :status,                                               :type => String
+  field :status,                                               :type => String    , :default => "new"
   field :la_name,                                                 :type => String     ###la
 
   field :creation_date,                                        :type => DateTime     ###LA

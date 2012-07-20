@@ -141,7 +141,7 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   def manage_admin_group
-    @admin_groups = current_user.la_setting.admin_groups
+    @admin_groups = current_user.la_setting.admin_groups.where(:admin_group_type =>"Slave")
   end
 
   def new_admin_group
@@ -265,6 +265,11 @@ class Admin::LocalAdminsController < ApplicationController
     else
       render :action => "edit_main_admin_group"
     end
+  end
+
+  def main_admin_group
+    admin_group = current_user.la_setting.admin_groups.where(:admin_group_type => "Master").first
+    redirect_to  edit_main_admin_group_local_admin_path(admin_group.user)
   end
 
   private

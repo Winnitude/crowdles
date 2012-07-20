@@ -41,6 +41,7 @@ CrowdFunding::Application.routes.draw do
         put :update_admin_group ,         :on => :member
         get :edit_main_admin_group,      :on => :member
         put :update_main_admin_group,      :on => :member
+        get :main_admin_group,              :on => :collection
       end
 
       as :local_admins do

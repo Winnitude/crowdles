@@ -54,9 +54,9 @@
         <td> <%= link_to 'View', show_admin_group_admin_group_path(admin_group) %> |
           <%if admin_group.admin_group_type == "Master"%>
               <%= link_to 'Edit', edit_main_admin_group_local_admin_path(admin_group.user) %>
-              <% else %>
-          <%= link_to 'Edit', edit_admin_group_local_admin_path(admin_group.user) %>
-              <%end%>|
+          <% else %>
+              <%= link_to 'Edit', edit_admin_group_local_admin_path(admin_group.user) %>
+          <%end%>|
         </td>
 
 

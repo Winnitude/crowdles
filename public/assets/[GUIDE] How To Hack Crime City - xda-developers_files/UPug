@@ -1,2 +1,0 @@
-document.write('<script type="text/javascript" src="http://ads.pubmatic.com/UniversalPixel/29105/117/pixel.js"></script>');
-document.write('<iframe name="pbeacon" frameborder="0" allowtransparency="true" hspace="0" vspace="0" marginheight="0" marginwidth="0" scrolling="no"  width="0"  height="0" style="position:absolute;top:-20000px;" src="http://ptrack.pubmatic.com/AdServer/PugTracker?pixId=117&pubId=29105&ran=0.9532895663287491&pmoo=0&pageURL=http://ads.pubmatic.com/UniversalPixel/Hosted/29105/117/up.html"></iframe>');
