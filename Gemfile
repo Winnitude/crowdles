@@ -47,7 +47,7 @@ gem "carrierwave-mongoid"
 gem "fog", "~> 1.3.1"
 gem "pry"
 gem "pry-remote"
-gem "fastercsv", "1.5.4"
+#gem "fastercsv"
 
 #gem "geocoder"
 #gem "rmagick"

@@ -69,6 +69,7 @@ class Admin::LocalAdminsController < ApplicationController
     @profile = @admin_group_owner.profile
     @admin_group = @admin_group_owner.admin_group
     @product = @admin_group_owner.user_products.first.product
+    @products = Product.where(:type => "Slave")
 
   end
 
@@ -77,9 +78,14 @@ class Admin::LocalAdminsController < ApplicationController
     @admin_group_owner = User.find params[:id]
     @profile = @admin_group_owner.profile
     @admin_group = @admin_group_owner.admin_group
+    @product = @admin_group_owner.user_products.first.product
+    product_new = Product.where(:platform_product_name =>params[:product]).first
     if @admin_group_owner.update_attributes(params[:user])  && @profile.update_attributes(params[:profile])  && @admin_group.update_attributes(params[:admin_group])
       redirect_to  manage_admin_group_local_admins_path , :notice => "Admin Group Updated"
+      Product.remove_product(@product,@admin_group_owner)
+      Product.add_product(product_new,@admin_group_owner)
     else
+      @products = Product.where(:type => "Slave")
       render :action => "edit_admin_group"
     end
 

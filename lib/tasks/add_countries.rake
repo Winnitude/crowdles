@@ -4,9 +4,10 @@ namespace :add_countries do
   task :add_country => :environment do
     require 'csv'
     puts Rails.root
-    CSV.open(Rails.root.join("countries.csv"), 'r') do |row|
-      @country = CountryDetail.create(:name => row[2])
-      puts @conuntry.inspect
+    CSV.foreach(Rails.root.join("countries.csv"), 'r') do |row|
+     puts row.inspect
+      @country = CountryDetail.create(:name => row[0])
+      puts @country.inspect
 
     end
   end
