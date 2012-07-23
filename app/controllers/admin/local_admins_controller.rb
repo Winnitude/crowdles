@@ -81,9 +81,10 @@ class Admin::LocalAdminsController < ApplicationController
     @product = @admin_group_owner.user_products.first.product
     product_new = Product.where(:platform_product_name =>params[:product]).first
     if @admin_group_owner.update_attributes(params[:user])  && @profile.update_attributes(params[:profile])  && @admin_group.update_attributes(params[:admin_group])
-      redirect_to  manage_admin_group_local_admins_path , :notice => "Admin Group Updated"
       Product.remove_product(@product,@admin_group_owner)
       Product.add_product(product_new,@admin_group_owner)
+      redirect_to  manage_admin_group_local_admins_path , :notice => "Admin Group Updated"
+
     else
       @products = Product.where(:type => "Slave")
       render :action => "edit_admin_group"
@@ -179,7 +180,7 @@ class Admin::LocalAdminsController < ApplicationController
       @admin_group.la_setting = current_user.la_setting
       #also assign cuntry to him
       @admin_group_owner.country = @admin_group.la_setting.la_country   if  @admin_group_owner.new_record?
-      @product = Product.find(params[:product])
+      @product = Product.where(:platform_product_name => params[:product]).first
       @user_product = @admin_group_owner.user_products.new
       @user_product.product = @product
       if @admin_group_owner.save && @user_product.save && @admin_group.save
@@ -188,7 +189,7 @@ class Admin::LocalAdminsController < ApplicationController
         AgMailer.welcome_email_existing_user(@admin_group_owner,current_user.la_setting).deliver if value.present? == false
         redirect_to  manage_admin_group_local_admins_path , :notice => "Admin Group Created"
       else
-        @products = Product.all
+        @products = Product.where(:type => "Slave")
         render :action => "new_admin_group"
       end
     end
@@ -250,7 +251,7 @@ class Admin::LocalAdminsController < ApplicationController
   end
 
   def get_product_details
-    @product =Product.find(params[:product])
+    @product =Product.where(:platform_product_name => params[:product]).first
     logger.info @product.inspect
   end
 
@@ -258,6 +259,7 @@ class Admin::LocalAdminsController < ApplicationController
     @admin_group_owner = User.find params[:id]
     @profile = @admin_group_owner.profile
     @admin_group = @admin_group_owner.admin_group
+    @products = Product.where(:type => "Master")
     @product = @admin_group_owner.user_products.first.product
   end
 
@@ -266,10 +268,15 @@ class Admin::LocalAdminsController < ApplicationController
     @admin_group_owner = User.find params[:id]
     @profile = @admin_group_owner.profile
     @admin_group = @admin_group_owner.admin_group
+    @product = @admin_group_owner.user_products.first.product
+    product_new = Product.where(:platform_product_name =>params[:product]).first
     if @admin_group_owner.update_attributes(params[:user])  && @profile.update_attributes(params[:profile])  && @admin_group.update_attributes(params[:admin_group])
+      Product.remove_product(@product,@admin_group_owner)
+      Product.add_product(product_new,@admin_group_owner)
       redirect_to  all_admins_global_admins_path , :notice => "Admin Group Updated"  if current_user.has_role "Global Admin"
       redirect_to manage_admin_group_local_admins_path, :notice => "successfully_updated"   if current_user.has_role "Local Admin"
     else
+      @products = Product.where(:type => "Slave")
       render :action => "edit_main_admin_group"
     end
   end

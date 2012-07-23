@@ -8,6 +8,7 @@
     <th>Master</th>
     <th>Master Billing Deviation</th>
     <th>Master Admin Deviation</th>
+    <th>Status</th>
     <th>Actions</th>
   </tr>
   </thead>
@@ -23,6 +24,7 @@
         <td><%= admin.la_setting.is_master %></td>
         <td><%= admin.la_setting.master_billing_profile_deviation %></td>
         <td><%= admin.la_setting.master_administration_deviation %></td>
+        <td><%= admin.la_setting.status %></td>
         <!--<td><%#=admin.role %></td>-->
         <!--<td>-->
           <!--<%if RolesManagement::RolesManager.is_role_present?("Local Admin", admin)%>-->

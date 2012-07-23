@@ -82,7 +82,7 @@
             <div class="control-group">
               <label class="control-label" for="input01"><%= label_tag "first_name: "%><span style="color:red"> </span></label>
               <div class="controls">
-                <%= p.text_field :first_name,:class=>"input" %>
+                <%= ag.text_field :first_name,:class=>"input" %>
                 <!--<input type="text" class="input-xlarge" id="input01">-->
                 <p class="help-block"></p>
               </div>
@@ -91,7 +91,7 @@
             <div class="control-group">
               <label class="control-label" for="input01"><%= label_tag "last_name: "%><span style="color:red"> </span></label>
               <div class="controls">
-                <%= p.text_field :last_name,:class=>"input" %>
+                <%= ag.text_field :last_name,:class=>"input" %>
                 <!--<input type="text" class="input-xlarge" id="input01">-->
                 <p class="help-block"></p>
               </div>
@@ -171,7 +171,7 @@
             <div class="control-group">
               <label class="control-label" for="input01">Select Product: <span style="color:red"> </span></label>
               <div class="controls">
-                <%=select_tag :product,options_for_select( @products.collect{|i| i.platform_product_name} ,@product.platform_product_name)%>
+                <%=select_tag :product,options_for_select(@products.collect{|i| i.platform_product_name} ,@product.platform_product_name)%>
                 <!--<input type="text" class="input-xlarge" id="input01">-->
                 <p class="help-block"></p>
               </div>
@@ -217,7 +217,7 @@
                 <p class="help-block"></p>
               </div>
             </div>
-
+            <div id="date_hide">
             <div class="control-group">
               <label class="control-label" for="input01">Free PaaS Expiration Date <span style="color:red"></span></label>
               <div class="controls">
@@ -225,6 +225,7 @@
                 <!--<input type="text" class="input-xlarge" id="input01">-->
                 <p class="help-block"></p>
               </div>
+            </div>
             </div>
 
             <div class="form-actions">
@@ -242,6 +243,7 @@
 
         jQuery(function(){
 
+            $("#date_hide").hide()
             $("#check").click(function(event){
                 event.preventDefault();
                 var email = $("#user_email").val()
@@ -254,6 +256,27 @@
                 $.get("/local_admins/get_product_details",{"product" :product},function(k){}
                 )
 
+            });
+
+
+
+
+            $("#admin_group_free_subscription").change(function(){
+
+                free_sub = $("#admin_group_free_subscription").val()
+                if (free_sub == "No")
+                {
+                    $("#date_hide").hide()
+                }
+
+                if (free_sub =="Permanent" )
+                {
+                    $("#date_hide").hide()
+                }
+                if (free_sub =="Temporary" )
+                {
+                    $("#date_hide").show()
+                }
             });
 
 //            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});

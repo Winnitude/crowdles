@@ -23,7 +23,7 @@
             <div class="control-group">
               <label class="control-label" for="input01">AG Owner: </label>
               <div class="controls">
-                <%=@profile.first_name%> &nbsp <%=@profile.last_name%> &nbsp &nbsp  <%=@admin_group_owner.email%>
+                <%=@profile.first_name%> &nbsp <%=@profile.last_name%> &nbsp &nbsp  <%=@admin_group_owner.email%>  &nbsp &nbsp <%= link_to "Change Owner" ,"#",:class => "btn btn-danger" %>
                 <!--<input type="text" class="input-xlarge" id="input01">-->
                 <p class="help-block"> </p>
               </div>
@@ -169,81 +169,19 @@
             </div>
 
             <div class="control-group">
-              <label class="control-label" for="input01">Product: <span style="color:red"> </span></label>
+              <label class="control-label" for="input01">Select Product: <span style="color:red"> </span></label>
               <div class="controls">
-                <%= @product.platform_product_name%>
+                <%=select_tag :product,options_for_select( @products.collect{|i| i.platform_product_name} ,@product.platform_product_name)%>
                 <!--<input type="text" class="input-xlarge" id="input01">-->
                 <p class="help-block"></p>
               </div>
             </div>
 
             <div id= "products_details">
-              <h3>Product Details</h3>
-              <div class="control-group">
-                <label class="control-label" for="input01">BG private Allowed:</label>
-                <div class="controls">
-                  <%=@product.bg_private%>
-                  <!--<input type="text" class="input-xlarge" id="input01">-->
-                  <p class="help-block"></p>
-                </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label" for="input01">Number of BG Windows Allowed:</label>
-                <div class="controls">
-                  <%=@product.get_window_number%>
-                  <!--<input type="text" class="input-xlarge" id="input01">-->
-                  <p class="help-block"></p>
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for="input01">Number of BG Contest Allowed:</label>
-                <div class="controls">
-                  <%=@product.get_contest_number%>
-                  <!--<input type="text" class="input-xlarge" id="input01">-->
-                  <p class="help-block"></p>
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for="input01">Number of Active Workers Allowed:</label>
-                <div class="controls">
-                  <%=@product.get_ag_workers_number%>
-                  <!--<input type="text" class="input-xlarge" id="input01">-->
-                  <p class="help-block"></p>
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for="input01">BG Custom Commissions Allowed:</label>
-                <div class="controls">
-                  <%=@product.ag_custom_commissions%>
-                  <!--<input type="text" class="input-xlarge" id="input01">-->
-                  <p class="help-block"></p>
-                </div>
-              </div>
-
-
-
-              <div class="control-group">
-                <label class="control-label" for="input01">Bg Custom Funding Recepient:</label>
-                <div class="controls">
-                  <%=@product.ag_recepient_settings%>
-                  <!--<input type="text" class="input-xlarge" id="input01">-->
-                  <p class="help-block"></p>
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for="input01">Custom PaymentGateway Payer Allowed:</label>
-                <div class="controls">
-                  <%=@product.ag_payment_gateway_commissions_payer_settings%>
-                  <!--<input type="text" class="input-xlarge" id="input01">-->
-                  <p class="help-block"></p>
-                </div>
-              </div>
-
+              <%= render :partial => "product_info" %>
             </div>
+
+
             <h3>Special Settings and Promotions</h3>
 
             <div class="control-group">
@@ -290,6 +228,8 @@
 
         jQuery(function(){
 
+
+
             $("#check").click(function(event){
                 event.preventDefault();
                 var email = $("#user_email").val()
@@ -297,12 +237,12 @@
                 )
             });
 
-//            $("#product").change(function(){
-//                var  product = $("#product").val()
-//                $.get("/local_admins/get_product_details",{"product" :product},function(k){}
-//                )
-//
-//            });
+            $("#product").change(function(){
+                var  product = $("#product").val()
+                $.get("/local_admins/get_product_details",{"product" :product},function(k){}
+                )
+
+            });
 
 //            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
 //            email.add( Validate.Email);

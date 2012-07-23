@@ -1,4 +1,4 @@
-<h1>Edit Pass Billing Profile</h1>
+<h1>Edit PaaS Billing Profile</h1>
 <%=form_for @billing_profile , :url=>pass_billing_profile_path , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
     <% if @billing_profile.errors.any?  %>
         <div id="error_explanation">
@@ -12,14 +12,14 @@
         </div>
     <% end %>
 
-    <div class="control-group">
-      <label class="control-label" for="input01">Currency<span style="color:red">*</span></label>
-      <div class="controls">
-        <%=f.select :currency,options_for_select(return_curreny_name,@billing_profile.currency),:class=>"input"%>
-        <!--<input type="text" class="input-xlarge" id="input01">-->
-        <p class="help-block"></p>
-      </div>
-    </div>
+    <!--<div class="control-group">-->
+      <!--<label class="control-label" for="input01">Currency<span style="color:red">*</span></label>-->
+      <!--<div class="controls">-->
+        <!--<%#=f.select :currency,options_for_select(return_curreny_name,@billing_profile.currency),:class=>"input"%>-->
+        <!--&lt;!&ndash;<input type="text" class="input-xlarge" id="input01">&ndash;&gt;-->
+        <!--<p class="help-block"></p>-->
+      <!--</div>-->
+    <!--</div>-->
 
     <div class="control-group">
       <label class="control-label" for="input01">First Name<span style="color:red">* </span></label>
@@ -196,8 +196,8 @@
     <script type="text/javascript">
 
         jQuery(function(){
-            var profile_currency = new LiveValidation('platform_billing_profile_currency',{validMessage:" ",onlyOnSubmit:true});
-            profile_currency.add( Validate.Presence ,{failureMessage:" Can't be empty"});
+//            var profile_currency = new LiveValidation('platform_billing_profile_currency',{validMessage:" ",onlyOnSubmit:true});
+//            profile_currency.add( Validate.Presence ,{failureMessage:" Can't be empty"});
 
             var fname = new LiveValidation('platform_billing_profile_first_name',{validMessage:" ",onlyOnSubmit:true});
             fname.add( Validate.Presence ,{failureMessage:" Can't be empty"});

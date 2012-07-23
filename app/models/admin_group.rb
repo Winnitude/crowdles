@@ -27,8 +27,8 @@ class AdminGroup
   field :ag_email ,                        :type => String
   field :status ,                                   :type => String   ,   :default => 'new'
   field :language ,                                 :type => String
-  #field :first_name ,                               :type => String
-  #field :last_name ,                                :type => String
+  field :first_name ,                               :type => String
+  field :last_name ,                                :type => String
   field :company_name ,                             :type => String
   field :ag_country
   field :country ,                                  :type => String

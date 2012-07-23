@@ -10,6 +10,14 @@
     <fieldset>
       <%= render "shared/form_errors", :object => resource %>
       <legend><h2>Change Password <%#= resource_name.to_s.humanize %></h2></legend>
+
+      <div class="control-group">
+        <label class="control-label" for="input01">Current Password</label>
+        <div class="controls">
+          <%= f.password_field :current_password,:class=>"input" %>
+          <p class="help-block"></p>
+        </div>
+      </div>
       <div class="control-group">
         <label class="control-label" for="input01">New password</label>
         <div class="controls">
@@ -24,13 +32,7 @@
           <p class="help-block"></p>
         </div>
       </div>
-      <div class="control-group">
-        <label class="control-label" for="input01">Current Password</label>
-        <div class="controls">
-          <%= f.password_field :current_password,:class=>"input" %>
-          <p class="help-block"></p>
-        </div>
-      </div>
+
       <div class="form-actions">
         <%= f.submit "Update",:class =>"btn btn-primary"  %>
         <a class="btn" href="/">Cancel</a>

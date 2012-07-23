@@ -3,7 +3,7 @@ class PlatformBillingProfile
   belongs_to :la_setting
   field :creation_date                 ,:type => DateTime
   field :last_modification_date         ,:type => DateTime
-  field :currency                     ,:type => String
+  field :currency                     ,:type => String      , :default => "USD"
   field :first_name                     ,:type => String
   field :last_name                       ,:type => String
   field :company_name                     ,:type => String
