@@ -3,14 +3,14 @@
     <%= fields_for @admin_group do |ag| %>
         <%= fields_for @profile do |p| %>
 
-            <% if @admin_group_owner.errors.any? || @profile.errors.any? || @admin_group.errors.any? %>
+            <% if  @profile.errors.any? || @admin_group.errors.any? %>
                 <div id="error_explanation">
                   <h2><%= pluralize(@admin_group_owner.errors.count + @profile.errors.count + @admin_group.errors.count , "error") %> prohibited this Local Admin from being saved:</h2>
 
                   <ul>
-                    <% @admin_group_owner.errors.full_messages.each do |msg| %>
-                        <li><%= msg %></li>
-                    <% end %>
+                    <%# @admin_group_owner.errors.full_messages.each do |msg| %>
+                        <!--<li><%#= msg %></li>-->
+                    <%# end %>
                     <% @admin_group.errors.full_messages.each do |msg| %>
                         <li><%= msg %></li>
                     <% end %>

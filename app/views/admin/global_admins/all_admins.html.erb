@@ -36,14 +36,13 @@
               <!--<%= "Already MLA"%>-->
           <!--<%end%>-->
         <!--</td>-->
-        <td> <%= link_to 'Show', show_admin_local_admin_path(admin.id) %> |
+        <td> <%= link_to 'View', show_admin_local_admin_path(admin.id) %> |
           <%= link_to 'Edit',edit_local_admin_local_admin_path(admin.id) %> |
           <% link_url_tag = admin.suspended ? "Activate" : "Dactivate"  %>
           <%#= link_to link_url_tag,suspend_user_path(admin.id) %>
           <%# link_url_tag_account = admin.canceled ? "ReOpen" : "Cancel"  %>
           <%#= link_to link_url_tag_account,canceled_user_account_path(admin.id) %>
-          <%= link_to "Deactivate","#" ,:confirm => "Under Development"%>  |
-          <%= link_to "Delete","#" ,:confirm => "Under Development"%></td> </td>
+
       </tr>
   <% end %>
 

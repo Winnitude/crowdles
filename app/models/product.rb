@@ -14,23 +14,47 @@ class Product
   field :status,                        :type => String
 
   def get_window_number
-    if self.bg_window_number.present?
-      self.bg_window_number
-    end
-    "unlimited"
+    self.bg_window_number.present?  ? self.bg_window_number :  "unlimited"
   end
 
   def get_contest_number
-    if self.bg_contest_number.present?
-      self.bg_contest_number
-    end
-    "unlimited"
+   self.bg_contest_number.present? ?  self.bg_contest_number   :  "unlimited"
   end
 
   def get_ag_workers_number
-    if self.ag_workers_number.present?
-      self.ag_workers_number
+    self.ag_workers_number.present?    ? self.ag_workers_number :  "unlimited"
+  end
+
+
+  def self.add_product(product,user)
+    product = Product.find(product._id)
+    user = User.where(:_id => user._id).first
+    all_user_products = user.user_products.collect{|i| i.product}
+    puts all_user_products.inspect
+    if product.present? && !(all_user_products.include?(product))
+      puts("inside if")
+      user_product = user.user_products.new
+      user_product.product = product
+      user_product.save
     end
-    "unlimited"
+  end
+
+  def self.remove_product(product,user)
+    product = Product.find(product._id)
+    user = User.where(:_id => user._id).first
+    all_user_products = user.user_products.collect{|i| i.product}
+    puts all_user_products.inspect
+    if  product.present? && (all_user_products.include?(product))
+      puts("inside if")
+      selected_product = user.user_products.select{|i|  i.product.present? && i.product == product}.first
+      selected_product.delete
+    end
+  end
+
+  def self.all_products(user)
+    user = User.where(:_id => user._id).first
+    all_user_products = user.user_products.collect{|i| i.product.platform_product_name if i.product.present?}
+    puts all_user_products.inspect
+    all_user_products
   end
 end

@@ -60,7 +60,9 @@ class AdminGroup
   field :free_paas_expiration_date ,            :type => Date
   #validates :main_worker_id   , :presence => true
   #validates :ag_creation_date   , :presence => true
-
+  validate :not_fake_country
+  validate :not_fake_language
+  validate :not_fake_ag_country
 
   #field :admin_group_consultant_worker_id, :type => String
 
@@ -113,6 +115,24 @@ class AdminGroup
     self.additional_address = local_admin.additional_address
     self.phone_number = local_admin.phone_number
     self.language = local_admin.language
+  end
+
+  def not_fake_country
+    if  CountryDetail.is_fake(country)
+      errors.add(:country, "Not present in country List")
+    end
+  end
+
+  def not_fake_language
+    if  Language.is_fake(language)
+      errors.add(:language, "Not present in Language List")
+    end
+  end
+
+  def not_fake_ag_country
+    if  CountryDetail.is_fake(ag_country)
+      errors.add(:admin_group_country, "Not present in country List")
+    end
   end
 
 

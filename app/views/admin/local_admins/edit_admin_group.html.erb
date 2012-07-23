@@ -3,7 +3,7 @@
     <%= fields_for @admin_group do |ag| %>
         <%= fields_for @profile do |p| %>
 
-            <% if @admin_group_owner.errors.any? || @profile.errors.any? || @admin_group.errors.any? %>
+            <% if  @profile.errors.any? || @admin_group.errors.any? %>
                 <div id="error_explanation">
                   <h2><%= pluralize(@admin_group_owner.errors.count + @profile.errors.count + @admin_group.errors.count , "error") %> prohibited this Admin Group from being saved:</h2>
 
