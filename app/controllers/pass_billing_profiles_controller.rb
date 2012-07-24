@@ -3,6 +3,8 @@ class PassBillingProfilesController < ApplicationController
   #autocomplete :user, :email
   autocomplete :language, :name
   before_filter :should_be_global_admin ,:only => [:edit]
+
+  #there are 2 different actions for edit and update coz when LA is created its MAG also created that time edit/upade will call and for only update purpose edit_billing_profile and update _billing_profilr are called
   def edit
     @billing_profile = PlatformBillingProfile.find (params[:id])
     logger.info @billing_profile.inspect
@@ -14,14 +16,14 @@ class PassBillingProfilesController < ApplicationController
 
     if @billing_profile.update_attributes(params[:platform_billing_profile])
       @admin_group_owner = @billing_profile.la_setting.user
-      @admin_group = @admin_group_owner.build_admin_group(:admin_group_type => "Master")
-      @admin_group.set_group_attributes(@admin_group_owner.la_setting)
-      @admin_group.la_setting = @billing_profile.la_setting
-      @product = Product.where(:type => "Master").first
-      @user_product = @admin_group_owner.user_products.new
-      @user_product.product = @product
-      @admin_group_owner.save && @admin_group.save  && @user_product.save
-      @admin_group_owner.add_role "Admin Group Owner"
+      #@admin_group = @admin_group_owner.build_admin_group(:admin_group_type => "Master")
+      #@admin_group.set_group_attributes(@admin_group_owner.la_setting)
+      #@admin_group.la_setting = @billing_profile.la_setting
+      #@product = Product.where(:type => "Master").first
+      #@user_product = @admin_group_owner.user_products.new
+      #@user_product.product = @product
+      #@admin_group_owner.save && @admin_group.save  && @user_product.save
+      #@admin_group_owner.add_role "Admin Group Owner"
       redirect_to edit_main_admin_group_local_admin_path(@admin_group_owner) , :notice => "Updated Successfully"
 
     else
@@ -29,6 +31,20 @@ class PassBillingProfilesController < ApplicationController
     end
    end
 
+  def edit_billing_profile
+    @billing_profile = PlatformBillingProfile.find (params[:pass_billing_profile_id])
+  end
+
+  def update_billing_profile
+    @billing_profile = PlatformBillingProfile.find (params[:pass_billing_profile_id])
+    #NOTE the following code is to create the MAG for LA when GA create the LA
+
+    if @billing_profile.update_attributes(params[:platform_billing_profile])
+      redirect_to all_admins_global_admins_path(@admin_group_owner) , :notice => "Updated Successfully"
+    else
+      render :action=> :edit
+    end
+  end
 
   def  should_be_global_admin
     unless RolesManager.is_role_present?("Global Admin", current_user)

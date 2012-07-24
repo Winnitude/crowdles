@@ -48,10 +48,20 @@ class Admin::LocalAdminsController < ApplicationController
       if @local_admin.save && @profile.save && @la_setting.save
         @local_admin.add_role "Local Admin"
         @local_admin.remove_role "User"
-        LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver if value.present?
-        LaMailer.welcome_email_existing_user(@local_admin,@la_setting).deliver if value.present? == false
+        # also creating the billing profile for that Local Admin ads per requirement
         @pass_billing_profile = @la_setting.build_platform_billing_profile
         @pass_billing_profile.save(:validate => false)
+        # also creating the MAG for the same country and that LA will be the owner for that MAG
+        @admin_group = @local_admin.build_admin_group(:admin_group_type => "Master")
+        @admin_group.set_group_attributes(@la_setting)
+        @admin_group.la_setting = @la_setting
+        @product = Product.where(:type => "Master").first
+        Product.add_product @product , @local_admin
+        @local_admin.save
+        @admin_group.save
+        @local_admin.add_role "Admin Group Owner"
+        LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver if value.present?
+        LaMailer.welcome_email_existing_user(@local_admin,@la_setting).deliver if value.present? == false
         redirect_to edit_pass_billing_profile_path(@pass_billing_profile) ,:notice => "Local Admin Created Successfully "
       else
         render :new_local_admin
@@ -212,10 +222,10 @@ class Admin::LocalAdminsController < ApplicationController
     redirect_to manage_admin_group_local_admins_path , :notice => "Successfully Changed To MAGO"
   end
 
-  #def show_admin
-  #  @admin = User.find(params[:id])
-  #  @profile = @admin.profile
-  #end
+  def show_admin
+    @admin = User.find(params[:id])
+    @profile = @admin.profile
+  end
 
   def my_settings
     @admin = current_user

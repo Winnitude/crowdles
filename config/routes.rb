@@ -221,6 +221,8 @@ CrowdFunding::Application.routes.draw do
 
     get :autocomplete_country_detail_name, :on => :collection
     get :autocomplete_language_name, :on => :collection
+    get :edit_billing_profile
+    put :update_billing_profile
 
   end
   resources :default_billing_profiles do
