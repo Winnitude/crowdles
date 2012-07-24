@@ -3,6 +3,8 @@ class PassBillingProfilesController < ApplicationController
   #autocomplete :user, :email
   autocomplete :language, :name
   before_filter :should_be_global_admin ,:only => [:edit]
+
+  #there are 2 different actions for edit and update coz when LA is created its MAG also created that time edit/upade will call and for only update purpose edit_billing_profile and update _billing_profilr are called
   def edit
     @billing_profile = PlatformBillingProfile.find (params[:id])
     logger.info @billing_profile.inspect
@@ -29,6 +31,20 @@ class PassBillingProfilesController < ApplicationController
     end
    end
 
+  def edit_billing_profile
+    @billing_profile = PlatformBillingProfile.find (params[:pass_billing_profile_id])
+  end
+
+  def update_billing_profile
+    @billing_profile = PlatformBillingProfile.find (params[:pass_billing_profile_id])
+    #NOTE the following code is to create the MAG for LA when GA create the LA
+
+    if @billing_profile.update_attributes(params[:platform_billing_profile])
+      redirect_to all_admins_global_admins_path(@admin_group_owner) , :notice => "Updated Successfully"
+    else
+      render :action=> :edit
+    end
+  end
 
   def  should_be_global_admin
     unless RolesManager.is_role_present?("Global Admin", current_user)

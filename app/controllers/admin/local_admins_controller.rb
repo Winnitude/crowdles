@@ -212,10 +212,10 @@ class Admin::LocalAdminsController < ApplicationController
     redirect_to manage_admin_group_local_admins_path , :notice => "Successfully Changed To MAGO"
   end
 
-  #def show_admin
-  #  @admin = User.find(params[:id])
-  #  @profile = @admin.profile
-  #end
+  def show_admin
+    @admin = User.find(params[:id])
+    @profile = @admin.profile
+  end
 
   def my_settings
     @admin = current_user

@@ -39,7 +39,8 @@
           <!--<%end%>-->
         <!--</td>-->
         <td> <%= link_to 'View', show_admin_local_admin_path(admin.id) %> |
-          <%= link_to 'Edit',edit_local_admin_local_admin_path(admin.id) %> |
+          <%= link_to 'Edit',edit_local_admin_local_admin_path(admin.id) %>
+          |<%= link_to 'Edit Billing Profile',pass_billing_profile_edit_billing_profile_path(admin.la_setting.platform_billing_profile) %> |
           <% link_url_tag = admin.suspended ? "Activate" : "Dactivate"  %>
           <%#= link_to link_url_tag,suspend_user_path(admin.id) %>
           <%# link_url_tag_account = admin.canceled ? "ReOpen" : "Cancel"  %>
