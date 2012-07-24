@@ -1,6 +1,6 @@
 <div><% if current_user.present? %>
       <%#= "Welcome #{current_user.role}" %>
-      <% if RolesManagement::RolesManager.is_role_present?("User",current_user)%>
+      <% if RolesManagement::RolesManager.is_role_present?("User",current_user) && !check_is_admin_host_present?%>
           <%= render :partial => 'shared/user_tabs'%>
       <%end%>
   <% end %></div>

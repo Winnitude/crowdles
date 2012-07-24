@@ -47,7 +47,7 @@ class Admin::LocalAdminsController < ApplicationController
       @local_admin.country = @la_setting.la_country    if @local_admin.new_record?
       if @local_admin.save && @profile.save && @la_setting.save
         @local_admin.add_role "Local Admin"
-        @local_admin.remove_role "User"
+        #@local_admin.remove_role "User"
         # also creating the billing profile for that Local Admin ads per requirement
         @pass_billing_profile = @la_setting.build_platform_billing_profile
         @pass_billing_profile.save(:validate => false)

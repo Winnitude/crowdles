@@ -106,6 +106,9 @@ CrowdFunding::Application.routes.draw do
     put "update_main_admin_group", :on=> :member
     get "sago_home", :on => :member
     get "all_workers", :on => :member
+
+    get :autocomplete_language_name, :on => :collection
+    get :autocomplete_country_detail_name, :on => :collection
     resources :admin_group_workers do
       post "create_admin_group_worker" , :on => :collection
       get "new_admin_group_workers", :on => :collection

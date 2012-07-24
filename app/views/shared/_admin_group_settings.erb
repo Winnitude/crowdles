@@ -4,8 +4,13 @@
     <%split_array = request.url.split("/") %>
 
 
-        <%= link_to 'Profile Settings',edit_user_registration_path  %>
-        <%= link_to 'General Settings',edit_admin_group_admin_group_path(current_user) %>   |
+    <%= link_to 'Profile Settings',edit_user_registration_path  %>  |
+
+    <% if current_user.admin_group.admin_group_type == "Master" %>
+        <%= link_to 'General Settings',edit_main_admin_group_admin_group_path(current_user) %>
+    <% else %>
+        <%= link_to 'General Settings',edit_admin_group_admin_group_path(current_user) %>
+    <% end %>|
 
   </h4>
 </ul>

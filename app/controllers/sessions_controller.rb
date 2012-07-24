@@ -18,7 +18,7 @@ class SessionsController <  Devise::SessionsController
     logger.info "#########################{resource.inspect}"
     logger.info "#########################{resource_name.inspect}"
     if resource.is_provider_terms_of_service
-      if (RolesManager.is_role_present?("User",resource) && request.url.index(ADMIN_HOST).present?)
+      if check_weather_stop_login_from_admin_panel(resource)
 
         redirect_to logout_path(:error=> "error")
 

@@ -1,5 +1,8 @@
 class AdminGroupsController < ApplicationController
   before_filter :should_be_AGO
+  autocomplete :country_detail, :name
+  #autocomplete :user, :email
+  autocomplete :language, :name
 
 
   def show_admin_group
@@ -15,7 +18,7 @@ class AdminGroupsController < ApplicationController
     @profile = @admin_group_owner.profile
     @admin_group = @admin_group_owner.admin_group
     @product = @admin_group_owner.user_products.first.product
-    @products = Product.where(:type => "Slave")
+    #@products = Product.where(:type => "Slave")
   end
 
 
@@ -28,11 +31,9 @@ class AdminGroupsController < ApplicationController
     else
       @profile = @admin_group_owner.profile
       @product = @admin_group_owner.user_products.first.product
-      @products = Product.where(:type => "Slave")
+      #@products = Product.where(:type => "Slave")
       redirect_to :action => :edit_admin_group
     end
-
-
   end
 
 
@@ -54,15 +55,25 @@ class AdminGroupsController < ApplicationController
   end
 
   def edit_main_admin_group
-    @main_admin_group = MainAdminGroup.find(params[:id])
-    @local_admin = current_user.la_setting
-    @user = @main_admin_group.user || User.new
+    @admin_group_owner = User.find params[:id]
+    #@la_setting = current_user.la_setting
+    @profile = @admin_group_owner.profile
+    @admin_group = @admin_group_owner.admin_group
+    @product = @admin_group_owner.user_products.first.product
+    #@products = Product.where(:type => "Mater")
   end
 
   def update_main_admin_group
-    @main_admin_group = MainAdminGroup.find(params[:id])
-    @main_admin_group.update_attributes(params[:main_admin_group])
-    redirect_to root_path   ,:notice => "Successfully Update"
+    @admin_group_owner = User.find params[:id]
+    @admin_group = @admin_group_owner.admin_group
+    if @admin_group.update_attributes(params[:admin_group])
+      redirect_to edit_user_registration_path ,:notice => "Your Settings has been updated Successfully"
+    else
+      @profile = @admin_group_owner.profile
+      @product = @admin_group_owner.user_products.first.product
+      #@products = Product.where(:type => "Master")
+      redirect_to :action => :edit_main_admin_group
+    end
   end
 
   private

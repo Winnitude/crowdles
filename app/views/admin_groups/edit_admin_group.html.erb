@@ -54,7 +54,7 @@
             <div class="control-group">
               <label class="control-label" for="input01">AG country: <span style="color:red"> *</span></label>
               <div class="controls">
-                <%=ag.autocomplete_field :ag_country ,autocomplete_country_detail_name_local_admins_path,:class=>"input"%>
+                <%=ag.autocomplete_field :ag_country ,autocomplete_country_detail_name_admin_groups_path,:class=>"input"%>
                 <!--<input type="text" class="input-xlarge" id="input01">-->
                 <p class="help-block"></p>
               </div>
@@ -63,7 +63,7 @@
             <div class="control-group">
               <td><label class="control-label" for="input01">AG Language: <span style="color:red"> </span></label></td>
               <div class="controls">
-                <%=ag.autocomplete_field :language ,autocomplete_language_name_local_admins_path ,:class=>"input"%>
+                <%=ag.autocomplete_field :language ,autocomplete_language_name_admin_groups_path ,:class=>"input"%>
                 <!--<input type="text" class="input-xlarge" id="input01">-->
                 <p class="help-block"></p>
               </div>
@@ -82,7 +82,7 @@
             <div class="control-group">
               <label class="control-label" for="input01"><%= label_tag "first_name: "%><span style="color:red"> </span></label>
               <div class="controls">
-                <%= p.text_field :first_name,:class=>"input" %>
+                <%= ag.text_field :first_name,:class=>"input" %>
                 <!--<input type="text" class="input-xlarge" id="input01">-->
                 <p class="help-block"></p>
               </div>
@@ -91,7 +91,7 @@
             <div class="control-group">
               <label class="control-label" for="input01"><%= label_tag "last_name: "%><span style="color:red"> </span></label>
               <div class="controls">
-                <%= p.text_field :last_name,:class=>"input" %>
+                <%= ag.text_field :last_name,:class=>"input" %>
                 <!--<input type="text" class="input-xlarge" id="input01">-->
                 <p class="help-block"></p>
               </div>
@@ -108,7 +108,7 @@
             <div class="control-group">
               <label class="control-label" for="input01">Country: <span style="color:red"> </span></label>
               <div class="controls">
-                <%=ag.autocomplete_field :country ,autocomplete_country_detail_name_local_admins_path,:class=>"input" ,:disabled => true%>
+                <%=ag.autocomplete_field :country ,autocomplete_country_detail_name_admin_groups _path,:class=>"input" ,:disabled => true%>
                 <!--<input type="text" class="input-xlarge" id="input01">-->
                 <p class="help-block"></p>
               </div>
@@ -171,7 +171,7 @@
             <!--<div class="control-group">-->
               <!--<label class="control-label" for="input01">Select Product: <span style="color:red"> </span></label>-->
               <!--<div class="controls">-->
-                <!--<%=select_tag :product,options_for_select( @products.collect{|i| i.platform_product_name} ,@product.platform_product_name)%>-->
+                <!--<%#=select_tag :product,options_for_select( @products.collect{|i| i.platform_product_name} ,@product.platform_product_name)%>-->
                 <!--&lt;!&ndash;<input type="text" class="input-xlarge" id="input01">&ndash;&gt;-->
                 <!--<p class="help-block"></p>-->
               <!--</div>-->

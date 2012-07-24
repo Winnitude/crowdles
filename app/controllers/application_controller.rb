@@ -65,5 +65,18 @@ class ApplicationController < ActionController::Base
     request.url.index(ADMIN_HOST).present?
   end
 
+  def check_weather_stop_login_from_admin_panel(user)
+    if  check_is_admin_host_present?
+      if  (user.has_role("Global Admin") || user.has_role("Local Admin"))
+        logger.info "returning trueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        return false
+      else
+        logger.info "returning falseeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        return true
+      end
+    end
+    return false
+  end
+
 
 end
