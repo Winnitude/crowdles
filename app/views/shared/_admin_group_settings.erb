@@ -1,0 +1,12 @@
+<div align="right"><ul>
+
+  <h4>
+    <%split_array = request.url.split("/") %>
+
+
+        <%= link_to 'Profile Settings',edit_user_registration_path  %>
+        <%= link_to 'General Settings',edit_admin_group_admin_group_path(current_user) %>   |
+
+  </h4>
+</ul>
+</div>

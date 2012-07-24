@@ -20,8 +20,8 @@ class AdminGroup
  # field :admin_group_type ,                         :type => String
   field :is_master ,                               :type => Boolean ,    :default => false
   #field :main_worker_id ,                           :type => String
-  field :ag_creation_date ,                         :type => DateTime   , :default => DateTime.now.utc
-  field :ag_expiration_date ,                       :type => DateTime
+  field :ag_creation_date ,                         :type => Date   , :default => Date.today
+  field :ag_expiration_date ,                       :type => Date
   field :ag_deactivation_date ,                     :type => DateTime
   field :admin_group_type ,                         :type => String ,     :default => 'Slave'
   field :ag_email ,                        :type => String

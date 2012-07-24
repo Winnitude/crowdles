@@ -16,14 +16,14 @@ class PassBillingProfilesController < ApplicationController
 
     if @billing_profile.update_attributes(params[:platform_billing_profile])
       @admin_group_owner = @billing_profile.la_setting.user
-      @admin_group = @admin_group_owner.build_admin_group(:admin_group_type => "Master")
-      @admin_group.set_group_attributes(@admin_group_owner.la_setting)
-      @admin_group.la_setting = @billing_profile.la_setting
-      @product = Product.where(:type => "Master").first
-      @user_product = @admin_group_owner.user_products.new
-      @user_product.product = @product
-      @admin_group_owner.save && @admin_group.save  && @user_product.save
-      @admin_group_owner.add_role "Admin Group Owner"
+      #@admin_group = @admin_group_owner.build_admin_group(:admin_group_type => "Master")
+      #@admin_group.set_group_attributes(@admin_group_owner.la_setting)
+      #@admin_group.la_setting = @billing_profile.la_setting
+      #@product = Product.where(:type => "Master").first
+      #@user_product = @admin_group_owner.user_products.new
+      #@user_product.product = @product
+      #@admin_group_owner.save && @admin_group.save  && @user_product.save
+      #@admin_group_owner.add_role "Admin Group Owner"
       redirect_to edit_main_admin_group_local_admin_path(@admin_group_owner) , :notice => "Updated Successfully"
 
     else

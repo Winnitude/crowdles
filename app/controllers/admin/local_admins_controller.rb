@@ -52,8 +52,14 @@ class Admin::LocalAdminsController < ApplicationController
         @pass_billing_profile = @la_setting.build_platform_billing_profile
         @pass_billing_profile.save(:validate => false)
         # also creating the MAG for the same country and that LA will be the owner for that MAG
-
-
+        @admin_group = @local_admin.build_admin_group(:admin_group_type => "Master")
+        @admin_group.set_group_attributes(@la_setting)
+        @admin_group.la_setting = @la_setting
+        @product = Product.where(:type => "Master").first
+        Product.add_product @product , @local_admin
+        @local_admin.save
+        @admin_group.save
+        @local_admin.add_role "Admin Group Owner"
         LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver if value.present?
         LaMailer.welcome_email_existing_user(@local_admin,@la_setting).deliver if value.present? == false
         redirect_to edit_pass_billing_profile_path(@pass_billing_profile) ,:notice => "Local Admin Created Successfully "

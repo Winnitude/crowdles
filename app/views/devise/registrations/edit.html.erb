@@ -6,6 +6,10 @@
     <%= render :partial => 'shared/local_admin_settings' %>
 <%end%>
 
+<% if current_user.has_role "Admin Group Owner"%>
+    <%= render :partial => 'shared/admin_group_settings' %>
+<%end%>
+
 <%= form_for(resource, :as => resource_name, :url => user_registration_path, :html => { :method => :put,:class=> "form-horizontal" }) do |f| %>
     <fieldset>
       <%= render "shared/form_errors", :object => resource %>
