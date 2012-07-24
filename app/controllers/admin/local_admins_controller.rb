@@ -51,9 +51,6 @@ class Admin::LocalAdminsController < ApplicationController
         LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver if value.present?
         LaMailer.welcome_email_existing_user(@local_admin,@la_setting).deliver if value.present? == false
         @pass_billing_profile = @la_setting.build_platform_billing_profile
-        #if @local_admin.default_billing_profile.present?
-        #  @pass_billing_profile.set_bp_attributes @local_admin
-        #end
         @pass_billing_profile.save(:validate => false)
         redirect_to edit_pass_billing_profile_path(@pass_billing_profile) ,:notice => "Local Admin Created Successfully "
       else
