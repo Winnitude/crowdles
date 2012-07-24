@@ -321,24 +321,26 @@
               <!--<input type="text" class="input-xlarge" id="input01">-->
               <p class="help-block"></p>
             </div>
+            <div id="deviation">
+              <div class="control-group">
+                <label class="control-label" for="input01">Master Worker Deviation: <span style="color:red"> </span></label>
+                <div class="controls">
+                  <%= l.text_field :master_worker_deviation,:class=>"input"%>
+                  <!--<input type="text" class="input-xlarge" id="input01">-->
+                  <p class="help-block"></p>
+                </div>
+              </div>
 
-            <div class="control-group">
-              <label class="control-label" for="input01">Master Worker Deviation: <span style="color:red"> </span></label>
-              <div class="controls">
-                <%= l.text_field :master_worker_deviation,:class=>"input"%>
-                <!--<input type="text" class="input-xlarge" id="input01">-->
-                <p class="help-block"></p>
+              <div class="control-group">
+                <label class="control-label" for="input01">Master Worker Deviation Comment: <span style="color:red"> </span></label>
+                <div class="controls">
+                  <%= l.text_field :master_worker_deviation_comment,:class=>"input"%>
+                  <!--<input type="text" class="input-xlarge" id="input01">-->
+                  <p class="help-block"></p>
+                </div>
               </div>
             </div>
 
-            <div class="control-group">
-              <label class="control-label" for="input01">Master Worker Deviation Comment: <span style="color:red"> </span></label>
-              <div class="controls">
-                <%= l.text_field :master_worker_deviation_comment,:class=>"input"%>
-                <!--<input type="text" class="input-xlarge" id="input01">-->
-                <p class="help-block"></p>
-              </div>
-            </div>
 
             <div class="form-actions">
               <%= f.submit "Update Local Admin",:class =>"btn btn-primary"  %>
@@ -350,7 +352,6 @@
 <%end%>
 <%= content_for :head do  %>
     <script type="text/javascript">
-
         jQuery(function(){
 
             $("#check").click(function(event){
@@ -358,6 +359,14 @@
                 var email = $("#user_email").val()
                 $.get("/local_admins/check_for_existing_user",{"email" :email},function(k){}
                 )
+            });
+            $("#deviation").hide()
+            $("#la_setting_master_administration_deviation_false").click(function(event){
+                $("#deviation").hide()
+            });
+
+            $("#la_setting_master_administration_deviation_true").click(function(event){
+                $("#deviation").show()
             });
 //            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
 //            email.add( Validate.Presence );
