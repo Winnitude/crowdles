@@ -47,6 +47,7 @@ gem "carrierwave-mongoid"
 gem "fog", "~> 1.3.1"
 gem "pry"
 gem "pry-remote"
+gem "will_paginate"
 #gem "itslog"
 #gem "fastercsv"
 

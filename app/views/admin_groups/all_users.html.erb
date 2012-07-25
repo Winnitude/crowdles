@@ -1,0 +1,13 @@
+<%= form_tag  create_worker_admin_groups_path, :method => :get  do %>
+    <%@users.each_with_index do |i,j|%>
+        <br>
+
+        <%= text_field_tag "name_#{j}" ,i.email%>
+        <%= hidden_field_tag "id_#{j}" ,i._id%>
+        <%= check_box_tag("value_#{j}") %>
+        <br>
+    <% end %>
+    <%= will_paginate @users %>
+    <%= submit_tag("Search") %>
+
+<% end %>
