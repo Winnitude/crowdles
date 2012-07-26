@@ -42,7 +42,7 @@ class AdminGroupsController < ApplicationController
     #for this method we need all the persons that have user role also they dont have LA role to them   also not to show all worker to that AG
     my_workers = current_user.admin_group.admin_group_workers.collect{|i| i.user}
     all_users = User.get_all_user_for_selected_role("User").select{|i| i.country == params[:country_name] && !(i.has_role("Local Admin"))}
-    @users = (all_users ).paginate(:page => params[:page], :per_page => 3)
+    @users = (all_users ).paginate(:page => params[:page], :per_page => 10)
   end
 
   def create_worker
@@ -53,7 +53,7 @@ class AdminGroupsController < ApplicationController
     total_selected = 0
 
     # checking how many users are selected ny AGO
-    (0..2).each_with_index do |i|
+    (0..9).each_with_index do |i|
       if params["value_#{i}".to_sym]=="1"
         total_selected = total_selected + 1
       end
@@ -71,7 +71,7 @@ class AdminGroupsController < ApplicationController
             user = User.find params["id_#{i}".to_sym]
             agw = user.admin_group_workers.new
             agw.admin_group = admin_group
-            #agw.save
+            agw.save
             logger.info agw.inspect
           end
         end
@@ -83,7 +83,7 @@ class AdminGroupsController < ApplicationController
               user = User.find params["id_#{i}".to_sym]
               agw = user.admin_group_workers.new
               agw.admin_group = admin_group
-              #agw.save
+              agw.save
               logger.info agw.inspect
             end
           end

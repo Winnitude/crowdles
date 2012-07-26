@@ -48,6 +48,7 @@ gem "fog", "~> 1.3.1"
 gem "pry"
 gem "pry-remote"
 gem "will_paginate"
+gem 'faker'
 #gem "itslog"
 #gem "fastercsv"
 
