@@ -45,32 +45,53 @@ class AdminGroupsController < ApplicationController
 
   def create_worker
     ###need to check the unlimited part also
+    total_allowed = (Product.get_product current_user).get_ag_workers_number
     admin_group = current_user.admin_group
-    remaining = (Product.get_product current_user).get_ag_workers_number - admin_group.admin_group_workers.size     # this will gives the remaining number of workers that this AG is allowed to have  calculating this by (total_allowed - current)\
+    remaining = total_allowed - admin_group.admin_group_workers.size  if total_allowed != "unlimited"   # this will gives the remaining number of workers that this AG is allowed to have  calculating this by (total_allowed - current)\
     total_selected = 0
+
+    # checking how many users are selected ny AGO
     (0..2).each_with_index do |i|
       if params["value_#{i}".to_sym]=="1"
         total_selected = total_selected + 1
       end
     end
+
+    #  if total selected is zero the he can't create the worker
     if total_selected == 0
       redirect_to all_users_admin_groups_path, :notice => "please select a user"
     else
-      if total_selected <= remaining
+
+      #if he can create unlimited AG then can create all
+      if total_allowed == "unlimited"
         (0..2).each do |i|
           if params["value_#{i}".to_sym]=="1"
             user = User.find params["id_#{i}".to_sym]
             agw = user.admin_group_workers.new
             agw.admin_group = admin_group
-            #agw.save
+            agw.save
             logger.info agw.inspect
           end
         end
         redirect_to all_users_admin_groups_path, :notice => "created"
-
       else
-        redirect_to all_users_admin_groups_path, :notice => "cant create because you are allowed to create #{remaining} worker more "
+        if total_selected <= remaining
+          (0..2).each do |i|
+            if params["value_#{i}".to_sym]=="1"
+              user = User.find params["id_#{i}".to_sym]
+              agw = user.admin_group_workers.new
+              agw.admin_group = admin_group
+              agw.save
+              logger.info agw.inspect
+            end
+          end
+          redirect_to all_users_admin_groups_path, :notice => "created"
+
+        else
+          redirect_to all_users_admin_groups_path, :notice => "cant create because you are allowed to create #{remaining} worker more "
+        end
       end
+
     end
   end
 
