@@ -1,0 +1,3 @@
+<%= form_tag  all_users_admin_groups_path, :method => :get  do %>
+    <%= select_tag :country_name ,options_for_select(@countries.collect{|i| i.name}),:onchange => "this.form.submit();" %>
+<% end %>

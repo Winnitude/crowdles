@@ -22,7 +22,6 @@ class AdminGroupsController < ApplicationController
   end
 
 
-
   def update_admin_group
     @admin_group_owner = User.find params[:id]
     @admin_group = @admin_group_owner.admin_group
@@ -35,12 +34,15 @@ class AdminGroupsController < ApplicationController
       redirect_to :action => :edit_admin_group
     end
   end
-
+  def country_selection
+    @countries = CountryDetail.all
+  end
   def all_users
+    @countries = CountryDetail.all
     #for this method we need all the persons that have user role also they dont have LA role to them   also not to show all worker to that AG
     my_workers = current_user.admin_group.admin_group_workers.collect{|i| i.user}
-    all_users = User.get_all_user_for_selected_role("User").select{|i| !(i.has_role("Local Admin"))}
-    @users = (all_users - my_workers).paginate(:page => params[:page], :per_page => 3)
+    all_users = User.get_all_user_for_selected_role("User").select{|i| i.country == params[:country_name] && !(i.has_role("Local Admin"))}
+    @users = (all_users ).paginate(:page => params[:page], :per_page => 3)
   end
 
   def create_worker
@@ -69,7 +71,7 @@ class AdminGroupsController < ApplicationController
             user = User.find params["id_#{i}".to_sym]
             agw = user.admin_group_workers.new
             agw.admin_group = admin_group
-            agw.save
+            #agw.save
             logger.info agw.inspect
           end
         end
@@ -81,7 +83,7 @@ class AdminGroupsController < ApplicationController
               user = User.find params["id_#{i}".to_sym]
               agw = user.admin_group_workers.new
               agw.admin_group = admin_group
-              agw.save
+              #agw.save
               logger.info agw.inspect
             end
           end
@@ -91,7 +93,6 @@ class AdminGroupsController < ApplicationController
           redirect_to all_users_admin_groups_path, :notice => "cant create because you are allowed to create #{remaining} worker more "
         end
       end
-
     end
   end
 

@@ -108,6 +108,7 @@ CrowdFunding::Application.routes.draw do
     get "all_workers", :on => :member
     get "all_users" ,  :on => :collection
     get "create_worker" ,  :on => :collection
+    get "country_selection" ,  :on => :collection
     get :autocomplete_language_name, :on => :collection
     get :autocomplete_country_detail_name, :on => :collection
     resources :admin_group_workers do
