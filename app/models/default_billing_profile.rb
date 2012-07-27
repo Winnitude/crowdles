@@ -24,6 +24,7 @@ class DefaultBillingProfile
   field :contact_first_name                    ,:type => String
   field :contact_last_name                 ,:type => String
   field :contact_telephone_number        ,:type => String
+  field :paypal_id                       ,:type => String
 
   #validates  :first_name, :last_name , :currency , :company_name,:email, :telephone_number , :language, :country, :city, :state, :street1 , :presence => true
   validate :not_fake_country
