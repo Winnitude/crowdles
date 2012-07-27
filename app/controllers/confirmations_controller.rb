@@ -32,6 +32,7 @@ class ConfirmationsController < Devise::PasswordsController
 
   # GET /resource/confirmation?confirmation_token=abcdef
   def show
+    logger.info "inside the show action of cc"
     with_unconfirmed_confirmable do
       if @confirmable.has_no_password?
         do_show

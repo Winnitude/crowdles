@@ -1,4 +1,5 @@
-<% if object.errors.any? %>
+<% if object.present?%>
+<% if object.errors.any?%>
 <div class="alert alert-error">
 
   <ul>
@@ -7,4 +8,5 @@
     <% end %>
   </ul>
 </div>
+<% end %>
 <% end %>

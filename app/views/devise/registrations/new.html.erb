@@ -38,3 +38,14 @@
     </fieldset>
 <% end %>
 
+<%= content_for :head do  %>
+    <script type="text/javascript">
+
+        jQuery(function(){
+
+            var country = new LiveValidation('user_country',{validMessage:" ",onlyOnSubmit:true});
+            country.add( Validate.Presence );
+             });
+    </script>
+<% end %>
+
