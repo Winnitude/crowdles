@@ -13,6 +13,8 @@
  *= require datepicker
  *= require custom_bootstrap
  *= require custom
+ *= require_tree .
+
 */
 .navbar .nav > li > a {
     text-align: center;
