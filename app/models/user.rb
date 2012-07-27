@@ -208,7 +208,7 @@ class User
 
   def self.get_all_user_for_selected_role user_role
     role= Role.where(:role => user_role).first
-    all_users_role = UserRole.all.select{|i| i.role == role if i.role.present?}
+    all_users_role = UserRole.includes([:user,:role]).all.select{|i| i.role == role if i.role.present?}
     return all_users_role.collect{|i| i.user}
   end
 

@@ -42,7 +42,7 @@ class AdminGroupsController < ApplicationController
     #for this method we need all the persons that have user role also they dont have LA role to them   also not to show all worker to that AG
     my_workers = current_user.admin_group.admin_group_workers.collect{|i| i.user}
     all_users = User.get_all_user_for_selected_role("User").select{|i| i.country == params[:country_name] && !(i.has_role("Local Admin"))}
-    @users = (all_users ).paginate(:page => params[:page], :per_page => 10)
+    @users = (all_users - my_workers ).paginate(:page => params[:page], :per_page => 10)
   end
 
   def create_worker
