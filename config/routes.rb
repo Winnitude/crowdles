@@ -218,7 +218,14 @@ CrowdFunding::Application.routes.draw do
       put 'update_provider_terms_of_service'
     end
   end
+  resources  :users do
+    member do
 
+    end
+    collection do
+     get :manage_users
+    end
+  end
   resources :profiles
   resources :pass_billing_profiles do
 

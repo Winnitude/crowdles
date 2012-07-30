@@ -7,12 +7,16 @@ class UsersController < ApplicationController
 
 
   def user_management
-   # @users = User.where(:country=>fetch_county_name(@user)).where(:role => "User")
-   # role= Role.where(:role => "User").first
-   # all_users_role = UserRole.all.select{|i| i.role == role if i.role.present?}
-   # @users=all_users_role.collect{|i| i.user}
-    @users = User.get_all_user_for_selected_role "User"
+  # @users = User.where(:country=>fetch_county_name(@user)).where(:role => "User")
+  # role= Role.where(:role => "User").first
+  # all_users_role = UserRole.all.select{|i| i.role == role if i.role.present?}
+  # @users=all_users_role.collect{|i| i.user}
+  #  @users = User.get_all_user_for_selected_role "User"
 
+  end
+
+  def manage_users
+    @users = User.get_all_user_for_selected_role "User"
   end
 
   def all_users
