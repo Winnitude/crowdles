@@ -1,0 +1,41 @@
+<h1>Listing products</h1>
+
+<table border="1" class="table">
+  <tr>
+    <th>Platform Product Name</th>
+    <th>Type</th>
+    <th>Private BG Allowed</th>
+    <th>BG Window Type Allowed</th>
+    <th>BG Contest Type Allowed</th>
+    <th>AG Allowed</th>
+    <th>AG Custom Commissions Allowed</th>
+    <th>AG Recepient Settings</th>
+    <th>AG Payment Gateway Commissions Payer Settings</th>
+    <th>Monthly Price</th>
+    <th>Annual Price</th>
+    <th>Action</th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%=product.platform_product_name%></td>
+    <td><%=product.product_type%></td>
+    <td><%=product.bg_private%></td>
+    <td></td>
+    <td><%=product.get_contest_number%></td>
+    <td><%=product.get_ag_workers_number%></td>
+    <td><%=product.ag_custom_commissions%></td>
+    <td><%=product.ag_recepient_settings%></td>
+    <td><%=product.ag_payment_gateway_commissions_payer_settings %></td>
+    <td><%=product.product_monthly_price%></td>
+    <td><%=product.product_annual_price%></td>
+
+    <td><%= link_to 'Show', product %>   |
+    <%= link_to 'Edit', edit_product_path(product) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Product', new_product_path %>

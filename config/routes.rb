@@ -1,9 +1,9 @@
 CrowdFunding::Application.routes.draw do
 
 
-  constraints(:subdomain => ADMIN_SUBDOMAIN) do
+    constraints(:subdomain => ADMIN_SUBDOMAIN) do
     scope :module => "admin" do
-
+      resources :products
       resources :global_admins do
         get "all_admins" ,:on => :collection
         get "ideas" ,    :on=> :collection

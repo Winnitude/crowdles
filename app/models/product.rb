@@ -12,6 +12,7 @@ class Product
   field :product_monthly_price,           :type => Float
   field :product_annual_price,            :type => Float
   field :status,                        :type => String
+  field :product_type  ,                 :type => String
 
   def get_window_number
     self.bg_window_number.present?  ? self.bg_window_number :  "unlimited"
