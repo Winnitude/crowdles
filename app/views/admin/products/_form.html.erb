@@ -1,4 +1,4 @@
-<h1>Create Local Admin</h1>
+
 <%=form_for @product  , :html => { :class => "form-horizontal"} do |f| %>
 
     <% if @product.errors.any? %>
@@ -14,24 +14,25 @@
     <% end %>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Platform Product Name: <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Platform Product Name: <span style="color:red">*</span></label>
       <div class="controls">
         <%=f.text_field :platform_product_name,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
     </div>
+
     <div class="control-group">
-      <label class="control-label" for="input01">Product Type:<span style="color:red"> </span></label>
+      <label class="control-label" for="input01">Type: <span style="color:red">*</span></label>
       <div class="controls">
-        <%= f.radio_button :product_type, :slave,:class=>"input"%>  Slave   </div>
-      <div class="controls"> <%=f.radio_button :product_type, :main,:class=>"input"%> Main  </div>
-      <!--<input type="text" class="input-xlarge" id="input01">-->
-      <p class="help-block"></p>
+        <%=f.select :product_type,options_for_select(["Slave", "Main"]),:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">BG Private Allowed:<span style="color:red"> </span></label>
+      <label class="control-label" for="input01">BG Private Allowed:<span style="color:red"> </span>*</label>
       <div class="controls">
         <%= f.radio_button :bg_private, true,:class=>"input"%>  True   </div>
       <div class="controls"> <%=f.radio_button :bg_private, false,:class=>"input"%> false  </div>
@@ -40,7 +41,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">:BG contest Type Allowed <span style="color:red"> </span></label>
+      <label class="control-label" for="input01">BG contest Type Allowed <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.text_field :bg_contest_number,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -67,7 +68,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Ag Custom Commissions:<span style="color:red"> </span></label>
+      <label class="control-label" for="input01">Ag Custom Commissions:<span style="color:red">* </span></label>
       <div class="controls">
         <%= f.radio_button :ag_custom_commissions, true,:class=>"input"%>  True   </div>
       <div class="controls"> <%=f.radio_button :ag_custom_commissions, false,:class=>"input"%> false  </div>
@@ -75,7 +76,7 @@
       <p class="help-block"></p>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">:<span style="color:red"> </span></label>
+      <label class="control-label" for="input01">AG Recepient Settings<span style="color:red">* </span></label>
       <div class="controls">
         <%= f.radio_button :ag_recepient_settings, true,:class=>"input"%>  True   </div>
       <div class="controls"> <%=f.radio_button :ag_recepient_settings, false,:class=>"input"%> false  </div>
@@ -83,13 +84,30 @@
       <p class="help-block"></p>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">Ag Custom Commissions:<span style="color:red"> </span></label>
+      <label class="control-label" for="input01">AG Payment Gateway Commissions Payer Settings<span style="color:red">* </span></label>
       <div class="controls">
-        <%= f.radio_button :ag_custom_commissions, true,:class=>"input"%>  True   </div>
-      <div class="controls"> <%=f.radio_button :ag_custom_commissions, false,:class=>"input"%> false  </div>
+        <%= f.radio_button :ag_payment_gateway_commissions_payer_settings, true,:class=>"input"%>  True   </div>
+      <div class="controls"> <%=f.radio_button :ag_payment_gateway_commissions_payer_settings, false,:class=>"input"%> false  </div>
       <!--<input type="text" class="input-xlarge" id="input01">-->
       <p class="help-block"></p>
     </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Monthly Price <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.text_field :product_monthly_price,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Annual Price <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :product_annual_price,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
     <div class="form-actions">
       <%= f.submit "Create Local Admin",:class =>"btn btn-primary"  %>
       <a class="btn" href="/">Cancel</a>
@@ -101,48 +119,23 @@
     <script type="text/javascript">
 
         jQuery(function(){
-            $("#deviation").hide()
-            $("#la_setting_master_administration_deviation_false").click(function(event){
-                $("#deviation").hide()
-            });
 
-            $("#la_setting_master_administration_deviation_true").click(function(event){
-                $("#deviation").show()
-            });
+            var annual_price = new LiveValidation('product_product_annual_price',{validMessage:" ",onlyOnSubmit:true});
+            annual_price.add( Validate.Presence );
+            annual_price.add( Validate.Numericality, { onlyInteger: false } );
+            var name = new LiveValidation('product_platform_product_name',{validMessage:" ",onlyOnSubmit:true});
+            name.add( Validate.Presence );
+            var price = new LiveValidation('product_product_monthly_price',{validMessage:" ",onlyOnSubmit:true});
+            price.add( Validate.Numericality, { onlyInteger: false } );
 
+            var bg_contest = new LiveValidation('product_bg_contest_number',{validMessage:" ",onlyOnSubmit:true});
+            bg_contest.add( Validate.Numericality, { onlyInteger:true } );
 
-            $("#check").click(function(event){
-                event.preventDefault();
-                var email = $("#user_email").val()
-                $.get("/local_admins/check_for_existing_user",{"email" :email},function(k){}
-                )
-            });
-            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
-            email.add( Validate.Presence );
-            email.add( Validate.Email);
-            var contact_email = new LiveValidation('la_setting_contact_email',{validMessage:" ",onlyOnSubmit:true});
-            contact_email.add( Validate.Email);
-            var la_country = new LiveValidation('la_setting_la_country',{validMessage:" ",onlyOnSubmit:true});
-            la_country.add( Validate.Presence );
-//            var country = new LiveValidation('user_country',{validMessage:" ",onlyOnSubmit:true});
-//            country.add( Validate.Presence );
-            var profile_telephone_number = new LiveValidation("la_setting_phone_number",{validMessage:" ",onlyOnSubmit:true});
-            profile_telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
-            var la_name = new LiveValidation("la_setting_local_admin_name",{validMessage:" ",onlyOnSubmit:true});
-            la_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            var la_email = new LiveValidation("la_setting_la_email",{validMessage:" ",onlyOnSubmit:true});
-            la_email.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            la_email.add(Validate.Email)
-            var language = new LiveValidation("la_setting_language",{validMessage:" ",onlyOnSubmit:true});
-            language.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            var commission = new LiveValidation("commission",{validMessage:" ",onlyOnSubmit:true});
-            commission.add(Validate.Numericality,{failureMessage:"Must be number"})
-            var facebook =   new LiveValidation("facebook",{validMessage:" ",onlyOnSubmit:true});
-            facebook.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
-            var twitter =   new LiveValidation("twitter",{validMessage:" ",onlyOnSubmit:true});
-            twitter.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
-            var linked_in =   new LiveValidation("linkedin",{validMessage:" ",onlyOnSubmit:true});
-            linked_in.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+            var bg_window = new LiveValidation('product_bg_window_number',{validMessage:" ",onlyOnSubmit:true});
+            bg_window.add( Validate.Numericality, { onlyInteger: true } );
+
+            var ag = new LiveValidation('product_ag_workers_number',{validMessage:" ",onlyOnSubmit:true});
+            ag.add( Validate.Numericality, { onlyInteger: true } );
         });
     </script>
 <% end %>

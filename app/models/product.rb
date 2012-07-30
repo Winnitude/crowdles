@@ -2,17 +2,17 @@ class Product
   include Mongoid::Document
   has_many :user_products
   field :platform_product_name,           :type => String
-  field :bg_private,                     :type => Boolean
+  field :bg_private,                     :type => Boolean          ,:default => false
   field :bg_window_number,                 :type => Integer
   field :bg_contest_number,               :type => Integer
   field :ag_workers_number,               :type => Integer
-  field :ag_custom_commissions,           :type => Boolean
-  field :ag_recepient_settings,           :type => Boolean
-  field :ag_payment_gateway_commissions_payer_settings    ,:type => Boolean
+  field :ag_custom_commissions,           :type => Boolean   ,:default => false
+  field :ag_recepient_settings,           :type => Boolean  ,:default => false
+  field :ag_payment_gateway_commissions_payer_settings    ,:type => Boolean   ,:default => false
   field :product_monthly_price,           :type => Float
   field :product_annual_price,            :type => Float
   field :status,                        :type => String
-  field :product_type  ,                 :type => String
+  field :product_type  ,                 :type => String        , :default => "Slave"
 
   def get_window_number
     self.bg_window_number.present?  ? self.bg_window_number :  "unlimited"
