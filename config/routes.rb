@@ -184,9 +184,9 @@ CrowdFunding::Application.routes.draw do
   as :user do
     match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
     match '/user/management'   =>'users#user_management',:via => :get
-    match '/user/information/:id'   =>'users#show_user_to_local_admin',:via => :get ,:as=>:show_user_to_local_admin
-    match '/user/edit/:id'   =>'users#edit_user_info',:via => :get ,:as=>:edit_user_info
-    match '/user/update/:id'   =>'users#update_user_info',:via => :post ,:as=>:update_user_info
+    match '/user/information/:id'   =>'users#show_user',:via => :get ,:as=>:show_user
+    match '/user/edit/:id'   =>'users#edit_user',:via => :get ,:as=>:edit_user
+    match '/user/update/:id'   =>'users#update_user',:via => :post ,:as=>:update_user
     match '/user/suspend/:id'   =>'users#suspend_user',:via => :get    ,:as=>:suspend_user
     match '/user/to_worker/:id'   =>'users#to_worker',:via => :get  , :as => :to_worker
     match '/user/to_admin_group_worker/:id'   =>'users#to_admin_group_worker',:via => :get  , :as => :to_AGW
@@ -224,6 +224,7 @@ CrowdFunding::Application.routes.draw do
     end
     collection do
      get :manage_users
+     get :autocomplete_country_detail_name
     end
   end
   resources :profiles

@@ -2,10 +2,11 @@ class UsersController < ApplicationController
 
   before_filter :should_be_user
   before_filter :get_user
-  before_filter :should_be_local_admin, :only => [:user_management , :to_worker ,:show_user_to_local_admin]
+  before_filter :should_be_local_admin, :only => [:user_management , :to_worker ]
   before_filter :should_be_AGO ,:only => [:to_admin_group_worker,:to_business_group_owner]
+  before_filter :should_be_LA_or_GA => [:manage_users , :edit_user , :update_user,:show_user]
 
-
+  autocomplete :country_detail, :name
   def user_management
   # @users = User.where(:country=>fetch_county_name(@user)).where(:role => "User")
   # role= Role.where(:role => "User").first
@@ -16,14 +17,16 @@ class UsersController < ApplicationController
   end
 
   def manage_users
-    @users = User.get_all_user_for_selected_role "User"
+    users = User.get_all_user_for_selected_role "User"
+    admins = User.get_all_user_for_selected_role "Local Admin"
+    @users = (users - admins).paginate(:page => params[:page], :per_page => 10)
   end
 
   def all_users
     @users = User.all
   end
 
-  def show_user_to_local_admin
+  def show_user
     @user = User.find(params[:id])
   end
 
@@ -39,16 +42,21 @@ class UsersController < ApplicationController
     redirect_to :back ,:notice => "Done Successfully"
   end
 
-  def edit_user_info
+  def edit_user
     @user = User.find(params[:id])
+    @profile = @user.profile.present? ? @user.profile : @user.build_profile
   end
 
-  def update_user_info
-    params[:user][:profile][:birth_date] = format_birth_date(params[:user][:profile][:birth_date])
+  def update_user
+    params[:user][:profile][:birth_date] = format_birth_date(params[:user][:profile][:birth_date])  if    params[:user][:profile][:birth_date].present?
     @user = User.find(params[:id])
-    @user.update_user_from_loca_admin params[:user]
-    #@user.update_attributes(params[:user])
-    redirect_to user_management_path
+   if @user.update_attributes(params[:user])
+    #render :json => params
+    redirect_to manage_users_users_path, :notice => "User updated Successfully"
+   else
+     @profile = @user.profile.present? ? @user.profile : @user.build_profile
+     render :action => "edit_user"
+     end
   end
 
   def to_worker
@@ -110,5 +118,9 @@ class UsersController < ApplicationController
 
   def should_be_AGO
     redirect_to root_path, :notice => "You should have the AGO privileges to perform this action" unless RolesManager.is_role_present?("Admin Group Owner", current_user)
+  end
+
+  def should_be_LA_or_GA
+    redirect_to root_path ,:notice => "Sorry you are not allowed to perform this activity"  unless (RolesManager.is_role_present?("Local Admin", current_user) or RolesManager.is_role_present?("Global Admin", current_user))
   end
 end

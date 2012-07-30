@@ -1,11 +1,11 @@
    <div class="form-horizontal"> <% user = @user %>
      <%profile= user.profile.nil? ? Profile.new : user.profile%>
         <strong> Email: </strong>  <%= user.email %>      <br>
-         <strong> Ip Address: </strong>    <%= user.last_sign_in_ip %>                <br>
+     <strong> Country: </strong>  <%= user.country %>  <br>
          <strong> Title: </strong>   <%= profile.title %>          <br>
          <strong> First Name: </strong>  <%= profile.first_name %>    <br>
          <strong> Last Name: </strong>   <%= profile.last_name %> <br>
-         <!--<strong> NikName: </strong>  <%#= user.profile.nil? ? "": nikname(user.profile) %>    <br>-->
+         <strong> NickName: </strong>  <%= profile.nick_name %>    <br>
          <strong> Birth Date: </strong>     <%= profile.birth_date %> <br>
          <strong> Gender: </strong>   <%=  profile.gender %>  <br>
          <strong> Photo: </strong>   <%= image_tag user.profile.image_url unless user.profile.nil?%>   <br>
@@ -16,15 +16,15 @@
          <strong> Social Twitter: </strong>  <%= profile.social_twitter %> <br>
          <strong> Social Linkedin: </strong>  <%= profile.social_linkedin %>  <br>
          <strong> Social Myspace: </strong>  <%= profile.social_myspace %>    <br>
-         <strong> Country: </strong>  <%= user.country %>  <br>
+
          <strong> City: </strong>  <%= profile.city %> <br>
          <strong> State: </strong>  <%= profile.state %>   <br>
          <strong> ZipCode: </strong>  <%= profile.zip_code %>   <br>
          <strong> Street: </strong>  <%= profile.street %>   <br>
          <strong> Street Number: </strong>  <%= profile.street_number %> <br>
          <strong> Additional Address Info: </strong>  <%= profile.additional_address_info %>  <br>
-         <strong> Mobile Number </strong>  <%= profile.mobile_number %>  <br>
-         <strong> Telephone Number: </strong>  <%= profile.telephone_number %>  <br>
+         <strong> MainNumber </strong>  <%= profile.mobile_number %>  <br>
+         <strong> Secondry Number: </strong>  <%= profile.telephone_number %>  <br>
          <!---->
 
   </div>

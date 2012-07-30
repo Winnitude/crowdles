@@ -56,11 +56,12 @@
     <div class="control-group">
       <label class="control-label" for="input01">Video</label>
       <div class="controls">
-        <%=f.file_field :video,:class=>"input"%>
+        <%=f.text_field :video,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
     </div>
+
     <div class="control-group">
       <label class="control-label" for="input01">Blog</label>
       <div class="controls">
@@ -185,7 +186,7 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">Mobile Number<span style="color:red"></span></label>
+      <label class="control-label" for="input01">Main Number<span style="color:red"></span></label>
       <div class="controls">
         <%= f.text_field :mobile_number,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -193,7 +194,7 @@
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">Telephone Number</label>
+      <label class="control-label" for="input01">Secondry Number</label>
       <div class="controls">
         <%= f.text_field :telephone_number,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -224,6 +225,10 @@
     <script type="text/javascript">
 
         jQuery(function(){
+
+            var video = new LiveValidation('user_profile_video',{validMessage:" ",onlyOnSubmit:true});
+            video.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+
             var profile_title = new LiveValidation('profile_title',{validMessage:" ",onlyOnSubmit:true});
 //            profile_title.add( Validate.Presence ,{failureMessage:" Can't be empty"});
 

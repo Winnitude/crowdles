@@ -1,0 +1,297 @@
+<h2>User Details</h2>
+<%= form_for :user, :url => update_user_path(@user), :html => { :class => "form-horizontal",:multipart => true} do |user| %>
+    <% if @user.errors.any? || @profile.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count + @profile.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+            <% @profile.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="control-group">
+      <label class="control-label" for="input01">Email</label>
+      <div class="controls">
+        <%=user.text_field :email,:disabled => true,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Country: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=user.autocomplete_field :country ,autocomplete_country_detail_name_users_path,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <%= user.fields_for @profile do |f| %>
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Profile Title</label>
+          <div class="controls">
+            <%=f.text_field :title ,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">First Name</label>
+          <div class="controls">
+            <%= f.text_field :first_name,:class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Last Name</label>
+          <div class="controls">
+            <%= f.text_field :last_name, :class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">NickName<span style="color:red"> </span></label>
+          <div class="controls">
+            <%= f.text_field :nick_name,:class =>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Image</label>
+          <div class="controls">
+            <%=f.file_field :image, :class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Video</label>
+          <div class="controls">
+            <%=f.text_field :video,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Blog</label>
+          <div class="controls">
+            <%=f.text_field :blog,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+
+
+        <div class="control-group">
+          <label class="control-label" for="input01">web</label>
+          <div class="controls">
+            <%=f.text_field :web, :class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Facebook link</label>
+          <div class="controls">
+            <%=f.text_field :social_fb,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Twitter</label>
+          <div class="controls">
+            <%=f.text_field :social_twitter,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Linkedin</label>
+          <div class="controls">
+            <%=f.text_field :social_linkedin,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Myspace</label>
+          <div class="controls">
+            <%=f.text_field :social_myspace,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Birth Date </label>
+          <div class="controls">
+            <%= f.datepicker 'birth_date' %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Gender</label>
+          <div class="controls">
+            <%= f.select :gender ,options_for_select([['Male'],['Female']]) %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Street</label>
+          <div class="controls">
+            <%= f.text_field :street,:class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Street Number</label>
+          <div class="controls">
+            <%= f.text_field :street_number, :class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">City</label>
+          <div class="controls">
+            <%= f.text_field :city, :class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Zip Code</label>
+          <div class="controls">
+            <%= f.text_field :zip_code,:class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">State</label>
+          <div class="controls">
+            <%= f.text_field :state, :class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Additional Address Info</label>
+          <div class="controls">
+            <%= f.text_field :additional_address_info, :class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Telephone Number</label>
+          <div class="controls">
+            <%= f.text_field :telephone_number,:class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Secondary Number</label>
+          <div class="controls">
+            <%= f.text_field :mobile_number, :class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Biography</label>
+          <div class="controls">
+            <%= f.text_area :biography,:class=>"input" ,:rows => 6%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+
+
+
+
+
+    <% end %>
+    <%= content_for :head do  %>
+        <script type="text/javascript">
+
+            jQuery(function(){
+//                var profile_title = new LiveValidation('user_profile_title',{validMessage:" ",onlyOnSubmit:true});
+//                profile_title.add( Validate.Presence,{failureMessage:"Can't be empty"} );
+//
+//                var profile_first_name = new LiveValidation("user_profile_first_name",{validMessage:" ",onlyOnSubmit:true});
+//                profile_first_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//                var profile_last_name = new LiveValidation("user_profile_last_name",{validMessage:" ",onlyOnSubmit:true});
+//                profile_last_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//                var profile_city = new LiveValidation("user_profile_city",{validMessage:" ",onlyOnSubmit:true});
+//                profile_city.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//                var profile_state = new LiveValidation("user_profile_state",{validMessage:" ",onlyOnSubmit:true});
+//                profile_state.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//                var profile_mobile_number = new LiveValidation("user_profile_mobile_number",{validMessage:" ",onlyOnSubmit:true});
+//                profile_mobile_number.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//                var profile_biography = new LiveValidation("user_profile_biography",{validMessage:" ",onlyOnSubmit:true});
+//                profile_biography.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//                var profile_birth_date = new LiveValidation("user_profile_birth_date",{validMessage:" ",onlyOnSubmit:true});
+//                profile_birth_date.add(Validate.Presence,{failureMessage:"Can't be empty"})
+              var profile_telephone_number = new LiveValidation("user_profile_telephone_number",{validMessage:" ",onlyOnSubmit:true});
+
+
+                profile_telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
+
+                var profile_mobile_number = new LiveValidation("user_profile_mobile_number",{validMessage:" ",onlyOnSubmit:true});
+
+
+                profile_mobile_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
+//                profile_telephone_number.add(Validate.Numericality,{failureMessage:" Must be a number"})
+//                $('#dob2').datepicker({
+//                    changeMonth: true,
+//                    changeYear: true,
+//                    yearRange: 'c-100:c'
+//
+//
+//                });
+
+                var video = new LiveValidation('user_profile_video',{validMessage:" ",onlyOnSubmit:true});
+            video.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+                var fb = new LiveValidation('user_profile_social_fb',{validMessage:" ",onlyOnSubmit:true});
+                fb.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+                var tweeter = new LiveValidation('user_profile_social_twitter',{validMessage:" ",onlyOnSubmit:true});
+                tweeter.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+                var li = new LiveValidation('user_profile_social_linkedin',{validMessage:" ",onlyOnSubmit:true});
+                li.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+                var my_space = new LiveValidation('user_profile_social_myspace',{validMessage:" ",onlyOnSubmit:true});
+                my_space.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+
+
+            });
+        </script>
+    <% end %>
+
+    <div class="form-actions">
+      <%= user.submit "Update User",:class =>"btn btn-primary"  %>
+    </div>
+<%end%>
+<%= link_to 'Back', user_management_path %>
