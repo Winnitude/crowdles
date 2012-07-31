@@ -1,0 +1,50 @@
+<h1>Create Local Admin</h1>
+<%=form_for @user ,:url=>activation_user_path , :html => { :class => "form-horizontal"} do |f| %>
+
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Email: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :email,:class=>"input" ,:disabled => true%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"> </p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">New password</label>
+      <div class="controls">
+        <%= f.password_field :password,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Confirm new password</label>
+      <div class="controls">
+        <%= f.password_field :password_confirmation,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Country</label>
+      <div class="controls">
+        <%= f.password_field :country,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div id = "render_name"></div>
+    <div class="form-actions">
+      <%= f.submit "Create worker",:class =>"btn btn-primary"  %>
+      <a class="btn" href="/">Cancel</a>
+      <!--<input type="text" class="input-xlarge"  id="input01">-->
+    </div>
+
+
+
+<%end%>

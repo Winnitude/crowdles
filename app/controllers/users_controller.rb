@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_filter :should_be_user
   before_filter :get_user
   before_filter :should_be_local_admin, :only => [:user_management , :to_worker ]
@@ -105,6 +104,8 @@ class UsersController < ApplicationController
 
     #redirect_to  all_my_admin_group_workers_admin_group_owners_path, :notice => "Successfully Changed To BGO"
   end
+
+
 
   def admin_group_list
     @admin_groups = current_user.admin_groups

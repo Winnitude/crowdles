@@ -51,6 +51,20 @@ class SessionsController <  Devise::SessionsController
     end
   end
 
+  def activate_page
+    @user = User.find(params[:id])
+  end
+
+  def activation
+    @user = User.find(params[:id])
+    if @user.update_attributes!(params[:user])
+      render :text => "gya"
+    else
+      render :text => "nhi"
+    end
+
+  end
+
   protected
 
   def serialize_options(resource)

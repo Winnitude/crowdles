@@ -1,7 +1,7 @@
 CrowdFunding::Application.routes.draw do
 
 
-    constraints(:subdomain => ADMIN_SUBDOMAIN) do
+  constraints(:subdomain => ADMIN_SUBDOMAIN) do
     scope :module => "admin" do
       resources :products
       resources :global_admins do
@@ -111,10 +111,10 @@ CrowdFunding::Application.routes.draw do
     get "country_selection" ,  :on => :collection
     get :autocomplete_language_name, :on => :collection
     get :autocomplete_country_detail_name, :on => :collection
-    resources :admin_group_workers do
-      post "create_admin_group_worker" , :on => :collection
-      get "new_admin_group_workers", :on => :collection
-    end
+  end
+
+  resources :admin_group_workers do
+
   end
 
   resources :consultant_workers do
@@ -209,6 +209,8 @@ CrowdFunding::Application.routes.draw do
     get "/login", :to => "sessions#new"
     get "/logout", :to => "sessions#destroy"
     get "/autocomplete_country_detail_name" ,:to=>"registrations#autocomplete_country_detail_name"
+    get "users/activate_page" , :to => "sessions#activate_page"
+    put "users/activation" , :to => "sessions#activation"
   end
 
   resources :people do
@@ -222,11 +224,12 @@ CrowdFunding::Application.routes.draw do
   end
   resources  :users do
     member do
-
+     #get :activate_page
+     #put :activation
     end
     collection do
-     get :manage_users
-     get :autocomplete_country_detail_name
+      get :manage_users
+      get :autocomplete_country_detail_name
     end
   end
   resources :profiles
@@ -244,6 +247,13 @@ CrowdFunding::Application.routes.draw do
     get :autocomplete_language_name, :on => :collection
 
   end
+
+  #resources :sessions   do
+  #  collection do
+  #    get :activate_page
+  #  end
+  #end
+
 
   #as :local_admins do
   #  match '/local_admins/show_local_admin'   =>'local_admins#show_local_admin',:via => :get

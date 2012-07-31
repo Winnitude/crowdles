@@ -67,7 +67,7 @@ class User
   #field :mago_la_id,                      :type => String     ###la's id for mago'
   field :canceled,                       :type => Boolean ,:null => false, :default => false
 
-  #field :admin_group_worker_id,                       :type => String ### for admin group worker
+  field :activate_via_new_path,            :type => Boolean , :default => false
 
   ## Encryptable
   # field :password_salt, :type => String
@@ -177,7 +177,7 @@ class User
     value = ""; 8.times{value  << (65 + rand(25)).chr}
     logger.info value.inspect
     self.password = value
-    self.password_confirmation
+    self.password_confirmation = value
     #self.role = "Local Admin"
     self.is_provider_terms_of_service= true
     self.terms_of_service = true
