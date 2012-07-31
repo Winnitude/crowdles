@@ -52,10 +52,10 @@ class Product
     end
   end
 
-  def self.all_products(user)
+  def self.get_product(user)
     user = User.where(:_id => user._id).first
-    all_user_products = user.user_products.collect{|i| i.product.platform_product_name if i.product.present?}
+    all_user_products = user.user_products.collect{|i| i.product if i.product.present?}
     puts all_user_products.inspect
-    all_user_products
+    all_user_products.first
   end
 end

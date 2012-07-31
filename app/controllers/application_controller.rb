@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include RolesManagement
   #include RolesManagement::RolesManager
   helper_method :fetch_county_name
-
+  before_filter :log_details
   def after_sign_in_path_for(resource)
     stored_location_for(resource) || root_path
   end
@@ -76,6 +76,16 @@ class ApplicationController < ActionController::Base
       end
     end
     return false
+  end
+
+  def log_details
+    logger.info ""
+    logger.info ""
+    logger.info ""
+    logger.info "inspecting the current user for debugginggggggggggggggggggg #{current_user.inspect}" if current_user.present?
+    logger.info ""
+    logger.info ""
+    logger.info ""
   end
 
 

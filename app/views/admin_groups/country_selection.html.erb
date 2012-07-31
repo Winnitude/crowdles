@@ -1,0 +1,5 @@
+Select Country
+<%= form_tag  all_users_admin_groups_path, :method => :get  do %>
+    <%= select_tag :country_name ,options_for_select(@countries.collect{|i| i.name}) %>
+    <%= submit_tag "select" %>
+<% end %>

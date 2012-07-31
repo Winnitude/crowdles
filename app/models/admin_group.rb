@@ -3,7 +3,8 @@ class AdminGroup
 
   belongs_to :user
   belongs_to :la_setting
-  has_many :admin_group_consultant_workers
+  #has_many :admin_group_consultant_workers
+
 
 
   has_many :admin_group_workers
