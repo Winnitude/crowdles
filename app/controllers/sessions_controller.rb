@@ -2,7 +2,7 @@ class SessionsController <  Devise::SessionsController
 
   prepend_before_filter :require_no_authentication, :only => [ :new, :create ]
   prepend_before_filter :allow_params_authentication!, :only => :create
-
+  autocomplete :country_detail, :name
   # GET /resource/sign_in
   def new
     resource = build_resource(:unsafe => true)
@@ -53,14 +53,19 @@ class SessionsController <  Devise::SessionsController
 
   def activate_page
     @user = User.find(params[:id])
+    if @user.activate_via_new_path
+      redirect_to root_path ,:notice => "already a registered user"
+    end
   end
 
   def activation
     @user = User.find(params[:id])
-    if @user.update_attributes!(params[:user])
-      render :text => "gya"
+    if @user.update_attributes(params[:user])
+      @user.activate_via_new_path = true
+      @user.save
+      redirect_to root_path , :notice => "Now you are the registered user. you can now sign_in and access crowdles"
     else
-      render :text => "nhi"
+      render :action => :activate_page
     end
 
   end

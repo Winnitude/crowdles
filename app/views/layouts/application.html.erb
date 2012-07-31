@@ -118,6 +118,7 @@
 
   <footer>
     <%= debug(params) if Rails.env.development? %>
+    <%= params.inspect if Rails.env.development? %>
     <p>&copy; Company 2012</p>
   </footer>
 

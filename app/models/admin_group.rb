@@ -103,6 +103,10 @@ class AdminGroup
     self.admin_group_workers.collect{|i| i.user if i.user.present?}
   end
 
+  def check_weather_the_given_user_is_my_worker_or_not? user
+     self.admin_group_workers.includes(:user).map{|i| i.user}.include?(user)
+  end
+
   def set_group_attributes local_admin
     self.name = "Main Admin Group" + local_admin.la_country
     self.ag_email = local_admin.la_email

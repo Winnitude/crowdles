@@ -1,4 +1,4 @@
-<h1>Create Local Admin</h1>
+<h1>New Admin Group Worker</h1>
 <%=form_for @user ,:url=>admin_group_workers_path , :html => { :class => "form-horizontal"} do |f| %>
 
 
@@ -32,32 +32,32 @@
                 $.get("/local_admins/check_for_existing_user",{"email" :email},function(k){}
                 )
             });
-//            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
-//            email.add( Validate.Presence );
-//            email.add( Validate.Email);
-            var contact_email = new LiveValidation('la_setting_contact_email',{validMessage:" ",onlyOnSubmit:true});
-            contact_email.add( Validate.Email);
-            var la_country = new LiveValidation('la_setting_la_country',{validMessage:" ",onlyOnSubmit:true});
-            la_country.add( Validate.Presence );
-//            var country = new LiveValidation('user_country',{validMessage:" ",onlyOnSubmit:true});
-//            country.add( Validate.Presence );
-            var profile_telephone_number = new LiveValidation("la_setting_phone_number",{validMessage:" ",onlyOnSubmit:true});
-            profile_telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
-            var la_name = new LiveValidation("la_setting_local_admin_name",{validMessage:" ",onlyOnSubmit:true});
-            la_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            var la_email = new LiveValidation("la_setting_la_email",{validMessage:" ",onlyOnSubmit:true});
-            la_email.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            la_email.add(Validate.Email)
-            var language = new LiveValidation("la_setting_language",{validMessage:" ",onlyOnSubmit:true});
-            language.add(Validate.Presence,{failureMessage:"Can't be empty"})
-            var commission = new LiveValidation("commission",{validMessage:" ",onlyOnSubmit:true});
-            commission.add(Validate.Numericality,{failureMessage:"Must be number"})
-            var facebook =   new LiveValidation("facebook",{validMessage:" ",onlyOnSubmit:true});
-            facebook.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
-            var twitter =   new LiveValidation("twitter",{validMessage:" ",onlyOnSubmit:true});
-            twitter.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
-            var linked_in =   new LiveValidation("linkedin",{validMessage:" ",onlyOnSubmit:true});
-            linked_in.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
+            email.add( Validate.Presence );
+            email.add( Validate.Email);
+//            var contact_email = new LiveValidation('la_setting_contact_email',{validMessage:" ",onlyOnSubmit:true});
+//            contact_email.add( Validate.Email);
+//            var la_country = new LiveValidation('la_setting_la_country',{validMessage:" ",onlyOnSubmit:true});
+//            la_country.add( Validate.Presence );
+////            var country = new LiveValidation('user_country',{validMessage:" ",onlyOnSubmit:true});
+////            country.add( Validate.Presence );
+//            var profile_telephone_number = new LiveValidation("la_setting_phone_number",{validMessage:" ",onlyOnSubmit:true});
+//            profile_telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
+//            var la_name = new LiveValidation("la_setting_local_admin_name",{validMessage:" ",onlyOnSubmit:true});
+//            la_name.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//            var la_email = new LiveValidation("la_setting_la_email",{validMessage:" ",onlyOnSubmit:true});
+//            la_email.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//            la_email.add(Validate.Email)
+//            var language = new LiveValidation("la_setting_language",{validMessage:" ",onlyOnSubmit:true});
+//            language.add(Validate.Presence,{failureMessage:"Can't be empty"})
+//            var commission = new LiveValidation("commission",{validMessage:" ",onlyOnSubmit:true});
+//            commission.add(Validate.Numericality,{failureMessage:"Must be number"})
+//            var facebook =   new LiveValidation("facebook",{validMessage:" ",onlyOnSubmit:true});
+//            facebook.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+//            var twitter =   new LiveValidation("twitter",{validMessage:" ",onlyOnSubmit:true});
+//            twitter.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+//            var linked_in =   new LiveValidation("linkedin",{validMessage:" ",onlyOnSubmit:true});
+//            linked_in.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
         });
     </script>
 <% end %>

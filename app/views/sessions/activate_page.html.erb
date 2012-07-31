@@ -1,6 +1,17 @@
 <h1>Activate</h1>
-<%=form_for @user ,:url=>users_activation_path , :html => { :class => "form-horizontal"} do |f| %>
+<%=form_for @user ,:url=>users_activation_path(:id => @user._id) , :html => { :class => "form-horizontal"} do |f| %>
 
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
 
     <div class="control-group">
@@ -32,7 +43,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">Country</label>
       <div class="controls">
-        <%= f.password_field :country,:class=>"input" %>
+        <%= f.autocomplete_field :country,autocomplete_country_detail_name_path,:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>

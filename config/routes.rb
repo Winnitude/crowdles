@@ -211,6 +211,7 @@ CrowdFunding::Application.routes.draw do
     get "/autocomplete_country_detail_name" ,:to=>"registrations#autocomplete_country_detail_name"
     get "users/activate_page" , :to => "sessions#activate_page"
     put "users/activation" , :to => "sessions#activation"
+    get "/autocomplete_country_detail_name" ,:to=>"sessions#autocomplete_country_detail_name"
   end
 
   resources :people do
