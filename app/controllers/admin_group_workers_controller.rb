@@ -24,7 +24,7 @@ class AdminGroupWorkersController < ApplicationController
           if is_new
             Activation.welcome_email(@user).deliver
           else
-            #######new mail
+            Worker.assign_worker(@user).deliver
           end
           redirect_to new_admin_group_worker_path , :notice=> "worker created"
         else
