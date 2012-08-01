@@ -5,6 +5,5 @@ class AdminGroupWorker
   #belongs_to :main_admin_group
   #field :worker_id,                       :type => String
   field :description,                       :type => String
-
-
+  field :status,                            :type => String   ,  :default => "Active"
 end

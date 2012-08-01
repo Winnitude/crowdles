@@ -1,0 +1,31 @@
+
+
+<table border="1" class="table">
+  <thead> <tr>
+    <th>Email</th>
+    <th>Country</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+
+  <% @workers.each do |worker| %>
+
+      <tr>
+        <td><%= worker.user.email %></td>
+        <td><%= worker.user.country %></td>
+        <td><%= worker.user.profile.first_name rescue nil %></td>
+        <td><%= worker.user.profile.last_name rescue nil%></td>
+        <td><%= worker.status%></td>
+        <% to_status = "Activate" if worker.status == "Activate" %>
+        <% to_status = "Activate" if worker.status == "Deactivate" %>
+        <td><%= link_to "Activate" ,activate_or_deactivate_worker_admin_group_worker_path(worker) if worker.status == "Deactive"%>
+          <%= link_to "Dectivate" ,activate_or_deactivate_worker_admin_group_worker_path(worker) if worker.status == "Active"%>
+        </td>
+      </tr>
+  <% end %>
+
+</table>
+<%= link_to 'Add New Worker',new_admin_group_worker_path, :class => "btn"%>

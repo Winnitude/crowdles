@@ -11,8 +11,9 @@ class Product
   field :ag_payment_gateway_commissions_payer_settings    ,:type => Boolean   ,:default => false
   field :product_monthly_price,           :type => Float
   field :product_annual_price,            :type => Float
-  field :status,                        :type => String
-  field :product_type  ,                 :type => String        , :default => "Slave"
+  field :status,                          :type => String
+  field :product_type  ,                 :type => String        , :default => "AG"
+  field :product_target  ,                       :type => String
 
   def get_window_number
     self.bg_window_number.present?  ? self.bg_window_number :  "unlimited"

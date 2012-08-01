@@ -1,9 +1,11 @@
 class AdminGroupWorkersController < ApplicationController
+  before_filter :check_role_before_creation
   def new
     @user = User.new
   end
 
   def create
+    #TODO need to check for GA LA and current_person
     @user = User.where(:email => params[:user][:email]).first.present? ? User.where(:email => params[:user][:email]).first : User.new(params[:user])
     is_new =  @user.new_record
     total_allowed = (Product.get_product current_user).get_ag_workers_number
@@ -23,6 +25,7 @@ class AdminGroupWorkersController < ApplicationController
         if @user.save && agw.save
           if is_new
             Activation.welcome_email(@user).deliver
+            Worker.assign_worker(@user).deliver
           else
             Worker.assign_worker(@user).deliver
           end
@@ -36,6 +39,16 @@ class AdminGroupWorkersController < ApplicationController
     else
       redirect_to new_admin_group_worker_path  , :notice => "This user is already your worker "
     end
-end
+  end
 
+  def activate_or_deactivate_worker
+    worker = AdminGroupWorker.find params[:id]
+    worker.status = worker.status == "Active" ? "Deactive" : "Active"
+    worker.save
+    redirect_to workers_management_admin_groups_path ,:notice => "Changed Status"
+  end
+
+  def check_role_before_creation
+    #TODO GA LA check
+  end
 end

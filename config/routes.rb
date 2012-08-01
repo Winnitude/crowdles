@@ -92,7 +92,7 @@ CrowdFunding::Application.routes.draw do
     get "all_workers", :on => :member
   end
   resources :admin_groups do
-    get "view_all_workers" ,:on => :collection
+    get "workers_management" ,:on => :collection
     get "all_my_admin_group_workers" ,:on => :collection
     get "related_ideas", :on => :collection
     get "my_keys", :on=> :collection
@@ -114,7 +114,7 @@ CrowdFunding::Application.routes.draw do
   end
 
   resources :admin_group_workers do
-
+    get :activate_or_deactivate_worker, :on=> :member
   end
 
   resources :consultant_workers do
@@ -225,8 +225,8 @@ CrowdFunding::Application.routes.draw do
   end
   resources  :users do
     member do
-     #get :activate_page
-     #put :activation
+      #get :activate_page
+      #put :activation
     end
     collection do
       get :manage_users

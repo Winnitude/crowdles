@@ -23,14 +23,22 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Type: <span style="color:red">*</span></label>
+      <label class="control-label" for="input01">Target: <span style="color:red">*</span></label>
       <div class="controls">
-        <%=f.select :product_type,options_for_select(["Slave", "Main"]),:class=>"input"%>
+        <%=f.select :product_target,options_for_select(["Slave", "Main"]),:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
     </div>
 
+    <div class="control-group">
+      <label class="control-label" for="input01">Type: <span style="color:red">*</span></label>
+      <div class="controls">
+       <%= @product.product_type%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
     <div class="control-group">
       <label class="control-label" for="input01">BG Private Allowed:<span style="color:red"> </span>*</label>
       <div class="controls">
@@ -108,8 +116,17 @@
       </div>
     </div>
 
+    <div class="control-group">
+      <label class="control-label" for="input01">Status<span style="color:red">* </span></label>
+      <div class="controls">
+        <%= f.radio_button :status, true,:class=>"input"%>  Publish   </div>
+      <div class="controls"> <%=f.radio_button :status, false,:class=>"input"%> Unpublished  </div>
+      <!--<input type="text" class="input-xlarge" id="input01">-->
+      <p class="help-block"></p>
+    </div>
+
     <div class="form-actions">
-      <%= f.submit "Create Local Admin",:class =>"btn btn-primary"  %>
+      <%= f.submit :class =>"btn btn-primary"  %>
       <a class="btn" href="/">Cancel</a>
       <!--<input type="text" class="input-xlarge"  id="input01">-->
     </div>
