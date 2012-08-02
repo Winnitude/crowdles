@@ -83,8 +83,13 @@ CrowdFunding::Application.routes.draw do
 
 
   resources :business_groups do
-    get "related_ideas", :on => :collection
-    get "my_keys", :on=> :collection
+  collection do
+    get :all_workers
+    post :new_business_group
+  end
+    member do
+
+    end
   end
   resources :main_admin_group_owners do
     get "related_ideas", :on => :collection

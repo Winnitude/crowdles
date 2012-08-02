@@ -3,8 +3,13 @@ class BusinessGroup
 
   belongs_to :admin_group
   belongs_to :user
-  has_one  :affillation_key
-  field :category,                 :type => String
-  #field :business_group_owner_id,                 :type => String
 
+  field :bg_name , :type =>String
+  field :bg_slogan , :type =>String
+  field :bg_short_desc , :type =>String
+  field :bg_desc , :type =>String
+  field :group_url , :type =>String
+  field :group_country , :type =>String
+  field :group_language , :type =>String
+  field :affiliation_key , :type => String
 end

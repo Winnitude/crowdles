@@ -1,0 +1,5 @@
+<h1>Select Worker To Create BG </h1>
+<%= form_tag(new_business_group_business_groups_path) do %>
+  <%= select_tag :worker_email, options_for_select(@workers) %>
+    <%=submit_tag%>
+<%end%>

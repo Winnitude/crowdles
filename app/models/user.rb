@@ -19,6 +19,7 @@ class User
   #belongs_to :country_detail
   has_many :user_roles
   has_one :default_billing_profile
+  has_one :business_group
   after_create :assign_role_to_user
 
 

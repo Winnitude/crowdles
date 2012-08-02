@@ -1,35 +1,27 @@
 class BusinessGroupsController < ApplicationController
-  before_filter :should_be_admin_group_owner,:only=>[:create]
+  #before_filter :should_be_admin_group_owner,:only=>[:create]
+
+  def all_workers
+    #from this action I will move new_BG to create
+    @workers = current_user.admin_group.admin_group_workers.includes(:user).collect{|i| i.user.email}
+  end
+
   def new
 
   end
+
+  def new_business_group
+    @user = User.where(:email =>params[:worker_email]).first
+    @business_group = @user.build_business_group(:affiliation_key => Digest::SHA1.hexdigest(Time.now.to_s)[0,15] )
+
+  end
   def create
-    user = User.where(:_id =>params[:user_id]).to_a.first
-    RolesManager.add_role("Business Group Owner",user)
-    bussiness_group = user.build_business_group(params[:business_group])
-    affillation_key = bussiness_group.build_affillation_key
-    affillation_key.key = Digest::SHA1.hexdigest(Time.now.to_s)[0,15] #todo must move to after_create filter AK model
-    if bussiness_group.save  && user.save && affillation_key.save
-      logger.info bussiness_group.inspect
-      UserMailer.notification_for_switching_to_worker(user).deliver
-      redirect_to root_path ,:notice=>" successfully created "
-
-    else
-      redirect_to :back ,:notice=>"not created "
-    end
+   @user = User.where(:email =>params[:email]).first
+   @business_group = @user.build_business_group(params[:business_group])
+   @business_group.admin_group = current_user.admin_group
+    render :json => @business_group
   end
 
-  def related_ideas
-    business_group = current_user.get_business_group
-    logger.info business_group.affillation_key.to_a.inspect
-    @ideas = Idea.all.to_a.select{|i| i.affiliation_key == business_group.affillation_key.key}
-    logger.info @ideas.inspect
-  end
-
-  def my_keys
-    business_group = current_user.get_business_group
-    @key = business_group.affillation_key.key
-  end
 
   private
 
