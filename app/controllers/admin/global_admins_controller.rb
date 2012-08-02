@@ -70,6 +70,10 @@ class Admin::GlobalAdminsController < ApplicationController
   def main_admin_group_mgmt
     @main_admin_groups = MainAdminGroup.all.to_a
   end
+
+  def all_workers
+    @workers =AdminGroupWorker.includes(:user)
+  end
   #def all_main_admin_groups
   #  @groups = MainAdminGroup.all
   #  logger.info @groups.inspect
