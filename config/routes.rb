@@ -94,6 +94,8 @@ CrowdFunding::Application.routes.draw do
       put :update_bg_location
       get :bg_commissions_and_configurations
       put :update_bg_commissions_and_configurations
+      post :change_owner
+      get :select_worker_change_owner
     end
   end
   resources :main_admin_group_owners do
@@ -122,6 +124,7 @@ CrowdFunding::Application.routes.draw do
     get "country_selection" ,  :on => :collection
     get :autocomplete_language_name, :on => :collection
     get :autocomplete_country_detail_name, :on => :collection
+    get :business_group_management, :on => :collection
   end
 
   resources :admin_group_workers do

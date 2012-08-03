@@ -1,0 +1,23 @@
+
+
+<table border="1" class="table">
+  <thead> <tr>
+    <th>Email</th>
+    <th>Name</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+
+  <% @business_groups.each do |bg| %>
+
+      <tr>
+        <td><%= bg.user.email %></td>
+        <td><%= bg.bg_name %></td>
+        <td><%= link_to "Change Owner" ,select_worker_change_owner_business_group_path(bg) %>
+
+        </td>
+      </tr>
+  <% end %>
+
+</table>
+<%= link_to 'Add New Worker',new_admin_group_worker_path, :class => "btn"%>

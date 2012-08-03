@@ -5,8 +5,8 @@ class BusinessGroupsController < ApplicationController
     #from this action I will move new_BG to create
     admin_group = current_user.admin_group
     all_workers = admin_group.admin_group_workers.includes(:user).collect{|i| i.user.email}
-    my_bussiness_groups = admin_group.business_groups.includes(:user).collect{|i| i.user.email}
-    @workers = all_workers - my_bussiness_groups
+    my_business_groups = admin_group.business_groups.includes(:user).collect{|i| i.user.email}
+    @workers = all_workers - my_business_groups
   end
 
   def new
@@ -23,8 +23,9 @@ class BusinessGroupsController < ApplicationController
    @business_group = @user.build_business_group(params[:business_group])
    @business_group.admin_group = current_user.admin_group
    @business_group.save
+   @user.add_role("Business Group Owner")
     #render :json => @business_group
-    redirect_to bg_external_links_business_group_path(@business_group) , :notice => "Bussiness group general setting created"
+    redirect_to bg_external_links_business_group_path(@business_group) , :notice => "Business group general setting created"
   end
 
   def bg_external_links
@@ -34,7 +35,7 @@ class BusinessGroupsController < ApplicationController
   def update_bg_external_links
     @business_group = BusinessGroup.find(params[:id])
     if @business_group.update_attributes(params[:business_group])
-      redirect_to bg_location_business_group_path(@business_group) , :notice => "all links saved sucessfully"
+      redirect_to bg_location_business_group_path(@business_group) , :notice => "all links saved successfully"
     else
       render :action => :bg_external_links
     end
@@ -60,6 +61,27 @@ class BusinessGroupsController < ApplicationController
 
   def update_bg_commissions_and_configurations
 
+  end
+
+  def change_owner
+    @business_group = BusinessGroup.find(params[:id])
+    previous_owner = @business_group.user
+    new_owner =  @user = User.where(:email =>params[:worker_email]).first
+    previous_owner.remove_role "Business Group Owner"
+    new_owner.add_role "Business Group Owner"
+    @business_group.user = new_owner
+    @business_group.save
+    BgMailer.get_ownership(new_owner).deliver
+    BgMailer.lost_ownership(previous_owner).deliver
+    redirect_to business_group_management_admin_groups_path, :notice => "OwnerShip Changed"
+  end
+
+  def select_worker_change_owner
+    @business_group = BusinessGroup.find(params[:id])
+    admin_group = current_user.admin_group
+    all_workers = admin_group.admin_group_workers.includes(:user).collect{|i| i.user.email}
+    my_business_groups = admin_group.business_groups.includes(:user).collect{|i| i.user.email}
+    @workers = all_workers - my_business_groups
   end
 
   private

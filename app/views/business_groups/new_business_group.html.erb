@@ -1,4 +1,4 @@
-<h1>New BG</h1>
+<h1>BG General Settings</h1>
 <%=form_for @business_group  , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
 
 
@@ -16,7 +16,7 @@
     <% end %>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Business Group Name: <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Business Group Name: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.text_field :bg_name,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -25,7 +25,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Business Group Email: <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Business Group Email: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.text_field :bg_email ,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -34,7 +34,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Business Group Slogan: <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Business Group Slogan: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.text_field :bg_slogan,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -43,7 +43,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Business Group Short Description: <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Business Group Short Description: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.text_field :bg_short_desc,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -52,7 +52,7 @@
     </div>
      <%= hidden_field_tag  :email , params[:worker_email] %>
     <div class="control-group">
-      <label class="control-label" for="input01">Business Group Description: <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Business Group Description: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.text_field :bg_desc,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -61,7 +61,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Business Group URL: <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Business Group URL: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.text_field :bg_url,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -70,7 +70,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Business Group Country: <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Business Group Country: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.text_field :bg_country,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -79,7 +79,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Business Group Language: <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">Business Group Language: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.text_field :bg_language,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -88,7 +88,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">AK: <span style="color:red"> *</span></label>
+      <label class="control-label" for="input01">AK: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.text_field :affiliation_key,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
@@ -97,7 +97,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">BusinessGroup Visibility<span style="color:red">* </span></label>
+      <label class="control-label" for="input01">BusinessGroup Visibility<span style="color:red"> </span></label>
       <div class="controls">
         <%= f.radio_button :bg_visibility, "Public",:class=>"input"%>  Public   </div>
       <div class="controls"> <%= f.radio_button :bg_visibility, "Private",:class=>"input"%>  Private   </div>
@@ -106,7 +106,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Projects Visibility<span style="color:red">* </span></label>
+      <label class="control-label" for="input01">Projects Visibility<span style="color:red"> </span></label>
       <div class="controls">
         <%= f.radio_button :project_visibility, "Public",:class=>"input"%>  Public   </div>
       <div class="controls"> <%= f.radio_button :project_visibility, "Private",:class=>"input"%>  Private   </div>
@@ -115,7 +115,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">IS No Profit<span style="color:red">* </span></label>
+      <label class="control-label" for="input01">IS No Profit<span style="color:red"> </span></label>
       <div class="controls">
         <%= f.radio_button :is_no_profit, true,:class=>"input"%>  True  </div>
       <div class="controls"> <%=f.radio_button :is_no_profit, false,:class=>"input"%> False  </div>
@@ -124,7 +124,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">No Profit Verified<span style="color:red">* </span></label>
+      <label class="control-label" for="input01">No Profit Verified<span style="color:red"> </span></label>
       <div class="controls">
         <%= f.radio_button :no_profit_verified, true,:class=>"input"%> True   </div>
       <div class="controls"> <%=f.radio_button :no_profit_verified, false,:class=>"input"%> False  </div>

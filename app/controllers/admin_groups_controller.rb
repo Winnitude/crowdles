@@ -138,6 +138,12 @@ class AdminGroupsController < ApplicationController
     @workers = current_user.admin_group.admin_group_workers.includes(:user)
   end
 
+  def business_group_management
+    admin_group = current_user.admin_group
+    @business_groups = admin_group.business_groups.includes(:user)
+    #render :json => @business_groups
+  end
+
 
 
 

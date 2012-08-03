@@ -1,0 +1,5 @@
+<h1>Select Worker as New Owner </h1>
+<%= form_tag change_owner_business_group_path(@business_group) do %>
+    <%= select_tag :worker_email, options_for_select(@workers) %>
+    <%=submit_tag%>
+<%end%>
