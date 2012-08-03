@@ -88,7 +88,8 @@ CrowdFunding::Application.routes.draw do
     post :new_business_group
   end
     member do
-
+      get :bg_external_links
+      put :update_bg_external_links
     end
   end
   resources :main_admin_group_owners do

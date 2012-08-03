@@ -55,7 +55,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">Business Group URL: <span style="color:red"> *</span></label>
       <div class="controls">
-        <%=f.text_field :group_url,:class=>"input"%>
+        <%=f.text_field :bg_url,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -64,7 +64,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">Business Group Country: <span style="color:red"> *</span></label>
       <div class="controls">
-        <%=f.text_field :group_country,:class=>"input"%>
+        <%=f.text_field :bg_country,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -73,7 +73,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">Business Group Language: <span style="color:red"> *</span></label>
       <div class="controls">
-        <%=f.text_field :group_language,:class=>"input"%>
+        <%=f.text_field :bg_language,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -86,6 +86,42 @@
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">BusinessGroup Visibility<span style="color:red">* </span></label>
+      <div class="controls">
+        <%= f.radio_button :bg_visibility, "Public",:class=>"input"%>  Public   </div>
+      <div class="controls"> <%= f.radio_button :bg_visibility, "Private",:class=>"input"%>  Private   </div>
+      <!--<input type="text" class="input-xlarge" id="input01">-->
+      <p class="help-block"></p>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Projects Visibility<span style="color:red">* </span></label>
+      <div class="controls">
+        <%= f.radio_button :project_visibility, "Public",:class=>"input"%>  Public   </div>
+      <div class="controls"> <%= f.radio_button :project_visibility, "Private",:class=>"input"%>  Private   </div>
+      <!--<input type="text" class="input-xlarge" id="input01">-->
+      <p class="help-block"></p>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">IS No Profit<span style="color:red">* </span></label>
+      <div class="controls">
+        <%= f.radio_button :is_no_profit, true,:class=>"input"%>  True  </div>
+      <div class="controls"> <%=f.radio_button :is_no_profit, false,:class=>"input"%> False  </div>
+      <!--<input type="text" class="input-xlarge" id="input01">-->
+      <p class="help-block"></p>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">No Profit Verified<span style="color:red">* </span></label>
+      <div class="controls">
+        <%= f.radio_button :no_profit_verified, true,:class=>"input"%> True   </div>
+      <div class="controls"> <%=f.radio_button :no_profit_verified, false,:class=>"input"%> False  </div>
+      <!--<input type="text" class="input-xlarge" id="input01">-->
+      <p class="help-block"></p>
     </div>
 
     <div class="form-actions">

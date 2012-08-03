@@ -1,0 +1,121 @@
+<h1>External links</h1>
+<%=form_for @business_group , :url => update_bg_external_links_business_group_path(@business_group) , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
+
+
+
+    <% if @business_group.errors.any?  %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@admin_group_owner.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
+
+          <ul>
+            <% @business_group.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Business Group Main Website: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :bg_main_website,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Business Group Blog: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :bg_blog,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Business Group Facebook Page: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :bg_facebook_page,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <%= hidden_field_tag  :email , params[:worker_email] %>
+    <div class="control-group">
+      <label class="control-label" for="input01">Business Group Twitter Page: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :bg_twitter_page,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Business Group Twitter Connection: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :bg_twitter_connection,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Business Group LinkedIn Page: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :bg_linkedin_page,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Business Group MySpace Page: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :bg_myspace_page ,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+
+    <div class="form-actions">
+      <%= f.submit "Create",:class =>"btn btn-primary"  %>
+      <a class="btn" href="/">Cancel</a>
+      <!--<input type="text" class="input-xlarge"  id="input01">-->
+    </div>
+
+<%end%>
+
+
+<%= content_for :head do  %>
+    <script type="text/javascript">
+
+        jQuery(function(){
+
+
+
+
+
+//            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
+//            email.add( Validate.Email);
+//            email.add(Validate.Presence)
+
+            var group_name = new LiveValidation('admin_group_name',{validMessage:" ",onlyOnSubmit:true});
+
+            group_name.add(Validate.Presence)
+
+            var group_email = new LiveValidation('admin_group_ag_email',{validMessage:" ",onlyOnSubmit:true});
+
+            group_email.add(Validate.Presence)
+            group_email.add( Validate.Email);
+
+            var telephone_number = new LiveValidation("admin_group_phone_number",{validMessage:" ",onlyOnSubmit:true});
+            telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
+
+
+        });
+    </script>
+<% end %>

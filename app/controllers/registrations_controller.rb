@@ -23,6 +23,8 @@ class RegistrationsController <  Devise::RegistrationsController
   end
 
 
+
+
   private
 
   def redirect_if_already_exist

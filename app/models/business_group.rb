@@ -8,8 +8,21 @@ class BusinessGroup
   field :bg_slogan , :type =>String
   field :bg_short_desc , :type =>String
   field :bg_desc , :type =>String
-  field :group_url , :type =>String
-  field :group_country , :type =>String
-  field :group_language , :type =>String
+  field :bg_url , :type =>String
+  field :bg_country , :type =>String
+  field :bg_language , :type =>String
   field :affiliation_key , :type => String
+  field :is_main_bg , :type => Boolean ,:default => false
+  field :bg_type , :type => String ,:default => "Window"
+  field :bg_visibility , :type => String ,:default => "Public"
+  field :project_visibility , :type => String
+  field :is_no_profit , :type => Boolean
+  field :no_profit_verified , :type => Boolean
+  field :bg_main_website , :type =>String
+  field :bg_blog         , :type =>String
+  field :bg_facebook_page                   , :type =>String
+  field :bg_twitter_page      , :type =>String
+  field :bg_twitter_connection   , :type =>String
+  field :bg_linkedin_page       , :type =>String
+  field :bg_myspace_page        , :type =>String
 end
