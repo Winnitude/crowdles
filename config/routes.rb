@@ -90,6 +90,10 @@ CrowdFunding::Application.routes.draw do
     member do
       get :bg_external_links
       put :update_bg_external_links
+      get :bg_location
+      put :update_bg_location
+      get :bg_commissions_and_configurations
+      put :update_bg_commissions_and_configurations
     end
   end
   resources :main_admin_group_owners do

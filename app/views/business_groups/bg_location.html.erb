@@ -1,0 +1,128 @@
+<h1>Business Group Physical Location</h1>
+<%=form_for @business_group , :url => update_bg_location_business_group_path(@business_group) , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
+
+
+
+    <% if @business_group.errors.any?  %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@admin_group_owner.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
+
+          <ul>
+            <% @business_group.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Country: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :location_country  ,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+    <div class="control-group">
+      <label class="control-label" for="input01">State: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :location_state,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">City: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :location_city,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">ZipCode: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :location_zipcode,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Address: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :location_address,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Additional Address: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :location_address2,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Contact Number: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :location_contact_number1 ,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Alternate Contact Number: <span style="color:red"> *</span></label>
+      <div class="controls">
+        <%=f.text_field :location_contact_number2 ,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+    <div class="form-actions">
+      <%= f.submit "Create",:class =>"btn btn-primary"  %>
+      <a class="btn" href="/">Cancel</a>
+      <!--<input type="text" class="input-xlarge"  id="input01">-->
+    </div>
+
+<%end%>
+
+
+<%= content_for :head do  %>
+    <script type="text/javascript">
+
+        jQuery(function(){
+
+
+
+
+
+//            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
+//            email.add( Validate.Email);
+//            email.add(Validate.Presence)
+
+            var group_name = new LiveValidation('admin_group_name',{validMessage:" ",onlyOnSubmit:true});
+
+            group_name.add(Validate.Presence)
+
+            var group_email = new LiveValidation('admin_group_ag_email',{validMessage:" ",onlyOnSubmit:true});
+
+            group_email.add(Validate.Presence)
+            group_email.add( Validate.Email);
+
+            var telephone_number = new LiveValidation("admin_group_phone_number",{validMessage:" ",onlyOnSubmit:true});
+            telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
+
+
+        });
+    </script>
+<% end %>

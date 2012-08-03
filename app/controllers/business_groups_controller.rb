@@ -34,10 +34,31 @@ class BusinessGroupsController < ApplicationController
   def update_bg_external_links
     @business_group = BusinessGroup.find(params[:id])
     if @business_group.update_attributes(params[:business_group])
-      render :json => @business_group
+      redirect_to bg_location_business_group_path(@business_group) , :notice => "all links saved sucessfully"
     else
       render :action => :bg_external_links
     end
+
+  end
+
+  def bg_location
+    @business_group = BusinessGroup.find(params[:id])
+  end
+
+  def update_bg_location
+    @business_group = BusinessGroup.find(params[:id])
+    if @business_group.update_attributes(params[:business_group])
+      render :json => @business_group
+    else
+      render :action => :bg_location
+    end
+  end
+
+  def bg_commissions_and_configurations
+
+  end
+
+  def update_bg_commissions_and_configurations
 
   end
 

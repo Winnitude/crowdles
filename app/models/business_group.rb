@@ -6,6 +6,7 @@ class BusinessGroup
 
   field :bg_name , :type =>String
   field :bg_slogan , :type =>String
+  field :bg_email              , :type =>String
   field :bg_short_desc , :type =>String
   field :bg_desc , :type =>String
   field :bg_url , :type =>String
@@ -25,4 +26,14 @@ class BusinessGroup
   field :bg_twitter_connection   , :type =>String
   field :bg_linkedin_page       , :type =>String
   field :bg_myspace_page        , :type =>String
+  field :location_country       , :type =>String
+  field :location_state         , :type =>String
+  field :location_city           , :type =>String
+  field :location_zipcode        , :type =>String
+  field :location_address      , :type =>String
+  field :location_address2   , :type =>String
+  field :location_gps       , :type =>String
+  field :location_contact_number1    , :type =>String
+  field :location_contact_number2     , :type =>String
+
 end
