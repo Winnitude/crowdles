@@ -4,7 +4,9 @@
   <thead> <tr>
     <th>Email</th>
     <th>Name</th>
-    <th>Action</th>
+    <th>Ownership Actions</th>
+    <th>Group Visibility</th>
+    <th>Projects Visibility</th>
   </tr>
   </thead>
 
@@ -13,9 +15,23 @@
       <tr>
         <td><%= bg.user.email %></td>
         <td><%= bg.bg_name %></td>
-        <td><%= link_to "Change Owner" ,select_worker_change_owner_business_group_path(bg) %>
-
-        </td>
+        <td><%= link_to "Change Owner" ,select_worker_change_owner_business_group_path(bg)  %> </td>
+        <%group_status =bg.bg_visibility
+          if group_status == "Private"
+            group_display = "Public"
+            else
+              group_display = "Private"
+           end
+        %>
+        <td><%= link_to group_display ,reset_group_visibility_business_group_path(bg)%>   </td>
+        <%project_status =bg.project_visibility
+          if project_status == "Private"
+            project_display = "Public"
+          else
+            project_display = "Private"
+          end
+        %>
+        <td><%= link_to project_display ,reset_projects_visibility_business_group_path(bg)%>   </td>
       </tr>
   <% end %>
 

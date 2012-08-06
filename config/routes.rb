@@ -96,6 +96,8 @@ CrowdFunding::Application.routes.draw do
       put :update_bg_commissions_and_configurations
       post :change_owner
       get :select_worker_change_owner
+      get :reset_projects_visibility
+      get :reset_group_visibility
     end
   end
   resources :main_admin_group_owners do

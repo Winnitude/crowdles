@@ -84,6 +84,18 @@ class BusinessGroupsController < ApplicationController
     @workers = all_workers - my_business_groups
   end
 
+  def reset_projects_visibility
+    business_group = BusinessGroup.find(params[:id])
+    business_group.toggle_projects_visibility
+    redirect_to business_group_management_admin_groups_path, :notice => "Projects Visibility Setting Changed"
+  end
+
+  def reset_group_visibility
+    business_group = BusinessGroup.find(params[:id])
+    business_group.toggle_group_visibility
+    redirect_to business_group_management_admin_groups_path, :notice => "Group Visibility Setting Changed"
+  end
+
   private
 
   def should_be_admin_group_owner

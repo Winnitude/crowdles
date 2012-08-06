@@ -13,10 +13,14 @@
  *= require datepicker
  *= require custom_bootstrap
  *= require custom
- *= require_tree .
+
 
 */
 .navbar .nav > li > a {
     text-align: center;
     padding: 10px 15px 11px;
+}
+
+.ui-corner-all{
+    background: rgba(0, 0, 0, 0.35)
 }

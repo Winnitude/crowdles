@@ -16,7 +16,7 @@ class BusinessGroup
   field :is_main_bg , :type => Boolean ,:default => false
   field :bg_type , :type => String ,:default => "Window"
   field :bg_visibility , :type => String ,:default => "Public"
-  field :project_visibility , :type => String
+  field :project_visibility , :type => String , :default => "Public"
   field :is_no_profit , :type => Boolean
   field :no_profit_verified , :type => Boolean
   field :bg_main_website , :type =>String
@@ -36,4 +36,12 @@ class BusinessGroup
   field :location_contact_number1    , :type =>String
   field :location_contact_number2     , :type =>String
 
+  def toggle_group_visibility
+    self.bg_visibility = (self.bg_visibility == "Private" ? "Public" : "Private")
+    self.save
+  end
+  def toggle_projects_visibility
+    self.project_visibility = (self.project_visibility == "Private" ? "Public" : "Private")
+    self.save
+  end
 end
