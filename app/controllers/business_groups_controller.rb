@@ -120,7 +120,12 @@ class BusinessGroupsController < ApplicationController
   end
 
   def update_bg_multimedia
-
+    @business_group = BusinessGroup.find(params[:id])
+    if @business_group.update_attributes(params[:business_group])
+      render :json => @business_group
+    else
+      render :action => :bg_external_links
+    end
   end
   def change_owner
     @business_group = BusinessGroup.find(params[:id])

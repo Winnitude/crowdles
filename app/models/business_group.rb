@@ -44,6 +44,16 @@ class BusinessGroup
   field :arena_flag , :type => Boolean , :default => false
   field :additional_tnc, :type => String
   field :additional_terms_enabled  #to check weather additional_terms enbaled or not
+  field :group_video , :type =>String
+  mount_uploader :logo, ImageUploader
+  mount_uploader :default_main_image, ImageUploader
+  mount_uploader :team_image, ImageUploader
+  mount_uploader :image1, ImageUploader
+  mount_uploader :image2, ImageUploader
+  mount_uploader :image3, ImageUploader
+  mount_uploader :image5, ImageUploader
+  mount_uploader :image4, ImageUploader
+
 
   def toggle_group_visibility
     self.bg_visibility = (self.bg_visibility == "Private" ? "Public" : "Private")

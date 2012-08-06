@@ -1,5 +1,5 @@
 <h1>Publication Options</h1>
-<%=form_for @business_group , :url => update_bg_publication_settings_business_group_path(@business_group) , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
+<%=form_for @business_group , :url => update_bg_multimedia_business_group_path(@business_group) , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
 
 
 
@@ -16,61 +16,83 @@
     <% end %>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Business Group Main Website: <span style="color:red"> </span></label>
+      <label class="control-label" for="input01">Group Logo: <span style="color:red"> </span></label>
       <div class="controls">
-        <%=f.text_field :bg_url,:class=>"input"%>
+        <%=f.file_field :logo,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Group Default image: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.file_field :default_main_image,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Show the group on Platform's group list and search results: <span style="color:red"> </span></label>
+      <label class="control-label" for="input01">Team Image: <span style="color:red"> </span></label>
       <div class="controls">
-        <%=f.check_box( :bg_visibility, { :class => 'eula_check' }, "Public", "Private")%>
+        <%=f.file_field :team_image,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Set all incoming projects as private: <span style="color:red"> </span></label>
+      <label class="control-label" for="input01">Group Video: <span style="color:red"> </span></label>
       <div class="controls">
-        <%=f.check_box( :project_visibility, { :class => 'eula_check' },  "Private","Public")%>
+        <%=f.text_field :group_video,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="input01">Affiliation Key: <span style="color:red"> </span></label>
+      <label class="control-label" for="input01">Additional Image1: <span style="color:red"> </span></label>
       <div class="controls">
-        <%=f.text_field :affiliation_key,:class=>"input"%>
-        <!--<input type="text" class="input-xlarge" id="input01">-->
-        <p class="help-block"></p>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="input01">Show submit Idea button on Group Page: <span style="color:red"> </span></label>
-      <div class="controls">
-        <%=f.check_box( :show_button_to_submit_idea, { :class => 'eula_check' }, true , false)%>
+        <%=f.file_field :image1,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="input01">Publish BG: <span style="color:red"> </span></label>
+      <label class="control-label" for="input01">Additional Image2: <span style="color:red"> </span></label>
       <div class="controls">
-        <%=f.check_box( :publish_status, { :class => 'eula_check' }, "Published" , "Unpublished")%>
+        <%=f.file_field :image2,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
     </div>
-
+    <div class="control-group">
+      <label class="control-label" for="input01">Additional Image3: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.file_field :image3,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Additional Image4: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.file_field :image4,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Additional Image5: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.file_field :image5,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
     <div class="form-actions">
-      <%= f.submit "Save",:class =>"btn btn-primary"  %>
-      <!--<a class="btn" href="/"></a>-->
+      <%= f.submit "Create",:class =>"btn btn-primary"  %>
+      <a class="btn" href="/">Cancel</a>
       <!--<input type="text" class="input-xlarge"  id="input01">-->
     </div>
 
