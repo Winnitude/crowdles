@@ -1,0 +1,94 @@
+
+<h1>BG Description</h1>
+<%=form_for @business_group ,:url => update_bg_description_business_group_path(@business_group) , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
+
+
+
+    <% if @business_group.errors.any?  %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@admin_group_owner.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
+
+          <ul>
+            <% @business_group.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Business Group Slogan: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.text_area :bg_slogan,:class=>"input",:rows => 5%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Introduction: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.text_area :introduction,:class=>"input" ,:rows => 5%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <%= hidden_field_tag  :email , params[:worker_email] %>
+    <div class="control-group">
+      <label class="control-label" for="input01">Business Group Description: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.text_area :bg_desc,:class=>"input",:rows => 5%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <h3>Additional terms and conditions</h3>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Set additional terms and conditions for incoming projects: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.check_box( :additional_terms_enabled, { :class => 'eula_check' }, "true","false")%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div id= "tnc">
+
+      <div class="control-group">
+        <label class="control-label" for="input01">Additional Tnc <span style="color:red"> </span></label>
+        <div class="controls">
+          <%=f.text_area :additional_tnc,:class=>"input",:rows => 5%>
+          <!--<input type="text" class="input-xlarge" id="input01">-->
+          <p class="help-block"></p>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <%= f.submit "Create",:class =>"btn btn-primary"  %>
+      <a class="btn" href="/">Cancel</a>
+      <!--<input type="text" class="input-xlarge"  id="input01">-->
+    </div>
+
+<%end%>
+
+
+<%= content_for :head do  %>
+    <script type="text/javascript">
+
+        jQuery(function(){
+
+            $('#tnc').hide()
+            $('#business_group_additional_terms_enabled').click(function(event){
+                var cObj = $(this);
+              if(cObj.attr("checked"))
+              {   $('#tnc').show()}
+                else
+              {   $('#tnc').hide()}
+            });
+
+
+
+        });
+    </script>
+<% end %>

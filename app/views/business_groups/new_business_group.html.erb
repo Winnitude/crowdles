@@ -1,3 +1,4 @@
+
 <h1>BG General Settings</h1>
 <%=form_for @business_group  , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
 
@@ -23,7 +24,39 @@
         <p class="help-block"></p>
       </div>
     </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Category: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.select  :category ,options_for_select(["Art","Comics","Dance","Design","Fashion","Film & Video" ,"Food","Games","Music", "Photography","Publishing",  "Technology" ,"Theater"]),:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Category: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.select  :subcategory ,options_for_select(["Subcategory1", "subcategory2"]),:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Business Group Country: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.autocomplete_field :bg_country ,autocomplete_country_detail_name_business_groups_path ,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
 
+    <div class="control-group">
+      <label class="control-label" for="input01">Business Group Language: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.autocomplete_field :bg_language ,autocomplete_language_name_business_groups_path ,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
     <div class="control-group">
       <label class="control-label" for="input01">Business Group Email: <span style="color:red"> </span></label>
       <div class="controls">
@@ -58,60 +91,6 @@
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="input01">Business Group URL: <span style="color:red"> </span></label>
-      <div class="controls">
-        <%=f.text_field :bg_url,:class=>"input"%>
-        <!--<input type="text" class="input-xlarge" id="input01">-->
-        <p class="help-block"></p>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="input01">Business Group Country: <span style="color:red"> </span></label>
-      <div class="controls">
-        <%=f.text_field :bg_country,:class=>"input"%>
-        <!--<input type="text" class="input-xlarge" id="input01">-->
-        <p class="help-block"></p>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="input01">Business Group Language: <span style="color:red"> </span></label>
-      <div class="controls">
-        <%=f.text_field :bg_language,:class=>"input"%>
-        <!--<input type="text" class="input-xlarge" id="input01">-->
-        <p class="help-block"></p>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="input01">AK: <span style="color:red"> </span></label>
-      <div class="controls">
-        <%=f.text_field :affiliation_key,:class=>"input"%>
-        <!--<input type="text" class="input-xlarge" id="input01">-->
-        <p class="help-block"></p>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="input01">BusinessGroup Visibility<span style="color:red"> </span></label>
-      <div class="controls">
-        <%= f.radio_button :bg_visibility, "Public",:class=>"input"%>  Public   </div>
-      <div class="controls"> <%= f.radio_button :bg_visibility, "Private",:class=>"input"%>  Private   </div>
-      <!--<input type="text" class="input-xlarge" id="input01">-->
-      <p class="help-block"></p>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="input01">Projects Visibility<span style="color:red"> </span></label>
-      <div class="controls">
-        <%= f.radio_button :project_visibility, "Public",:class=>"input"%>  Public   </div>
-      <div class="controls"> <%= f.radio_button :project_visibility, "Private",:class=>"input"%>  Private   </div>
-      <!--<input type="text" class="input-xlarge" id="input01">-->
-      <p class="help-block"></p>
     </div>
 
     <div class="control-group">

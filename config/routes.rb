@@ -86,18 +86,26 @@ CrowdFunding::Application.routes.draw do
   collection do
     get :all_workers
     post :new_business_group
+    get :autocomplete_language_name
+    get :autocomplete_country_detail_name
   end
     member do
       get :bg_external_links
       put :update_bg_external_links
       get :bg_location
       put :update_bg_location
-      get :bg_commissions_and_configurations
-      put :update_bg_commissions_and_configurations
+      get :bg_publication_settings
+      put :update_bg_publication_settings
       post :change_owner
       get :select_worker_change_owner
       get :reset_projects_visibility
       get :reset_group_visibility
+      get :team_and_projects_setting
+      put :update_team_and_projects_setting
+      get :bg_description
+      put :update_bg_description
+      get :bg_multimedia
+      put :update_bg_multimedia
     end
   end
   resources :main_admin_group_owners do
