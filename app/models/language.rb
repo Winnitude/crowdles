@@ -3,7 +3,13 @@ class Language
   field :name,              :type => String
 
   def self.is_fake (name)
-   language = where(:name => name).first
-    !language.present?
+    if name.present? == false
+      return false
+    else
+      language = where(:name => name).first
+      !language.present?
+    end
   end
 end
+
+

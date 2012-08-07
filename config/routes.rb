@@ -85,7 +85,7 @@ CrowdFunding::Application.routes.draw do
   resources :business_groups do
   collection do
     get :all_workers
-    post :new_business_group
+    get :new_business_group
     get :autocomplete_language_name
     get :autocomplete_country_detail_name
   end

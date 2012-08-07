@@ -1,6 +1,6 @@
 class BusinessGroup
   include Mongoid::Document
-  #after_create :set_url
+  after_create :set_bg
   belongs_to :admin_group
   belongs_to :user
 
@@ -45,6 +45,7 @@ class BusinessGroup
   field :additional_tnc, :type => String
   field :additional_terms_enabled  #to check weather additional_terms enbaled or not
   field :group_video , :type =>String
+  field :creation_date , :type => Date
   mount_uploader :logo, ImageUploader
   mount_uploader :default_main_image, ImageUploader
   mount_uploader :team_image, ImageUploader
@@ -54,6 +55,8 @@ class BusinessGroup
   mount_uploader :image5, ImageUploader
   mount_uploader :image4, ImageUploader
 
+  validate :not_fake_country
+  validate :not_fake_language
 
   def toggle_group_visibility
     self.bg_visibility = (self.bg_visibility == "Private" ? "Public" : "Private")
@@ -63,7 +66,20 @@ class BusinessGroup
     self.project_visibility = (self.project_visibility == "Private" ? "Public" : "Private")
     self.save
   end
-  #def set_url
-  # self.bg_url =self.bg_name + ".crowdles.com"
-  #end
+
+  def not_fake_language
+    if  Language.is_fake(bg_language)
+      errors.add(:language, "Not present in Language List")
+    end
+  end
+
+  def not_fake_country
+    if  CountryDetail.is_fake(bg_country)
+      errors.add(:country, "Not present in country List")
+    end
+  end
+
+  def set_bg
+  self.creation_date= Date.today
+  end
 end

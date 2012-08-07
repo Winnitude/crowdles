@@ -25,14 +25,16 @@ class BusinessGroupsController < ApplicationController
   end
   def create
     @user = current_user
-   #@user = User.where(:email =>params[:email]).first
-   @business_group = @user.build_business_group(params[:business_group])
-   @business_group.admin_group = current_user.admin_group
-   @business_group.bg_url =@business_group.bg_name + ".crowdles.com"
-   @business_group.save
-   @user.add_role("Business Group Owner")
-    #render :json => @business_group
-    redirect_to bg_publication_settings_business_group_path(@business_group) , :notice => "Business group general setting created"
+    #@user = User.where(:email =>params[:email]).first
+    @business_group = @user.build_business_group(params[:business_group])
+    @business_group.admin_group = current_user.admin_group
+    @business_group.bg_url =@business_group.bg_name + ".crowdles.com"
+    if @business_group.save
+      @user.add_role("Business Group Owner")
+      redirect_to bg_publication_settings_business_group_path(@business_group) , :notice => "Business group general setting created"
+    else
+      render :action => :new_business_group
+    end
   end
 
 
@@ -63,12 +65,12 @@ class BusinessGroupsController < ApplicationController
       previous_owner = @business_group.user
       new_owner =  @user = User.where(:email =>params[:worker_email]).first
       if new_owner.present?
-      previous_owner.remove_role "Business Group Owner"
-      new_owner.add_role "Business Group Owner"
-      @business_group.user = new_owner
-      @business_group.save
-      BgMailer.get_ownership(new_owner).deliver
-      BgMailer.lost_ownership(previous_owner).deliver
+        previous_owner.remove_role "Business Group Owner"
+        new_owner.add_role "Business Group Owner"
+        @business_group.user = new_owner
+        @business_group.save
+        BgMailer.get_ownership(new_owner).deliver
+        BgMailer.lost_ownership(previous_owner).deliver
       end
       redirect_to  bg_external_links_business_group_path(@business_group) , :notice => "BG Updated successfully "
     end
