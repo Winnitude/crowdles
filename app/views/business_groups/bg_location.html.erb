@@ -5,7 +5,7 @@
 
     <% if @business_group.errors.any?  %>
         <div id="error_explanation">
-          <h2><%= pluralize(@admin_group_owner.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
+          <h2><%= pluralize(@business_group.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
 
           <ul>
             <% @business_group.errors.full_messages.each do |msg| %>
@@ -18,7 +18,7 @@
     <div class="control-group">
       <label class="control-label" for="input01">Country: <span style="color:red"> </span></label>
       <div class="controls">
-        <%=f.text_field :location_country  ,:class=>"input"%>
+        <%=f.autocomplete_field :location_country ,autocomplete_country_detail_name_business_groups_path ,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -110,17 +110,10 @@
 //            email.add( Validate.Email);
 //            email.add(Validate.Presence)
 
-            var group_name = new LiveValidation('admin_group_name',{validMessage:" ",onlyOnSubmit:true});
+            var business_group_location_country = new LiveValidation('business_group_location_country',{validMessage:" ",onlyOnSubmit:true});
 
-            group_name.add(Validate.Presence)
+            business_group_location_country.add(Validate.Presence)
 
-            var group_email = new LiveValidation('admin_group_ag_email',{validMessage:" ",onlyOnSubmit:true});
-
-            group_email.add(Validate.Presence)
-            group_email.add( Validate.Email);
-
-            var telephone_number = new LiveValidation("admin_group_phone_number",{validMessage:" ",onlyOnSubmit:true});
-            telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
 
 
         });

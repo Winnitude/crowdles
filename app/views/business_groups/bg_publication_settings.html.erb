@@ -5,7 +5,7 @@
 
     <% if @business_group.errors.any?  %>
         <div id="error_explanation">
-          <h2><%= pluralize(@admin_group_owner.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
+          <h2><%= pluralize(@business_group.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
 
           <ul>
             <% @business_group.errors.full_messages.each do |msg| %>
@@ -90,17 +90,15 @@
 //            email.add( Validate.Email);
 //            email.add(Validate.Presence)
 
-            var group_name = new LiveValidation('admin_group_name',{validMessage:" ",onlyOnSubmit:true});
+            var group_url = new LiveValidation('business_group_bg_url',{validMessage:" ",onlyOnSubmit:true});
 
-            group_name.add(Validate.Presence)
+            group_url.add(Validate.Presence)
 
-            var group_email = new LiveValidation('admin_group_ag_email',{validMessage:" ",onlyOnSubmit:true});
+            var business_group_affiliation_key = new LiveValidation('business_group_affiliation_key',{validMessage:" ",onlyOnSubmit:true});
 
-            group_email.add(Validate.Presence)
-            group_email.add( Validate.Email);
+            business_group_affiliation_key.add(Validate.Presence)
 
-            var telephone_number = new LiveValidation("admin_group_phone_number",{validMessage:" ",onlyOnSubmit:true});
-            telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
+
 
 
         });

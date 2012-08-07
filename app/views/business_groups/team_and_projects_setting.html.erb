@@ -5,7 +5,7 @@
 
     <% if @business_group.errors.any?  %>
         <div id="error_explanation">
-          <h2><%= pluralize(@admin_group_owner.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
+          <h2><%= pluralize(@business_group.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
 
           <ul>
             <% @business_group.errors.full_messages.each do |msg| %>

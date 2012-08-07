@@ -5,7 +5,7 @@
 
     <% if @business_group.errors.any?  %>
         <div id="error_explanation">
-          <h2><%= pluralize(@admin_group_owner.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
+          <h2><%= pluralize(@business_group.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
 
           <ul>
             <% @business_group.errors.full_messages.each do |msg| %>
@@ -94,26 +94,20 @@
     <script type="text/javascript">
 
         jQuery(function(){
+            var facebook =   new LiveValidation("business_group_bg_facebook_page",{validMessage:" ",onlyOnSubmit:true});
+            facebook.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+            var twitter =   new LiveValidation("business_group_bg_twitter_page",{validMessage:" ",onlyOnSubmit:true});
+            twitter.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+            var business_group_bg_main_website =   new LiveValidation("business_group_bg_main_website",{validMessage:" ",onlyOnSubmit:true});
+            business_group_bg_main_website.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+            var business_group_bg_blog =   new LiveValidation("business_group_bg_blog",{validMessage:" ",onlyOnSubmit:true});
+            business_group_bg_blog.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
 
+            var business_group_bg_linkedin_page =   new LiveValidation("business_group_bg_linkedin_page",{validMessage:" ",onlyOnSubmit:true});
+            business_group_bg_linkedin_page.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+            var business_group_bg_myspace_page =   new LiveValidation("business_group_bg_myspace_page",{validMessage:" ",onlyOnSubmit:true});
+            business_group_bg_myspace_page.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
 
-
-
-
-//            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
-//            email.add( Validate.Email);
-//            email.add(Validate.Presence)
-
-            var group_name = new LiveValidation('admin_group_name',{validMessage:" ",onlyOnSubmit:true});
-
-            group_name.add(Validate.Presence)
-
-            var group_email = new LiveValidation('admin_group_ag_email',{validMessage:" ",onlyOnSubmit:true});
-
-            group_email.add(Validate.Presence)
-            group_email.add( Validate.Email);
-
-            var telephone_number = new LiveValidation("admin_group_phone_number",{validMessage:" ",onlyOnSubmit:true});
-            telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
 
 
         });

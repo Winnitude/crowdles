@@ -37,9 +37,9 @@ class BusinessGroup
   field :location_gps       , :type =>String
   field :location_contact_number1    , :type =>String
   field :location_contact_number2     , :type =>String
-  field :show_button_to_submit_idea   , :type => Boolean , :default => false
+  field :show_button_to_submit_idea   , :type => Boolean , :default => true
   field :publish_status, :type => String , :default => "Unpublished"
-  field :direct_worker_assignment , :type => Boolean , :default => false
+  field :direct_worker_assignment , :type => Boolean , :default => true
   field :self_management , :type => Boolean , :default => false
   field :arena_flag , :type => Boolean , :default => false
   field :additional_tnc, :type => String
@@ -56,8 +56,10 @@ class BusinessGroup
   mount_uploader :image4, ImageUploader
 
   validate :not_fake_country
+  validate :not_fake_country_for_location
   validate :not_fake_language
-
+  validates :affiliation_key ,
+            :uniqueness => true
   def toggle_group_visibility
     self.bg_visibility = (self.bg_visibility == "Private" ? "Public" : "Private")
     self.save
@@ -79,7 +81,17 @@ class BusinessGroup
     end
   end
 
+  def not_fake_country_for_location
+    if  CountryDetail.is_fake(location_country)
+      errors.add(:location_country, "Not present in country List")
+    end
+  end
+
   def set_bg
   self.creation_date= Date.today
+  end
+
+  def set_ak
+    self.affiliation_key = Digest::SHA1.hexdigest(Time.now.to_s)[0,15]
   end
 end

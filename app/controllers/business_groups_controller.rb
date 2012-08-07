@@ -19,9 +19,7 @@ class BusinessGroupsController < ApplicationController
   def new_business_group
     #@user = User.where(:email =>params[:worker_email]).first
     @user = current_user
-    @business_group = @user.build_business_group(:affiliation_key => Digest::SHA1.hexdigest(Time.now.to_s)[0,15] )
-
-
+    @business_group = @user.build_business_group()
   end
   def create
     @user = current_user
@@ -29,6 +27,7 @@ class BusinessGroupsController < ApplicationController
     @business_group = @user.build_business_group(params[:business_group])
     @business_group.admin_group = current_user.admin_group
     @business_group.bg_url =@business_group.bg_name + ".crowdles.com"
+    @business_group.set_ak
     if @business_group.save
       @user.add_role("Business Group Owner")
       redirect_to bg_publication_settings_business_group_path(@business_group) , :notice => "Business group general setting created"
