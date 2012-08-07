@@ -1,31 +1,14 @@
 <div class="sidebar-nav-fixed">
   <ul class="nav">
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-    <li>hello</li>
-  </ul>
 
+    <% if @business_group.present? %>
+        <li><%=link_to "Publication Options" ,bg_publication_settings_business_group_path(@business_group,:edit_bg => true) %></li>
+        <li><%=link_to "Team And Workspace" ,team_and_projects_setting_business_group_path(@business_group,:edit_bg => true) %></li>
+        <li> <%=link_to "Links" ,bg_external_links_business_group_path(@business_group,:edit_bg => true) %></li>
+        <li> <%=link_to "Locations" ,bg_location_business_group_path(@business_group,:edit_bg => true) %></li>
+        <li><%=link_to "Descriptions" ,bg_description_business_group_path(@business_group,:edit_bg => true) %>  </li>
+        <li>  <%=link_to "Images And Multimedia " ,bg_multimedia_business_group_path(@business_group,:edit_bg => true) %></li>
+    <% end %>
+
+  </ul>
 </div >
