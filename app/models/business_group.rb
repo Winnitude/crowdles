@@ -46,6 +46,8 @@ class BusinessGroup
   field :additional_terms_enabled  #to check weather additional_terms enbaled or not
   field :group_video , :type =>String
   field :creation_date , :type => Date
+  field :publish_date,   :type => Date
+  field :unpublished_date , :type => Date
   mount_uploader :logo, ImageUploader
   mount_uploader :default_main_image, ImageUploader
   mount_uploader :team_image, ImageUploader
@@ -57,7 +59,7 @@ class BusinessGroup
 
   validate :not_fake_country
   validate :not_fake_country_for_location
-  validate :not_fake_language
+  #validate :not_fake_language
   validates :affiliation_key ,
             :uniqueness => true
   def toggle_group_visibility

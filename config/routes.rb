@@ -106,6 +106,8 @@ CrowdFunding::Application.routes.draw do
       put :update_bg_description
       get :bg_multimedia
       put :update_bg_multimedia
+      get :bg_general_setting
+      put :update_bg_general_setting
     end
   end
   resources :main_admin_group_owners do

@@ -119,8 +119,24 @@
   </div><!--/content-->
 
   <footer>
-    <%= debug(params) if Rails.env.development? %>
-    <%= params.inspect if Rails.env.development? %>
+    <%if Rails.env.development?%>
+        <%= debug(params) if Rails.env.development?%>
+        User email:::::::::::
+        <%= current_user.email %>
+        ===============================================================================================================================
+        </br>  </br></br></br></br>
+        User Roles:::::::::::::::
+        <%= current_user.get_all_roles.inspect %>
+        ================================================================================================================================
+        </br> </br></br></br></br></br></br>
+        <%= params.inspect if Rails.env.development? %>
+        </br></br></br></br></br>
+        ================================================================================================================================
+        ALL business Group Count
+        </br></br>
+        <%= current_user.business_groups.count %>
+    <% end %>
+
     <p>&copy; Company 2012</p>
   </footer>
 

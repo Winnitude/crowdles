@@ -52,9 +52,9 @@ class BusinessGroupsController < ApplicationController
 
   def team_and_projects_setting
     admin_group = current_user.admin_group
-    all_workers = admin_group.admin_group_workers.includes(:user).collect{|i| i.user.email}
-    my_business_groups = admin_group.business_groups.includes(:user).collect{|i| i.user.email}
-    @workers = all_workers - my_business_groups
+    #all_workers = admin_group.admin_group_workers.includes(:user).collect{|i| i.user.email}
+    #my_business_groups = admin_group.business_groups.includes(:user).collect{|i| i.user.email}
+    @workers = admin_group.admin_group_workers.includes(:user).collect{|i| i.user.email}
     @business_group = BusinessGroup.find(params[:id])
   end
 
@@ -64,7 +64,7 @@ class BusinessGroupsController < ApplicationController
       previous_owner = @business_group.user
       new_owner =  @user = User.where(:email =>params[:worker_email]).first
       if new_owner.present?
-        previous_owner.remove_role "Business Group Owner"
+        previous_owner.remove_role "Business Group Owner" if previous_owner.business_groups.count == 1
         new_owner.add_role "Business Group Owner"
         @business_group.user = new_owner
         @business_group.save
@@ -128,6 +128,19 @@ class BusinessGroupsController < ApplicationController
       render :action => :bg_external_links
     end
   end
+
+  def bg_general_setting
+    @business_group = BusinessGroup.find(params[:id])
+  end
+
+  def update_bg_general_setting
+    @business_group = BusinessGroup.find(params[:id])
+    if @business_group.update_attributes(params[:business_group])
+      redirect_to  business_group_management_admin_groups_path , :notice => "BG updated successfully"
+    else
+      render :action => :bg_general_setting
+    end
+  end
   def change_owner
     @business_group = BusinessGroup.find(params[:id])
     previous_owner = @business_group.user
@@ -144,9 +157,9 @@ class BusinessGroupsController < ApplicationController
   def select_worker_change_owner
     @business_group = BusinessGroup.find(params[:id])
     admin_group = current_user.admin_group
-    all_workers = admin_group.admin_group_workers.includes(:user).collect{|i| i.user.email}
-    my_business_groups = admin_group.business_groups.includes(:user).collect{|i| i.user.email}
-    @workers = all_workers - my_business_groups
+    #all_workers = admin_group.admin_group_workers.includes(:user).collect{|i| i.user.email}
+    #my_business_groups = admin_group.business_groups.includes(:user).collect{|i| i.user.email}
+    @workers = admin_group.admin_group_workers.includes(:user).collect{|i| i.user.email}
   end
 
   def reset_projects_visibility

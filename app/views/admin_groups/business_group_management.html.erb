@@ -7,6 +7,7 @@
     <th>Ownership Actions</th>
     <th>Group Visibility</th>
     <th>Projects Visibility</th>
+    <th>Action</th>
   </tr>
   </thead>
 
@@ -32,8 +33,9 @@
           end
         %>
         <td><%= link_to project_display ,reset_projects_visibility_business_group_path(bg)%>   </td>
+        <td><%= link_to "Edit" ,bg_general_setting_business_group_path(bg)%>   </td>
       </tr>
   <% end %>
 
 </table>
-<%= link_to 'Add New Worker',new_admin_group_worker_path, :class => "btn"%>
+<%= link_to "new group" ,new_business_group_business_groups_path, :class => "btn"%>

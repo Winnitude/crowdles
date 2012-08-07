@@ -60,13 +60,43 @@
         <p class="help-block"></p>
       </div>
     </div>
+    <!--<div class="control-group">-->
+      <!--<label class="control-label" for="input01">Publish BG: <span style="color:red"> </span></label>-->
+      <!--<div class="controls">-->
+        <!--<%=f.check_box( :publish_status, { :class => 'eula_check' }, "Published" , "Unpublished")%>-->
+        <!--&lt;!&ndash;<input type="text" class="input-xlarge" id="input01">&ndash;&gt;-->
+        <!--<p class="help-block"></p>-->
+      <!--</div>-->
+    <!--</div>-->
     <div class="control-group">
-      <label class="control-label" for="input01">Publish BG: <span style="color:red"> </span></label>
+      <label class="control-label" for="input01">Publish: <span style="color:red"> </span></label>
       <div class="controls">
-        <%=f.check_box( :publish_status, { :class => 'eula_check' }, "Published" , "Unpublished")%>
+        <%=f.select :publish_status,options_for_select(["Unpublished", "Published", "Scheduled"] , @business_group.publish_status),{:prompt => "Select"},:class=>"input" %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
+    </div>
+
+    <div id="publish_dates">
+
+      <div class="control-group">
+        <label class="control-label" for="input01">Publish Date <span style="color:red"></span></label>
+        <div class="controls">
+          <%= f.datepicker :publish_date%>
+          <!--<input type="text" class="input-xlarge" id="input01">-->
+          <p class="help-block"></p>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="input01">UnPublish Date <span style="color:red"></span></label>
+        <div class="controls">
+          <%= f.datepicker :unpublished_date%>
+          <!--<input type="text" class="input-xlarge" id="input01">-->
+          <p class="help-block"></p>
+        </div>
+      </div>
+
     </div>
 
     <div class="form-actions">
@@ -82,9 +112,28 @@
     <script type="text/javascript">
 
         jQuery(function(){
+            $('#publish_dates').hide()
+            var publish_value = $('#business_group_publish_status').val();
+            alert(publish_value)
+            if (publish_value == "Scheduled")
+            {
+                $('#publish_dates').show()
+            }
 
 
+            $('#business_group_publish_status').change(function(event){
+                var cObj = $(this);
+                value =cObj.val()
+                if (value == "Scheduled")
+                {
+                    $('#publish_dates').show()
+                }
+                else
+                {
+                    $('#publish_dates').hide()
+                }
 
+            });
 
 
 //            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
