@@ -29,7 +29,7 @@
             $("#check").click(function(event){
                 event.preventDefault();
                 var email = $("#user_email").val()
-                $.get("/local_admins/check_for_existing_user",{"email" :email},function(k){}
+                $.get("/admin_group_workers/check_for_existing_user",{"email" :email},function(k){}
                 )
             });
             var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});

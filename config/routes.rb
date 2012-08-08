@@ -146,6 +146,7 @@ CrowdFunding::Application.routes.draw do
 
   resources :admin_group_workers do
     get :activate_or_deactivate_worker, :on=> :member
+    get :check_for_existing_user  ,  :on => :collection
   end
 
   resources :consultant_workers do

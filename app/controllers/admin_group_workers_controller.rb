@@ -57,6 +57,10 @@ class AdminGroupWorkersController < ApplicationController
     #TODO GA LA check
   end
 
+  def check_for_existing_user
+    @user = User.where(:email => params[:email]).first
+  end
+
   private
 
   def should_be_ago

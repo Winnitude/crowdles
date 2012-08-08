@@ -22,7 +22,7 @@
     <td><%=product.platform_product_name%></td>
     <td><%=product.product_type%></td>
     <td><%=product.product_target%></td>
-    <td><%=product.status%></td>
+    <td><%=product.status == true ? "Published" : "Unpublished"%></td>
     <!--<td><%=product.get_window_number%></td>-->
     <!--<td><%=product.get_contest_number%></td>-->
     <!--<td><%=product.get_ag_workers_number%></td>-->
@@ -40,4 +40,4 @@
 
 <br />
 
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'New Product', new_product_path , :class => "btn primary btn-info" %>
