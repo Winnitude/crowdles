@@ -1,6 +1,6 @@
 class BusinessGroupsController < ApplicationController
-  before_filter :should_be_admin_group_owner , :except => ["all_owned_groups" , "edit_ak", "update_ak"]
-  before_filter :should_be_business_group_owner , :only => ["all_owned_groups" , "edit_ak", "update_ak"]
+  before_filter :should_be_admin_group_owner , :except => ["all_owned_groups" , "edit_ak", "update_ak", "edit_publish", "update_publish"]
+  before_filter :should_be_business_group_owner , :only => ["all_owned_groups" , "edit_ak", "update_ak","edit_publish", "update_publish"]
   autocomplete :country_detail, :name
   #autocomplete :user, :email
   autocomplete :language, :name
@@ -223,6 +223,6 @@ class BusinessGroupsController < ApplicationController
   end
 
   def should_be_business_group_owner
-    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action"  unless RolesManager.is_role_present?("Business Group Owner", current_user)
+    redirect_to root_path, :notice => "You should have the BGO privileges to perform this action"  unless RolesManager.is_role_present?("Business Group Owner", current_user)
   end
 end
