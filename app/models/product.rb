@@ -11,7 +11,7 @@ class Product
   field :ag_payment_gateway_commissions_payer_settings    ,:type => Boolean   ,:default => false
   field :product_monthly_price,           :type => Float
   field :product_annual_price,            :type => Float
-  field :status,                          :type => String
+  field :status,                          :type => Boolean     ,:default => true
   field :product_type  ,                 :type => String        , :default => "AG"
   field :product_target  ,                       :type => String
 
