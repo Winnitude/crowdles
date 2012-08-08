@@ -1,0 +1,22 @@
+
+
+<table border="1" class="table">
+  <thead> <tr>
+    <th>Email</th>
+    <th>Name</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+
+  <% @business_groups.each do |bg| %>
+
+      <tr>
+        <td><%= bg.user.email %></td>
+        <td><%= bg.bg_name %></td>
+        <td><%= link_to "Edit Affiliation Key" ,edit_ak_business_group_path(bg)%>  |
+        <%= link_to  "Edit Publish Setting",edit_publish_business_group_path(bg) %></td>
+      </tr>
+  <% end %>
+
+</table>
+<%= link_to "new group" ,new_business_group_business_groups_path, :class => "btn"%>

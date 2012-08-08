@@ -1,5 +1,6 @@
 class BusinessGroupsController < ApplicationController
-  #before_filter :should_be_admin_group_owner,:only=>[:create]
+  before_filter :should_be_admin_group_owner , :except => ["all_owned_groups" , "edit_ak", "update_ak"]
+  before_filter :should_be_business_group_owner , :only => ["all_owned_groups" , "edit_ak", "update_ak"]
   autocomplete :country_detail, :name
   #autocomplete :user, :email
   autocomplete :language, :name
@@ -42,6 +43,9 @@ class BusinessGroupsController < ApplicationController
   end
 
   def update_bg_publication_settings
+    params[:business_group][:publish_date] = format_birth_date(params[:business_group][:publish_date])  if  params[:business_group][:publish_date].present?
+    params[:business_group][:unpublished_date] = format_birth_date(params[:business_group][:unpublished_date])  if  params[:business_group][:unpublished_date].present?
+
     @business_group = BusinessGroup.find(params[:id])
     if @business_group.update_attributes(params[:business_group])
       redirect_to team_and_projects_setting_business_group_path(@business_group) , :notice => "all links saved successfully"
@@ -123,7 +127,7 @@ class BusinessGroupsController < ApplicationController
   def update_bg_multimedia
     @business_group = BusinessGroup.find(params[:id])
     if @business_group.update_attributes(params[:business_group])
-      render :json => @business_group
+      redirect_to  business_group_management_admin_groups_path , :notice => "BG multimedia settings updated successfully"
     else
       render :action => :bg_external_links
     end
@@ -174,9 +178,46 @@ class BusinessGroupsController < ApplicationController
     redirect_to business_group_management_admin_groups_path, :notice => "Group Visibility Setting Changed"
   end
 
+  def all_owned_groups
+    @business_groups = current_user.business_groups.includes(:user)
+  end
+
+  def edit_ak   #BGO
+    @business_group = BusinessGroup.find(params[:id])
+  end
+
+  def update_ak  #BGO
+    @business_group = BusinessGroup.find(params[:id])
+    if @business_group.update_attributes(params[:business_group])
+      redirect_to all_owned_groups_business_groups_path , :notice => "AK updated sucessfully"
+    else
+      render :action => :edit_ak
+    end
+  end
+
+  def edit_publish
+    @business_group = BusinessGroup.find(params[:id])
+    #render :json => @business_group
+  end
+
+  def update_publish
+    params[:business_group][:publish_date] = format_birth_date(params[:business_group][:publish_date])  if  params[:business_group][:publish_date].present?
+    params[:business_group][:unpublished_date] = format_birth_date(params[:business_group][:unpublished_date])  if  params[:business_group][:unpublished_date].present?
+    @business_group = BusinessGroup.find(params[:id])
+    if @business_group.update_attributes(params[:business_group])
+      redirect_to all_owned_groups_business_groups_path , :notice => "Publish setting updated successfully"
+    else
+      render :action => :edit_ak
+    end
+  end
+
   private
 
   def should_be_admin_group_owner
-    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action"  if RolesManager.is_role_present?("Admin Group Owner", current_user)
+    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action"  unless RolesManager.is_role_present?("Admin Group Owner", current_user)
+  end
+
+  def should_be_business_group_owner
+    redirect_to root_path, :notice => "You should have the AGO privileges to perform this action"  unless RolesManager.is_role_present?("Business Group Owner", current_user)
   end
 end

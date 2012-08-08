@@ -1,0 +1,97 @@
+
+<h1>Publish Setting</h1>
+<%=form_for @business_group , :url => update_publish_business_group_path(@business_group) , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
+
+
+
+    <% if @business_group.errors.any?  %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@business_group.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
+
+          <ul>
+            <% @business_group.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Publish: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=f.select :publish_status,options_for_select(["Unpublished", "Published", "Scheduled"] , @business_group.publish_status),{:prompt => "Select"},:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+    <div id="publish_dates">
+
+      <div class="control-group">
+        <label class="control-label" for="input01">Publish Date <span style="color:red"></span></label>
+        <div class="controls">
+          <%= f.datepicker :publish_date%>
+          <!--<input type="text" class="input-xlarge" id="input01">-->
+          <p class="help-block"></p>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="input01">UnPublish Date <span style="color:red"></span></label>
+        <div class="controls">
+          <%= f.datepicker :unpublished_date%>
+          <!--<input type="text" class="input-xlarge" id="input01">-->
+          <p class="help-block"></p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Save",:class =>"btn btn-primary"  %>
+      <!--<a class="btn" href="/"></a>-->
+      <!--<input type="text" class="input-xlarge"  id="input01">-->
+    </div>
+
+<%end%>
+
+
+<%= content_for :head do  %>
+    <script type="text/javascript">
+
+        jQuery(function(){
+            $('#publish_dates').hide()
+            var publish_value = $('#business_group_publish_status').val();
+
+            if (publish_value == "Scheduled")
+            {
+                $('#publish_dates').show()
+            }
+
+
+            $('#business_group_publish_status').change(function(event){
+                var cObj = $(this);
+                value =cObj.val()
+                if (value == "Scheduled")
+                {
+                    $('#publish_dates').show()
+                }
+                else
+                {
+                    $('#publish_dates').hide()
+                }
+
+            });
+
+
+//            var email = new LiveValidation('user_email',{validMessage:" ",onlyOnSubmit:true});
+//            email.add( Validate.Email);
+//            email.add(Validate.Presence)
+
+
+
+
+
+        });
+    </script>
+<% end %>

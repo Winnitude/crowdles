@@ -88,6 +88,7 @@ CrowdFunding::Application.routes.draw do
     get :new_business_group
     get :autocomplete_language_name
     get :autocomplete_country_detail_name
+    get :all_owned_groups
   end
     member do
       get :bg_external_links
@@ -108,6 +109,10 @@ CrowdFunding::Application.routes.draw do
       put :update_bg_multimedia
       get :bg_general_setting
       put :update_bg_general_setting
+      get :edit_ak
+      put :update_ak
+      get :edit_publish
+      put :update_publish
     end
   end
   resources :main_admin_group_owners do
