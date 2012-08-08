@@ -48,7 +48,8 @@ class BusinessGroupsController < ApplicationController
 
     @business_group = BusinessGroup.find(params[:id])
     if @business_group.update_attributes(params[:business_group])
-      redirect_to team_and_projects_setting_business_group_path(@business_group) , :notice => "all links saved successfully"
+      redirect_to team_and_projects_setting_business_group_path(@business_group) , :notice => "all links saved successfully" if !(params[:check_status].present?)
+      redirect_to business_group_management_admin_groups_path, :notice => "all links saved successfully"    if (params[:check_status].present?)
     else
       render :action => :bg_external_links
     end
@@ -75,7 +76,8 @@ class BusinessGroupsController < ApplicationController
         BgMailer.get_ownership(new_owner).deliver
         BgMailer.lost_ownership(previous_owner).deliver
       end
-      redirect_to  bg_external_links_business_group_path(@business_group) , :notice => "BG Updated successfully "
+      redirect_to  bg_external_links_business_group_path(@business_group) , :notice => "BG Updated successfully "   if !(params[:check_status].present?)
+      redirect_to business_group_management_admin_groups_path, :notice => "all links saved successfully"    if (params[:check_status].present?)
     end
   end
 
@@ -86,7 +88,8 @@ class BusinessGroupsController < ApplicationController
   def update_bg_external_links
     @business_group = BusinessGroup.find(params[:id])
     if @business_group.update_attributes(params[:business_group])
-      redirect_to bg_location_business_group_path(@business_group) , :notice => "all links saved successfully"
+      redirect_to bg_location_business_group_path(@business_group) , :notice => "all links saved successfully"   if !(params[:check_status].present?)
+      redirect_to business_group_management_admin_groups_path, :notice => "all links saved successfully"    if (params[:check_status].present?)
     else
       render :action => :bg_external_links
     end
@@ -100,7 +103,8 @@ class BusinessGroupsController < ApplicationController
   def update_bg_location
     @business_group = BusinessGroup.find(params[:id])
     if @business_group.update_attributes(params[:business_group])
-      redirect_to bg_description_business_group_path(@business_group)  ,:notice => "BG location saved successfully"
+      redirect_to bg_description_business_group_path(@business_group)  ,:notice => "BG location saved successfully"  if !(params[:check_status].present?)
+      redirect_to business_group_management_admin_groups_path, :notice => "all links saved successfully"    if (params[:check_status].present?)
     else
       render :action => :bg_location
     end
@@ -113,7 +117,8 @@ class BusinessGroupsController < ApplicationController
   def update_bg_description
     @business_group = BusinessGroup.find(params[:id])
     if @business_group.update_attributes(params[:business_group])
-      redirect_to bg_multimedia_business_group_path(@business_group) , :notice => "BG description saved successfully"
+      redirect_to bg_multimedia_business_group_path(@business_group) , :notice => "BG description saved successfully"   if !(params[:check_status].present?)
+      redirect_to business_group_management_admin_groups_path, :notice => "all links saved successfully"    if (params[:check_status].present?)
     else
       render :action => :bg_external_links
     end

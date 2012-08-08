@@ -1,6 +1,6 @@
 <%=render :partial => "/shared/side_menus_for_bg_create_edit"%>
 <h1>Publication Options</h1>
-<%=form_for @business_group , :url => update_bg_publication_settings_business_group_path(@business_group) , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
+<%=form_for @business_group , :url => params[:edit_bg].present? ? update_bg_publication_settings_business_group_path(@business_group,:check_status => :okay) : update_bg_publication_settings_business_group_path(@business_group) , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
 
 
 
@@ -24,7 +24,6 @@
         <p class="help-block"></p>
       </div>
     </div>
-
     <div class="control-group">
       <label class="control-label" for="input01">Show the group on Platform's group list and search results: <span style="color:red"> </span></label>
       <div class="controls">
