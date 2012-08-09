@@ -1,0 +1,18 @@
+
+
+<table border="1" class="table">
+  <thead> <tr>
+    <th>Name</th>
+    <th>My Status For this Group</th>
+  </tr>
+  </thead>
+
+  <% @admin_groups_worker.each do |agw| %>
+
+      <tr>
+        <td><%= agw.admin_group.name %></td>
+        <td><%= agw.status %></td>
+      </tr>
+  <% end %>
+
+</table>

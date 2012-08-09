@@ -1,6 +1,6 @@
 class AdminGroupWorkersController < ApplicationController
   before_filter :check_role_before_creation
-  before_filter :should_be_ago , :except => [:activate_or_deactivate_worker]
+  before_filter :should_be_ago , :except => [:activate_or_deactivate_worker , :my_groups]
   def new
     #TODO Only AGO can create
     @user = User.new
@@ -59,6 +59,10 @@ class AdminGroupWorkersController < ApplicationController
 
   def check_for_existing_user
     @user = User.where(:email => params[:email]).first
+  end
+
+  def my_groups
+      @admin_groups_worker = current_user.admin_group_workers.includes(:admin_group)
   end
 
   private
