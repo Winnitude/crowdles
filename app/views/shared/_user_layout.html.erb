@@ -20,13 +20,23 @@
 <%end%>
 <a href="<%= show_good_idea_ideas_path %>">My Good Ideas</a>
 </li>
+<li>
+  <%= link_to  "Business Groups" ,business_groups_users_path %>
+</li>
 
+<li>
+  <% if !(current_user.profile.present?)%>
+      <a href="<%=  new_profile_path %>">Create Profile</a>
+  <%else%>
+      <a href="<%=  edit_profile_path(current_user) %>">Edit Profile</a>
+  <%end%>
+</li>
 
 <li>
   <% if !(current_user.default_billing_profile.present?)%>
       <a href="<%=  new_default_billing_profile_path %>">Create Default Billing Profile</a>
   <%else%>
-      <a href="<%=  edit_default_billing_profile_path(45) %>">Edit Default Billing Profile</a>
+      <a href="<%=  edit_default_billing_profile_path(current_user) %>">Edit Default Billing Profile</a>
   <%end%>
 </li>
 

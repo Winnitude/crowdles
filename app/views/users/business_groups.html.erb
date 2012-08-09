@@ -1,0 +1,20 @@
+
+
+<table border="1" class="table">
+  <thead> <tr>
+    <th>Owner Email</th>
+    <th>Name</th>
+    <th>Category</th>
+  </tr>
+  </thead>
+
+  <% @business_groups.each do |bg| %>
+
+      <tr>
+        <td><%= bg.user.email %></td>
+        <td><%= bg.bg_name %></td>
+        <td><%= bg.category %></td>
+      </tr>
+  <% end %>
+
+</table>

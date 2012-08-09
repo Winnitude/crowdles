@@ -256,6 +256,10 @@ CrowdFunding::Application.routes.draw do
     end
   end
   resources  :users do
+    collection do
+      get :business_groups
+    end
+
     member do
       #get :activate_page
       #put :activation
