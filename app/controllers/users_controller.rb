@@ -106,6 +106,7 @@ class UsersController < ApplicationController
   end
 
   def business_groups
+    @a = BusinessGroup.all.collect{|i| i.user}
    @business_groups = BusinessGroup.where(:bg_visibility => "Public")
   end
 
