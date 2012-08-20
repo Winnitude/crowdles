@@ -22,6 +22,7 @@
       <div class="controls">
         <%=f.file_field :logo,:class=>"input"%>
         <!--<input type="text" class="input-xlarge" id="input01">-->
+        <%= image_tag @business_group.logo.url , :size=> "300x200" if @business_group.logo.present?  %>
         <p class="help-block"></p>
       </div>
     </div>
@@ -29,6 +30,7 @@
       <label class="control-label" for="input01">Group Default image: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.file_field :default_main_image,:class=>"input"%>
+        <%= image_tag @business_group.default_main_image.url , :size=> "300x200" if @business_group.default_main_image.present?  %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -38,6 +40,7 @@
       <label class="control-label" for="input01">Team Image: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.file_field :team_image,:class=>"input"%>
+        <%= image_tag @business_group.team_image.url , :size=> "300x200" if @business_group.team_image.present?  %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -56,6 +59,7 @@
       <label class="control-label" for="input01">Additional Image1: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.file_field :image1,:class=>"input"%>
+        <%= image_tag @business_group.image1.url , :size=> "300x200" if @business_group.image1.present?  %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -64,6 +68,7 @@
       <label class="control-label" for="input01">Additional Image2: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.file_field :image2,:class=>"input"%>
+        <%= image_tag @business_group.image2.url , :size=> "300x200" if @business_group.image2.present?  %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -72,6 +77,7 @@
       <label class="control-label" for="input01">Additional Image3: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.file_field :image3,:class=>"input"%>
+        <%= image_tag @business_group.image3.url , :size=> "300x200" if @business_group.image3.present?  %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -80,6 +86,7 @@
       <label class="control-label" for="input01">Additional Image4: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.file_field :image4,:class=>"input"%>
+        <%= image_tag @business_group.image4.url , :size=> "300x200" if @business_group.image4.present?  %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
@@ -88,6 +95,7 @@
       <label class="control-label" for="input01">Additional Image5: <span style="color:red"> </span></label>
       <div class="controls">
         <%=f.file_field :image5,:class=>"input"%>
+        <%= image_tag @business_group.image5.url , :size=> "300x200" if @business_group.image5.present?  %>
         <!--<input type="text" class="input-xlarge" id="input01">-->
         <p class="help-block"></p>
       </div>
