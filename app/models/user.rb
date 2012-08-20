@@ -175,15 +175,18 @@ class User
 
   ################for LA creation#############3
   def set_owner_attributes
-    value = ""; 8.times{value  << (65 + rand(25)).chr}
-    logger.info value.inspect
-    self.password = value
-    self.password_confirmation = value
-    #self.role = "Local Admin"
+    #value = ""; 8.times{value  << (65 + rand(25)).chr}
+    #logger.info value.inspect
+    #self.password = value
+    #self.password_confirmation = value
+    ##self.role = "Local Admin"
+    #self.is_provider_terms_of_service= true
+    #self.terms_of_service = true
+    #self.skip_confirmation!
+    #value
     self.is_provider_terms_of_service= true
     self.terms_of_service = true
     self.skip_confirmation!
-    value
   end
 
   def change_role_to_AGW(admin_group_owner)
@@ -237,8 +240,8 @@ class User
   end
 
   def change_to_AGO   #TODO need to move to user model
-     #user.role = "Admin Group Owner"
-     #user.save
+                      #user.role = "Admin Group Owner"
+                      #user.save
     RolesManagement::RolesManager.add_role("Admin Group Owner", self)
   end
 

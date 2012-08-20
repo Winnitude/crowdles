@@ -63,6 +63,7 @@ class SessionsController <  Devise::SessionsController
     if @user.update_attributes(params[:user])
       @user.activate_via_new_path = true
       @user.save
+      #sign_in @user
       redirect_to root_path , :notice => "Now you are the registered user. you can now sign_in and access crowdles"
     else
       render :action => :activate_page

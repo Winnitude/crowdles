@@ -36,6 +36,7 @@ class Admin::LocalAdminsController < ApplicationController
       value = @local_admin.set_owner_attributes  if @local_admin.new_record?
 
       # the below if check weathe we need to create the profile or not
+      is_new =  @local_admin.new_record?
       if @local_admin.new_record? || !(@local_admin.profile.present?)
         @profile =@local_admin.build_profile params[:profile]
       else
@@ -60,7 +61,7 @@ class Admin::LocalAdminsController < ApplicationController
         @local_admin.save
         @admin_group.save
         @local_admin.add_role "Admin Group Owner"
-        LaMailer.welcome_email(@local_admin,@profile,value,@la_setting).deliver if value.present?
+        Activation.welcome_email(@local_admin).deliver if is_new
         LaMailer.welcome_email_existing_user(@local_admin,@la_setting).deliver if value.present? == false
         redirect_to edit_pass_billing_profile_path(@pass_billing_profile) ,:notice => "Local Admin Created Successfully "
       else
