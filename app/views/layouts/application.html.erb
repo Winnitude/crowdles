@@ -119,8 +119,10 @@
   </div><!--/content-->
 
   <footer>
+    <%if Rails.env.development? %>
     <%if  current_user.present?%>
         <%= debug(params) if Rails.env.development?%>
+            <%= Rails.env if Rails.env.development?%>
         User email:::::::::::
         <%= current_user.email %>
         ===============================================================================================================================
@@ -135,6 +137,7 @@
         ALL business Group Count
         </br></br>
         <%= current_user.business_groups.count %>
+        <% end %>
     <% end %>
 
     <p>&copy; Company 2012</p>
