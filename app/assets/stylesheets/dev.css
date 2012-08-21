@@ -13,3 +13,8 @@
 .row-fluid > .span-fixed-sidebar {
     margin-left: 290px;
 }
+
+
+.sidebar-nav .nav > li > a:hover {
+    color: #000000;
+}

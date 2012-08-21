@@ -1,5 +1,7 @@
 
-<%=render :partial => "/shared/side_menus_for_bg_create_edit"%>
+<div class="row">
+  <div class="span2"><%=render :partial => "/shared/side_menus_for_bg_create_edit"%>  </div>
+  <div class="span7">
 <h1>MultiMedia Details</h1>
 <%=form_for @business_group , :url => update_bg_multimedia_business_group_path(@business_group) , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
 
@@ -108,6 +110,8 @@
 
 <%end%>
 
+  </div>
+</div>
 
 <%= content_for :head do  %>
     <script type="text/javascript">

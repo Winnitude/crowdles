@@ -1,5 +1,5 @@
-<div class="sidebar-nav-fixed">
-  <ul class="nav">
+<div class="sidebar-nav">
+  <ul class="nav nav-tabs nav-stacked">
 
     <% if @business_group.present? %>
         <li><%=link_to "General Setting" ,bg_general_setting_business_group_path(@business_group,:edit_bg => true) %></li>

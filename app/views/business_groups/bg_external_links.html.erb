@@ -1,4 +1,6 @@
-<%=render :partial => "/shared/side_menus_for_bg_create_edit"%>
+<div class="row">
+  <div class="span2"><%=render :partial => "/shared/side_menus_for_bg_create_edit"%>  </div>
+  <div class="span7">
 <h1>External links</h1>
 <%=form_for @business_group , :url => params[:edit_bg].present? ? update_bg_external_links_business_group_path(@business_group,:check_status => :okay) : update_bg_external_links_business_group_path(@business_group) , :html => { :class => "form-horizontal",:multipart => true} do |f| %>
 
@@ -89,7 +91,8 @@
     </div>
 
 <%end%>
-
+  </div>
+</div>
 
 <%= content_for :head do  %>
     <script type="text/javascript">
