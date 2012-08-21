@@ -166,9 +166,11 @@ class BusinessGroupsController < ApplicationController
   def select_worker_change_owner
     @business_group = BusinessGroup.find(params[:id])
     admin_group = current_user.admin_group
+    owner = @business_group.user.email
     #all_workers = admin_group.admin_group_workers.includes(:user).collect{|i| i.user.email}
     #my_business_groups = admin_group.business_groups.includes(:user).collect{|i| i.user.email}
     @workers = admin_group.admin_group_workers.includes(:user).collect{|i| i.user.email}
+    @workers = @workers - owner.to_a  # subtracting the current owner of this bg
   end
 
   def reset_projects_visibility

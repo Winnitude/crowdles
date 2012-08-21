@@ -140,7 +140,7 @@ class AdminGroupsController < ApplicationController
 
   def business_group_management
     admin_group = current_user.admin_group
-    @business_groups = admin_group.business_groups.includes(:user)
+    @business_groups = admin_group.business_groups.includes(:user).paginate(:page => params[:page], :per_page => 10)
     #render :json => @business_groups
   end
 
