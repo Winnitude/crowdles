@@ -31,15 +31,15 @@ CrowdFunding::Application.configure do
 
 
 
-  config.after_initialize do
-    Bullet.enable = true
-    Bullet.alert = true
-    Bullet.bullet_logger = true
-    Bullet.console = true
-#  Bullet.growl = true
-    Bullet.rails_logger = true
-    Bullet.disable_browser_cache = true
-  end
+#  config.after_initialize do
+#    Bullet.enable = true
+#    Bullet.alert = true
+#    Bullet.bullet_logger = true
+#    Bullet.console = true
+##  Bullet.growl = true
+#    Bullet.rails_logger = true
+#    Bullet.disable_browser_cache = true
+#  end
 end
 LOCAL_HOST = "local.crowfund.com"
 ADMIN_HOST = "admin.crowfund.com"
