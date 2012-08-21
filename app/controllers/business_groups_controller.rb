@@ -155,11 +155,11 @@ class BusinessGroupsController < ApplicationController
     previous_owner = @business_group.user
     new_owner =  @user = User.where(:email =>params[:worker_email]).first
     previous_owner.remove_role "Business Group Owner"
+    BgMailer.lost_ownership(previous_owner).deliver
     new_owner.add_role "Business Group Owner"
+    BgMailer.get_ownership(new_owner).deliver
     @business_group.user = new_owner
     @business_group.save
-    BgMailer.get_ownership(new_owner).deliver
-    BgMailer.lost_ownership(previous_owner).deliver
     redirect_to business_group_management_admin_groups_path, :notice => "OwnerShip Changed"
   end
 
