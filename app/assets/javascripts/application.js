@@ -17,6 +17,7 @@
 //= require bootstrap-dropdown
 //= require autocomplete-rails
 //= require_self
+//= require timepicker.js
 
 //= require_tree .
 

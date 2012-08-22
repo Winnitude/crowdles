@@ -16,11 +16,41 @@ class UsersController < ApplicationController
   end
 
   def manage_users
-    users = User.get_all_user_for_selected_role "User"
-    admins = User.get_all_user_for_selected_role "Local Admin"
-    @users = (users - admins).paginate(:page => params[:page], :per_page => 10)
-  end
-
+    #users = User.get_all_user_for_selected_role "User"
+    #admins = User.get_all_user_for_selected_role "Local Admin"
+    #@users = (users - admins).paginate(:page => params[:page], :per_page => 10)
+    #@users = (users - admins)
+    params[:registration_date] = format_birth_date(params[:registration_date])  if params[:registration_date].present?
+    params[:last_access] = format_birth_date(params[:last_access])  if params[:last_access].present?
+    @users =User.all
+    @countries = CountryDetail.all.collect{|i| i.name}
+    @languages = Language.all.collect{|i| i.name}
+    if params[:country] != "All"
+      @users = @users.select{|i| i.country == params[:country]}
+    end
+    if params[:language] != "All"
+      @users = @users.select{|i| i.language == params[:language]}
+    end
+    if params[:status] != "All"
+      @users = @users.select{|i| i.status == params[:status]}
+    end
+    #if params[:registration_date] != ""
+    #  @users = @users.select{|i| i.confirmed_at.to_date == params[:registration_date].to_date rescue nil}
+    #end
+    #if params[:last_access] != ""
+    #  @users = @users.select{|i| i.confirmed_at.to_date == params[:last_access].to_date rescue nil}
+    #end
+    if params[:gender] != "All"
+      @users = @users.select{|i| i.profile.gender == params[:gender] rescue nil}
+    end
+    if params[:first_name] != ""
+      @users = @users.select{|i| i.profile.first_name.downcase == params[:first_name].downcase}
+    end
+    if params[:last_name] != ""
+      @users = @users.select{|i| i.profile.last_name.downcase == params[:last_name].downcase}
+    end
+    @users = @users.paginate(:page => params[:page], :per_page => 10)
+   end
   def all_users
     @users = User.all
   end

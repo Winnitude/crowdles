@@ -259,6 +259,7 @@ CrowdFunding::Application.routes.draw do
   resources  :users do
     collection do
       get :business_groups
+      get :manage_users
     end
 
     member do
@@ -266,7 +267,6 @@ CrowdFunding::Application.routes.draw do
       #put :activation
     end
     collection do
-      get :manage_users
       get :autocomplete_country_detail_name
     end
   end

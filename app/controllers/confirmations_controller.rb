@@ -24,6 +24,11 @@ class ConfirmationsController < Devise::PasswordsController
         self.class.add_error_on(self, :email, :password_allready_set)
       end
     end
+    if @confirmable.status == "New"
+      #@confirmable.status = "Activated"
+      @confirmable.update_attribute("status","Active")   #doing this because for a newbee user his status is new when he confirm his account he will become activate
+      #start_debugging
+    end
 
     if !@confirmable.errors.empty?
       render 'devise/confirmations/new' #Change this if you doens't have the views on default path
@@ -32,7 +37,7 @@ class ConfirmationsController < Devise::PasswordsController
 
   # GET /resource/confirmation?confirmation_token=abcdef
   def show
-    logger.info "inside the show action of cc"
+    #logger.info "inside the show action of cc"
     with_unconfirmed_confirmable do
       if @confirmable.has_no_password?
         do_show

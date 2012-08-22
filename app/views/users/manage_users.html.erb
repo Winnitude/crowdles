@@ -1,27 +1,90 @@
-<table border="1" class="table">
-  <thead>
-  <tr>
-    <th><strong> Email <strong></th>
-    <th><strong> First Name <strong></th>
-    <th><strong> Last Name <strong></th>
-    <th><strong> Country <strong></th>
-    <!--<th><strong> User Role<strong></th>-->
-    <th><strong> Action<strong></th>
-  </tr>
-  </thead>
-  <% @users.each do |user| %>
-      <%profile= user.profile.nil? ? Profile.new : user.profile%>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= profile.first_name %></td>
-        <td><%= profile.last_name %></td>
-        <td><%= user.country %></td>
-        <!--<td> <%#= user.role %>     </td>-->
-        <td> <%= link_to 'Show', show_user_path(user.id) %> |
-          <%= link_to 'Edit',edit_user_path(user.id) %>  |
-      </tr>
 
-  <% end %>
+<%=form_tag manage_users_users_path ,:method => :get, :html => { :class => "form-horizontal"} do  %>
+    <div>
+      <table border="0" class="table" >
+        <thead>
+        <tr width="20">
+          <th><strong>Last Name <strong></th>
+          <th><strong> First Name <strong></th>
+          <th><strong> Gender <strong></th>
+          <th><strong> Country <strong></th>
+          <th><strong> Language<strong></th>
+          <th><strong> Active NL<strong></th>
+          <th><strong> Registration Date<strong></th>
+          <th><strong> Last Access<strong></th>
+          <th><strong> Segment*<strong></th>
+          <th><strong> Status*<strong></th>
+        </tr>
+        </thead>
 
-</table>
-<%= will_paginate @users %>
+        <tr>
+          <td><%=text_field_tag :last_name ,params[:last_name],:class => "span1"%> </td>
+          <td><%=text_field_tag :first_name,params[:first_name],:class => "span1"%> </td>
+          <td><%=select_tag :gender ,options_for_select(["All", "Male", "Female"],params[:gender]),:class => "span1"%> </td>
+          <td><%=select_tag :country ,options_for_select(["All"] + @countries ,params[:country]),:class => "span1"%> </td>
+          <td><%=select_tag :language ,options_for_select(["All"] + @languages,params[:language]),:class => "span1"%> </td>
+          <td><%=select_tag :active_nl ,options_for_select(["All","N", "L"]),:class => "span1"%> </td>
+          <td><%=text_field_tag :registration_date ,"",:class => "span1"%> </td>
+          <td><%=text_field_tag :last_access ,"",:class => "span1"%> </td>
+          <td><%=select_tag :segment ,options_for_select(["All","User", "Funder"]),:class => "span1"%> </td>
+          <td><%=select_tag :status ,options_for_select(["All", "New","Active"]),:class => "span1"%> </td>
+          <td><%= submit_tag "Show",:class =>"btn btn-primary"  %></td>
+        </tr>
+        <% @users.each do |user| %>
+            <%profile= user.profile.nil? ? Profile.new : user.profile%>
+            <tr>
+              <td><%= profile.last_name %></td>
+              <td><%= profile.first_name %></td>
+              <td><%= profile.gender %></td>
+              <td><%= user.country %></td>
+              <td><%= user.language %></td>
+              <td><%= %></td>
+              <td><%=user.confirmed_at.to_date rescue nil%></td>
+              <td><%=user.last_sign_in_at.to_date rescue nil %></td>
+              <td><%= %></td>
+              <td><%=user.status %></td>
+              <td><%=link_to "edit" ,edit_user_path(user), :class => "btn btn-info btn-mini"%></td>
+            </tr>
+
+        <% end %>
+
+      </table>
+      <%= will_paginate @users %>
+
+    </div>
+
+
+
+    <div class="form-actions">
+      <!--<%= submit_tag "Save",:class =>"btn btn-primary"  %>-->
+      <!--<a class="btn" href="/">Cancel</a>-->
+      <!--&lt;!&ndash;<input type="text" class="input-xlarge"  id="input01">&ndash;&gt;-->
+    </div>
+
+<%end%>
+
+
+<%= content_for :head do  %>
+    <script type="text/javascript">
+
+        jQuery(function(){
+
+            var startDate = new Date(2012,1,20);
+            var endDate = new Date(2012,1,25);
+            $('#registration_date').datepicker({
+
+                changeMonth: true,
+                changeYear: true,
+                yearRange: 'c-100:c'
+                });
+
+            $('#last_access').datepicker({
+
+                changeMonth: true,
+                changeYear: true,
+                yearRange: 'c-100:c'
+                });
+
+        });
+    </script>
+<% end %>
