@@ -17,6 +17,7 @@ CrowdFunding::Application.routes.draw do
         get :edit_integration_setting , :on => :collection
         put :update_integration_setting, :on => :collection
         get :all_workers, :on => :collection
+        post :new_user , :on => :collection
       end
 
       resources :local_admins do

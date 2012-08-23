@@ -3,7 +3,6 @@ class Admin::GlobalAdminsController < ApplicationController
   before_filter :should_not_be_fake_language, :only => [:update_general_settings]
   autocomplete :language, :name
 
-
   def all_admins
     ## @admins = User.all.select{|i| i.role == "Local Admin" || i.role == "Main Local Admin"}
     # @admins = User.all.select{|i| RolesManager.is_role_present?("Local Admin", i) || RolesManager.is_role_present?("Main Local Admin", i)}
@@ -87,6 +86,15 @@ class Admin::GlobalAdminsController < ApplicationController
   def should_not_be_fake_language
     if Language.is_fake ( params[:user][:global_admin_general_setting][:plateform_default_language])
       redirect_to :back , :notice => "Sorry the language you Have selected is not exist"
+    end
+  end
+
+  def new_user
+    @user = User.new(:email => params[:email], :country => params[:country], :is_provider_terms_of_service=> true, :terms_of_service => true)
+    if @user.save
+      redirect_to manage_users_users_path ,:notice => "Invitation send to user successfully "
+    else
+      redirect_to manage_users_users_path ,:notice => "The User With This Email Already Exist"
     end
   end
 end

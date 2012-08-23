@@ -34,20 +34,20 @@ class UsersController < ApplicationController
     if params[:status] != "All"
       @users = @users.select{|i| i.status == params[:status]}
     end
-    #if params[:registration_date] != ""
-    #  @users = @users.select{|i| i.confirmed_at.to_date == params[:registration_date].to_date rescue nil}
-    #end
-    #if params[:last_access] != ""
-    #  @users = @users.select{|i| i.confirmed_at.to_date == params[:last_access].to_date rescue nil}
-    #end
+    if params[:registration_date] != ""
+      @users = @users.select{|i| i.confirmed_at.to_date == params[:registration_date].to_date rescue nil}
+    end
+    if params[:last_access] != ""
+      @users = @users.select{|i| i.confirmed_at.to_date == params[:last_access].to_date rescue nil}
+    end
     if params[:gender] != "All"
       @users = @users.select{|i| i.profile.gender == params[:gender] rescue nil}
     end
     if params[:first_name] != ""
-      @users = @users.select{|i| i.profile.first_name.downcase == params[:first_name].downcase}
+      @users = @users.select{|i| i.profile.first_name.downcase == params[:first_name].downcase rescue nil}
     end
     if params[:last_name] != ""
-      @users = @users.select{|i| i.profile.last_name.downcase == params[:last_name].downcase}
+      @users = @users.select{|i| i.profile.last_name.downcase == params[:last_name].downcase rescue nil}
     end
     @users = @users.paginate(:page => params[:page], :per_page => 10)
    end
