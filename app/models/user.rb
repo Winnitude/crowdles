@@ -63,7 +63,7 @@ class User
   #field :la_platform_home,                :type => String     ###LA
   field :status,                       :type => String, :default => "New"
   #field :la_name,                         :type => String     ###la
-  #field :agw_ago_id,                      :type=> String      ##for agw type this will represent its AGO
+  field :is_nl_subscriber,                      :type=> String , :default =>"true"     ##for agw type this will represent its AGO
   #field :bgo_ago_id,                      :type=> String      ##for bgo type this will represent its AGO
   #field :mago_la_id,                      :type => String     ###la's id for mago'
   field :canceled,                       :type => Boolean ,:null => false, :default => false
@@ -78,6 +78,7 @@ class User
   field :confirmed_at,                    :type => Time
   field :confirmation_sent_at,            :type => Time
   field :unconfirmed_email,               :type => String # Only if using reconfirmable
+  field :privacy_level ,:type => String ,  :default => "Medium"
 
   ## Lockable
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts

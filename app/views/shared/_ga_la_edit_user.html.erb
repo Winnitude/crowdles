@@ -1,0 +1,13 @@
+<div class="sidebar-nav">
+  <ul class="nav nav-tabs nav-stacked">
+
+    <% if @user.present? %>
+        <li><%=link_to "General Setting" ,edit_settings_user_path(@user) %></li>
+        <li><%=link_to "Personal Information" ,edit_personal_info_user_path(@user) %></li>
+        <li> <%=link_to "Links" ,edit_links_user_path(@user) %></li>
+        <li> <%=link_to "Address" ,edit_address_user_path(@user) %></li>
+        <li> <%=link_to "Billing Profile" ,edit_billing_profile_user_path(@user) %></li>
+    <% end %>
+
+  </ul>
+</div >

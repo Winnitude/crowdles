@@ -1,0 +1,128 @@
+<div class="row">
+<div class="span2"><%=render :partial => "/shared/ga_la_edit_user"%>  </div>
+<div class="span7">
+<h2>Settings</h2>
+<%= form_for @user, :url => update_user_path(@user), :html => { :class => "form-horizontal",:multipart => true} do |user| %>
+    <% if @user.errors.any? || @profile.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count + @profile.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+            <% @profile.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Country: <span style="color:red"> </span></label>
+      <div class="controls">
+        <%=user.autocomplete_field :country ,autocomplete_country_detail_name_users_path,:class=>"input" ,:disabled => true%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+    <%= user.fields_for @profile do |f| %>
+          <div class="control-group">
+            <label class="control-label" for="input01">City</label>
+            <div class="controls">
+              <%= f.text_field :city, :class=>"input" %>
+              <!--<input type="text" class="input-xlarge" id="input01">-->
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="input01">State</label>
+            <div class="controls">
+              <%= f.text_field :state, :class=>"input" %>
+              <!--<input type="text" class="input-xlarge" id="input01">-->
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="input01">Zip Code</label>
+            <div class="controls">
+              <%= f.text_field :zip_code,:class=>"input" %>
+              <!--<input type="text" class="input-xlarge" id="input01">-->
+              <p class="help-block"></p>
+            </div>
+          </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Street</label>
+          <div class="controls">
+            <%= f.text_field :street,:class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Street Number</label>
+          <div class="controls">
+            <%= f.text_field :street_number, :class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Additional Address Info</label>
+          <div class="controls">
+            <%= f.text_field :additional_address_info, :class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Telephone Number 1</label>
+          <div class="controls">
+            <%= f.text_field :telephone_number,:class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Telephone Number 2</label>
+          <div class="controls">
+            <%= f.text_field :mobile_number, :class=>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+        </div>
+        </div>
+
+
+
+    <% end %>
+    <%= content_for :head do  %>
+        <script type="text/javascript">
+
+            jQuery(function(){
+
+                var profile_telephone_number = new LiveValidation("user_profile_telephone_number",{validMessage:" ",onlyOnSubmit:true});
+
+
+                profile_telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
+
+                var profile_mobile_number = new LiveValidation("user_profile_mobile_number",{validMessage:" ",onlyOnSubmit:true});
+                profile_mobile_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" })
+
+
+            });
+        </script>
+    <% end %>
+
+    <div class="form-actions">
+      <%= user.submit "Update User",:class =>"btn btn-primary"  %>
+    </div>
+<%end%>

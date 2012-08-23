@@ -28,7 +28,7 @@ class DefaultBillingProfile
 
   #validates  :first_name, :last_name , :currency , :company_name,:email, :telephone_number , :language, :country, :city, :state, :street1 , :presence => true
   validate :not_fake_country
-  validate :not_fake_language
+  #validate :not_fake_language
 
 
 

@@ -3,9 +3,10 @@ class UsersController < ApplicationController
   before_filter :get_user
   before_filter :should_be_local_admin, :only => [:user_management , :to_worker ]
   before_filter :should_be_AGO ,:only => [:to_admin_group_worker,:to_business_group_owner]
-  before_filter :should_be_LA_or_GA => [:manage_users , :edit_user , :update_user,:show_user]
+  before_filter :should_be_LA_or_GA => [:manage_users , :edit_user , :update_user,:show_user,:edit_settings,:edit_personal_info,:edit_address,:edit_billing_profile,:edit_links ]
 
   autocomplete :country_detail, :name
+  autocomplete :language, :name
   def user_management
   # @users = User.where(:country=>fetch_county_name(@user)).where(:role => "User")
   # role= Role.where(:role => "User").first
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def manage_users
+    #TODO all the searching logic needs to be moved to model
     #users = User.get_all_user_for_selected_role "User"
     #admins = User.get_all_user_for_selected_role "Local Admin"
     #@users = (users - admins).paginate(:page => params[:page], :per_page => 10)
@@ -84,7 +86,7 @@ class UsersController < ApplicationController
     redirect_to manage_users_users_path, :notice => "User updated Successfully"
    else
      @profile = @user.profile.present? ? @user.profile : @user.build_profile
-     render :action => "edit_user"
+     render :action => params[:action]
      end
   end
 
@@ -144,6 +146,57 @@ class UsersController < ApplicationController
     @admin_groups = current_user.admin_groups
     #binding.remote_pry
   end
+
+  def edit_settings
+    @user = User.find(params[:id])
+    @profile = @user.profile.present? ? @user.profile : @user.build_profile
+  end
+
+  #def update_settings
+  #
+  #  @user = User.find(params[:id])
+  #  @user.update_attributes(params[:user])
+  #   render :json =>  @user
+  #end
+
+  def edit_personal_info
+    @user = User.find(params[:id])
+    @profile = @user.profile.present? ? @user.profile : @user.build_profile
+  end
+
+  #def update_personal_info
+  #end
+
+  def edit_address
+    @user = User.find(params[:id])
+    @profile = @user.profile.present? ? @user.profile : @user.build_profile
+  end
+
+  #def update_address
+  #
+  #end
+  def edit_links
+    @user = User.find(params[:id])
+    @profile = @user.profile.present? ? @user.profile : @user.build_profile
+  end
+  #def update_links
+  #end
+
+  def edit_billing_profile
+    @user = User.find(params[:id])
+    @profile = @user.default_billing_profile.present? ? @user.default_billing_profile : @user.build_default_billing_profile
+  end
+
+  def update_billing_profile
+    @user = User.find(params[:user_id])
+    @profile = @user.default_billing_profile.present? ? @user.default_billing_profile : @user.build_default_billing_profile
+   if  @profile.update_attributes(params[:default_billing_profile])
+     redirect_to manage_users_users_path, :notice => "User updated Successfully"
+   else
+    render :action => "edit_billing_profile"
+   end
+  end
+
   private
 
   def should_be_local_admin

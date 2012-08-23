@@ -1,0 +1,127 @@
+<div class="row">
+<div class="span2"><%=render :partial => "/shared/ga_la_edit_user"%>  </div>
+<div class="span7">
+<h2>Settings</h2>
+<%= form_for @user, :url => update_user_path(@user), :html => { :class => "form-horizontal",:multipart => true} do |user| %>
+    <%= user.fields_for @profile do |f| %>
+
+    <% if @user.errors.any? || @profile.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count + @profile.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+            <% @profile.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Website</label>
+          <div class="controls">
+            <%=f.text_field :web, :class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+          <div class="control-group">
+            <label class="control-label" for="input01">Blog</label>
+            <div class="controls">
+              <%=f.text_field :blog,:class=>"input"%>
+              <!--<input type="text" class="input-xlarge" id="input01">-->
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="input01">Video</label>
+            <div class="controls">
+              <%=f.text_field :video,:class=>"input"%>
+              <!--<input type="text" class="input-xlarge" id="input01">-->
+              <p class="help-block"></p>
+            </div>
+          </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Facebook link</label>
+          <div class="controls">
+            <%=f.text_field :social_fb,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Twitter</label>
+          <div class="controls">
+            <%=f.text_field :social_twitter,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Linkedin</label>
+          <div class="controls">
+            <%=f.text_field :social_linkedin,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Myspace</label>
+          <div class="controls">
+            <%=f.text_field :social_myspace,:class=>"input"%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        </div>
+        </div>
+
+
+
+    <% end %>
+    <%= content_for :head do  %>
+        <script type="text/javascript">
+
+            jQuery(function(){
+
+                var video = new LiveValidation('user_profile_video',{validMessage:" ",onlyOnSubmit:true});
+                video.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+                var fb = new LiveValidation('user_profile_social_fb',{validMessage:" ",onlyOnSubmit:true});
+                fb.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+                var tweeter = new LiveValidation('user_profile_social_twitter',{validMessage:" ",onlyOnSubmit:true});
+                tweeter.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+                var li = new LiveValidation('user_profile_social_linkedin',{validMessage:" ",onlyOnSubmit:true});
+                li.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+                var my_space = new LiveValidation('user_profile_social_myspace',{validMessage:" ",onlyOnSubmit:true});
+                my_space.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+                var blog = new LiveValidation('user_profile_blog',{validMessage:" ",onlyOnSubmit:true});
+                blog.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+                var website = new LiveValidation('user_profile_web',{validMessage:" ",onlyOnSubmit:true});
+                website.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+
+
+            });
+        </script>
+    <% end %>
+
+    <div class="form-actions">
+      <%= user.submit "Update User",:class =>"btn btn-primary"  %>
+    </div>
+<%end%>
+<%= link_to 'Back', user_management_path %>

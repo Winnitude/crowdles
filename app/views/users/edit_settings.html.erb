@@ -1,4 +1,7 @@
-<h2>User Details</h2>
+<div class="row">
+<div class="span2"><%=render :partial => "/shared/ga_la_edit_user"%>  </div>
+<div class="span7">
+<h2>Settings</h2>
 <%= form_for @user, :url => update_user_path(@user), :html => { :class => "form-horizontal",:multipart => true} do |user| %>
     <% if @user.errors.any? || @profile.errors.any? %>
         <div id="error_explanation">
@@ -30,32 +33,18 @@
         <p class="help-block"></p>
       </div>
     </div>
+
+    <div class="control-group">
+      <td><label class="control-label" for="input01"> Language: <span style="color:red"> </span></label></td>
+      <div class="controls">
+        <%=user.autocomplete_field :language ,autocomplete_language_name_users_path ,:class=>"input"%>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
     <%= user.fields_for @profile do |f| %>
 
-        <div class="control-group">
-          <label class="control-label" for="input01">Profile Title</label>
-          <div class="controls">
-            <%=f.text_field :title ,:class=>"input"%>
-            <!--<input type="text" class="input-xlarge" id="input01">-->
-            <p class="help-block"></p>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="input01">First Name</label>
-          <div class="controls">
-            <%= f.text_field :first_name,:class=>"input" %>
-            <!--<input type="text" class="input-xlarge" id="input01">-->
-            <p class="help-block"></p>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="input01">Last Name</label>
-          <div class="controls">
-            <%= f.text_field :last_name, :class=>"input" %>
-            <!--<input type="text" class="input-xlarge" id="input01">-->
-            <p class="help-block"></p>
-          </div>
-        </div>
+
         <div class="control-group">
           <label class="control-label" for="input01">NickName<span style="color:red"> </span></label>
           <div class="controls">
@@ -65,14 +54,31 @@
           </div>
         </div>
         <div class="control-group">
+          <label class="control-label" for="input01">Privacy Level<span style="color:red"> </span></label>
+          <div class="controls">
+            <%= user.select :privacy_level ,options_for_select(["Low","Medium","High"],@user.privacy_level),:class =>"input" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
           <label class="control-label" for="input01">Image</label>
           <div class="controls">
             <%=f.file_field :image, :class=>"input"%>
+            <%= image_tag @user.profile.image.url , :size=> "300x200" if @user.profile.image.present?  %>
             <!--<input type="text" class="input-xlarge" id="input01">-->
             <p class="help-block"></p>
           </div>
         </div>
 
+        <div class="control-group">
+          <label class="control-label" for="input01">NL subscription: <span style="color:red"> </span></label>
+          <div class="controls">
+            <%=user.check_box :is_nl_subscriber, { :class => 'eula_check' }, "true", "false" %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
         <div class="control-group">
           <label class="control-label" for="input01">Video</label>
           <div class="controls">
@@ -230,7 +236,8 @@
         </div>
 
 
-
+        </div>
+        </div>
 
 
 
@@ -256,7 +263,7 @@
 //                profile_biography.add(Validate.Presence,{failureMessage:"Can't be empty"})
 //                var profile_birth_date = new LiveValidation("user_profile_birth_date",{validMessage:" ",onlyOnSubmit:true});
 //                profile_birth_date.add(Validate.Presence,{failureMessage:"Can't be empty"})
-              var profile_telephone_number = new LiveValidation("user_profile_telephone_number",{validMessage:" ",onlyOnSubmit:true});
+                var profile_telephone_number = new LiveValidation("user_profile_telephone_number",{validMessage:" ",onlyOnSubmit:true});
 
 
                 profile_telephone_number.add( Validate.Format , { pattern: /[+][0-9]{2} [0-9]{10}/g, failureMessage: "Must be in form +xx xxxxxxxxxx" });
@@ -275,7 +282,7 @@
 //                });
 
                 var video = new LiveValidation('user_profile_video',{validMessage:" ",onlyOnSubmit:true});
-            video.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
+                video.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
                 var fb = new LiveValidation('user_profile_social_fb',{validMessage:" ",onlyOnSubmit:true});
                 fb.add( Validate.Format , { pattern: /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/, failureMessage: "Must be a valid URL" });
                 var tweeter = new LiveValidation('user_profile_social_twitter',{validMessage:" ",onlyOnSubmit:true});

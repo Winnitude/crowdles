@@ -1,0 +1,98 @@
+<div class="row">
+<div class="span2"><%=render :partial => "/shared/ga_la_edit_user"%>  </div>
+<div class="span7">
+<h2>Personal Information</h2>
+<%= form_for @user, :url => update_user_path(@user), :html => { :class => "form-horizontal",:multipart => true} do |user| %>
+      <%= user.fields_for @profile do |f| %>
+    <% if @user.errors.any? || @profile.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count + @profile.errors.count  , "error") %> prohibited this Admin Group from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+            <% @profile.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">First Name</label>
+      <div class="controls">
+        <%= f.text_field :first_name,:class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">Last Name</label>
+      <div class="controls">
+        <%= f.text_field :last_name, :class=>"input" %>
+        <!--<input type="text" class="input-xlarge" id="input01">-->
+        <p class="help-block"></p>
+      </div>
+    </div>
+
+
+
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Birth Date </label>
+          <div class="controls">
+            <%= f.datepicker 'birth_date' %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="input01">Gender</label>
+          <div class="controls">
+            <%= f.select :gender ,options_for_select([['Male'],['Female']]) %>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input01">Biography</label>
+          <div class="controls">
+            <%= f.text_area :biography,:class=>"input" ,:rows => 6%>
+            <!--<input type="text" class="input-xlarge" id="input01">-->
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+
+        </div>
+        </div>
+
+
+
+    <% end %>
+    <%= content_for :head do  %>
+        <script type="text/javascript">
+
+            jQuery(function(){
+//
+                $('#user_profile_birth_date').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: 'c-100:c'
+
+
+                });
+
+
+
+            });
+        </script>
+    <% end %>
+
+    <div class="form-actions">
+      <%= user.submit "Update User",:class =>"btn btn-primary"  %>
+    </div>
+<%end%>
+<%= link_to 'Back', user_management_path %>

@@ -222,7 +222,7 @@ CrowdFunding::Application.routes.draw do
     match '/user/management'   =>'users#user_management',:via => :get
     match '/user/information/:id'   =>'users#show_user',:via => :get ,:as=>:show_user
     match '/user/edit/:id'   =>'users#edit_user',:via => :get ,:as=>:edit_user
-    match '/user/update/:id'   =>'users#update_user',:via => :post ,:as=>:update_user
+    match '/user/update/:id'   =>'users#update_user',:via => :put ,:as=>:update_user
     match '/user/suspend/:id'   =>'users#suspend_user',:via => :get    ,:as=>:suspend_user
     match '/user/to_worker/:id'   =>'users#to_worker',:via => :get  , :as => :to_worker
     match '/user/to_admin_group_worker/:id'   =>'users#to_admin_group_worker',:via => :get  , :as => :to_AGW
@@ -266,9 +266,20 @@ CrowdFunding::Application.routes.draw do
     member do
       #get :activate_page
       #put :activation
+      get :edit_settings
+      put :update_settings
+      get :edit_personal_info
+      put :update_personal_info
+      get :edit_address
+      put :update_address
+      get :edit_links
+      put :update_links
+      get :edit_billing_profile
+      put :update_billing_profile
     end
     collection do
       get :autocomplete_country_detail_name
+      get :autocomplete_language_name
     end
   end
   resources :profiles
