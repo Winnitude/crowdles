@@ -7,15 +7,15 @@ group :assets do
 end
 gem 'omniauth-facebook'
 gem 'jquery-rails'
-gem "bson_ext", ">= 1.6.1"
-gem "mongoid", ">= 2.4.7"
+gem 'bson_ext', '~> 1.5'
+gem 'mongoid', '~> 2.4'
 gem "devise", "2.1.0.rc"
 gem 'omniauth', ">= 0.1.6"
 gem 'rb-readline'
 gem 'geoip'
 gem 'rails3-jquery-autocomplete'
 gem 'ey_config'
-gem 'mongo'
+gem 'mongo', '1.6.2'
 gem 'hirb'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
