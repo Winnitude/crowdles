@@ -3,7 +3,7 @@ set :deploy_to, "/var/www/#{application}-staging"
 set :rails_env, "staging"
 set :scm, :git
 set :repository ,"git@github.com:rampapps/crowdles.git"
-set :branch, "staging"
+set :branch, "release"
 #set :scm_verbose, true
 
 location = "50.57.168.13"

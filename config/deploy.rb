@@ -15,10 +15,9 @@ namespace :deploy do
   end
 
   task :copy_database_yml do
-    run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
-    run "chmod -R 777 #{release_path}"
-  end
-
+     run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
+     run "chmod -R 777 #{release_path}"
+   end
   [:start, :stop].each do |t|
     desc "#{t} task is a no-op with mod_rails"
     task t, :roles => :app do
