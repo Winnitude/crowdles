@@ -13,6 +13,10 @@ gem "devise", "2.1.0.rc"
 gem 'omniauth', ">= 0.1.6"
 gem 'rb-readline'
 gem 'geoip'
+gem 'rails3-jquery-autocomplete'
+gem 'ey_config'
+gem 'mongo'
+gem 'hirb'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem "oauth2","0.5.2"
@@ -39,8 +43,17 @@ gem "mongo_mapper"
 gem 'mini_magick'
 gem "carrierwave-mongoid"
 #gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git', :branch => 'rails-3-1'
-# gem 'capistrano'
+gem 'capistrano'
 gem "fog", "~> 1.3.1"
+gem "pry"
+gem "pry-remote"
+gem "will_paginate"
+gem 'faker'
+#gem "bullet", :group => "development"
+#gem "itslog"
+#gem "fastercsv"
+
+#gem "geocoder"
 #gem "rmagick"
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
